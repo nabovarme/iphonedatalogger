@@ -17,8 +17,6 @@
 -(NSData*) hexToBytes ;
 @end
 
-
-
 @implementation NSString (NSStringHexToBytes)
 -(NSData*) hexToBytes {
     NSMutableData* data = [NSMutableData data];
@@ -135,6 +133,7 @@
     [logoView release];
     [labIconView release];
     [panelView release];
+    
 }
 
 - (void) receivedChar:(char)input
