@@ -45,6 +45,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        CharReceiverDelegate *charReceiver = [[CharReceiverDelegate alloc] init];
+        // assign delegate
+        charReceiver.delegate = self;
         // Custom initialization
     }
     return self;
@@ -76,7 +79,7 @@
 - (void) receivedChar:(char)input
 {
     //NSLog(@"input");
-    NSLog(@"input %c", input);
+    NSLog(@"input from view%c", input);
     
     
 	if(isprint(input)){

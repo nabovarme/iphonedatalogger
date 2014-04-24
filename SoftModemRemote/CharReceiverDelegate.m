@@ -34,7 +34,19 @@
 @end
 
 
+
+
 @implementation CharReceiverDelegate
+
+@synthesize delegate;
+
+-(id)init {
+    
+    self = [super init];
+    
+    return self;
+    
+}
 
 - (void) receivedChar:(char)input
 {

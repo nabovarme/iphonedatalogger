@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "NLAppDelegate.h"
 
-#import "CharReceiver.h"
+#import "CharReceiverDelegate.h"
 
-@interface NewSampleViewController : UIViewController <CharReceiver>{
+
+
+
+@interface NewSampleViewController : UIViewController <CharReceiverProtocol>{
     
 }
 

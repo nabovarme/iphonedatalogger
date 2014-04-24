@@ -10,6 +10,7 @@
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */; };
+		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; };
 		FB9A8D6B15BEA52C005F3DF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6915BEA52C005F3DF2 /* Icon.png */; };
 		FB9A8D6C15BEA52C005F3DF2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6A15BEA52C005F3DF2 /* Icon@2x.png */; };
 		FB9A8D6F15BEA5AA005F3DF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6D15BEA5AA005F3DF2 /* Default.png */; };
@@ -59,6 +60,8 @@
 		8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSampleViewController.m; sourceTree = "<group>"; };
 		8F39B6F31909346000ADA8F4 /* CharReceiverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharReceiverDelegate.h; sourceTree = "<group>"; };
 		8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharReceiverDelegate.m; sourceTree = "<group>"; };
+		8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SamplesListController.h; path = ../SamplesListController.h; sourceTree = "<group>"; };
+		8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SamplesListController.m; path = ../SamplesListController.m; sourceTree = "<group>"; };
 		FB9A8D6915BEA52C005F3DF2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FB9A8D6A15BEA52C005F3DF2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		FB9A8D6D15BEA5AA005F3DF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -137,6 +140,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F39B6F919093B3B00ADA8F4 /* myInterface */ = {
+			isa = PBXGroup;
+			children = (
+				8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */,
+				8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */,
+				8F39B6F31909346000ADA8F4 /* CharReceiverDelegate.h */,
+				8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */,
+				8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */,
+				8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */,
+				8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */,
+			);
+			name = myInterface;
+			sourceTree = "<group>";
+		};
 		FBBD3CC415BE57A90035F419 = {
 			isa = PBXGroup;
 			children = (
@@ -169,11 +186,7 @@
 		FBBD3CD915BE57A90035F419 /* SoftModemRemote */ = {
 			isa = PBXGroup;
 			children = (
-				8F39B6F31909346000ADA8F4 /* CharReceiverDelegate.h */,
-				8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */,
-				8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */,
-				8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */,
-				8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */,
+				8F39B6F919093B3B00ADA8F4 /* myInterface */,
 				FBBD3CE215BE57AA0035F419 /* NLAppDelegate.h */,
 				FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */,
 				FBBD3CE515BE57AA0035F419 /* NLMainViewController.h */,
@@ -363,6 +376,7 @@
 				FBBD3CE015BE57A90035F419 /* main.m in Sources */,
 				FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */,
 				FBBD3CE715BE57AA0035F419 /* NLMainViewController.m in Sources */,
+				8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */,
 				FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */,
 				8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */,
 				FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */,

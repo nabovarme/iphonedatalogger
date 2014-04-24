@@ -43,6 +43,11 @@
       nil]];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    // Override point for customization after application launch.
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    testingMasterViewController *controller = (testingMasterViewController *)navigationController.topViewController;
+    controller.managedObjectContext = self.managedObjectContext;
+
     
     self.viewController = [[[NLMainViewController alloc] init] autorelease];
     self.receiveDelegate=[[[CharReceiverDelegate alloc] init] autorelease];

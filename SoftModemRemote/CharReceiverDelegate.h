@@ -12,8 +12,17 @@
 
 @class CharReceiverDelegate;
 
+@protocol CharReceiverProtocol
+
+// define protocol functions that can be used in any class using this delegate
+- (void) receivedChar:(char)input;
+
+@end
+
 @interface CharReceiverDelegate : NSObject <CharReceiver>{
     
 }
+@property (nonatomic, assign) id  delegate;
+
 
 @end
