@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVAudioSession.h>
+#import "CharReceiver.h"
 
 #define APP_DELEGATE ((NLAppDelegate*)[[UIApplication sharedApplication] delegate])
 
-@class NLMainViewController, FSKSerialGenerator;
+@class NLMainViewController, FSKSerialGenerator,CharReceiverDelegate;
 @class AudioSignalAnalyzer, FSKSerialGenerator, FSKRecognizer;
 
 @interface NLAppDelegate : UIResponder <UIApplicationDelegate, AVAudioSessionDelegate> {
@@ -28,7 +29,7 @@
 
 
 @property (strong, nonatomic) NLMainViewController *viewController;
-
+@property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
 + (NLAppDelegate*) getInstance;
 
 @end

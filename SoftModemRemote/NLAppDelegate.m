@@ -18,6 +18,8 @@
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
+@synthesize receiveDelegate = _receiveDelegate;
+
 @synthesize generator = _generator;
 
 
@@ -43,6 +45,8 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     self.viewController = [[[NLMainViewController alloc] init] autorelease];
+    self.receiveDelegate=[[[CharReceiverDelegate alloc] init] autorelease];
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
@@ -61,7 +65,8 @@
     [session setPreferredIOBufferDuration:0.023220 error:nil];
     
 	_recognizer = [[FSKRecognizer alloc] init];
-	[_recognizer addReceiver:_viewController];
+	//[_recognizer addReceiver:_viewController];
+    [_recognizer addReceiver:_receiveDelegate];
     
 	_generator = [[FSKSerialGenerator alloc] init];
 	[_generator play];
