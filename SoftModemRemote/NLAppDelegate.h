@@ -12,7 +12,7 @@
 
 #define APP_DELEGATE ((NLAppDelegate*)[[UIApplication sharedApplication] delegate])
 
-@class NLMainViewController, FSKSerialGenerator,CharReceiverDelegate;
+@class FSKSerialGenerator,CharReceiverDelegate;
 @class AudioSignalAnalyzer, FSKSerialGenerator, FSKRecognizer;
 
 @interface NLAppDelegate : UIResponder <UIApplicationDelegate, AVAudioSessionDelegate> {

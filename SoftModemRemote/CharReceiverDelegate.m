@@ -48,10 +48,13 @@
     
 }
 
+
+
 - (void) receivedChar:(char)input
 {
     //NSLog(@"input");
-    NSLog(@"input from delegate%c", input);
+    //NSLog(@"input from delegate%c", input);
+    [delegate chaCha:input];
     
     
 	if(isprint(input)){
@@ -60,4 +63,6 @@
 		//textReceived.text = [textReceived.text stringByAppendingFormat:@"%c", input];
 	}
 }
+
+
 @end

@@ -55,10 +55,10 @@
             </objects>
             <point key="canvasLocation" x="1267" y="-595"/>
         </scene>
-        <!--View Controller-->
+        <!--New Sample View Controller-->
         <scene sceneID="oqv-R1-FOl">
             <objects>
-                <viewController id="UNH-T8-ylU" sceneMemberID="viewController">
+                <viewController id="UNH-T8-ylU" customClass="NewSampleViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hxg-wt-0ZJ"/>
                         <viewControllerLayoutGuide type="bottom" id="kTC-dH-pqH"/>
@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="1757" y="-606"/>
         </scene>
-        <!--Sam-->
+        <!--Navigation Controller-->
         <scene sceneID="p4I-DF-3kR">
             <objects>
-                <navigationController definesPresentationContext="YES" id="pU8-li-IzZ" customClass="Sam" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="pU8-li-IzZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3ge-Z3-pNZ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

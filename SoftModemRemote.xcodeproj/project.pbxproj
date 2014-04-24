@@ -11,6 +11,7 @@
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */; };
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; };
+		8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6FA1909438800ADA8F4 /* Images.xcassets */; };
 		FB9A8D6B15BEA52C005F3DF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6915BEA52C005F3DF2 /* Icon.png */; };
 		FB9A8D6C15BEA52C005F3DF2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6A15BEA52C005F3DF2 /* Icon@2x.png */; };
 		FB9A8D6F15BEA5AA005F3DF2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6D15BEA5AA005F3DF2 /* Default.png */; };
@@ -62,6 +63,7 @@
 		8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharReceiverDelegate.m; sourceTree = "<group>"; };
 		8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SamplesListController.h; path = ../SamplesListController.h; sourceTree = "<group>"; };
 		8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SamplesListController.m; path = ../SamplesListController.m; sourceTree = "<group>"; };
+		8F39B6FA1909438800ADA8F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB9A8D6915BEA52C005F3DF2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FB9A8D6A15BEA52C005F3DF2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		FB9A8D6D15BEA5AA005F3DF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				FBBD3D1D15BE59490035F419 /* NLInfoViewController.h */,
 				FBBD3D1E15BE59490035F419 /* NLInfoViewController.m */,
 				FBBD3D0015BE58970035F419 /* Dependencies */,
+				8F39B6FA1909438800ADA8F4 /* Images.xcassets */,
 				FBBD3CDA15BE57A90035F419 /* Supporting Files */,
 			);
 			path = SoftModemRemote;
@@ -346,6 +349,7 @@
 				FBBD3D3A15BE61820035F419 /* arrow_2@2x.png in Resources */,
 				FBBD3D3B15BE61820035F419 /* arrow_1.png in Resources */,
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,
+				8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */,
 				FBBD3D3C15BE61820035F419 /* arrow_1@2x.png in Resources */,
 				FBBD3D3D15BE61820035F419 /* panel.png in Resources */,
 				FBBD3D3E15BE61820035F419 /* panel@2x.png in Resources */,

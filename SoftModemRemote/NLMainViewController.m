@@ -88,6 +88,7 @@
     [self.view addSubview:labIconView];
     
     UIImage* panel = [UIImage imageNamed:@"panel.png"];
+    
     UIImageView* panelView = [[UIImageView alloc] initWithImage:panel];
     panelView.frame = CGRectMake(floorf((self.view.width - panelView.width) / 2),
                                  logoView.bottom + 18.0f,

@@ -8,7 +8,7 @@
 
 #import "NLAppDelegate.h"
 #import "FSKSerialGenerator.h"
-#import "NLMainViewController.h"
+//#import "NLMainViewController.h"
 
 #import "SamplesListController.h"
 

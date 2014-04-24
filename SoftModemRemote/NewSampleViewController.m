@@ -45,10 +45,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        CharReceiverDelegate *charReceiver = [[CharReceiverDelegate alloc] init];
-        // assign delegate
-        charReceiver.delegate = self;
-        // Custom initialization
+                // Custom initialization
     }
     return self;
 }
@@ -56,6 +53,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"new sample view loaded");
+    CharReceiverDelegate *charReceiver = [[CharReceiverDelegate alloc] init];
+    // assign delegate
+    [APP_DELEGATE.receiveDelegate setDelegate:self];
+
     // Do any additional setup after loading the view.
 }
 
@@ -76,17 +78,12 @@
 }
 */
 
-- (void) receivedChar:(char)input
+
+-(void)chaCha:(char)myChar;
 {
     //NSLog(@"input");
-    NSLog(@"input from view%c", input);
-    
-    
-	if(isprint(input)){
-        //NSLog(@"inputIsAvailableChanged %c", input);
-        
-		//textReceived.text = [textReceived.text stringByAppendingFormat:@"%c", input];
-	}
+    NSLog(@"input from view%c", myChar);
+
 }
 
 
