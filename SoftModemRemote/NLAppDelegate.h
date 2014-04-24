@@ -28,7 +28,7 @@
 @property (nonatomic, retain) FSKSerialGenerator* generator;
 
 
-@property (strong, nonatomic) NLMainViewController *viewController;
+//@property (strong, nonatomic) NLMainViewController *viewController;
 @property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
 + (NLAppDelegate*) getInstance;
 

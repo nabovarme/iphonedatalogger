@@ -10,6 +10,8 @@
 #import "FSKSerialGenerator.h"
 #import "NLMainViewController.h"
 
+#import "SamplesListController.h"
+
 #import "AudioSignalAnalyzer.h"
 #import "FSKSerialGenerator.h"
 #import "FSKRecognizer.h"
@@ -17,7 +19,7 @@
 @implementation NLAppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+//@synthesize viewController = _viewController;
 @synthesize receiveDelegate = _receiveDelegate;
 
 @synthesize generator = _generator;
@@ -30,7 +32,7 @@
 {
     [_generator release];
     [_window release];
-    [_viewController release];
+   // [_viewController release];
     [super dealloc];
 }
 
@@ -42,18 +44,18 @@
       @"0x01FF807F", @"second", // NEC protocol next channel
       nil]];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    //self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    testingMasterViewController *controller = (testingMasterViewController *)navigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;
+    SamplesListController *controller = (SamplesListController *)navigationController.topViewController;
+    //controller.managedObjectContext = self.managedObjectContext;
 
     
-    self.viewController = [[[NLMainViewController alloc] init] autorelease];
+    //self.viewController = [[[NLMainViewController alloc] init] autorelease];
     self.receiveDelegate=[[[CharReceiverDelegate alloc] init] autorelease];
     
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    //self.window.rootViewController = controller;
+    //[self.window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
