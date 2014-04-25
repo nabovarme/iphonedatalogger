@@ -29,6 +29,5 @@
 - (IBAction)SendA5:(UIButton *)sender;
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)done:(UIBarButtonItem *)sender;
--(void)lol;
 
 @end

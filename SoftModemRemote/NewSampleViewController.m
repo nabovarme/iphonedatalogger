@@ -122,11 +122,4 @@
     [delegate NewSampleViewControllerDidSave:self];
 }
 
-
-
--(void)lol
-{
-    NSLog(@"inside lolcat");
-}
-
 @end
