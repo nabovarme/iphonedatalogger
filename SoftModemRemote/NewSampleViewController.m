@@ -41,6 +41,16 @@
 
 @implementation NewSampleViewController
 
+@synthesize delegate;
+
+-(id)init {
+    NSLog(@"init");
+    self = [super init];
+    
+    return self;
+    
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,7 +64,6 @@
 {
     [super viewDidLoad];
     NSLog(@"new sample view loaded");
-    CharReceiverDelegate *charReceiver = [[CharReceiverDelegate alloc] init];
     // assign delegate
     [APP_DELEGATE.receiveDelegate setDelegate:self];
 
@@ -82,9 +91,42 @@
 -(void)chaCha:(char)myChar;
 {
     //NSLog(@"input");
-    NSLog(@"input from view%c", myChar);
+    NSLog(@"input from view:\t%c", myChar);
 
 }
 
+
+- (IBAction)SendA5:(UIButton *)sender {
+	[APP_DELEGATE.generator writeByte:0xff];
+    sleep(1);
+	[APP_DELEGATE.generator writeByte:0x00];
+    sleep(1);
+	[APP_DELEGATE.generator writeByte:0xa5];
+    sleep(1);
+    [APP_DELEGATE.generator writeByte:0xff];
+    sleep(1);
+
+
+}
+
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+    NSLog(@"sending cancel");
+
+    [delegate NewSampleViewControllerDidCancel:self];
+    
+}
+
+- (IBAction)done:(UIBarButtonItem *)sender {
+    NSLog(@"sending done");
+    
+    [delegate NewSampleViewControllerDidSave:self];
+}
+
+
+
+-(void)lol
+{
+    NSLog(@"inside lolcat");
+}
 
 @end

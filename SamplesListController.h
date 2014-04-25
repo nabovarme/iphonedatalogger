@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewSampleViewController.h"
 
-@interface SamplesListController : UITableViewController
+
+@interface SamplesListController : UITableViewController <NewSampleViewControllerDelegate>{
+    
+}
+
 
 @end

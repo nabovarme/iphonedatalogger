@@ -8,11 +8,14 @@
 
 #import "SamplesListController.h"
 
+
 @interface SamplesListController ()
 
 @end
 
 @implementation SamplesListController
+
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -116,5 +119,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"NewSample"]) {
+        NSLog(@"NewSample Segue");
+        NewSampleViewController *newSampleViewController = segue.destinationViewController;
+        newSampleViewController.delegate=self;
+    }
+}
+
+
+#pragma mark - NewSampleViewControllerDelegate
+
+- (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller
+{
+    NSLog(@"received cancel");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
+{
+    NSLog(@"received done");
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end
