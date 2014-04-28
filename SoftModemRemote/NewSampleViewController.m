@@ -12,6 +12,7 @@
 #import "NSString+HexColor.h"
 #import "FSKSerialGenerator.h"
 #include <ctype.h>
+#include "ProtocolHelper.h"
 
 
 @interface NSString (NSStringHexToBytes)
@@ -91,20 +92,24 @@
 -(void)chaCha:(char)myChar;
 {
     //NSLog(@"input");
-    NSLog(@"input from view:\t%c", myChar);
+    NSLog(@"input from view:\t%d", (UInt8)myChar);
+
 
 }
 
 
 - (IBAction)SendA5:(UIButton *)sender {
-	[APP_DELEGATE.generator writeByte:0xff];
-    sleep(1);
-	[APP_DELEGATE.generator writeByte:0x00];
-    sleep(1);
-	[APP_DELEGATE.generator writeByte:0xa5];
-    sleep(1);
-    [APP_DELEGATE.generator writeByte:0xff];
-    sleep(1);
+    
+
+    dispatch_queue_t sendQueue = dispatch_queue_create("sendTime",  DISPATCH_QUEUE_SERIAL);
+    dispatch_async(sendQueue, ^{
+        NSString *hexString=@"0xff00a5ff";
+        NSData* hexData = [[[ProtocolHelper alloc] init]hexToBytes:hexString];
+        NSLog(@"hexstring: %@", hexString);
+        NSLog(@"converted to bytes: %@", hexData);
+        [APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
+
+    });
 
 
 }

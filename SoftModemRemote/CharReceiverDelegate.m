@@ -15,9 +15,11 @@
 
 @interface NSString (NSStringHexToBytes)
 -(NSData*) hexToBytes ;
+
 @end
 
 @implementation NSString (NSStringHexToBytes)
+
 -(NSData*) hexToBytes {
     NSMutableData* data = [NSMutableData data];
     int idx;
