@@ -99,14 +99,7 @@
 
 -(void)chaCha:(char)myChar;
 {
-    //NSLog(@"input");
     UInt8 a =(UInt8)myChar;
-    /*
-    if(a==255){
-        [self performSelectorOnMainThread:@selector(updateAfterSend)
-                               withObject:nil
-                            waitUntilDone:NO];
-    } */
     counter++;
     NSLog(@"input:\t%u\tcounter:%d", myChar & 0xff,counter);
 
@@ -114,11 +107,7 @@
 }
 
 -(void) sendRequest:(NSString*) hexString{
-    /*
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                            selector:@selector(encodeStringToBytesAndSend:)
-                                                                              object:hexString];
-    */
+
     NSInvocationOperation *operation = [NSInvocationOperation alloc];
     operation=[operation initWithTarget:self
                                selector:@selector(encodeStringToBytesAndSend:)
@@ -127,15 +116,14 @@
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
-    
-
-    /*[operation setCompletionBlock:^{
-     [self performSelectorOnMainThread:@selector(updateAfterSend)
-     withObject:nil
-     waitUntilDone:NO];
-     }];*/
 }
 
+/****************************
+ encodeStringToBytesAndSend:
+ 
+ takes an nsarray holding a hexstring an a reference to an operation object
+ sends data to audio generator and returns on finish or if operation is canceled
+ ****************************/
 -(void) encodeStringToBytesAndSend:(NSArray*)params{
     NSString * hexString=[params objectAtIndex:0];
     
@@ -156,7 +144,7 @@
             NSLog(@"operation cancelled");
             return;
         }
-        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 2 seconds
+        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
 }
@@ -188,20 +176,23 @@
     NSLog(@"received last byte 255");
 }
 
-/*
+/****************************
  cancel:
  used to tell delegate that cancel button is pressed
- */
+ ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
     [self.operationQueue cancelAllOperations];
     [delegate NewSampleViewControllerDidCancel:self];
     
 }
-
+/****************************
+ cancel:
+ used to tell delegate that cancel button is pressed
+ ****************************/
 - (IBAction)done:(UIBarButtonItem *)sender {
     NSLog(@"sending done");
-    
+    [self.operationQueue cancelAllOperations];
     [delegate NewSampleViewControllerDidSave:self];
 }
 
