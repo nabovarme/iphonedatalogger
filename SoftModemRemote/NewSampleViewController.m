@@ -142,6 +142,8 @@
     
     //stoffers protocol dictates:
     [APP_DELEGATE.generator writeByte:(UInt8)255];
+    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
+
 
     const char *bytes = [hexData bytes];
     for (int i = 0; i < [hexData length]; i++)
@@ -165,7 +167,7 @@
     NSInvocationOperation *operation = (NSInvocationOperation *)object;
 
     [APP_DELEGATE.generator writeByte:(UInt8)255];
-    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 2 seconds
+    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
 
 
     for (UInt8 i = 0; i < 255; i++)
@@ -177,7 +179,7 @@
         }
 
 //        usleep(100000);
-        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 2 seconds
+        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
 
         [APP_DELEGATE.generator writeByte:i];
     }
