@@ -119,12 +119,14 @@
                                                                             selector:@selector(encodeStringToBytesAndSend:)
                                                                               object:hexString];
     */
-     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                            selector:@selector(test)
-                                                                              object:nil];
+    NSInvocationOperation *operation = [NSInvocationOperation alloc];
+    operation=[operation initWithTarget:self
+                               selector:@selector(test:)
+                                 object:operation];
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
+    
 
     /*[operation setCompletionBlock:^{
      [self performSelectorOnMainThread:@selector(updateAfterSend)
@@ -150,12 +152,19 @@
     //[APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
     
 }
--(void) test{
+-(void) test:(id)object{
+    NSInvocationOperation *operation = (NSInvocationOperation *)object;
 
     [APP_DELEGATE.generator writeByte:(UInt8)255];
 
     for (UInt8 i = 0; i < 255; i++)
     {
+        if ([operation isCancelled])
+        {
+            NSLog(@"cancelled");
+            return;
+        }
+
 //        usleep(100000);
         [NSThread sleepForTimeInterval:0.1]; // This will sleep for 2 seconds
 
@@ -173,7 +182,7 @@
 
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-    [APP_DELEGATE resetGenerator];
+    [self.operationQueue cancelAllOperations];
     [delegate NewSampleViewControllerDidCancel:self];
     
 }

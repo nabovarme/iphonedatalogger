@@ -97,9 +97,11 @@
 }
 -(void)resetGenerator
 {
-    [_generator release];
-	_generator = [[FSKSerialGenerator alloc] init];
+    /*
+   // [_generator stop];
+	[_generator init];
     [_generator play];
+     */
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

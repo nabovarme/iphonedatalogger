@@ -165,7 +165,7 @@
 - (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller
 {
     NSLog(@"received cancel");
-    [APP_DELEGATE resetGenerator];
+    //[APP_DELEGATE resetGenerator];
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -173,7 +173,7 @@
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
 {
     NSLog(@"received done");
-    [APP_DELEGATE resetGenerator];
+    //[APP_DELEGATE resetGenerator];
 
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
