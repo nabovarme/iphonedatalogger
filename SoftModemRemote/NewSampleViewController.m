@@ -173,7 +173,7 @@
 
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-
+    [APP_DELEGATE resetGenerator];
     [delegate NewSampleViewControllerDidCancel:self];
     
 }
