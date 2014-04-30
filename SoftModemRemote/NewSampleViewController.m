@@ -156,7 +156,7 @@
             NSLog(@"operation cancelled");
             return;
         }
-        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 2 seconds
+        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 2 seconds
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
 }
@@ -175,7 +175,7 @@
         }
 
 //        usleep(100000);
-        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 2 seconds
+        [NSThread sleepForTimeInterval:0.005]; // This will sleep for 2 seconds
 
         [APP_DELEGATE.generator writeByte:i];
     }
