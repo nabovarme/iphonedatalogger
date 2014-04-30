@@ -182,7 +182,6 @@
 
 - (IBAction)addSampleEntry:(NewSampleViewController *)controller
 {
-    // Add Entry to PhoneBook Data base and reset all fields
     
     //  1
     SamplesEntity *newSample=[NSEntityDescription insertNewObjectForEntityForName:@"SamplesEntity"

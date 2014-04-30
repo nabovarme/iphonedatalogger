@@ -71,7 +71,7 @@
     [APP_DELEGATE.receiveDelegate setDelegate:self];
     self.operationQueue = [[NSOperationQueue alloc] init];
     
-    NSString *hexString=@"ff00a5ff";
+    NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00";
     [self sendRequest:hexString];
     
     counter=0;
@@ -121,8 +121,9 @@
     */
     NSInvocationOperation *operation = [NSInvocationOperation alloc];
     operation=[operation initWithTarget:self
-                               selector:@selector(test:)
-                                 object:operation];
+                               selector:@selector(encodeStringToBytesAndSend:)
+                                 object:[NSArray arrayWithObjects:hexString,operation, nil]
+                                         ];
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
@@ -135,7 +136,11 @@
      }];*/
 }
 
--(void) encodeStringToBytesAndSend:(NSString*)hexString{
+-(void) encodeStringToBytesAndSend:(NSArray*)params{
+    NSString * hexString=[params objectAtIndex:0];
+    
+    NSInvocationOperation *operation = (NSInvocationOperation *)[params objectAtIndex:1];
+
     NSData* hexData = [[[ProtocolHelper alloc] init]hexStringToBytes:hexString];
     NSLog(@"hexstring: %@", hexString);
     NSLog(@"converted to bytes: %@", hexData);
@@ -146,12 +151,16 @@
     const char *bytes = [hexData bytes];
     for (int i = 0; i < [hexData length]; i++)
     {
-        usleep(100);
+        if ([operation isCancelled])
+        {
+            NSLog(@"operation cancelled");
+            return;
+        }
+        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 2 seconds
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
-    //[APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
-    
 }
+
 -(void) test:(id)object{
     NSInvocationOperation *operation = (NSInvocationOperation *)object;
 
@@ -161,7 +170,7 @@
     {
         if ([operation isCancelled])
         {
-            NSLog(@"cancelled");
+            NSLog(@"operation cancelled");
             return;
         }
 
