@@ -103,7 +103,7 @@
         [self performSelectorOnMainThread:@selector(updateAfterSend)
                                withObject:nil
                             waitUntilDone:NO];
-    }*/
+    } */
     NSLog(@"input from view:\t%u", myChar);
 
 
