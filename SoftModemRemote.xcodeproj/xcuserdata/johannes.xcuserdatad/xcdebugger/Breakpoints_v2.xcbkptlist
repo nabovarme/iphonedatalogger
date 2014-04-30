@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420593283.574396"
+            timestampString = "420594290.60612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-cancel:"
             landmarkType = "5">
          </BreakpointContent>
@@ -126,6 +126,38 @@
             startingLineNumber = "187"
             endingLineNumber = "187"
             landmarkName = "-addSampleEntry:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoftModemRemote/Dependencies/SoftModem/FSKSerialGenerator.mm"
+            timestampString = "420594115.24726"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-writeByte:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoftModemRemote/Dependencies/SoftModem/FSKSerialGenerator.mm"
+            timestampString = "420594117.199446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-writeBytes:length:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

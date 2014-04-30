@@ -34,7 +34,7 @@
 #define SINE_TABLE_LENGTH 441
 
 #define PRE_CARRIER_BITS	  ((4000+BIT_PERIOD)/BIT_PERIOD)
-#define POST_CARRIER_BITS	  0//(( 5000+BIT_PERIOD)/BIT_PERIOD)
+#define POST_CARRIER_BITS	  (( 5+BIT_PERIOD)/BIT_PERIOD)
 
 // TABLE_JUMP = phase_per_sample / phase_per_entry
 // phase_per_sample = 2pi * time_per_sample / time_per_wave

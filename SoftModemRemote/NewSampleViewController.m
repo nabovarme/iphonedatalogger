@@ -112,10 +112,14 @@
     [activity startAnimating];
 
     NSInvocationOperation *operation = [NSInvocationOperation alloc];
-    operation=[operation initWithTarget:self
+    /*operation=[operation initWithTarget:self
                                selector:@selector(encodeStringToBytesAndSend:)
                                  object:[NSArray arrayWithObjects:hexString,operation, nil]
-                                         ];
+                                         ];*/
+    operation=[operation initWithTarget:self
+                               selector:@selector(test:)
+                                 object:operation
+               ];
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
@@ -150,6 +154,7 @@
         [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
+    
     [self performSelectorOnMainThread:@selector(updateAfterSend)
                            withObject:nil
                         waitUntilDone:NO];
