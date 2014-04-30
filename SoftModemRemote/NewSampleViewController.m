@@ -44,6 +44,7 @@
 @implementation NewSampleViewController
 
 @synthesize delegate;
+@synthesize counter;
 
 -(id)init {
     NSLog(@"init");
@@ -70,8 +71,10 @@
     [APP_DELEGATE.receiveDelegate setDelegate:self];
     self.operationQueue = [[NSOperationQueue alloc] init];
     
-    NSString *hexString=@"00ff00ffa5";
+    NSString *hexString=@"ff00a5ff";
     [self sendRequest:hexString];
+    
+    counter=0;
 
     // Do any additional setup after loading the view.
 }
@@ -82,7 +85,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -91,7 +94,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 
 -(void)chaCha:(char)myChar;
@@ -104,15 +107,21 @@
                                withObject:nil
                             waitUntilDone:NO];
     } */
-    NSLog(@"input from view:\t%u", myChar & 0xff);
+    counter++;
+    NSLog(@"input:\t%u\tcounter:%d", myChar & 0xff,counter);
 
 
 }
 
 -(void) sendRequest:(NSString*) hexString{
+    /*
     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
                                                                             selector:@selector(encodeStringToBytesAndSend:)
                                                                               object:hexString];
+    */
+     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                            selector:@selector(test)
+                                                                              object:nil];
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
@@ -128,7 +137,32 @@
     NSData* hexData = [[[ProtocolHelper alloc] init]hexStringToBytes:hexString];
     NSLog(@"hexstring: %@", hexString);
     NSLog(@"converted to bytes: %@", hexData);
-    [APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
+    
+    //stoffers protocol dictates:
+    [APP_DELEGATE.generator writeByte:(UInt8)255];
+
+    const char *bytes = [hexData bytes];
+    for (int i = 0; i < [hexData length]; i++)
+    {
+        usleep(100);
+        [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
+    }
+    //[APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
+    
+}
+-(void) test{
+
+    [APP_DELEGATE.generator writeByte:(UInt8)255];
+
+    for (UInt8 i = 0; i < 255; i++)
+    {
+//        usleep(100000);
+        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 2 seconds
+
+        [APP_DELEGATE.generator writeByte:i];
+    }
+    NSLog(@"done sending test");
+    //[APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
     
 }
 
@@ -151,6 +185,8 @@
 }
 
 - (void)dealloc {
+    NSLog(@"dealloc");
+
     [super dealloc];
 }
 @end

@@ -15,10 +15,12 @@
 @interface SamplesListController ()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong)NSArray* fetchedSamplesArray;
+@property (nonatomic,strong)NSDateFormatter* dateFormatter;
 @end
 
-@implementation SamplesListController
 
+@implementation SamplesListController
+@synthesize dateFormatter;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -34,9 +36,15 @@
 {
     [super viewDidLoad];
     NSLog(@"masterviewloaded");
+    dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
     //2
     self.managedObjectContext = APP_DELEGATE.managedObjectContext;
     [self updateTableView];
+    
+    
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -78,14 +86,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDateFormatter *f = [[NSDateFormatter alloc]init];
-    [f setDateFormat:@"MM:dd:yy hh:mm"];
+
+    //[f setDateFormat:@"dd/MM/yy HH:mm"];
 
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     NSString *CellIdentifier = @"GasSampleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     SamplesEntity * sample = [self.fetchedSamplesArray objectAtIndex:indexPath.row];
-    NSString *dateString=[f stringFromDate:sample.date];
+    NSString *dateString=[dateFormatter stringFromDate:sample.date];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",dateString];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",sample.placeName];
 
@@ -157,12 +165,16 @@
 - (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller
 {
     NSLog(@"received cancel");
+    [APP_DELEGATE resetGenerator];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
 {
     NSLog(@"received done");
+    [APP_DELEGATE resetGenerator];
+
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self updateTableView];
@@ -176,7 +188,7 @@
     SamplesEntity *newSample=[NSEntityDescription insertNewObjectForEntityForName:@"SamplesEntity"
                                                           inManagedObjectContext:self.managedObjectContext];
     //  2
-    newSample.date=nil;
+    newSample.date=[NSDate date];
     newSample.deviceName=@"gas sensor";
     newSample.placeName=@"loppen";
     newSample.sampleDataDict=nil;

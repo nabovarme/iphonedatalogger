@@ -25,7 +25,7 @@
 
 }
 @property (nonatomic, assign) id <NewSampleViewControllerDelegate> delegate;
-
+@property (nonatomic,assign) NSInteger * counter;
 
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)done:(UIBarButtonItem *)sender;
