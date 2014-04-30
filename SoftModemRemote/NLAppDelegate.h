@@ -27,9 +27,15 @@
 
 @property (nonatomic, retain) FSKSerialGenerator* generator;
 
+//core data
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator ;
+//end
 
 //@property (strong, nonatomic) NLMainViewController *viewController;
 @property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
 + (NLAppDelegate*) getInstance;
+-(NSArray*)getAllSamplesFromDevice:(NSString*)deviceName;
 
 @end

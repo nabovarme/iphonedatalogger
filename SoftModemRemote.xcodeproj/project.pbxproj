@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F0866921911067E0075391E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0866911911067E0075391E /* CoreData.framework */; };
 		8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F086693191106C60075391E /* SamplesModel.xcdatamodeld */; };
+		8F086699191117730075391E /* SamplesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F086698191117730075391E /* SamplesEntity.m */; };
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */; };
@@ -62,6 +63,8 @@
 /* Begin PBXFileReference section */
 		8F0866911911067E0075391E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8F086694191106C60075391E /* SamplesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SamplesModel.xcdatamodel; sourceTree = "<group>"; };
+		8F086697191117730075391E /* SamplesEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplesEntity.h; sourceTree = "<group>"; };
+		8F086698191117730075391E /* SamplesEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplesEntity.m; sourceTree = "<group>"; };
 		8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSampleViewController.h; sourceTree = "<group>"; };
 		8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSampleViewController.m; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				8F086693191106C60075391E /* SamplesModel.xcdatamodeld */,
+				8F086697191117730075391E /* SamplesEntity.h */,
+				8F086698191117730075391E /* SamplesEntity.m */,
 			);
 			name = "core data";
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				FBBD3D1615BE58970035F419 /* FSKRecognizer.mm in Sources */,
 				FBBD3D1715BE58970035F419 /* FSKSerialGenerator.mm in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
+				8F086699191117730075391E /* SamplesEntity.m in Sources */,
 				FBBD3D1F15BE59490035F419 /* NLInfoViewController.m in Sources */,
 				FBBD3D3215BE5ECB0035F419 /* NSString+HexColor.m in Sources */,
 				8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */,

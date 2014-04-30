@@ -70,7 +70,7 @@
     [APP_DELEGATE.receiveDelegate setDelegate:self];
     self.operationQueue = [[NSOperationQueue alloc] init];
     
-    NSString *hexString=@"00";
+    NSString *hexString=@"00ff00ffa5";
     [self sendRequest:hexString];
 
     // Do any additional setup after loading the view.
@@ -98,12 +98,13 @@
 {
     //NSLog(@"input");
     UInt8 a =(UInt8)myChar;
+    /*
     if(a==255){
         [self performSelectorOnMainThread:@selector(updateAfterSend)
                                withObject:nil
                             waitUntilDone:NO];
-    }
-    NSLog(@"input from view:\t%d", (UInt8)myChar);
+    }*/
+    NSLog(@"input from view:\t%u", myChar);
 
 
 }
