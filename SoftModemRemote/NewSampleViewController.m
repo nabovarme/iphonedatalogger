@@ -45,6 +45,8 @@
 
 @synthesize delegate;
 @synthesize counter;
+@synthesize activity;
+@synthesize sendButton;
 
 -(id)init {
     NSLog(@"init");
@@ -71,7 +73,7 @@
     [APP_DELEGATE.receiveDelegate setDelegate:self];
     self.operationQueue = [[NSOperationQueue alloc] init];
     
-    NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00";
+    NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00";
     [self sendRequest:hexString];
     
     counter=0;
@@ -107,6 +109,7 @@
 }
 
 -(void) sendRequest:(NSString*) hexString{
+    [activity startAnimating];
 
     NSInvocationOperation *operation = [NSInvocationOperation alloc];
     operation=[operation initWithTarget:self
@@ -142,11 +145,15 @@
         if ([operation isCancelled])
         {
             NSLog(@"operation cancelled");
-            return;
+            break;
         }
         [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
         [APP_DELEGATE.generator writeByte:(UInt8)255];
     }
+    [self performSelectorOnMainThread:@selector(updateAfterSend)
+                           withObject:nil
+                        waitUntilDone:NO];
+
 }
 
 -(void) test:(id)object{
@@ -173,7 +180,9 @@
 }
 
 - (void)updateAfterSend{
-    NSLog(@"received last byte 255");
+    NSLog(@"reached Update after send");
+    [activity stopAnimating];
+    [sendButton setEnabled:true];
 }
 
 /****************************

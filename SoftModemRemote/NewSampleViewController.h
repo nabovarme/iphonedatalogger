@@ -26,6 +26,8 @@
 }
 @property (nonatomic, assign) id <NewSampleViewControllerDelegate> delegate;
 @property (nonatomic,assign) NSInteger * counter;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *sendButton;
 
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)done:(UIBarButtonItem *)sender;

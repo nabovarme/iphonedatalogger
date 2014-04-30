@@ -81,7 +81,7 @@
                                                 <action selector="cancel:" destination="UNH-T8-ylU" id="D1C-HY-Lbq"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Aer-jl-hsV">
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="Aer-jl-hsV">
                                             <connections>
                                                 <action selector="done:" destination="UNH-T8-ylU" id="hcO-14-WPp"/>
                                             </connections>
@@ -93,6 +93,10 @@
                                 <rect key="frame" x="0.0" y="68" width="320" height="500"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="h7c-3F-HN2">
+                                    <rect key="frame" x="0.0" y="66" width="320" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ybx-qe-TzY">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -111,6 +115,10 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="f5t-Yx-6lP"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="uBt-5V-yjj"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activity" destination="h7c-3F-HN2" id="fVI-CN-UQc"/>
+                        <outlet property="sendButton" destination="Aer-jl-hsV" id="QhM-18-u7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYf-zM-RZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
