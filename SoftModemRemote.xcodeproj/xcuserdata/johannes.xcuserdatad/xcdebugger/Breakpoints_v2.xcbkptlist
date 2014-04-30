@@ -72,44 +72,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420383623.929143"
+            timestampString = "420403876.421061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-cancel:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420383623.929143"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-SendA5:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420383623.929143"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-SendA5:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -125,7 +93,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "-hexToBytes:"
+            landmarkName = "-hexStringToBytes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -136,27 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420383623.929143"
+            timestampString = "420403779.29351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-SendA5:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420383378.711292"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-chaCha:"
             landmarkType = "5">
          </BreakpointContent>

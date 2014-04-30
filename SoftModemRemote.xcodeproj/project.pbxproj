@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0866921911067E0075391E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0866911911067E0075391E /* CoreData.framework */; };
+		8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F086693191106C60075391E /* SamplesModel.xcdatamodeld */; };
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */; };
@@ -58,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F0866911911067E0075391E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8F086694191106C60075391E /* SamplesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SamplesModel.xcdatamodel; sourceTree = "<group>"; };
 		8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSampleViewController.h; sourceTree = "<group>"; };
 		8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSampleViewController.m; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F0866921911067E0075391E /* CoreData.framework in Frameworks */,
 				FBBD3D1B15BE59150035F419 /* AudioToolbox.framework in Frameworks */,
 				FBBD3D1C15BE59150035F419 /* AVFoundation.framework in Frameworks */,
 				FBBD3CD415BE57A90035F419 /* UIKit.framework in Frameworks */,
@@ -148,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F086696191106CD0075391E /* core data */ = {
+			isa = PBXGroup;
+			children = (
+				8F086693191106C60075391E /* SamplesModel.xcdatamodeld */,
+			);
+			name = "core data";
+			sourceTree = "<group>";
+		};
 		8F39B6F919093B3B00ADA8F4 /* myInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +182,7 @@
 		FBBD3CC415BE57A90035F419 = {
 			isa = PBXGroup;
 			children = (
+				8F086696191106CD0075391E /* core data */,
 				FBBD3CD915BE57A90035F419 /* SoftModemRemote */,
 				FBBD3CD215BE57A90035F419 /* Frameworks */,
 				FBBD3CD015BE57A90035F419 /* Products */,
@@ -186,6 +200,7 @@
 		FBBD3CD215BE57A90035F419 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F0866911911067E0075391E /* CoreData.framework */,
 				FBBD3D1915BE59150035F419 /* AudioToolbox.framework */,
 				FBBD3D1A15BE59150035F419 /* AVFoundation.framework */,
 				FBBD3CD315BE57A90035F419 /* UIKit.framework */,
@@ -396,6 +411,7 @@
 				FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */,
 				8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */,
 				FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */,
+				8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */,
 				FBBD3D1515BE58970035F419 /* AudioSignalGenerator.m in Sources */,
 				FBBD3D1615BE58970035F419 /* FSKRecognizer.mm in Sources */,
 				FBBD3D1715BE58970035F419 /* FSKSerialGenerator.mm in Sources */,
@@ -528,6 +544,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8F086693191106C60075391E /* SamplesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8F086694191106C60075391E /* SamplesModel.xcdatamodel */,
+			);
+			currentVersion = 8F086694191106C60075391E /* SamplesModel.xcdatamodel */;
+			path = SamplesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FBBD3CC615BE57A90035F419 /* Project object */;
 }

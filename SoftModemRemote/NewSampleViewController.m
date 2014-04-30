@@ -14,7 +14,7 @@
 #include <ctype.h>
 #include "ProtocolHelper.h"
 
-
+/*
 @interface NSString (NSStringHexToBytes)
 -(NSData*) hexToBytes ;
 @end
@@ -34,9 +34,10 @@
     return data;
 }
 @end
-
+*/
 
 @interface NewSampleViewController ()
+@property (nonatomic) NSOperationQueue *operationQueue;
 
 @end
 
@@ -67,6 +68,10 @@
     NSLog(@"new sample view loaded");
     // assign delegate
     [APP_DELEGATE.receiveDelegate setDelegate:self];
+    self.operationQueue = [[NSOperationQueue alloc] init];
+    
+    NSString *hexString=@"00";
+    [self sendRequest:hexString];
 
     // Do any additional setup after loading the view.
 }
@@ -92,27 +97,44 @@
 -(void)chaCha:(char)myChar;
 {
     //NSLog(@"input");
+    UInt8 a =(UInt8)myChar;
+    if(a==255){
+        [self performSelectorOnMainThread:@selector(updateAfterSend)
+                               withObject:nil
+                            waitUntilDone:NO];
+    }
     NSLog(@"input from view:\t%d", (UInt8)myChar);
 
 
 }
 
-
-- (IBAction)SendA5:(UIButton *)sender {
+-(void) sendRequest:(NSString*) hexString{
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                            selector:@selector(encodeStringToBytesAndSend:)
+                                                                              object:hexString];
+    typeof(operation) __weak weakOperation = operation;
     
+    [self.operationQueue addOperation:operation];
 
-    dispatch_queue_t sendQueue = dispatch_queue_create("sendTime",  DISPATCH_QUEUE_SERIAL);
-    dispatch_async(sendQueue, ^{
-        NSString *hexString=@"0xff00a5ff";
-        NSData* hexData = [[[ProtocolHelper alloc] init]hexToBytes:hexString];
-        NSLog(@"hexstring: %@", hexString);
-        NSLog(@"converted to bytes: %@", hexData);
-        [APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
-
-    });
-
-
+    /*[operation setCompletionBlock:^{
+     [self performSelectorOnMainThread:@selector(updateAfterSend)
+     withObject:nil
+     waitUntilDone:NO];
+     }];*/
 }
+
+-(void) encodeStringToBytesAndSend:(NSString*)hexString{
+    NSData* hexData = [[[ProtocolHelper alloc] init]hexStringToBytes:hexString];
+    NSLog(@"hexstring: %@", hexString);
+    NSLog(@"converted to bytes: %@", hexData);
+    [APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
+    
+}
+
+- (void)updateAfterSend{
+    NSLog(@"received last byte 255");
+}
+
 
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
@@ -127,4 +149,7 @@
     [delegate NewSampleViewControllerDidSave:self];
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
 @end

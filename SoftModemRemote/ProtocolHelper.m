@@ -9,7 +9,7 @@
 #import "ProtocolHelper.h"
 
 @implementation ProtocolHelper
--(NSData*) hexToBytes:(NSString*) hexString {
+-(NSData*) hexStringToBytes:(NSString*) hexString {
     NSMutableData* data = [NSMutableData data];
     int idx;
     for (idx = 0; idx+2 <= hexString.length; idx+=2) {
@@ -22,4 +22,13 @@
     }
     return data;
 }
+/*
+- (NSData *)asciiStringToBytes:(NSString *)asciiString
+{
+    char *utf8 = [string UTF8String];
+    NSMutableString *hex = [NSMutableString string];
+    while ( *utf8 ) [hex appendFormat:@"%02X" , *utf8++ & 0x00FF];
+    
+    return [NSString stringWithFormat:@"%@", hex];
+}*/
 @end

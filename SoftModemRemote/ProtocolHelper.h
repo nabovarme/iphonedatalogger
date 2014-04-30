@@ -10,6 +10,6 @@
 
 @interface ProtocolHelper : NSObject
 
--(NSData*) hexToBytes:(NSString*) hexString;
-
+-(NSData*) hexStringToBytes:(NSString*) hexString;
+//-(NSData*) asciiStringToBytes:(NSString*) asciiString;
 @end

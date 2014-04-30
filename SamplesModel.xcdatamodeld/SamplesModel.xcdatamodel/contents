@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SamplesEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deviceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sampleDataDict" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SamplesEntity" positionX="-63" positionY="-18" width="128" height="105"/>
+    </elements>
+</model>

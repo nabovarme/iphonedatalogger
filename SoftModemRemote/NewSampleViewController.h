@@ -26,7 +26,7 @@
 }
 @property (nonatomic, assign) id <NewSampleViewControllerDelegate> delegate;
 
-- (IBAction)SendA5:(UIButton *)sender;
+
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)done:(UIBarButtonItem *)sender;
 
