@@ -188,7 +188,10 @@
     NSLog(@"received last byte 255");
 }
 
-
+/*
+ cancel:
+ used to tell delegate that cancel button is pressed
+ */
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
     [self.operationQueue cancelAllOperations];
