@@ -145,7 +145,7 @@
             return;
         }
         [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
-        [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
+        [APP_DELEGATE.generator writeByte:(UInt8)255];
     }
 }
 
