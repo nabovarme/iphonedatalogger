@@ -95,14 +95,6 @@
     
     return YES;
 }
--(void)resetGenerator
-{
-    /*
-   // [_generator stop];
-	[_generator init];
-    [_generator play];
-     */
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
