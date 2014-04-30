@@ -171,7 +171,7 @@
         if ([operation isCancelled])
         {
             NSLog(@"operation cancelled");
-            return;
+            break;
         }
 
 //        usleep(100000);
