@@ -165,6 +165,8 @@
     NSInvocationOperation *operation = (NSInvocationOperation *)object;
 
     [APP_DELEGATE.generator writeByte:(UInt8)255];
+    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 2 seconds
+
 
     for (UInt8 i = 0; i < 255; i++)
     {
