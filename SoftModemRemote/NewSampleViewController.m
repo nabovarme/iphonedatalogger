@@ -104,7 +104,7 @@
                                withObject:nil
                             waitUntilDone:NO];
     } */
-    NSLog(@"input from view:\t%u", myChar);
+    NSLog(@"input from view:\t%u", myChar & 0xff);
 
 
 }
