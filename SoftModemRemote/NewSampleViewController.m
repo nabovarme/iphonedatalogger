@@ -112,14 +112,16 @@
     [activity startAnimating];
 
     NSInvocationOperation *operation = [NSInvocationOperation alloc];
-    /*operation=[operation initWithTarget:self
+    operation=[operation initWithTarget:self
                                selector:@selector(encodeStringToBytesAndSend:)
                                  object:[NSArray arrayWithObjects:hexString,operation, nil]
-                                         ];*/
+                                         ];
+/*
     operation=[operation initWithTarget:self
                                selector:@selector(test:)
                                  object:operation
                ];
+ */
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
@@ -153,7 +155,11 @@
             NSLog(@"operation cancelled");
             break;
         }
-        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
+        while(![APP_DELEGATE.generator queuIsEmpty])
+        {
+            [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
+        }
+        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 100 millis
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
     
