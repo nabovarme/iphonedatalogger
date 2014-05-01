@@ -159,7 +159,7 @@
         {
             [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
         }
-        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 100 millis
+        [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
     
@@ -187,7 +187,7 @@
         {
         [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
         }
-        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 100 millis
+        [NSThread sleepForTimeInterval:0.4]; // This will sleep for 40 millis
 
         [APP_DELEGATE.generator writeByte:i];
     }
