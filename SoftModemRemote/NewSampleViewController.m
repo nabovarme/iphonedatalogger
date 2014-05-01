@@ -44,6 +44,9 @@
 @implementation NewSampleViewController
 
 @synthesize delegate;
+@synthesize counter;
+@synthesize activity;
+@synthesize sendButton;
 
 -(id)init {
     NSLog(@"init");
@@ -70,8 +73,10 @@
     [APP_DELEGATE.receiveDelegate setDelegate:self];
     self.operationQueue = [[NSOperationQueue alloc] init];
     
-    NSString *hexString=@"00ff00ffa5";
+    NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00";
     [self sendRequest:hexString];
+    
+    counter=0;
 
     // Do any additional setup after loading the view.
 }
@@ -82,7 +87,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -91,66 +96,135 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 
 -(void)chaCha:(char)myChar;
 {
-    //NSLog(@"input");
     UInt8 a =(UInt8)myChar;
-    /*
-    if(a==255){
-        [self performSelectorOnMainThread:@selector(updateAfterSend)
-                               withObject:nil
-                            waitUntilDone:NO];
-    }*/
-    NSLog(@"input from view:\t%u", myChar);
+    counter++;
+    NSLog(@"input:\t%u\tcounter:%d", myChar & 0xff,counter);
 
 
 }
 
 -(void) sendRequest:(NSString*) hexString{
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                            selector:@selector(encodeStringToBytesAndSend:)
-                                                                              object:hexString];
+    [activity startAnimating];
+
+    NSInvocationOperation *operation = [NSInvocationOperation alloc];
+    operation=[operation initWithTarget:self
+                               selector:@selector(encodeStringToBytesAndSend:)
+                                 object:[NSArray arrayWithObjects:hexString,operation, nil]
+                                         ];
+/*
+    operation=[operation initWithTarget:self
+                               selector:@selector(test:)
+                                 object:operation
+               ];
+ */
     typeof(operation) __weak weakOperation = operation;
     
     [self.operationQueue addOperation:operation];
-
-    /*[operation setCompletionBlock:^{
-     [self performSelectorOnMainThread:@selector(updateAfterSend)
-     withObject:nil
-     waitUntilDone:NO];
-     }];*/
 }
 
--(void) encodeStringToBytesAndSend:(NSString*)hexString{
+/****************************
+ encodeStringToBytesAndSend:
+ 
+ takes an nsarray holding a hexstring an a reference to an operation object
+ sends data to audio generator and returns on finish or if operation is canceled
+ ****************************/
+-(void) encodeStringToBytesAndSend:(NSArray*)params{
+    NSString * hexString=[params objectAtIndex:0];
+    
+    NSInvocationOperation *operation = (NSInvocationOperation *)[params objectAtIndex:1];
+
     NSData* hexData = [[[ProtocolHelper alloc] init]hexStringToBytes:hexString];
     NSLog(@"hexstring: %@", hexString);
     NSLog(@"converted to bytes: %@", hexData);
-    [APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
+    
+    //stoffers protocol dictates:
+    [APP_DELEGATE.generator writeByte:(UInt8)255];
+    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
+
+
+    const char *bytes = [hexData bytes];
+    for (int i = 0; i < [hexData length]; i++)
+    {
+        if ([operation isCancelled])
+        {
+            NSLog(@"operation cancelled");
+            break;
+        }
+        while(![APP_DELEGATE.generator queuIsEmpty])
+        {
+            [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
+        }
+        [NSThread sleepForTimeInterval:0.05]; // This will sleep for 50 millis
+        [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
+    }
+    
+    [self performSelectorOnMainThread:@selector(updateAfterSend)
+                           withObject:nil
+                        waitUntilDone:NO];
+
+}
+
+-(void) test:(id)object{
+    NSInvocationOperation *operation = (NSInvocationOperation *)object;
+
+    [APP_DELEGATE.generator writeByte:(UInt8)255];
+    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
+    for (UInt8 i = 0; i < 255; i++)
+    {
+        if ([operation isCancelled])
+        {
+            NSLog(@"operation cancelled");
+            break;
+        }
+
+//        usleep(100000);
+        while(![APP_DELEGATE.generator queuIsEmpty])
+        {
+        [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
+        }
+        [NSThread sleepForTimeInterval:0.4]; // This will sleep for 40 millis
+
+        [APP_DELEGATE.generator writeByte:i];
+    }
+    NSLog(@"done sending test");
+    //[APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
     
 }
 
 - (void)updateAfterSend{
-    NSLog(@"received last byte 255");
+    NSLog(@"reached Update after send");
+    [activity stopAnimating];
+    [sendButton setEnabled:true];
 }
 
-
+/****************************
+ cancel:
+ used to tell delegate that cancel button is pressed
+ ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-
+    [self.operationQueue cancelAllOperations];
     [delegate NewSampleViewControllerDidCancel:self];
     
 }
-
+/****************************
+ cancel:
+ used to tell delegate that cancel button is pressed
+ ****************************/
 - (IBAction)done:(UIBarButtonItem *)sender {
     NSLog(@"sending done");
-    
+    [self.operationQueue cancelAllOperations];
     [delegate NewSampleViewControllerDidSave:self];
 }
 
 - (void)dealloc {
+    NSLog(@"dealloc");
+
     [super dealloc];
 }
 @end

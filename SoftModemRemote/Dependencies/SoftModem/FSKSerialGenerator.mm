@@ -173,4 +173,13 @@ SAMPLE sineTable[SINE_TABLE_LENGTH];
 	[super dealloc];
 }
 
+-(BOOL)queuIsEmpty
+{
+    if (byteQueue->empty() ){
+        return YES;
+    }
+    return NO;
+    
+}
+
 @end

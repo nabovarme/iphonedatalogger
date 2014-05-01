@@ -82,9 +82,10 @@
 	//[_recognizer addReceiver:_viewController];
     [_recognizer addReceiver:_receiveDelegate];
     
+
 	_generator = [[FSKSerialGenerator alloc] init];
 	[_generator play];
-    
+  
 	_analyzer = [[AudioSignalAnalyzer alloc] init];
 	[_analyzer addRecognizer:_recognizer];
     

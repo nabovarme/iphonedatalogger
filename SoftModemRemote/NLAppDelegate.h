@@ -37,5 +37,6 @@
 @property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
 + (NLAppDelegate*) getInstance;
 -(NSArray*)getAllSamplesFromDevice:(NSString*)deviceName;
+-(void)resetGenerator;
 
 @end
