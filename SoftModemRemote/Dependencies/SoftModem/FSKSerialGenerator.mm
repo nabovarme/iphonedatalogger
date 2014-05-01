@@ -175,10 +175,10 @@ SAMPLE sineTable[SINE_TABLE_LENGTH];
 
 -(BOOL)queuIsEmpty
 {
-    if (byteQueue){
-        return YES;
+    if (bitCount){
+        return NO;
     }
-    return NO;
+    return YES;
     
 }
 
