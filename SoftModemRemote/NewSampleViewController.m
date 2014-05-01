@@ -179,7 +179,7 @@
         }
 
 //        usleep(100000);
-        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
+        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 100 millis
 
         [APP_DELEGATE.generator writeByte:i];
     }
