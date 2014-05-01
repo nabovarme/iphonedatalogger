@@ -179,8 +179,10 @@
 //        usleep(100000);
         while(![APP_DELEGATE.generator queuIsEmpty])
         {
-        [NSThread sleepForTimeInterval:0.001]; // This will sleep for 50 millis
+        [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
         }
+        [NSThread sleepForTimeInterval:0.01]; // This will sleep for 10 millis
+
         [APP_DELEGATE.generator writeByte:i];
     }
     NSLog(@"done sending test");
