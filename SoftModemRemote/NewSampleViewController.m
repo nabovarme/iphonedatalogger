@@ -168,8 +168,6 @@
 
     [APP_DELEGATE.generator writeByte:(UInt8)255];
     [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
-
-
     for (UInt8 i = 0; i < 255; i++)
     {
         if ([operation isCancelled])
@@ -179,7 +177,7 @@
         }
 
 //        usleep(100000);
-        [NSThread sleepForTimeInterval:0.1]; // This will sleep for 100 millis
+        [NSThread sleepForTimeInterval:0.05]; // This will sleep for 100 millis
 
         [APP_DELEGATE.generator writeByte:i];
     }
