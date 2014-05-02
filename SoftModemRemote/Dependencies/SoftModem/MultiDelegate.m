@@ -27,6 +27,11 @@
 		delegateSet = [[NSMutableSet alloc] init];
 	[delegateSet addObject:delegate];
 }
+- (void) removeDelegate:(id)delegate
+{
+	if(delegateSet)
+        [delegateSet removeObject:delegate];
+}
 
 - (NSMethodSignature*) methodSignatureForSelector:(SEL)selector
 {

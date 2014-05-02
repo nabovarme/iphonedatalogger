@@ -16,5 +16,6 @@
 
 - (id) initWithProtocol:(Protocol*)p;
 - (void) addDelegate:(id)delegate;
+- (void) removeDelegate:(id)delegate;
 
 @end

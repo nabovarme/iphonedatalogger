@@ -43,6 +43,10 @@
 {
 	[receivers addDelegate:receiver];
 }
+- (void) removeReceiver:(id<CharReceiver>)receiver
+{
+	[receivers removeDelegate:receiver];
+}
 
 - (void) commitBytes
 {

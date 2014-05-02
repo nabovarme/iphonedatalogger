@@ -27,7 +27,6 @@
 		FBBD3CDE15BE57A90035F419 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBBD3CDC15BE57A90035F419 /* InfoPlist.strings */; };
 		FBBD3CE015BE57A90035F419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3CDF15BE57A90035F419 /* main.m */; };
 		FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */; };
-		FBBD3CE715BE57AA0035F419 /* NLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3CE615BE57AA0035F419 /* NLMainViewController.m */; };
 		FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D0315BE58970035F419 /* AudioQueueObject.m */; };
 		FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D0515BE58970035F419 /* AudioSignalAnalyzer.m */; };
 		FBBD3D1515BE58970035F419 /* AudioSignalGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D0715BE58970035F419 /* AudioSignalGenerator.m */; };
@@ -36,7 +35,6 @@
 		FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D1115BE58970035F419 /* MultiDelegate.m */; };
 		FBBD3D1B15BE59150035F419 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBD3D1915BE59150035F419 /* AudioToolbox.framework */; };
 		FBBD3D1C15BE59150035F419 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBD3D1A15BE59150035F419 /* AVFoundation.framework */; };
-		FBBD3D1F15BE59490035F419 /* NLInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D1E15BE59490035F419 /* NLInfoViewController.m */; };
 		FBBD3D2A15BE5D4B0035F419 /* 9lab.png in Resources */ = {isa = PBXBuildFile; fileRef = FBBD3D2615BE5D4B0035F419 /* 9lab.png */; };
 		FBBD3D2B15BE5D4B0035F419 /* 9lab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBBD3D2715BE5D4B0035F419 /* 9lab@2x.png */; };
 		FBBD3D2C15BE5D4B0035F419 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FBBD3D2815BE5D4B0035F419 /* logo.png */; };
@@ -91,8 +89,6 @@
 		FBBD3CE115BE57AA0035F419 /* SoftModemRemote-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoftModemRemote-Prefix.pch"; sourceTree = "<group>"; };
 		FBBD3CE215BE57AA0035F419 /* NLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLAppDelegate.h; sourceTree = "<group>"; };
 		FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLAppDelegate.m; sourceTree = "<group>"; };
-		FBBD3CE515BE57AA0035F419 /* NLMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLMainViewController.h; sourceTree = "<group>"; };
-		FBBD3CE615BE57AA0035F419 /* NLMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLMainViewController.m; sourceTree = "<group>"; };
 		FBBD3D0215BE58970035F419 /* AudioQueueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueObject.h; sourceTree = "<group>"; };
 		FBBD3D0315BE58970035F419 /* AudioQueueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioQueueObject.m; sourceTree = "<group>"; };
 		FBBD3D0415BE58970035F419 /* AudioSignalAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSignalAnalyzer.h; sourceTree = "<group>"; };
@@ -112,8 +108,6 @@
 		FBBD3D1215BE58970035F419 /* PatternRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternRecognizer.h; sourceTree = "<group>"; };
 		FBBD3D1915BE59150035F419 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FBBD3D1A15BE59150035F419 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		FBBD3D1D15BE59490035F419 /* NLInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLInfoViewController.h; sourceTree = "<group>"; };
-		FBBD3D1E15BE59490035F419 /* NLInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLInfoViewController.m; sourceTree = "<group>"; };
 		FBBD3D2615BE5D4B0035F419 /* 9lab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9lab.png; sourceTree = "<group>"; };
 		FBBD3D2715BE5D4B0035F419 /* 9lab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "9lab@2x.png"; sourceTree = "<group>"; };
 		FBBD3D2815BE5D4B0035F419 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -221,10 +215,6 @@
 				8F39B6F919093B3B00ADA8F4 /* myInterface */,
 				FBBD3CE215BE57AA0035F419 /* NLAppDelegate.h */,
 				FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */,
-				FBBD3CE515BE57AA0035F419 /* NLMainViewController.h */,
-				FBBD3CE615BE57AA0035F419 /* NLMainViewController.m */,
-				FBBD3D1D15BE59490035F419 /* NLInfoViewController.h */,
-				FBBD3D1E15BE59490035F419 /* NLInfoViewController.m */,
 				FBBD3D0015BE58970035F419 /* Dependencies */,
 				8F39B6FA1909438800ADA8F4 /* Images.xcassets */,
 				FBBD3CDA15BE57A90035F419 /* Supporting Files */,
@@ -410,7 +400,6 @@
 				8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */,
 				FBBD3CE015BE57A90035F419 /* main.m in Sources */,
 				FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */,
-				FBBD3CE715BE57AA0035F419 /* NLMainViewController.m in Sources */,
 				8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */,
 				8FC90FB9190A99A50052E48D /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */,
@@ -422,7 +411,6 @@
 				FBBD3D1715BE58970035F419 /* FSKSerialGenerator.mm in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,
-				FBBD3D1F15BE59490035F419 /* NLInfoViewController.m in Sources */,
 				FBBD3D3215BE5ECB0035F419 /* NSString+HexColor.m in Sources */,
 				8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */,
 			);
