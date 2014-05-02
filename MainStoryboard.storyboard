@@ -83,7 +83,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="Aer-jl-hsV">
                                             <connections>
-                                                <action selector="done:" destination="UNH-T8-ylU" id="hcO-14-WPp"/>
+                                                <action selector="save:" destination="UNH-T8-ylU" id="k5w-M6-jrd"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -117,7 +117,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="h7c-3F-HN2" id="fVI-CN-UQc"/>
-                        <outlet property="sendButton" destination="Aer-jl-hsV" id="QhM-18-u7D"/>
+                        <outlet property="saveButton" destination="Aer-jl-hsV" id="sK7-Eg-MXe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYf-zM-RZY" userLabel="First Responder" sceneMemberID="firstResponder"/>

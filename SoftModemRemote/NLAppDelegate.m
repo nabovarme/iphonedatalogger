@@ -65,9 +65,17 @@
     //[self.window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
+   
+    /*
+     [AVAudioSession sharedInstance];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
+    */
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:0.023220 error:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
+    /*
     AVAudioSession *session = [AVAudioSession sharedInstance];
-	session.delegate = self;
+	session.delegate= self;
 	if(session.inputIsAvailable){
 		[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
 	}else{
@@ -77,7 +85,7 @@
 	[session setPreferredIOBufferDuration:0.023220 error:nil];
     
     [session setPreferredIOBufferDuration:0.023220 error:nil];
-    
+    */
 	_recognizer = [[FSKRecognizer alloc] init];
 	//[_recognizer addReceiver:_viewController];
     [_recognizer addReceiver:_receiveDelegate];
@@ -89,9 +97,10 @@
 	_analyzer = [[AudioSignalAnalyzer alloc] init];
 	[_analyzer addRecognizer:_recognizer];
     
-	if(session.inputIsAvailable){
-		[_analyzer record];
-	}
+	/*if(session.inputIsAvailable){
+	}*/
+    [_analyzer record];
+	
     
     return YES;
 }
@@ -222,6 +231,19 @@
     
     // Returning Fetched Records
     return fetchedRecords;
+}
+- (void) myStop
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+
+    [_generator stop];
+    
+}
+- (void) myPlay
+{
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+
+    [_generator play];
 }
 
 @end

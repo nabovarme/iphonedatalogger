@@ -33,8 +33,10 @@
 
 #define SINE_TABLE_LENGTH 441
 
-#define PRE_CARRIER_BITS	  ((40000000+BIT_PERIOD)/BIT_PERIOD)
-#define POST_CARRIER_BITS	  (( 5000000+BIT_PERIOD)/BIT_PERIOD)
+//#define PRE_CARRIER_BITS	  ((40000000+BIT_PERIOD)/BIT_PERIOD)
+//#define POST_CARRIER_BITS	  (( 5000000+BIT_PERIOD)/BIT_PERIOD)
+#define PRE_CARRIER_BITS	  ((BIT_PERIOD)/BIT_PERIOD)
+#define POST_CARRIER_BITS	  ((BIT_PERIOD)/BIT_PERIOD)
 
 // TABLE_JUMP = phase_per_sample / phase_per_entry
 // phase_per_sample = 2pi * time_per_sample / time_per_wave
@@ -173,13 +175,8 @@ SAMPLE sineTable[SINE_TABLE_LENGTH];
 	[super dealloc];
 }
 
--(BOOL)queuIsEmpty
-{
-    if (byteQueue->empty() ){
-        return YES;
-    }
-    return NO;
-    
-}
+
+
+
 
 @end

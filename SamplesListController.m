@@ -64,14 +64,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.fetchedSamplesArray count];
 
@@ -156,9 +154,9 @@
         NSLog(@"NewSample Segue");
         NewSampleViewController *newSampleViewController = segue.destinationViewController;
         newSampleViewController.delegate=self;
+        [APP_DELEGATE myPlay ];
     }
 }
-
 
 #pragma mark - NewSampleViewControllerDelegate
 
@@ -167,7 +165,14 @@
     NSLog(@"received cancel");
     //[APP_DELEGATE resetGenerator];
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller autorelease];
+    
+    //sleep(3);
+    
+    [APP_DELEGATE myStop];
+    //[controller setDelegate:nil];
+    //[controller release];
 }
 
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
@@ -177,7 +182,10 @@
 
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
+    controller.delegate=nil;
+    [controller release];
     [self updateTableView];
+
 }
 
 - (IBAction)addSampleEntry:(NewSampleViewController *)controller

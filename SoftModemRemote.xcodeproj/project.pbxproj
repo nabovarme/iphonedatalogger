@@ -505,6 +505,7 @@
 		FBBD3CEE15BE57AA0035F419 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoftModemRemote/SoftModemRemote-Prefix.pch";
 				INFOPLIST_FILE = "SoftModemRemote/SoftModemRemote-Info.plist";
@@ -518,6 +519,7 @@
 		FBBD3CEF15BE57AA0035F419 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoftModemRemote/SoftModemRemote-Prefix.pch";
 				INFOPLIST_FILE = "SoftModemRemote/SoftModemRemote-Info.plist";

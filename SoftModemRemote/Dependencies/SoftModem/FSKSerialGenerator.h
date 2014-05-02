@@ -25,5 +25,5 @@ struct FSKByteQueue;
 
 - (void) writeByte:(UInt8)byte;
 - (void) writeBytes:(const UInt8 *)bytes length:(int)length;
-- (BOOL)queuIsEmpty;
+
 @end

@@ -21,15 +21,13 @@
 
 
 @interface NewSampleViewController : UIViewController <CharReceiverProtocol>{
-    //id<NewSampleViewControllerDelegate> delegate;
-
+    id<NewSampleViewControllerDelegate> _delegate;
 }
-@property (nonatomic, assign) id <NewSampleViewControllerDelegate> delegate;
-@property (nonatomic,assign) NSInteger * counter;
+@property (nonatomic, assign) id delegate;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
-@property (retain, nonatomic) IBOutlet UIBarButtonItem *sendButton;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 - (IBAction)cancel:(UIBarButtonItem *)sender;
-- (IBAction)done:(UIBarButtonItem *)sender;
+- (IBAction)save:(UIBarButtonItem *)sender;
 
 @end

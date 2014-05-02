@@ -43,10 +43,9 @@
 
 @implementation NewSampleViewController
 
-@synthesize delegate;
-@synthesize counter;
+@synthesize delegate=_delegate;
 @synthesize activity;
-@synthesize sendButton;
+@synthesize saveButton;
 
 -(id)init {
     NSLog(@"init");
@@ -76,14 +75,21 @@
     NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00";
     [self sendRequest:hexString];
     
-    counter=0;
-
     // Do any additional setup after loading the view.
+}
+- (void)viewDidUnload
+{
+    NSLog(@"unloading");
+    
+
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    NSLog(@"memory warning sample view");
     // Dispose of any resources that can be recreated.
 }
 
@@ -93,6 +99,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"going back to table view");
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
@@ -102,8 +109,7 @@
 -(void)chaCha:(char)myChar;
 {
     UInt8 a =(UInt8)myChar;
-    counter++;
-    NSLog(@"input:\t%u\tcounter:%d", myChar & 0xff,counter);
+    NSLog(@"input:\t%u\tcounter:%d", myChar & 0xff);
 
 
 }
@@ -153,11 +159,7 @@
         if ([operation isCancelled])
         {
             NSLog(@"operation cancelled");
-            break;
-        }
-        while(![APP_DELEGATE.generator queuIsEmpty])
-        {
-            [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
+            return;
         }
         [NSThread sleepForTimeInterval:0.05]; // This will sleep for 50 millis
         [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
@@ -165,7 +167,7 @@
     
     [self performSelectorOnMainThread:@selector(updateAfterSend)
                            withObject:nil
-                        waitUntilDone:NO];
+                        waitUntilDone:YES];
 
 }
 
@@ -182,12 +184,7 @@
             break;
         }
 
-//        usleep(100000);
-        while(![APP_DELEGATE.generator queuIsEmpty])
-        {
-        [NSThread sleepForTimeInterval:0.001]; // This will sleep for 1 millis
-        }
-        [NSThread sleepForTimeInterval:0.4]; // This will sleep for 40 millis
+        [NSThread sleepForTimeInterval:0.05]; // This will sleep for 40 millis
 
         [APP_DELEGATE.generator writeByte:i];
     }
@@ -199,7 +196,7 @@
 - (void)updateAfterSend{
     NSLog(@"reached Update after send");
     [activity stopAnimating];
-    [sendButton setEnabled:true];
+    [saveButton setEnabled:true];
 }
 
 /****************************
@@ -208,23 +205,38 @@
  ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-    [self.operationQueue cancelAllOperations];
-    [delegate NewSampleViewControllerDidCancel:self];
+   // [self.operationQueue cancelAllOperations];
+    [_delegate NewSampleViewControllerDidCancel:self];
     
 }
 /****************************
- cancel:
- used to tell delegate that cancel button is pressed
+ save:
+ used to tell delegate that done button is pressed
  ****************************/
-- (IBAction)done:(UIBarButtonItem *)sender {
-    NSLog(@"sending done");
-    [self.operationQueue cancelAllOperations];
-    [delegate NewSampleViewControllerDidSave:self];
+- (IBAction)save:(UIBarButtonItem *)sender {
+        NSLog(@"sending done");
+        // [self.operationQueue cancelAllOperations];
+        [_delegate NewSampleViewControllerDidSave:self];
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc");
 
+    [APP_DELEGATE.receiveDelegate setDelegate:nil];
+    self.delegate=nil;
+
+    NSLog(@"dealloc");
+    [self.operationQueue cancelAllOperations];
+    [self.operationQueue waitUntilAllOperationsAreFinished];
+    //[self.operationQueue autorelease];
+    NSLog(@"all operations finnished");
+    [activity release];
+    [saveButton release];
+    NSLog(@"objects released");
+    //[self.operationQueue release];
+   // [saveButton release];
+    //[activity release];
+    //[self.operationQueue cancelAllOperations];
     [super dealloc];
+
 }
 @end

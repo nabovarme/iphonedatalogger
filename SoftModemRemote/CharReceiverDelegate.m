@@ -40,7 +40,7 @@
 
 @implementation CharReceiverDelegate
 
-@synthesize delegate;
+@synthesize delegate=_delegate;
 
 -(id)init {
     
@@ -56,8 +56,8 @@
 {
     //NSLog(@"input");
     //NSLog(@"input from delegate%c", input);
-    [delegate chaCha:input];
     
+    [_delegate chaCha:input];
     
 	if(isprint(input)){
         //NSLog(@"inputIsAvailableChanged %c", input);

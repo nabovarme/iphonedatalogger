@@ -22,10 +22,8 @@
 @end
 
 @interface CharReceiverDelegate : NSObject <CharReceiver>{
-    id<CharReceiverProtocol> delegate;
+    id<CharReceiverProtocol> _delegate;
 }
 @property (nonatomic, assign) id  delegate;
-
-
 
 @end

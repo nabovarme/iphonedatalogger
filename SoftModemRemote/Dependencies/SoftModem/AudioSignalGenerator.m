@@ -54,7 +54,7 @@ static void playbackCallback (
 		[self setupAudioFormat];
 		[self setupPlaybackAudioQueueObject];
 		self.stopped = NO;
-		self.audioPlayerShouldStopImmediately = NO;
+		self.audioPlayerShouldStopImmediately = YES;
 	}
 	
 	return self;
