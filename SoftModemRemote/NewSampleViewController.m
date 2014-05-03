@@ -10,14 +10,10 @@
 
 //#import "UIView+Layout.h"
 #import "NSString+HexColor.h"
+#import "FSKSerialGenerator.h"
+#import "FSKRecognizer.h";
 #include <ctype.h>
 #include "ProtocolHelper.h"
-
-
-
-#import "AudioSignalAnalyzer.h"
-#import "FSKSerialGenerator.h"
-#import "FSKRecognizer.h"
 
 /*
 @interface NSString (NSStringHexToBytes)
@@ -42,7 +38,7 @@
 */
 
 @interface NewSampleViewController ()
-@property (nonatomic) NSOperationQueue *operationQueue;
+@property (nonatomic,retain) NSOperationQueue *operationQueue;
 
 @end
 
@@ -51,11 +47,7 @@
 @synthesize delegate=_delegate;
 @synthesize activity;
 @synthesize saveButton;
-
-@synthesize generator = _generator;
-
-
-@synthesize analyzer = _analyzer;
+@synthesize protocolHelper;
 
 -(id)init {
     NSLog(@"init");
@@ -76,60 +68,18 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     NSLog(@"new sample view loaded");
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-	session.delegate = self;
-	if(session.inputIsAvailable){
-		[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-	}else{
-		[session setCategory:AVAudioSessionCategoryPlayback error:nil];
-	}
-	[session setActive:YES error:nil];
-	[session setPreferredIOBufferDuration:0.023220 error:nil];
-    
-	_recognizer = [[FSKRecognizer alloc] init];
-	[_recognizer addReceiver:self];
-    
-	_generator = [[FSKSerialGenerator alloc] init];
-	[_generator play];
-    
-	_analyzer = [[AudioSignalAnalyzer alloc] init];
-	[_analyzer addRecognizer:_recognizer];
-    
-	if(session.inputIsAvailable){
-		[_analyzer record];
-	}
-    
     // assign delegate
-//    [APP_DELEGATE add:self];
-    //[APP_DELEGATE addReceiver:self];
-    self.operationQueue = [[NSOperationQueue alloc] init];
+    protocolHelper=[[ProtocolHelper alloc] init];
+    [APP_DELEGATE.recognizer addReceiver:self];
+    _operationQueue = [[NSOperationQueue alloc] init];
     
     NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00";
     [self sendRequest:hexString];
-    
+    [hexString release];
     // Do any additional setup after loading the view.
-}
-#pragma mark - AVAudioSessionDelegate
+    [super viewDidLoad];
 
-
-- (void)inputIsAvailableChanged:(BOOL)isInputAvailable
-{
-	NSLog(@"inputIsAvailableChanged %d",isInputAvailable);
-	
-	AVAudioSession *session = [AVAudioSession sharedInstance];
-	
-	[_analyzer stop];
-	[_generator stop];
-	
-	if(isInputAvailable){
-		[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-		[_analyzer record];
-	}else{
-		[session setCategory:AVAudioSessionCategoryPlayback error:nil];
-	}
-	[_generator play];
 }
 - (void)viewDidUnload
 {
@@ -160,13 +110,28 @@
 
 
 
-
-- (void) receivedChar:(char)input
+-(void)chaCha:(char)myChar;
 {
-    NSLog(@"input from view:\t%u", input & 0xff);
+   // UInt8 a =(UInt8)myChar;
+    NSLog(@"input:\t%u", myChar & 0xff);
 
 
 }
+
+
+- (void) receivedChar:(char)input
+{
+    //NSLog(@"input");
+    NSLog(@"input from delegate%c", input);
+    
+    
+	if(isprint(input)){
+        //NSLog(@"inputIsAvailableChanged %c", input);
+        
+		//textReceived.text = [textReceived.text stringByAppendingFormat:@"%c", input];
+	}
+}
+
 
 -(void) sendRequest:(NSString*) hexString{
     [activity startAnimating];
@@ -176,14 +141,7 @@
                                selector:@selector(encodeStringToBytesAndSend:)
                                  object:[NSArray arrayWithObjects:hexString,operation, nil]
                                          ];
-/*
-    operation=[operation initWithTarget:self
-                               selector:@selector(test:)
-                                 object:operation
-               ];
- */
-    typeof(operation) __weak weakOperation = operation;
-    
+
     [self.operationQueue addOperation:operation];
 }
 
@@ -198,13 +156,13 @@
     
     NSInvocationOperation *operation = (NSInvocationOperation *)[params objectAtIndex:1];
 
-    NSData* hexData = [[[ProtocolHelper alloc] init]hexStringToBytes:hexString];
+    NSData* hexData = [protocolHelper hexStringToBytes:hexString];
     NSLog(@"hexstring: %@", hexString);
     NSLog(@"converted to bytes: %@", hexData);
     
     //stoffers protocol dictates:
-    [_generator writeByte:(UInt8)255];
-    [NSThread sleepForTimeInterval:0.05]; // This will sleep for 40 millis
+    [APP_DELEGATE.generator writeByte:(UInt8)255];
+    [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
 
 
     const char *bytes = [hexData bytes];
@@ -216,19 +174,18 @@
             return;
         }
         [NSThread sleepForTimeInterval:0.05]; // This will sleep for 50 millis
-        [_generator writeByte:(UInt8)bytes[i]];
+        [APP_DELEGATE.generator writeByte:(UInt8)bytes[i]];
     }
-    /*
+    
     [self performSelectorOnMainThread:@selector(updateAfterSend)
                            withObject:nil
                         waitUntilDone:YES];
-*/
 }
-/*
+
 -(void) test:(id)object{
     NSInvocationOperation *operation = (NSInvocationOperation *)object;
 
-    [_generator writeByte:(UInt8)255];
+    [APP_DELEGATE.generator writeByte:(UInt8)255];
     [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
     for (UInt8 i = 0; i < 255; i++)
     {
@@ -240,17 +197,17 @@
 
         [NSThread sleepForTimeInterval:0.05]; // This will sleep for 40 millis
 
-        [_generator writeByte:i];
+        [APP_DELEGATE.generator writeByte:i];
     }
     NSLog(@"done sending test");
     //[APP_DELEGATE.generator writeBytes:[hexData bytes] length:hexData.length];
     
-}*/
+}
 
 - (void)updateAfterSend{
     NSLog(@"reached Update after send");
-    //[activity stopAnimating];
-   // [saveButton setEnabled:true];
+    [activity stopAnimating];
+    [saveButton setEnabled:true];
 }
 
 /****************************
@@ -259,30 +216,9 @@
  ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
+   // [self.operationQueue cancelAllOperations];
     [_delegate NewSampleViewControllerDidCancel:self];
-}
--(void)viewDidDisappear:(BOOL)animated
-{
-    NSLog(@"lol");
-    [_analyzer stop];
-	[_generator stop];
-    [self.operationQueue cancelAllOperations];
-    [self.operationQueue waitUntilAllOperationsAreFinished];
-
     
-    [_generator release];
-    [_analyzer release];
-    [_recognizer release];
-    //[self.operationQueue autorelease];
-    NSLog(@"all operations finnished");
-    [activity release];
-    [saveButton release];
-    NSLog(@"objects released");
-    //[self.operationQueue release];
-    // [saveButton release];
-    //[activity release];
-    //[self.operationQueue cancelAllOperations];
-
 }
 /****************************
  save:
@@ -296,13 +232,25 @@
 
 - (void)dealloc {
 
-   // [APP_DELEGATE removeReceiver:self];
-    
+    self.delegate=nil;
 
-//    self.delegate=nil;
+    NSLog(@"dealloc");
+    [_operationQueue cancelAllOperations];
+    [_operationQueue waitUntilAllOperationsAreFinished];
+    [_operationQueue release ];
+   // [APP_DELEGATE myStop];
+    [APP_DELEGATE.recognizer removeAllReceivers];
 
-    NSLog(@"deallocing view controller");
-
+    //[self.operationQueue autorelease];
+    NSLog(@"all operations finnished");
+    [activity release];
+    [saveButton release];
+    [protocolHelper release];
+    NSLog(@"objects released");
+    //[self.operationQueue release];
+   // [saveButton release];
+    //[activity release];
+    //[self.operationQueue cancelAllOperations];
     [super dealloc];
 
 }

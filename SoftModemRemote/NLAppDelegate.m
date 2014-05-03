@@ -12,13 +12,21 @@
 
 #import "SamplesListController.h"
 
-
+#import "AudioSignalAnalyzer.h"
+#import "FSKSerialGenerator.h"
+#import "FSKRecognizer.h"
 
 @implementation NLAppDelegate
 
 @synthesize window = _window;
 //@synthesize viewController = _viewController;
+//@synthesize receiveDelegate = _receiveDelegate;
 
+@synthesize generator = _generator;
+
+
+@synthesize analyzer = _analyzer;
+@synthesize recognizer = _recognizer;
 
 //core data
 @synthesize managedObjectContext = _managedObjectContext;
@@ -30,20 +38,27 @@
 
 - (void)dealloc
 {
+    [_generator release];
     [_window release];
    // [_viewController release];
     [super dealloc];
-    
-}- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+}
 
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    /*
+    [[NSUserDefaults standardUserDefaults] registerDefaults:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      @"0x01FF00FF", @"first", // NEC protocol previous channel
+      @"0x01FF807F", @"second", // NEC protocol next channel
+      nil]];
+    */
     //self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-   // UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-   // SamplesListController *controller = (SamplesListController *)navigationController.topViewController;
+   /* UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+  SamplesListController *controller = (SamplesListController *)navigationController.topViewController;
     //controller.managedObjectContext = self.managedObjectContext;
-
+*/
     
     //self.viewController = [[[NLMainViewController alloc] init] autorelease];
     //self.receiveDelegate=[[[CharReceiverDelegate alloc] init] autorelease];
@@ -51,13 +66,16 @@
     //self.window.rootViewController = controller;
     //[self.window makeKeyAndVisible];
     
-   // [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+  //  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
    
-    /*
+    
      [AVAudioSession sharedInstance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
+    /*
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:0.023220 error:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
     */
-      /*
     AVAudioSession *session = [AVAudioSession sharedInstance];
 	session.delegate= self;
 	if(session.inputIsAvailable){
@@ -69,12 +87,29 @@
 	[session setPreferredIOBufferDuration:0.023220 error:nil];
     
     [session setPreferredIOBufferDuration:0.023220 error:nil];
-    */
-		
+    
+	_recognizer = [[FSKRecognizer alloc] init];
+	//[_recognizer addReceiver:_viewController];
+    //[_recognizer addReceiver:_receiveDelegate];
+    
+
+	_generator = [[FSKSerialGenerator alloc] init];
+	[_generator play];
+  
+	_analyzer = [[AudioSignalAnalyzer alloc] init];
+	[_analyzer addRecognizer:_recognizer];
+    
+	/*if(session.inputIsAvailable){
+	}*/
+    [_analyzer record];
+	
     
     return YES;
 }
-
+-(void)interruption:(AVAudioSessionInterruptionType *)notification
+{
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -103,7 +138,26 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - AVAudioSessionDelegate
 
+
+- (void)inputIsAvailableChanged:(BOOL)isInputAvailable
+{
+	NSLog(@"inputIsAvailableChanged %d",isInputAvailable);
+	
+	AVAudioSession *session = [AVAudioSession sharedInstance];
+	
+	[_analyzer stop];
+	[_generator stop];
+	
+	if(isInputAvailable){
+		[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+		[_analyzer record];
+	}else{
+		[session setCategory:AVAudioSessionCategoryPlayback error:nil];
+	}
+	[_generator play];
+}
 
 - (void)beginInterruption
 {
@@ -180,10 +234,24 @@
     
     // Query on managedObjectContext With Generated fetchRequest
     NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    [fetchRequest release];
+    
     
     // Returning Fetched Records
     return fetchedRecords;
 }
+- (void) myStop
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
 
+    [_generator stop];
+    
+}
+- (void) myPlay
+{
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+
+    [_generator play];
+}
 
 @end

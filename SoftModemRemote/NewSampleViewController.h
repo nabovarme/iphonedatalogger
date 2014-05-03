@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "NLAppDelegate.h"
+
+#import "CharReceiverDelegate.h"
+#import "ProtocolHelper.h"
 #import "CharReceiver.h"
-#import <AVFoundation/AVAudioSession.h>
-
-
 
 @class NewSampleViewController;
-@class FSKSerialGenerator,CharReceiverDelegate;
-@class AudioSignalAnalyzer, FSKSerialGenerator, FSKRecognizer;
 
 @protocol NewSampleViewControllerDelegate <NSObject>
 @required
@@ -24,19 +22,13 @@
 @end
 
 
-@interface NewSampleViewController : UIViewController <CharReceiver, AVAudioSessionDelegate> {
-    AudioSignalAnalyzer* _analyzer;
-	FSKRecognizer* _recognizer;
-    FSKSerialGenerator* _generator;
+@interface NewSampleViewController : UIViewController <CharReceiver>{
     id<NewSampleViewControllerDelegate> _delegate;
 }
-@property (nonatomic, retain) AudioSignalAnalyzer* analyzer;
-
-@property (nonatomic, retain) FSKSerialGenerator* generator;
-
 @property (nonatomic, assign) id delegate;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+@property (nonatomic, assign) ProtocolHelper* protocolHelper;
 
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)save:(UIBarButtonItem *)sender;

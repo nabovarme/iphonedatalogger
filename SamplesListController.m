@@ -152,10 +152,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"NewSample"]) {
         NSLog(@"NewSample Segue");
-        NewSampleViewController *newSampleViewController = segue.destinationViewController;
-        newSampleViewController.delegate=self;
-        [newSampleViewController autorelease];
-        
+        //NewSampleViewController *newSampleViewController = segue.destinationViewController;
+        [(NewSampleViewController*)segue.destinationViewController setDelegate:self];
+        [(NewSampleViewController*)segue.destinationViewController release];
+        //newSampleViewController.delegate=self;
+        //[newSampleViewController release ];
+       // [APP_DELEGATE myPlay ];
     }
 }
 
@@ -164,20 +166,30 @@
 - (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller
 {
     NSLog(@"received cancel");
+    //[APP_DELEGATE resetGenerator];
 
     [controller dismissViewControllerAnimated:YES completion:nil];
+    //[controller release];
+    
+    //sleep(3);
+    
+    //[APP_DELEGATE myStop];
+    //[controller setDelegate:nil];
     [controller release];
+    
 }
 
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
 {
     NSLog(@"received done");
+    //[APP_DELEGATE resetGenerator];
 
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
     controller.delegate=nil;
     [controller release];
     [self updateTableView];
+
 }
 
 - (IBAction)addSampleEntry:(NewSampleViewController *)controller

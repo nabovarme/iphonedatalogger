@@ -43,9 +43,9 @@
 {
 	[receivers addDelegate:receiver];
 }
-- (void) removeReceiver:(id<CharReceiver>)receiver
+-(void)removeAllReceivers;
 {
-	[receivers removeDelegate:receiver];
+    [receivers removeAllDelegates];
 }
 
 - (void) commitBytes
@@ -53,9 +53,12 @@
 	char input;
 	while (byteQueue->get(input))
 	{
+        if(![receivers empty])
+        {
 		//NSLog(@"Byte: %c (%02x)", input, (unsigned char)input);
 		[receivers receivedChar:input];
-	}
+        }
+        }
 }
 
 - (void) dataBit:(BOOL)one

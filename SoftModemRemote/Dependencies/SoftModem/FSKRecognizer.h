@@ -38,7 +38,7 @@ struct FSKByteQueue;
 }
 
 - (void) addReceiver:(id<CharReceiver>)receiver;
-- (void) removeReceiver:(id<CharReceiver>)receiver;
+-(void)removeAllReceivers;
 
 - (void) edge: (int)height width:(UInt64)nsWidth interval:(UInt64)nsInterval;
 - (void) idle: (UInt64)nsInterval;

@@ -71,6 +71,22 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "SoftModemRemote/NewSampleViewController.m"
+            timestampString = "420811266.753451"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-cancel:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/ProtocolHelper.m"
             timestampString = "420382159.031995"
             startingColumnNumber = "9223372036854775807"
@@ -88,12 +104,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420733148.384284"
+            timestampString = "420811266.753451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-receivedChar:"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-chaCha:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -104,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SamplesListController.m"
-            timestampString = "420734707.145671"
+            timestampString = "420813190.15255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-addSampleEntry:"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420733148.384284"
+            timestampString = "420811266.753451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-encodeStringToBytesAndSend:"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420733148.384284"
+            timestampString = "420811266.753451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "-cancel:"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SamplesListController.m"
-            timestampString = "420734707.145671"
+            timestampString = "420813190.15255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-NewSampleViewControllerDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420734420.522708"
+            timestampString = "420811266.753451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -231,13 +247,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420733148.384284"
+            filePath = "SamplesListController.m"
+            timestampString = "420813190.15255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-NewSampleViewControllerDidCancel:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SamplesListController.m"
+            timestampString = "420813190.15255"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-NewSampleViewControllerDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -248,12 +280,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/Dependencies/SoftModem/MultiDelegate.m"
-            timestampString = "420729492.315695"
+            timestampString = "420810512.78298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-addDelegate:"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-methodSignatureForSelector:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -264,12 +296,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/Dependencies/SoftModem/MultiDelegate.m"
-            timestampString = "420729493.535187"
+            timestampString = "420810512.78298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-addDelegate:"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-methodSignatureForSelector:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -279,13 +311,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/Dependencies/SoftModem/FSKRecognizer.mm"
-            timestampString = "420731980.176729"
+            filePath = "SamplesListController.m"
+            timestampString = "420813190.15255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "-commitBytes"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "-NewSampleViewControllerDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -295,29 +327,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420734420.522708"
+            filePath = "SamplesListController.m"
+            timestampString = "420813165.261169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "-dealloc"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420734356.261617"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "-cancel:"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
