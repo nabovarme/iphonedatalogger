@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SensorSampleDataObject.h"
-@class Testo;
+#import "NewSampleViewController.h"
+@class Testo;//,NewSampleViewController;
 
-@interface Testo : UIViewController
+@interface Testo : UIViewController <NewSampleViewControllerDelegate>{
+    
+}
 
 - (void) receivedChar:(char)input;
 - (IBAction)lol:(UIButton *)sender;

@@ -16,17 +16,25 @@
 @class NewSampleViewController;
 
 @protocol NewSampleViewControllerDelegate <NSObject>
-@required
+@optional
 - (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller;
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller;
+- (void) receivedChar:(char)input;
+@end
+
+@protocol NewSampleViewControllerDelegateForContentView <NSObject>
+@optional
+- (void) receivedChar:(char)input;
 @end
 
 
 @interface NewSampleViewController : UIViewController <CharReceiver>{
     id<NewSampleViewControllerDelegate> _delegate;
+    id<NewSampleViewControllerDelegateForContentView> _contentDelegate;
 }
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) id contentDelegate;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic, assign) ProtocolHelper* protocolHelper;

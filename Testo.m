@@ -61,6 +61,7 @@
 }
 - (void) receivedChar:(char)input;
 {
+    NSLog(@"testo received %c", input);
     
 }
 @end

@@ -49,6 +49,7 @@
 @implementation NewSampleViewController
 
 @synthesize delegate=_delegate;
+@synthesize contentDelegate=_contentDelegate;
 @synthesize activity;
 @synthesize saveButton;
 @synthesize protocolHelper;
@@ -126,6 +127,7 @@
     //3. Add the Detail controller's view to the Container's detail view and save a reference to the detail View Controller
     [self.contentView addSubview:detailVC.view];
     self.currentDetailViewController = detailVC;
+    [self setContentDelegate:self.currentDetailViewController];
     
     //4. Complete the add flow calling the function didMoveToParentViewController
     [detailVC didMoveToParentViewController:self];
@@ -186,7 +188,7 @@
 {
     //NSLog(@"input");
     NSLog(@"input from delegate%c", input);
-    
+    [_contentDelegate receivedChar:input];
     
 	if(isprint(input)){
         //NSLog(@"inputIsAvailableChanged %c", input);
