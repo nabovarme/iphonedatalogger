@@ -25,6 +25,7 @@
 @interface NewSampleViewController : UIViewController <CharReceiver>{
     id<NewSampleViewControllerDelegate> _delegate;
 }
+@property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, assign) id delegate;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;

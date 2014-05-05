@@ -11,9 +11,12 @@
 //#import "UIView+Layout.h"
 #import "NSString+HexColor.h"
 #import "FSKSerialGenerator.h"
-#import "FSKRecognizer.h";
+#import "FSKRecognizer.h"
 #include <ctype.h>
-#include "ProtocolHelper.h"
+#import "ProtocolHelper.h"
+
+#import "Testo.h"
+
 
 /*
 @interface NSString (NSStringHexToBytes)
@@ -39,6 +42,7 @@
 
 @interface NewSampleViewController ()
 @property (nonatomic,retain) NSOperationQueue *operationQueue;
+@property UIViewController  *currentDetailViewController;
 
 @end
 
@@ -65,6 +69,17 @@
     }
     return self;
 }
+- (id)initWithViewController:(UIViewController*)viewController{
+    
+    self = [super init];
+    
+    if(self){
+        [self presentDetailController:viewController];
+    }
+    
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
@@ -78,9 +93,68 @@
     [self sendRequest:hexString];
     [hexString release];
     // Do any additional setup after loading the view.
+    
+//     [NSClassFromString(sensorName) presentInViewController:self]; //loads custom view
+
+    
+    //Load the first detail controller
+    NSString *sensorName=@"Testo";
+
+   // Class contentViewClass=NSClassFromString(sensorName)
+    
+    //contentViewClass *_newContentView = [[contentViewClass alloc] init];
+    
+    [self presentDetailController:(UIViewController*)[[NSClassFromString(sensorName) alloc] init]];
+
+    //[SensorTestoView presentInViewController:self]; //loads custom view
     [super viewDidLoad];
 
 }
+- (void)presentDetailController:(UIViewController*)detailVC{
+    
+    //0. Remove the current Detail View Controller showed
+    if(self.currentDetailViewController){
+        [self removeCurrentDetailViewController];
+    }
+    
+    //1. Add the detail controller as child of the container
+    [self addChildViewController:detailVC];
+    
+    //2. Define the detail controller's view size
+    //detailVC.view.frame = [self frameForDetailController];
+    
+    //3. Add the Detail controller's view to the Container's detail view and save a reference to the detail View Controller
+    [self.contentView addSubview:detailVC.view];
+    self.currentDetailViewController = detailVC;
+    
+    //4. Complete the add flow calling the function didMoveToParentViewController
+    [detailVC didMoveToParentViewController:self];
+    
+}
+
+
+- (CGRect)frameForDetailController{
+    CGRect detailFrame = self.contentView.bounds;
+    
+    return detailFrame;
+}
+
+
+
+- (void)removeCurrentDetailViewController{
+    
+    //1. Call the willMoveToParentViewController with nil
+    //   This is the last method where your detailViewController can perform some operations before neing removed
+    [self.currentDetailViewController willMoveToParentViewController:nil];
+    
+    //2. Remove the DetailViewController's view from the Container
+    [self.currentDetailViewController.view removeFromSuperview];
+    
+    //3. Update the hierarchy"
+    //   Automatically the method didMoveToParentViewController: will be called on the detailViewController)
+    [self.currentDetailViewController removeFromParentViewController];
+}
+
 - (void)viewDidUnload
 {
     NSLog(@"unloading");
@@ -107,17 +181,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
-
-
--(void)chaCha:(char)myChar;
-{
-   // UInt8 a =(UInt8)myChar;
-    NSLog(@"input:\t%u", myChar & 0xff);
-
-
-}
-
 
 - (void) receivedChar:(char)input
 {
@@ -254,4 +317,10 @@
     [super dealloc];
 
 }
+
+
+#pragma mark - Encapsulate everything (a really flexible, reusable way to load your custom UIView from XIB)
+
+
+
 @end
