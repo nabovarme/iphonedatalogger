@@ -13,6 +13,7 @@
 @end
 
 @implementation Testo
+
 -(id)init
 {
     self = [super init];
@@ -36,7 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_label setText:@"nullcat"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -48,19 +48,17 @@
 
 
 - (void)dealloc {
-      [_label release];
+    [_myTextView release];
     [super dealloc];
 }
 
-- (IBAction)lol:(UIButton *)sender {
-    [_label setText:@"lol"];
-}
-- (IBAction)cat:(UIButton *)sender {
-    [_label setText:@"cat"];
 
-}
 - (void) receivedChar:(char)input;
 {
+    
+    _myTextView.text=[_myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
+    [_myTextView scrollRangeToVisible:NSMakeRange([_myTextView.text length], 0)];
+    
     NSLog(@"testo received %c", input);
     
 }

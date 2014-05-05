@@ -19,7 +19,6 @@
 @optional
 - (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller;
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller;
-- (void) receivedChar:(char)input;
 @end
 
 @protocol NewSampleViewControllerDelegateForContentView <NSObject>

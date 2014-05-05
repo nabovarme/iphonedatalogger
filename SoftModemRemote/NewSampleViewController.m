@@ -90,7 +90,7 @@
     [APP_DELEGATE.recognizer addReceiver:self];
     _operationQueue = [[NSOperationQueue alloc] init];
     
-    NSString *hexString=@"ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00ff00a5ff00ffa5ff00ffa5ff00";
+    NSString *hexString=@"";
     [self sendRequest:hexString];
     [hexString release];
     // Do any additional setup after loading the view.
@@ -226,7 +226,7 @@
     NSLog(@"converted to bytes: %@", hexData);
     
     //stoffers protocol dictates:
-    [APP_DELEGATE.generator writeByte:(UInt8)255];
+    [APP_DELEGATE.generator writeByte:(UInt8)0];
     [NSThread sleepForTimeInterval:0.04]; // This will sleep for 40 millis
 
 

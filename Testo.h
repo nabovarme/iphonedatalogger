@@ -14,11 +14,8 @@
 @interface Testo : UIViewController <NewSampleViewControllerDelegate>{
     
 }
+@property (retain, nonatomic) IBOutlet UITextView *myTextView;
 
-- (void) receivedChar:(char)input;
-- (IBAction)lol:(UIButton *)sender;
-- (IBAction)cat:(UIButton *)sender;
-@property (retain, nonatomic) IBOutlet UILabel *label;
 
 -(SensorSampleDataObject *) getSensorDataObject;
 @end
