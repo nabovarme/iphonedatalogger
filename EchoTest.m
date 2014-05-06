@@ -45,6 +45,7 @@
     [self setSendRequestDelegate:controller];
     
     [self.sendRequestDelegate sendRequest:@"ff"];
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
     [self.receiveDataProgress startAnimating];
 
