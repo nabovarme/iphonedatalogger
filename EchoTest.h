@@ -12,6 +12,8 @@
 @class EchoTest;
 
 @interface EchoTest : UIViewController <NewSampleViewControllerDelegate>{
+    UITextView *myTextView;
+    UIActivityIndicatorView *receiveDataProgress;
     UIAlertView *_pressPrintAlertView;
 }
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;

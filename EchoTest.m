@@ -65,8 +65,8 @@
 }
 
 - (void)dealloc {
-    [self.myTextView release];
-    [self.receiveDataProgress release];
+    [myTextView release];
+    [receiveDataProgress release];
     [super dealloc];
 }
 

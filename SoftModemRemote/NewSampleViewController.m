@@ -315,6 +315,7 @@
 //    [activity release];
     [saveButton release];
     [protocolHelper release];
+    [_contentDelegate release];
     NSLog(@"objects released");
     //[self.operationQueue release];
    // [saveButton release];
