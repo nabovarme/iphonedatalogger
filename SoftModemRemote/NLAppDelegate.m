@@ -38,10 +38,11 @@
 
 - (void)dealloc
 {
-    [_generator release];
+  /*  [_generator release];
     [_window release];
    // [_viewController release];
     [super dealloc];
+   */
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -234,8 +235,10 @@
     
     // Query on managedObjectContext With Generated fetchRequest
     NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+  /*  [entity release];
+    [error release];
     [fetchRequest release];
-    
+    */
     
     // Returning Fetched Records
     return fetchedRecords;

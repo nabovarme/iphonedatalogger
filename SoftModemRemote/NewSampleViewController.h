@@ -16,7 +16,7 @@
 
 @class NewSampleViewController;
 
-@interface NewSampleViewController : UIViewController <CharReceiver>{
+@interface NewSampleViewController : UIViewController <CharReceiver,SensorViewControllerSendRequest>{
     id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
     id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
 }

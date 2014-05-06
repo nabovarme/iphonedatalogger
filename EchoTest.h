@@ -14,10 +14,12 @@
 
 @interface EchoTest : UIViewController <NewSampleViewControllerReceivedChar>{
     UIAlertView *_pressPrintAlertView;
- //   id<SensorViewControllerSendRequest> sendRequestDelegate;
+  //  id<SensorViewControllerSendRequest> _sendRequestDelegate;
 
 }
-@property (nonatomic, unsafe_unretained) id <SensorViewControllerSendRequest> sendRequestDelegate;
+
+//@property (nonatomic, unsafe_unretained) id <SensorViewControllerSendRequest> sendRequestDelegate;
+@property (nonatomic, assign) id<SensorViewControllerSendRequest> sendRequestDelegate;
 
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;

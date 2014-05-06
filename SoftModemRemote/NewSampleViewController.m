@@ -68,9 +68,14 @@
    
     NSString *sensorName=@"EchoTest";      // echo test
     
-    _receivedCharDelegate = [[NSClassFromString(sensorName) alloc] init];
+    [self presentDetailController:(UIViewController*)[[ NSClassFromString(sensorName) alloc] init]];
+
+   // [self sendRequest:@"ff"];
+
+   /* _receivedCharDelegate = [[NSClassFromString(sensorName) alloc] init];
 
     [self presentDetailController:self.receivedCharDelegate];
+    */
     
     //[SensorTestoView presentInViewController:self]; //loads custom view
     [super viewDidLoad];
@@ -93,9 +98,11 @@
     [self.contentView addSubview:detailVC.view];
     self.currentDetailViewController = detailVC;
     [self setReceivedCharDelegate : self.currentDetailViewController];
-    
+    [self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
+
     //4. Complete the add flow calling the function didMoveToParentViewController
     [detailVC didMoveToParentViewController:self];
+
     
 }
 
@@ -243,6 +250,7 @@
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
    // [self.operationQueue cancelAllOperations];
+    [self setReceivedCharDelegate:nil];
     [_cancelSaveDelegate NewSampleViewControllerDidCancel:self];
     
 }

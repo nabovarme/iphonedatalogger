@@ -13,7 +13,7 @@
 
 
 @interface SamplesListController ()
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+//@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong)NSArray* fetchedSamplesArray;
 @property (nonatomic,strong)NSDateFormatter* dateFormatter;
 @end
@@ -41,7 +41,7 @@
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     //2
-    self.managedObjectContext = APP_DELEGATE.managedObjectContext;
+  //  self.managedObjectContext = APP_DELEGATE.managedObjectContext;
     [self updateTableView];
     
     
@@ -196,7 +196,7 @@
     
     //  1
     SamplesEntity *newSample=[NSEntityDescription insertNewObjectForEntityForName:@"SamplesEntity"
-                                                          inManagedObjectContext:self.managedObjectContext];
+                                                          inManagedObjectContext:APP_DELEGATE.managedObjectContext];
     //  2
     newSample.date=[NSDate date];
     newSample.deviceName=@"gas sensor";
@@ -205,7 +205,7 @@
 
     //  3
     NSError *error;
-    if (![self.managedObjectContext save:&error]) {
+    if (![APP_DELEGATE.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     //  5

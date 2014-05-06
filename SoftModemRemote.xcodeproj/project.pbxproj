@@ -31,7 +31,7 @@
 		FBBD3CD815BE57A90035F419 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBD3CD715BE57A90035F419 /* CoreGraphics.framework */; };
 		FBBD3CDE15BE57A90035F419 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBBD3CDC15BE57A90035F419 /* InfoPlist.strings */; };
 		FBBD3CE015BE57A90035F419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3CDF15BE57A90035F419 /* main.m */; };
-		FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */; };
+		FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D0315BE58970035F419 /* AudioQueueObject.m */; };
 		FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D0515BE58970035F419 /* AudioSignalAnalyzer.m */; };
 		FBBD3D1515BE58970035F419 /* AudioSignalGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBD3D0715BE58970035F419 /* AudioSignalGenerator.m */; };
