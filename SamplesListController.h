@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NewSampleViewController.h"
+#import "Protocols.h"
 
 
-@interface SamplesListController : UITableViewController <NewSampleViewControllerDelegate>{
+//@interface SamplesListController : UITableViewController <NewSampleViewControllerDelegate>{
+    @interface SamplesListController : UITableViewController <NewSampleViewControllerCancelSave>{
     
 }
 

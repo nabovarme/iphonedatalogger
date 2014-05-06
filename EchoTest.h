@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SensorSampleDataObject.h"
 #import "NewSampleViewController.h"
+#import "Protocols.h"
 @class EchoTest;
 
-@interface EchoTest : UIViewController <NewSampleViewControllerDelegate>{
+@interface EchoTest : UIViewController <NewSampleViewControllerReceivedChar>{
     UIAlertView *_pressPrintAlertView;
+ //   id<SensorViewControllerSendRequest> sendRequestDelegate;
+
 }
+@property (nonatomic, unsafe_unretained) id <SensorViewControllerSendRequest> sendRequestDelegate;
+
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 

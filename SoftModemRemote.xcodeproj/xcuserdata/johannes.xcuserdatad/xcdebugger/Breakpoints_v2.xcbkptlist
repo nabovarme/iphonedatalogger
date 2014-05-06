@@ -72,13 +72,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420992966.689677"
+            timestampString = "421080075.56822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "-cancel:"
-            landmarkType = "5">
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "@implementation NewSampleViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420992966.689677"
+            timestampString = "421080075.56822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "-encodeStringToBytesAndSend:"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,12 +168,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420992966.689677"
+            timestampString = "421080075.56822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
-            landmarkName = "-cancel:"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "-updateAfterSend"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftModemRemote/NewSampleViewController.m"
-            timestampString = "420992966.689677"
+            timestampString = "421080075.56822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -335,52 +335,6 @@
             endingLineNumber = "23"
             landmarkName = "@implementation Testo"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoftModemRemote/NewSampleViewController.h"
-            timestampString = "420993322.887418"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "@protocol NewSampleViewControllerDelegateForContentView"
-            landmarkType = "2">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NewSampleViewController contentView]"
-                  moduleName = "SoftModemRemote"
-                  urlString = "file://localhost/Users/johannes/Downloads/IR-Remote-master/iOS/SoftModemRemote/SoftModemRemote/NewSampleViewController.h"
-                  timestampString = "420993322.892199"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NewSampleViewController setContentView:]"
-                  moduleName = "SoftModemRemote"
-                  urlString = "file://localhost/Users/johannes/Downloads/IR-Remote-master/iOS/SoftModemRemote/SoftModemRemote/NewSampleViewController.h"
-                  timestampString = "420993322.892521"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

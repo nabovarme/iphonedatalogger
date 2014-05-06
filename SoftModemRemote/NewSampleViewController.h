@@ -12,28 +12,17 @@
 #import "CharReceiverDelegate.h"
 #import "ProtocolHelper.h"
 #import "CharReceiver.h"
+#import "Protocols.h"
 
 @class NewSampleViewController;
 
-@protocol NewSampleViewControllerDelegate <NSObject>
-@optional
-- (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller;
-- (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller;
-@end
-
-@protocol NewSampleViewControllerDelegateForContentView <NSObject>
-@optional
-- (void) receivedChar:(char)input;
-@end
-
-
 @interface NewSampleViewController : UIViewController <CharReceiver>{
-    id<NewSampleViewControllerDelegate> _delegate;
-    id<NewSampleViewControllerDelegateForContentView> _contentDelegate;
+    id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
+    id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
 }
 @property (assign, nonatomic) IBOutlet UIView *contentView;
-@property (nonatomic, assign) id delegate;
-@property (nonatomic, assign) id contentDelegate;
+@property (nonatomic, assign) id cancelSaveDelegate;
+@property (nonatomic, assign) id receivedCharDelegate;
 //@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic, assign) ProtocolHelper* protocolHelper;

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SensorSampleDataObject.h"
 #import "NewSampleViewController.h"
+#import "Protocols.h"
 @class Testo;//,NewSampleViewController;
 
-@interface Testo : UIViewController <NewSampleViewControllerDelegate>{
+@interface Testo : UIViewController <NewSampleViewControllerReceivedChar>{
     UIAlertView *_pressPrintAlertView;
 }
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;

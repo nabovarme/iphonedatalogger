@@ -153,7 +153,7 @@
     if ([segue.identifier isEqualToString:@"NewSample"]) {
         NSLog(@"NewSample Segue");
         //NewSampleViewController *newSampleViewController = segue.destinationViewController;
-        [(NewSampleViewController*)segue.destinationViewController setDelegate:self];
+        [(NewSampleViewController*)segue.destinationViewController setCancelSaveDelegate:self];
 //        [(NewSampleViewController*)segue.destinationViewController release];
         //newSampleViewController.delegate=self;
         //[newSampleViewController release ];
@@ -186,7 +186,7 @@
 
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
-    controller.delegate=nil;
+    controller.cancelSaveDelegate=nil;
     [self updateTableView];
 
 }
