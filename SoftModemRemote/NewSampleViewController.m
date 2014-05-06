@@ -103,7 +103,9 @@
     
     //contentViewClass *_newContentView = [[contentViewClass alloc] init];
     
-    [self presentDetailController:(UIViewController*)[[NSClassFromString(sensorName) alloc] init]];
+    _contentDelegate = [[NSClassFromString(sensorName) alloc] init];
+    //[self presentDetailController:(UIViewController*)[[NSClassFromString(sensorName) alloc] init]];
+    [self presentDetailController:self.contentDelegate];
     
     //[SensorTestoView presentInViewController:self]; //loads custom view
     [super viewDidLoad];
@@ -192,7 +194,7 @@
 {
     //NSLog(@"input");
     NSLog(@"input from delegate%c", input);
-    [_contentDelegate receivedChar:input];
+    [self.contentDelegate receivedChar:input];
     
 	if(isprint(input)){
         //NSLog(@"inputIsAvailableChanged %c", input);
@@ -212,6 +214,7 @@
                                          ];
 
     [self.operationQueue addOperation:operation];
+    [operation release];
 }
 
 /****************************
