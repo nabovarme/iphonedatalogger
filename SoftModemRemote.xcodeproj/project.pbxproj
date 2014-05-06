@@ -189,21 +189,21 @@
 		8F9D6C241917A9D500235CDA /* sensors */ = {
 			isa = PBXGroup;
 			children = (
-				8F9D6C251917A9F000235CDA /* tiesto */,
+				8F9D6C251917A9F000235CDA /* testo */,
 				8F9D6C291917AD3400235CDA /* SensorSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* SensorSampleDataObject.m */,
 			);
 			name = sensors;
 			sourceTree = "<group>";
 		};
-		8F9D6C251917A9F000235CDA /* tiesto */ = {
+		8F9D6C251917A9F000235CDA /* testo */ = {
 			isa = PBXGroup;
 			children = (
 				8F9D6C2F1917C4A100235CDA /* Testo.h */,
 				8F9D6C301917C4A100235CDA /* Testo.m */,
 				8F9D6C311917C4A100235CDA /* Testo.xib */,
 			);
-			name = tiesto;
+			name = testo;
 			sourceTree = "<group>";
 		};
 		FBBD3CC415BE57A90035F419 = {

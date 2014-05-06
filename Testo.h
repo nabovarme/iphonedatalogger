@@ -12,9 +12,11 @@
 @class Testo;//,NewSampleViewController;
 
 @interface Testo : UIViewController <NewSampleViewControllerDelegate>{
-    
+    UIAlertView *_pressPrintAlertView;
 }
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
+
 
 
 -(SensorSampleDataObject *) getSensorDataObject;
