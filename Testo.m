@@ -47,7 +47,14 @@
                                             otherButtonTitles:nil];
     [_pressPrintAlertView setDelegate:self];
     [_pressPrintAlertView show];
-    
+
+    /*
+    // send command via FSK
+    NSString *hexString = [NSString stringWithUTF8String:"\0"];
+    [[[UIApplication sharedApplication] delegate] sendRequest:hexString];
+    [hexString release];
+    */
+
     [self.receiveDataProgress startAnimating];
     
 }
@@ -57,7 +64,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void)dealloc {
     [self.myTextView release];

@@ -20,5 +20,6 @@
 
 
 -(SensorSampleDataObject *) getSensorDataObject;
+
 @end
 
