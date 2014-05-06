@@ -17,9 +17,7 @@
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 
-
-
-//-(SensorSampleDataObject *) getSensorDataObject;
+- (NSString *) selectProtocolCommand;
 
 @end
 

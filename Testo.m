@@ -99,5 +99,8 @@
     _pressPrintAlertView = nil;
 }
 
+- (NSString *) selectProtocolCommand {
+    return @"00";
+}
 
 @end

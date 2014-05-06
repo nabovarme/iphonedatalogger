@@ -39,8 +39,8 @@
     // Do any additional setup after loading the view from its nib.
     
     // show instruction alert
-    _pressPrintAlertView = [[UIAlertView alloc] initWithTitle:@"Press Print on Testo"
-                                                      message:@"Hold the device close the the MeterLogger while receiving data"
+    _pressPrintAlertView = [[UIAlertView alloc] initWithTitle:@"Wait for data"
+                                                      message:@"first transmitted then received"
                                                      delegate:nil
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
@@ -98,5 +98,8 @@
     _pressPrintAlertView = nil;
 }
 
+- (NSString *) selectProtocolCommand {
+    return @"ff";
+}
 
 @end
