@@ -66,9 +66,6 @@
 }
 
 - (void)dealloc {
-    [myTextView release];
-    [receiveDataProgress release];
-    [super dealloc];
 }
 
 
@@ -76,7 +73,6 @@
 {
     if (_pressPrintAlertView) {
         [_pressPrintAlertView dismissWithClickedButtonIndex:-1 animated:YES];
-        [_pressPrintAlertView release];
         _pressPrintAlertView = nil;
         NSLog(@"alert dismissed by data in");
     }
@@ -95,7 +91,6 @@
 // called by pressPrintAlertView when it was canceled
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"alert dismissed by button");
-    [_pressPrintAlertView release];
     _pressPrintAlertView = nil;
 }
 

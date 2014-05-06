@@ -12,8 +12,6 @@
 @class Testo;//,NewSampleViewController;
 
 @interface Testo : UIViewController <NewSampleViewControllerDelegate>{
-    UITextView *myTextView;
-    UIActivityIndicatorView *receiveDataProgress;
     UIAlertView *_pressPrintAlertView;
 }
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;

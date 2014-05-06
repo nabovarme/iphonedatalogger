@@ -16,7 +16,7 @@
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6FA1909438800ADA8F4 /* Images.xcassets */; };
 		8F9D6C2B1917AD3400235CDA /* SensorSampleDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C2A1917AD3400235CDA /* SensorSampleDataObject.m */; };
-		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; };
+		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F9D6C331917C4A100235CDA /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D6C311917C4A100235CDA /* Testo.xib */; };
 		8FC90FB9190A99A50052E48D /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FB8190A99A50052E48D /* SampleDetailsViewController.m */; };
 		8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FBB190E78B80052E48D /* ProtocolHelper.m */; };
