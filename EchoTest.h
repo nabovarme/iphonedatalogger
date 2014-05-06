@@ -13,7 +13,6 @@
 @class EchoTest;
 
 @interface EchoTest : UIViewController <NewSampleViewControllerReceivedChar>{
-    UIAlertView *_pressPrintAlertView;
   //  id<SensorViewControllerSendRequest> _sendRequestDelegate;
 
 }
@@ -24,7 +23,7 @@
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 
-- (NSString *) selectProtocolCommand;
+//- (NSString *) selectProtocolCommand;
 
 @end
 
