@@ -13,11 +13,11 @@
 @end
 
 @implementation Testo
+@synthesize sendRequestDelegate;
 
 -(id)init
 {
     self = [super init];
-   // self = [self initWithNibName:@"Testo" bundle:nil];
     return self;
 }
 
@@ -38,26 +38,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    // show instruction alert
-    _pressPrintAlertView = [[UIAlertView alloc] initWithTitle:@"Press Print on Testo"
-                                                      message:@"Hold the device close the the MeterLogger while receiving data"
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    [_pressPrintAlertView setDelegate:self];
-    [_pressPrintAlertView show];
-
-    /*
-    // send command via FSK
-    NSString *hexString = [NSString stringWithUTF8String:"\0"];
-    [[[UIApplication sharedApplication] delegate] sendRequest:hexString];
-    [hexString release];
-    */
-
-    [self.receiveDataProgress startAnimating];
-    
 }
+
+-(void) setSelfAsSendRequestDelegate:(id)controller
+{
+    [self setSendRequestDelegate:controller];
+    
+    [self.sendRequestDelegate sendRequest:@"00"];
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.receiveDataProgress startAnimating];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,18 +57,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-}
-
-
 - (void) receivedChar:(char)input;
 {
-    if (_pressPrintAlertView) {
-        [_pressPrintAlertView dismissWithClickedButtonIndex:-1 animated:YES];
-        _pressPrintAlertView = nil;
-        NSLog(@"alert dismissed by data in");
-    }
-
     if ([self.receiveDataProgress isAnimating]) {
         [self.receiveDataProgress stopAnimating];
     }
@@ -88,14 +70,5 @@
     
 }
 
-// called by pressPrintAlertView when it was canceled
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    NSLog(@"alert dismissed by button");
-    _pressPrintAlertView = nil;
-}
-
-- (NSString *) selectProtocolCommand {
-    return @"00";
-}
 
 @end

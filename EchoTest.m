@@ -60,9 +60,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-}
-
 
 - (void) receivedChar:(char)input;
 {

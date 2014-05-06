@@ -67,17 +67,10 @@
     _operationQueue = [[NSOperationQueue alloc] init];
    
     NSString *sensorName=@"EchoTest";      // echo test
+//    NSString *sensorName=@"Testo";      // echo test
     
     [self presentDetailController:(UIViewController*)[[ NSClassFromString(sensorName) alloc] init]];
 
-   // [self sendRequest:@"ff"];
-
-   /* _receivedCharDelegate = [[NSClassFromString(sensorName) alloc] init];
-
-    [self presentDetailController:self.receivedCharDelegate];
-    */
-    
-    //[SensorTestoView presentInViewController:self]; //loads custom view
     [super viewDidLoad];
     
 }

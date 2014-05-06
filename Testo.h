@@ -10,16 +10,16 @@
 #import "SensorSampleDataObject.h"
 #import "NewSampleViewController.h"
 #import "Protocols.h"
-@class Testo;//,NewSampleViewController;
+@class Testo;
 
 @interface Testo : UIViewController <NewSampleViewControllerReceivedChar>{
-    UIAlertView *_pressPrintAlertView;
+
 }
+@property (nonatomic, assign) id<SensorViewControllerSendRequest> sendRequestDelegate;
+
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 
-- (NSString *) selectProtocolCommand;
-//-(SensorSampleDataObject *) getSensorDataObject;
 
 @end
 
