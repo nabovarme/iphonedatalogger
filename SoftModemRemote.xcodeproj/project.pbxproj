@@ -194,24 +194,32 @@
 		8F9D6C241917A9D500235CDA /* sensors */ = {
 			isa = PBXGroup;
 			children = (
-				8F9D6C251917A9F000235CDA /* testo */,
+				8F9D6C251917A9F000235CDA /* Testo */,
+				D6FC1C871918759B00DB6DF9 /* EchoTest */,
 				8F9D6C291917AD3400235CDA /* SensorSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* SensorSampleDataObject.m */,
 			);
 			name = sensors;
 			sourceTree = "<group>";
 		};
-		8F9D6C251917A9F000235CDA /* testo */ = {
+		8F9D6C251917A9F000235CDA /* Testo */ = {
 			isa = PBXGroup;
 			children = (
 				8F9D6C2F1917C4A100235CDA /* Testo.h */,
 				8F9D6C301917C4A100235CDA /* Testo.m */,
 				8F9D6C311917C4A100235CDA /* Testo.xib */,
+			);
+			name = Testo;
+			sourceTree = "<group>";
+		};
+		D6FC1C871918759B00DB6DF9 /* EchoTest */ = {
+			isa = PBXGroup;
+			children = (
 				D6FC1C8119186B5100DB6DF9 /* EchoTest.h */,
 				D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */,
 				D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */,
 			);
-			name = testo;
+			name = EchoTest;
 			sourceTree = "<group>";
 		};
 		FBBD3CC415BE57A90035F419 = {

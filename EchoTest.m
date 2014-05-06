@@ -17,7 +17,6 @@
 -(id)init
 {
     self = [super init];
-   // self = [self initWithNibName:@"EchoTest" bundle:nil];
     return self;
 }
 

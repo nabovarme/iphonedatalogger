@@ -19,7 +19,7 @@
 
 
 
--(SensorSampleDataObject *) getSensorDataObject;
+//-(SensorSampleDataObject *) getSensorDataObject;
 
 @end
 

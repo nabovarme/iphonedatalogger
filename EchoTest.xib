@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Testo">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EchoTest">
             <connections>
                 <outlet property="myTextView" destination="yEC-dh-ccU" id="8Al-yL-9UQ"/>
                 <outlet property="receiveDataProgress" destination="wPM-Zq-3cL" id="Yx2-iw-Owm"/>
