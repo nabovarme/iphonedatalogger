@@ -1,5 +1,5 @@
 //
-//  Testo.h
+//  EchoTest.h
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
@@ -9,16 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SensorSampleDataObject.h"
 #import "NewSampleViewController.h"
-@class Testo;//,NewSampleViewController;
+@class EchoTest;
 
-@interface Testo : UIViewController <NewSampleViewControllerDelegate>{
+@interface EchoTest : UIViewController <NewSampleViewControllerDelegate>{
     UIAlertView *_pressPrintAlertView;
 }
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 
 - (NSString *) selectProtocolCommand;
-//-(SensorSampleDataObject *) getSensorDataObject;
 
 @end
 

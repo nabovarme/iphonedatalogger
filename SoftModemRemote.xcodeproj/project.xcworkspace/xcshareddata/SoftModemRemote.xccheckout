@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>26D480C7-EF26-4D63-8D08-5D8FBC146435</string>
+	<string>11602152-BA14-4A9A-9CA0-A368EFD8F6EF</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SoftModemRemote</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C816E865-5957-453F-83FA-B54269FAFA92</key>
-		<string>https://github.com/sloev/iphonedatalogger.git</string>
+		<key>C259A648-80D1-45C5-BDB7-9338B5DF6672</key>
+		<string>https://github.com/st0ff3r/iphonedatalogger.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SoftModemRemote.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C816E865-5957-453F-83FA-B54269FAFA92</key>
+		<key>C259A648-80D1-45C5-BDB7-9338B5DF6672</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/sloev/iphonedatalogger.git</string>
+	<string>https://github.com/st0ff3r/iphonedatalogger.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C816E865-5957-453F-83FA-B54269FAFA92</string>
+	<string>C259A648-80D1-45C5-BDB7-9338B5DF6672</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C816E865-5957-453F-83FA-B54269FAFA92</string>
+			<string>C259A648-80D1-45C5-BDB7-9338B5DF6672</string>
 			<key>IDESourceControlWCCName</key>
-			<string>SoftModemRemote</string>
+			<string>iphonedatalogger</string>
 		</dict>
 	</array>
 </dict>

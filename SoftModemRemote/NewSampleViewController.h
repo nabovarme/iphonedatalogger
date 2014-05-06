@@ -34,7 +34,7 @@
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, assign) id contentDelegate;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+//@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic, assign) ProtocolHelper* protocolHelper;
 

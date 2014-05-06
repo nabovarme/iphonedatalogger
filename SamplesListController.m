@@ -154,7 +154,7 @@
         NSLog(@"NewSample Segue");
         //NewSampleViewController *newSampleViewController = segue.destinationViewController;
         [(NewSampleViewController*)segue.destinationViewController setDelegate:self];
-        [(NewSampleViewController*)segue.destinationViewController release];
+//        [(NewSampleViewController*)segue.destinationViewController release];
         //newSampleViewController.delegate=self;
         //[newSampleViewController release ];
        // [APP_DELEGATE myPlay ];
@@ -175,7 +175,7 @@
     
     //[APP_DELEGATE myStop];
     //[controller setDelegate:nil];
-    [controller release];
+//    [controller release];
     
 }
 
@@ -187,7 +187,6 @@
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
     controller.delegate=nil;
-    [controller release];
     [self updateTableView];
 
 }

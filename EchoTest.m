@@ -1,23 +1,22 @@
 //
-//  Testo.m
+//  EchoTest.m
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
-#import "Testo.h"
+#import "EchoTest.h"
 
-@interface Testo ()
+@interface EchoTest ()
 
 @end
 
-@implementation Testo
+@implementation EchoTest
 
 -(id)init
 {
     self = [super init];
-   // self = [self initWithNibName:@"Testo" bundle:nil];
     return self;
 }
 
@@ -40,8 +39,8 @@
     // Do any additional setup after loading the view from its nib.
     
     // show instruction alert
-    _pressPrintAlertView = [[UIAlertView alloc] initWithTitle:@"Press Print on Testo"
-                                                      message:@"Hold the device close the the MeterLogger while receiving data"
+    _pressPrintAlertView = [[UIAlertView alloc] initWithTitle:@"Wait for data"
+                                                      message:@"first transmitted then received"
                                                      delegate:nil
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
@@ -84,7 +83,7 @@
     self.myTextView.text = [_myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
     [self.myTextView scrollRangeToVisible:NSMakeRange([_myTextView.text length], 0)];
     
-    NSLog(@"testo received %c", input);
+    NSLog(@"EchoTest received %c", input);
     
 }
 
@@ -95,7 +94,7 @@
 }
 
 - (NSString *) selectProtocolCommand {
-    return @"00";
+    return @"ff";
 }
 
 @end
