@@ -71,6 +71,13 @@
                     <view key="view" contentMode="scaleToFill" id="qkT-cp-wH0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFO-Uu-B1M">
+                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
@@ -95,39 +102,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNi-0z-GLG">
-                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="New Sample" id="4U6-hW-gjy">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="e4q-Sc-IlF">
-                                            <connections>
-                                                <action selector="cancel:" destination="UNH-T8-ylU" id="D1C-HY-Lbq"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="Aer-jl-hsV">
-                                            <connections>
-                                                <action selector="save:" destination="UNH-T8-ylU" id="k5w-M6-jrd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-Zr-aDE">
                                 <rect key="frame" x="0.0" y="68" width="320" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nch-mH-C4S">
+                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="Wrg-Nv-vcT">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cVa-d6-gsD">
+                                            <connections>
+                                                <action selector="cancel:" destination="UNH-T8-ylU" id="AYk-bw-Rr0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="6Dm-nZ-zXF">
+                                            <connections>
+                                                <action selector="save:" destination="UNH-T8-ylU" id="s7u-L2-Ijx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wcu-pS-TTx">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="f5t-Yx-6lP"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="uBt-5V-yjj"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="Co0-Zr-aDE" id="krn-P3-rNn"/>
-                        <outlet property="saveButton" destination="Aer-jl-hsV" id="sK7-Eg-MXe"/>
+                        <outlet property="saveButton" destination="6Dm-nZ-zXF" id="zcK-iB-t6D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYf-zM-RZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,6 +245,7 @@
                 <navigationController definesPresentationContext="YES" id="pjY-4A-7mU" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="roc-Fm-ZLM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q7K-hu-IK2">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
