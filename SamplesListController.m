@@ -43,6 +43,7 @@
     //2
   //  self.managedObjectContext = APP_DELEGATE.managedObjectContext;
     [self updateTableView];
+
     
     
 

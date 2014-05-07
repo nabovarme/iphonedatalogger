@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SamplesListController.h"
 
-@interface DevicesListController : UITableViewController
+@interface DevicesListController : UITableViewController 
+@property (strong, nonatomic) NSArray *sensorsArray;
 
 @end

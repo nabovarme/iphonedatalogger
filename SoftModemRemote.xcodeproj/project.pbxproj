@@ -21,6 +21,7 @@
 		8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FBB190E78B80052E48D /* ProtocolHelper.m */; };
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
+		8FFD88B1191A59F3004F7D5C /* SensorPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* SensorPropertyList.plist */; };
 		D6FC1C8419186B5100DB6DF9 /* EchoTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */; };
 		D6FC1C8619186C4A00DB6DF9 /* EchoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FB9A8D6B15BEA52C005F3DF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6915BEA52C005F3DF2 /* Icon.png */; };
@@ -89,6 +90,7 @@
 		8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleDetailsViewController.m; sourceTree = "<group>"; };
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
+		8FFD88B0191A59F3004F7D5C /* SensorPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SensorPropertyList.plist; sourceTree = "<group>"; };
 		D6FC1C8119186B5100DB6DF9 /* EchoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EchoTest.h; sourceTree = "<group>"; };
 		D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EchoTest.xib; sourceTree = "<group>"; };
 		D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EchoTest.m; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				D6FC1C871918759B00DB6DF9 /* EchoTest */,
 				8F9D6C291917AD3400235CDA /* SensorSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* SensorSampleDataObject.m */,
+				8FFD88B0191A59F3004F7D5C /* SensorPropertyList.plist */,
 			);
 			name = sensors;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				D6FC1C8419186B5100DB6DF9 /* EchoTest.xib in Resources */,
 				FBBD3D5315BE818B0035F419 /* btn_orange@2x.png in Resources */,
 				8F9D6C331917C4A100235CDA /* Testo.xib in Resources */,
+				8FFD88B1191A59F3004F7D5C /* SensorPropertyList.plist in Resources */,
 				FBBD3D5415BE818B0035F419 /* input1.png in Resources */,
 				FBBD3D5515BE818B0035F419 /* input1@2x.png in Resources */,
 				FBBD3D5615BE818B0035F419 /* input2.png in Resources */,
