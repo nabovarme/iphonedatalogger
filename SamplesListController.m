@@ -158,7 +158,7 @@
         else if([segue.identifier isEqualToString:@"SampleDetails"]) {
             NSLog(@"sample details Segue");
             //NewSampleViewController *newSampleViewController = segue.destinationViewController;
-            [(SampleDetailsViewController*)segue.destinationViewController setBackDelegate:self];
+           // [(SampleDetailsViewController*)segue.destinationViewController setBackDelegate:self];
         }
 
 //        [(NewSampleViewController*)segue.destinationViewController release];
@@ -186,12 +186,6 @@
     controller.cancelSaveDelegate=nil;
     [self updateTableView];
 
-}
-- (void)SampleDetailsViewControllerDidBack:(SampleDetailsViewController *)controller
-{
-    NSLog(@"delegate did back");
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [controller setBackDelegate:nil];
 }
 
 - (IBAction)addSampleEntry:(NewSampleViewController *)controller

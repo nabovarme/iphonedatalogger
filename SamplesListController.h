@@ -13,7 +13,7 @@
 
 
 //@interface SamplesListController : UITableViewController <NewSampleViewControllerDelegate>{
-    @interface SamplesListController : UITableViewController <NewSampleViewControllerCancelSave,SampleDetailsViewControllerBack>{
+    @interface SamplesListController : UITableViewController <NewSampleViewControllerCancelSave>{
     
 }
 

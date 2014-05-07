@@ -13,7 +13,6 @@
 @end
 
 @implementation SampleDetailsViewController
-@synthesize backDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +46,4 @@
 }
 */
 
-- (IBAction)back:(UIBarButtonItem *)sender {
-    [backDelegate SampleDetailsViewControllerDidBack:self];
-}
 @end

@@ -24,11 +24,6 @@
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller;
 @end
 
-@protocol SampleDetailsViewControllerBack <NSObject>
-@optional
-- (void)SampleDetailsViewControllerDidBack:(SampleDetailsViewController *)controller;
-@end
-
 @protocol NewSampleViewControllerReceivedChar  <NSObject>
 @optional
 - (void) receivedChar:(char)input;
