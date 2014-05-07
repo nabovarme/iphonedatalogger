@@ -242,9 +242,8 @@
  ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-    [_operationQueue cancelAllOperations];
-    [_operationQueue waitUntilAllOperationsAreFinished];
-    [self setReceivedCharDelegate:nil];
+    
+
     [_cancelSaveDelegate NewSampleViewControllerDidCancel:self];
     
 }
@@ -254,10 +253,17 @@
  ****************************/
 - (IBAction)save:(UIBarButtonItem *)sender {
         NSLog(@"sending done");
+
+        [_cancelSaveDelegate NewSampleViewControllerDidSave:self];
+}
+
+-(void) terminate
+{
+    [_operationQueue cancelAllOperations];
+    [_operationQueue waitUntilAllOperationsAreFinished];
     [_operationQueue cancelAllOperations];
     [_operationQueue waitUntilAllOperationsAreFinished];
     [self setReceivedCharDelegate:nil];
-        [_cancelSaveDelegate NewSampleViewControllerDidSave:self];
 }
 
 - (void)dealloc {
