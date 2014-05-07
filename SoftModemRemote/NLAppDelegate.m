@@ -47,36 +47,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    /*
-    [[NSUserDefaults standardUserDefaults] registerDefaults:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      @"0x01FF00FF", @"first", // NEC protocol previous channel
-      @"0x01FF807F", @"second", // NEC protocol next channel
-      nil]];
-    */
-    //self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-   /* UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-  SamplesListController *controller = (SamplesListController *)navigationController.topViewController;
-    //controller.managedObjectContext = self.managedObjectContext;
-*/
-    
-    //self.viewController = [[[NLMainViewController alloc] init] autorelease];
-    //self.receiveDelegate=[[[CharReceiverDelegate alloc] init] autorelease];
-    
-    //self.window.rootViewController = controller;
-    //[self.window makeKeyAndVisible];
-    
-  //  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-   
+
     
      [AVAudioSession sharedInstance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
-    /*
-    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:0.023220 error:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
-    */
     AVAudioSession *session = [AVAudioSession sharedInstance];
 	session.delegate= self;
 	if(session.inputIsAvailable){
@@ -90,9 +65,7 @@
     [session setPreferredIOBufferDuration:0.023220 error:nil];
     
 	_recognizer = [[FSKRecognizer alloc] init];
-	//[_recognizer addReceiver:_viewController];
-    //[_recognizer addReceiver:_receiveDelegate];
-    
+
 
 	_generator = [[FSKSerialGenerator alloc] init];
 	[_generator play];
@@ -100,8 +73,7 @@
 	_analyzer = [[AudioSignalAnalyzer alloc] init];
 	[_analyzer addRecognizer:_recognizer];
     
-	/*if(session.inputIsAvailable){
-	}*/
+
     [_analyzer record];
 	
     

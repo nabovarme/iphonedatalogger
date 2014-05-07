@@ -88,7 +88,7 @@
     //[f setDateFormat:@"dd/MM/yy HH:mm"];
 
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    NSString *CellIdentifier = @"GasSampleCell";
+    NSString *CellIdentifier = @"SampleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     SamplesEntity * sample = [self.fetchedSamplesArray objectAtIndex:indexPath.row];
     NSString *dateString=[dateFormatter stringFromDate:sample.date];
