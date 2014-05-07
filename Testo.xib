@@ -16,10 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEC-dh-ccU" userLabel="myTextView">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEC-dh-ccU" userLabel="myTextView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="21"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -32,7 +31,7 @@
             <constraints>
                 <constraint firstItem="yEC-dh-ccU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DYh-HE-c17"/>
                 <constraint firstItem="yEC-dh-ccU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JOd-u9-bYN"/>
-                <constraint firstAttribute="bottom" secondItem="yEC-dh-ccU" secondAttribute="bottom" id="RWJ-Hr-eWS"/>
+                <constraint firstAttribute="bottom" secondItem="yEC-dh-ccU" secondAttribute="bottom" constant="156" id="RWJ-Hr-eWS"/>
                 <constraint firstAttribute="trailing" secondItem="yEC-dh-ccU" secondAttribute="trailing" id="quK-YP-QXs"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

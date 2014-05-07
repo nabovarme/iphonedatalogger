@@ -14,6 +14,7 @@
 
 @implementation EchoTest
 @synthesize sendRequestDelegate;
+@synthesize receiveTimer;
 
 -(id)init
 {
@@ -70,7 +71,24 @@
     self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
     [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
     NSLog(@"EchoTest received %c", input);
-    
+
+    if (self.receiveTimer) {
+        // stop it
+        [self.receiveTimer invalidate];
+        self.receiveTimer = nil;        // let it be deallocated
+        // and start a new timer
+        self.receiveTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+    }
+    else {
+        // if its not running start a new one
+        self.receiveTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)doneReceiving {
+    NSLog(@"Done receiving");
+    NSLog(@"length: %d", self.myTextView.text.length);
+    [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
 }
 
 //- (NSString *) selectProtocolCommand {
