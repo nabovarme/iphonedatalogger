@@ -63,8 +63,8 @@
         [self.receiveDataProgress stopAnimating];
     }
 
-    self.myTextView.text = [_myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
-    [self.myTextView scrollRangeToVisible:NSMakeRange([_myTextView.text length], 0)];
+    self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
+    [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
     
     NSLog(@"testo received %c", input);
     
