@@ -20,6 +20,15 @@
     self = [super init];
     return self;
 }
+//inits with a dictionary holding a viewcontroller to be set as delegate for sendrequest stuff
+-(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
+{
+    NSLog(@"sensor init with dictionary");
+    [self setSendRequestDelegate:[dictionary valueForKey:@"delegate"]];
+    
+    self = [super init];
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,19 +46,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
--(void) setSelfAsSendRequestDelegate:(id)controller
-{
-    [self setSendRequestDelegate:controller];
     
     [self.sendRequestDelegate sendRequest:@"00"];
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
     [self.receiveDataProgress startAnimating];
+    // Do any additional setup after loading the view from its nib.
 }
-
 
 - (void)didReceiveMemoryWarning
 {

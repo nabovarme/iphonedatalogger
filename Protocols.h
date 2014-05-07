@@ -10,9 +10,13 @@
 #import "NLAppDelegate.h"
 #import <UIKit/UIKit.h>
 
-#import "NewSampleViewController.h"
 
-@class NewSampleViewController;
+//#import "SampleDetailsViewController.h"
+//#import "NewSampleViewController.h"
+
+
+
+@class NewSampleViewController,SampleDetailsViewController;
 
 @protocol NewSampleViewControllerCancelSave <NSObject>
 @optional
@@ -20,10 +24,14 @@
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller;
 @end
 
+@protocol SampleDetailsViewControllerBack <NSObject>
+@optional
+- (void)SampleDetailsViewControllerDidBack:(SampleDetailsViewController *)controller;
+@end
+
 @protocol NewSampleViewControllerReceivedChar  <NSObject>
 @optional
 - (void) receivedChar:(char)input;
--(void) setSelfAsSendRequestDelegate:(id)controller;
 @end
 
 @protocol SensorViewControllerSendRequest  <NSObject>

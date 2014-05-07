@@ -18,8 +18,8 @@
 		8F9D6C2B1917AD3400235CDA /* SensorSampleDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C2A1917AD3400235CDA /* SensorSampleDataObject.m */; };
 		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F9D6C331917C4A100235CDA /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D6C311917C4A100235CDA /* Testo.xib */; };
-		8FC90FB9190A99A50052E48D /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FB8190A99A50052E48D /* SampleDetailsViewController.m */; };
 		8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FBB190E78B80052E48D /* ProtocolHelper.m */; };
+		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		D6FC1C8419186B5100DB6DF9 /* EchoTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */; };
 		D6FC1C8619186C4A00DB6DF9 /* EchoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FB9A8D6B15BEA52C005F3DF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6915BEA52C005F3DF2 /* Icon.png */; };
@@ -82,10 +82,10 @@
 		8F9D6C2F1917C4A100235CDA /* Testo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testo.h; sourceTree = "<group>"; };
 		8F9D6C301917C4A100235CDA /* Testo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Testo.m; sourceTree = "<group>"; };
 		8F9D6C311917C4A100235CDA /* Testo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Testo.xib; sourceTree = "<group>"; };
-		8FC90FB7190A99A50052E48D /* SampleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleDetailsViewController.h; sourceTree = "<group>"; };
-		8FC90FB8190A99A50052E48D /* SampleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleDetailsViewController.m; sourceTree = "<group>"; };
 		8FC90FBA190E78B80052E48D /* ProtocolHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolHelper.h; sourceTree = "<group>"; };
 		8FC90FBB190E78B80052E48D /* ProtocolHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolHelper.m; sourceTree = "<group>"; };
+		8FFD88A7191A4221004F7D5C /* SampleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleDetailsViewController.h; sourceTree = "<group>"; };
+		8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleDetailsViewController.m; sourceTree = "<group>"; };
 		D6FC1C8119186B5100DB6DF9 /* EchoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EchoTest.h; sourceTree = "<group>"; };
 		D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EchoTest.xib; sourceTree = "<group>"; };
 		D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EchoTest.m; sourceTree = "<group>"; };
@@ -184,9 +184,9 @@
 				8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */,
 				8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */,
 				8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */,
+				8FFD88A7191A4221004F7D5C /* SampleDetailsViewController.h */,
+				8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */,
 				8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */,
-				8FC90FB7190A99A50052E48D /* SampleDetailsViewController.h */,
-				8FC90FB8190A99A50052E48D /* SampleDetailsViewController.m */,
 				8FC90FBA190E78B80052E48D /* ProtocolHelper.h */,
 				8FC90FBB190E78B80052E48D /* ProtocolHelper.m */,
 			);
@@ -450,7 +450,6 @@
 				FBBD3CE015BE57A90035F419 /* main.m in Sources */,
 				FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */,
 				8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */,
-				8FC90FB9190A99A50052E48D /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */,
 				8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */,
 				FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */,
@@ -461,6 +460,7 @@
 				FBBD3D1715BE58970035F419 /* FSKSerialGenerator.mm in Sources */,
 				8F9D6C321917C4A100235CDA /* Testo.m in Sources */,
 				D6FC1C8619186C4A00DB6DF9 /* EchoTest.m in Sources */,
+				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,
 				FBBD3D3215BE5ECB0035F419 /* NSString+HexColor.m in Sources */,

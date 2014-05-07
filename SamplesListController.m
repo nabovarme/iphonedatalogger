@@ -154,11 +154,17 @@
         NSLog(@"NewSample Segue");
         //NewSampleViewController *newSampleViewController = segue.destinationViewController;
         [(NewSampleViewController*)segue.destinationViewController setCancelSaveDelegate:self];
+    }
+        else if([segue.identifier isEqualToString:@"SampleDetails"]) {
+            NSLog(@"sample details Segue");
+            //NewSampleViewController *newSampleViewController = segue.destinationViewController;
+            [(SampleDetailsViewController*)segue.destinationViewController setBackDelegate:self];
+        }
+
 //        [(NewSampleViewController*)segue.destinationViewController release];
         //newSampleViewController.delegate=self;
         //[newSampleViewController release ];
        // [APP_DELEGATE myPlay ];
-    }
 }
 
 #pragma mark - NewSampleViewControllerDelegate
@@ -166,29 +172,26 @@
 - (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller
 {
     NSLog(@"received cancel");
-    //[APP_DELEGATE resetGenerator];
 
     [controller dismissViewControllerAnimated:YES completion:nil];
-    //[controller release];
-    
-    //sleep(3);
-    
-    //[APP_DELEGATE myStop];
-    //[controller setDelegate:nil];
-//    [controller release];
-    
+
 }
 
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
 {
     NSLog(@"received done");
-    //[APP_DELEGATE resetGenerator];
 
     [self addSampleEntry:controller];
     [self dismissViewControllerAnimated:YES completion:nil];
     controller.cancelSaveDelegate=nil;
     [self updateTableView];
 
+}
+- (void)SampleDetailsViewControllerDidBack:(SampleDetailsViewController *)controller
+{
+    NSLog(@"delegate did back");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [controller setBackDelegate:nil];
 }
 
 - (IBAction)addSampleEntry:(NewSampleViewController *)controller

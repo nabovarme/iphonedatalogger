@@ -8,15 +8,16 @@
 
 #import "NewSampleViewController.h"
 
-//#import "UIView+Layout.h"
 #import "NSString+HexColor.h"
 #import "FSKSerialGenerator.h"
 #import "FSKRecognizer.h"
 #include <ctype.h>
 #import "ProtocolHelper.h"
 
+//add all sensors here
 #import "Testo.h"
 #import "EchoTest.h"
+//end
 
 @interface NewSampleViewController ()
 @property (nonatomic,retain) NSOperationQueue *operationQueue;
@@ -46,6 +47,7 @@
     }
     return self;
 }
+
 - (id)initWithViewController:(UIViewController*)viewController{
     
     self = [super init];
@@ -68,9 +70,11 @@
    
     NSString *sensorName=@"EchoTest";      // echo test
 //    NSString *sensorName=@"Testo";      // echo test
+    NSDictionary *dictionary = @{
+                                @"delegate" : self
+                                };
+    [self presentDetailController:(UIViewController*)[[ NSClassFromString(sensorName) alloc] initWithDictionary:dictionary]];
     
-    [self presentDetailController:(UIViewController*)[[ NSClassFromString(sensorName) alloc] init]];
-
     [super viewDidLoad];
     
 }
@@ -91,7 +95,7 @@
     [self.contentView addSubview:detailVC.view];
     self.currentDetailViewController = detailVC;
     [self setReceivedCharDelegate : self.currentDetailViewController];
-    [self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
+    //[self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
 
     //4. Complete the add flow calling the function didMoveToParentViewController
     [detailVC didMoveToParentViewController:self];
@@ -242,7 +246,7 @@
  ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-    
+    [self terminate];
 
     [_cancelSaveDelegate NewSampleViewControllerDidCancel:self];
     
@@ -253,14 +257,13 @@
  ****************************/
 - (IBAction)save:(UIBarButtonItem *)sender {
         NSLog(@"sending done");
+    [self terminate];
 
         [_cancelSaveDelegate NewSampleViewControllerDidSave:self];
 }
 
 -(void) terminate
 {
-    [_operationQueue cancelAllOperations];
-    [_operationQueue waitUntilAllOperationsAreFinished];
     [_operationQueue cancelAllOperations];
     [_operationQueue waitUntilAllOperationsAreFinished];
     [self setReceivedCharDelegate:nil];
