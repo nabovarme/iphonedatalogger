@@ -13,7 +13,6 @@
 
 
 @interface SamplesListController ()
-//@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong)NSArray* fetchedSamplesArray;
 @property (nonatomic,strong)NSDateFormatter* dateFormatter;
 @end
@@ -40,19 +39,9 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
-    //2
-  //  self.managedObjectContext = APP_DELEGATE.managedObjectContext;
+    
     [self updateTableView];
 
-    
-    
-
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,16 +68,13 @@
 
 - (void)updateTableView
 {
-    self.fetchedSamplesArray = [APP_DELEGATE getAllSamplesFromDevice:@"gasSensor"];
+    self.fetchedSamplesArray = [APP_DELEGATE getAllSamplesFromDevice:self.title];
     [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    //[f setDateFormat:@"dd/MM/yy HH:mm"];
-
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     NSString *CellIdentifier = @"SampleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     SamplesEntity * sample = [self.fetchedSamplesArray objectAtIndex:indexPath.row];
@@ -161,11 +147,6 @@
             //NewSampleViewController *newSampleViewController = segue.destinationViewController;
            // [(SampleDetailsViewController*)segue.destinationViewController setBackDelegate:self];
         }
-
-//        [(NewSampleViewController*)segue.destinationViewController release];
-        //newSampleViewController.delegate=self;
-        //[newSampleViewController release ];
-       // [APP_DELEGATE myPlay ];
 }
 
 #pragma mark - NewSampleViewControllerDelegate
@@ -197,7 +178,7 @@
                                                           inManagedObjectContext:APP_DELEGATE.managedObjectContext];
     //  2
     newSample.date=[NSDate date];
-    newSample.deviceName=@"gas sensor";
+    newSample.deviceName=self.title;
     newSample.placeName=@"loppen";
     newSample.sampleDataDict=nil;
 

@@ -117,7 +117,7 @@
                                                 <action selector="cancel:" destination="UNH-T8-ylU" id="AYk-bw-Rr0"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="6Dm-nZ-zXF">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="6Dm-nZ-zXF">
                                             <connections>
                                                 <action selector="save:" destination="UNH-T8-ylU" id="s7u-L2-Ijx"/>
                                             </connections>

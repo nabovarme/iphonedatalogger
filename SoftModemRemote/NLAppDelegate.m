@@ -202,7 +202,10 @@
     //Setting Entity to be Queried
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SamplesEntity"
                                               inManagedObjectContext:self.managedObjectContext];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"deviceName = %@", deviceName];
     [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+
     NSError* error;
     
     // Query on managedObjectContext With Generated fetchRequest
