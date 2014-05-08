@@ -21,6 +21,8 @@
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
+		D6821830191C413800DC093A /* TestoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D682182E191C413800DC093A /* TestoDemo.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D6821831191C413800DC093A /* TestoDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D682182F191C413800DC093A /* TestoDemo.xib */; };
 		D6FC1C8419186B5100DB6DF9 /* EchoTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */; };
 		D6FC1C8619186C4A00DB6DF9 /* EchoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		FB9A8D6B15BEA52C005F3DF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6915BEA52C005F3DF2 /* Icon.png */; };
@@ -88,6 +90,9 @@
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
+		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
+		D682182E191C413800DC093A /* TestoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestoDemo.m; sourceTree = "<group>"; };
+		D682182F191C413800DC093A /* TestoDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestoDemo.xib; sourceTree = "<group>"; };
 		D6FC1C8119186B5100DB6DF9 /* EchoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EchoTest.h; sourceTree = "<group>"; };
 		D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EchoTest.xib; sourceTree = "<group>"; };
 		D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EchoTest.m; sourceTree = "<group>"; };
@@ -200,6 +205,7 @@
 			children = (
 				8F9D6C251917A9F000235CDA /* Testo */,
 				D6FC1C871918759B00DB6DF9 /* EchoTest */,
+				D6821832191C413E00DC093A /* TestoDemo */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
@@ -215,6 +221,16 @@
 				8F9D6C311917C4A100235CDA /* Testo.xib */,
 			);
 			name = Testo;
+			sourceTree = "<group>";
+		};
+		D6821832191C413E00DC093A /* TestoDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D682182D191C413800DC093A /* TestoDemo.h */,
+				D682182E191C413800DC093A /* TestoDemo.m */,
+				D682182F191C413800DC093A /* TestoDemo.xib */,
+			);
+			name = TestoDemo;
 			sourceTree = "<group>";
 		};
 		D6FC1C871918759B00DB6DF9 /* EchoTest */ = {
@@ -413,6 +429,7 @@
 				FBBD3CDE15BE57A90035F419 /* InfoPlist.strings in Resources */,
 				FBBD3D2A15BE5D4B0035F419 /* 9lab.png in Resources */,
 				FBBD3D2B15BE5D4B0035F419 /* 9lab@2x.png in Resources */,
+				D6821831191C413800DC093A /* TestoDemo.xib in Resources */,
 				FBBD3D2C15BE5D4B0035F419 /* logo.png in Resources */,
 				FBBD3D2D15BE5D4B0035F419 /* logo@2x.png in Resources */,
 				FBBD3D3915BE61820035F419 /* arrow_2.png in Resources */,
@@ -467,6 +484,7 @@
 				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,
+				D6821830191C413800DC093A /* TestoDemo.m in Sources */,
 				FBBD3D3215BE5ECB0035F419 /* NSString+HexColor.m in Sources */,
 				8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */,
 			);

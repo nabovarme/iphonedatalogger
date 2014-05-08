@@ -1,19 +1,19 @@
 //
-//  EchoTest.m
+//  TestoDemo.m
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
-#import "EchoTest.h"
+#import "TestoDemo.h"
 
-@interface EchoTest ()
+@interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
 
 @end
 
-@implementation EchoTest
+@implementation TestoDemo
 @synthesize sendRequestDelegate;
 @synthesize receiveTimer;
 @synthesize myDataObject;
@@ -92,7 +92,7 @@
 
     self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
     [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
-    NSLog(@"EchoTest received %c", input);
+    NSLog(@"TestoDemo received %c", input);
 
     if (self.receiveTimer) {
         // stop it
@@ -111,18 +111,24 @@
     NSLog(@"Done receiving");
     NSLog(@"length: %lu", (unsigned long)self.myTextView.text.length);
     [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+O2" options:0 error:NULL];
+    NSString *str = self.myTextView.text;// @("5.82%       CO2\n15.1%       O2");
+    NSTextCheckingResult *match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    //    NSLog(@"%@", [match rangeAtIndex:1]); // gives the range of the group in parentheses
+    //self.oxygenLevel.text = [str substringWithRange:[match rangeAtIndex:1]];
+    NSLog(@"-%@-", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
 }
 
 - (DeviceSampleDataObject *)getDataObject
 {
     [self.myDataObject setPlaceName:@"Nowhere"];
 
-    NSDictionary *dictionary = @{
-                                 @"data" : self.myTextView.text
+    NSDictionary *dictionary = @{@"testoOxygenLevel": @"oxygen",
+                                 @"data": self.myTextView.text
                                  };
     [self.myDataObject setSampleDataDict:dictionary];
     return self.myDataObject;
 }
-
 
 @end
