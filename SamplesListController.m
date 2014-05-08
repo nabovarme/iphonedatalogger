@@ -139,10 +139,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"NewSample"]) {
         NSLog(@"NewSample Segue");
-        NewSampleViewController *newSampleViewController = segue.destinationViewController;
-        [newSampleViewController setCancelSaveDelegate:self];
-        [newSampleViewController setDeviceName:self.title];
-//        [(NewSampleViewController*)segue.destinationViewController setCancelSaveDelegate:self];
+        [(NewSampleViewController*) segue.destinationViewController setCancelSaveDelegate:self];
+        [(NewSampleViewController*) segue.destinationViewController setDeviceName:self.title];
     }
         else if([segue.identifier isEqualToString:@"SampleDetails"]) {
             NSLog(@"sample details Segue");
@@ -159,21 +157,11 @@
             tmp.date=sampleObject.date;
             tmp.sampleDataDict=sampleObject.sampleDataDict;
             
-            SampleDetailsViewController *newSampleViewController = segue.destinationViewController;
-            [newSampleViewController setMyDataObject:tmp];
+            [(SampleDetailsViewController *)  segue.destinationViewController setMyDataObject:tmp];
             
 
             NSLog(@"%@",[tmp description]);
 
-           /*
-            SampleDetailsViewController *newSampleDetailsViewController = segue.destinationViewController;
-            
-            NSDictionary *dictionary = @{
-                                         @"dataObject":tmp
-                                         };
-            
-            [newSampleDetailsViewController presentDetailController:(UIViewController*)[[ NSClassFromString(tmp.placeName) alloc] initWithDictionary:dictionary]];
-*/
         }
 }
 
