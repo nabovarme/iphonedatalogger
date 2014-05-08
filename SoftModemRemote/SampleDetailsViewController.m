@@ -51,7 +51,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(SensorSampleDataObject * )getObject
+-(DeviceSampleDataObject * )getObject
 {
     return self.myDataObject;
 }

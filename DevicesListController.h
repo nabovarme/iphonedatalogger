@@ -11,6 +11,6 @@
 #import "SamplesListController.h"
 
 @interface DevicesListController : UITableViewController 
-@property (strong, nonatomic) NSArray *sensorsArray;
+@property (strong, nonatomic) NSArray *devicesArray;
 
 @end

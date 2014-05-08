@@ -64,7 +64,7 @@
     [APP_DELEGATE.recognizer addReceiver:self];
     _operationQueue = [[NSOperationQueue alloc] init];
    
-    SensorSampleDataObject *dataObject = [[SensorSampleDataObject alloc]init];
+    DeviceSampleDataObject *dataObject = [[DeviceSampleDataObject alloc]init];
     dataObject.placeName = @"";
     dataObject.date=[[NSDate alloc]init];
     dataObject.deviceName = self.deviceName;
@@ -263,12 +263,12 @@
 
 }
 
-- (SensorSampleDataObject *)getDataObject
+- (DeviceSampleDataObject *)getDataObject
 {
     id tmp=self.receivedCharDelegate;
     
     //[self.receivedCharDelegate lort];
-    SensorSampleDataObject * tmp2=[tmp getDataObject];//=[self.receivedCharDelegate getDataObject];
+    DeviceSampleDataObject *tmp2 = [tmp getDataObject];//=[self.receivedCharDelegate getDataObject];
    return tmp2;
 }
 

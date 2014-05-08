@@ -16,7 +16,7 @@
 #import "Testo.h"
 
 #import "EchoTest.h"
-#import "SensorSampleDataObject.h"
+#import "DeviceSampleDataObject.h"
 #import "SamplesEntity.h"
 
 //end

@@ -33,11 +33,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //Load Dictionary with wood name cross refference values for image name
-    NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"SensorPropertyList" ofType:@"plist"];
+    NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"DevicesPropertyList" ofType:@"plist"];
     NSDictionary *creatureDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
     
     NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:nil ascending:YES];
-    self.sensorsArray = [creatureDictionary[@"SensorClasses"] sortedArrayUsingDescriptors:@[sd]];
+    self.devicesArray = [creatureDictionary[@"DeviceClasses"] sortedArrayUsingDescriptors:@[sd]];
     NSLog(@"devices view loaded");
 }
 
@@ -58,7 +58,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.sensorsArray count];
+    return [self.devicesArray count];
 }
 
 
@@ -67,8 +67,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceCell" forIndexPath:indexPath];
     
 
-    NSString * SensorName = [self.sensorsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",SensorName];
+    NSString * DeviceName = [self.devicesArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", DeviceName];
     
     return cell;
 }
@@ -123,9 +123,9 @@
         //NewSampleViewController *newSampleViewController = segue.destinationViewController;
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSString * sensorName = [self.sensorsArray objectAtIndex:indexPath.row];
+        NSString * DeviceName = [self.devicesArray objectAtIndex:indexPath.row];
         
-        [(SamplesListController*)segue.destinationViewController setTitle:sensorName];
+        [(SamplesListController*)segue.destinationViewController setTitle:DeviceName];
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

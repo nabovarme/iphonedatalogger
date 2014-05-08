@@ -1,14 +1,14 @@
 //
-//  SensorSampleDataObject.m
+//  DeviceSampleDataObject.m
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
-#import "SensorSampleDataObject.h"
+#import "DeviceSampleDataObject.h"
 
-@implementation SensorSampleDataObject
+@implementation DeviceSampleDataObject
 @synthesize date;
 @synthesize sampleDataDict;
 @synthesize placeName;

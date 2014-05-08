@@ -13,7 +13,7 @@
 
 @class NewSampleViewController;
 
-@interface NewSampleViewController : UIViewController <CharReceiver,SensorViewControllerSendRequest>{
+@interface NewSampleViewController : UIViewController <CharReceiver,DeviceViewControllerSendRequest>{
 //    id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
 //    id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
 }
@@ -26,10 +26,10 @@
 @property (nonatomic, assign) NSString * deviceName;
 
 //for data storage
-@property SensorSampleDataObject *  myDataObject;
+@property DeviceSampleDataObject *  myDataObject;
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)save:(UIBarButtonItem *)sender;
-- (SensorSampleDataObject *)getDataObject;
+- (DeviceSampleDataObject *)getDataObject;
 
 
 @end

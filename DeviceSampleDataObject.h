@@ -1,5 +1,5 @@
 //
-//  SensorSampleDataObject.h
+//  DeviceSampleDataObject.h
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class SensorSampleDataObject;
-@interface SensorSampleDataObject : NSObject
+@class DeviceSampleDataObject;
+@interface DeviceSampleDataObject : NSObject
 
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * deviceName;

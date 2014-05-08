@@ -15,7 +15,7 @@
 
 
 
-@class NewSampleViewController,SensorSampleDataObject;
+@class NewSampleViewController, DeviceSampleDataObject;
 
 @protocol NewSampleViewControllerCancelSave <NSObject>
 @optional
@@ -27,10 +27,10 @@
 @optional
 - (void) receivedChar:(char)input;
 - (void)lort;
-- (SensorSampleDataObject*)getDataObject;
+- (DeviceSampleDataObject*)getDataObject;
 @end
 
-@protocol SensorViewControllerSendRequest  <NSObject>
+@protocol DeviceViewControllerSendRequest  <NSObject>
 @optional
 -(void) sendRequest:(NSString*) hexStrings;
 @end

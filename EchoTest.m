@@ -9,7 +9,7 @@
 #import "EchoTest.h"
 
 @interface EchoTest ()
-@property SensorSampleDataObject *  myDataObject;
+@property DeviceSampleDataObject *myDataObject;
 
 @end
 
@@ -32,8 +32,6 @@
     
     [self setMyDataObject:dictionary[@"dataObject"]];
     NSLog(@"%@",[myDataObject description]);
-
-
 
     self = [super init];
     return self;
@@ -119,7 +117,7 @@
     [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
 }
 
-- (SensorSampleDataObject *)getDataObject
+- (DeviceSampleDataObject *)getDataObject
 {
     [self.myDataObject setPlaceName:@"loppen hihi"];
 

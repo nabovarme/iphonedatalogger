@@ -150,7 +150,7 @@
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             SamplesEntity * sampleObject = [self.fetchedSamplesArray objectAtIndex:indexPath.row];
           
-            SensorSampleDataObject * tmp=[[SensorSampleDataObject alloc]init];
+            DeviceSampleDataObject *tmp = [[DeviceSampleDataObject alloc]init];
             
             tmp.deviceName=sampleObject.deviceName;
             tmp.placeName=sampleObject.placeName;
@@ -185,7 +185,7 @@
 
 }
 
-- (IBAction)addSampleEntry:(SensorSampleDataObject *)myDataObject
+- (IBAction)addSampleEntry:(DeviceSampleDataObject *)myDataObject
 {
     NSLog(@"inside addsample");
     //  1

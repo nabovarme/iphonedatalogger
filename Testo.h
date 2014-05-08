@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SensorSampleDataObject.h"
+#import "DeviceSampleDataObject.h"
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
@@ -17,7 +17,7 @@
 @interface Testo : UIViewController <NewSampleViewControllerReceivedChar>{
 
 }
-@property (nonatomic, assign) id<SensorViewControllerSendRequest> sendRequestDelegate;
+@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;

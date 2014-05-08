@@ -9,7 +9,7 @@
 #import "Testo.h"
 
 @interface Testo ()
-@property SensorSampleDataObject *  myDataObject;
+@property DeviceSampleDataObject *myDataObject;
 
 
 @end
@@ -35,15 +35,6 @@
     return self;
 }
 
-
-
--(id)initWithString:(NSString *)string
-{
-    NSLog(@"sensor init with string");
-
-    self = [super init];
-    return self;
-}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -102,7 +93,7 @@
     
 }
 
-- (SensorSampleDataObject *)getDataObject
+- (DeviceSampleDataObject *)getDataObject
 {
     [self.myDataObject setPlaceName:@"loppen haha"];
     NSDictionary *dictionary = @{

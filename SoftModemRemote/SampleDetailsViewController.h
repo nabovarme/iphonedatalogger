@@ -11,6 +11,6 @@
 
 @interface SampleDetailsViewController : UIViewController
 @property (assign, nonatomic) IBOutlet UIView *contentView;
-@property (atomic,retain) SensorSampleDataObject* myDataObject;
--(SensorSampleDataObject *)getObject;
+@property (atomic,retain) DeviceSampleDataObject* myDataObject;
+-(DeviceSampleDataObject *)getObject;
 @end
