@@ -14,22 +14,13 @@
 @class TestoDemo;
 
 @interface TestoDemo : UIViewController <NewSampleViewControllerReceivedChar>{
-  //  id<DeviceViewControllerSendRequest> _sendRequestDelegate;
 
 }
 
-//@property (nonatomic, unsafe_unretained) id <DeviceViewControllerSendRequest> sendRequestDelegate;
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
-@property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 @property NSTimer *receiveTimer;
-
-//- (NSString *) selectProtocolCommand;
-
-//for testing
-
-
 
 @end
 
