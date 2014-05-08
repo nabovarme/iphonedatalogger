@@ -19,19 +19,19 @@
 @class NewSampleViewController;
 
 @interface NewSampleViewController : UIViewController <CharReceiver,SensorViewControllerSendRequest>{
-    id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
-    id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
+//    id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
+//    id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
 }
 @property (assign, nonatomic) IBOutlet UIView *contentView;
-@property (nonatomic, assign) id cancelSaveDelegate;
-@property (nonatomic, assign) id receivedCharDelegate;
+@property (nonatomic, assign) id<NewSampleViewControllerCancelSave> cancelSaveDelegate;
+@property (nonatomic, assign) id<NewSampleViewControllerReceivedChar> receivedCharDelegate;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
-@property (nonatomic, assign) ProtocolHelper* protocolHelper;
+@property ProtocolHelper* protocolHelper;
 
 @property (nonatomic, assign) NSString * deviceName;
 
 //for data storage
-@property (nonatomic,assign) SensorSampleDataObject *  myDataObject;
+@property SensorSampleDataObject *  myDataObject;
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)save:(UIBarButtonItem *)sender;
 - (SensorSampleDataObject *)getDataObject;

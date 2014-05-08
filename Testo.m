@@ -9,7 +9,7 @@
 #import "Testo.h"
 
 @interface Testo ()
-@property (nonatomic,assign) SensorSampleDataObject *  myDataObject;
+@property SensorSampleDataObject *  myDataObject;
 
 
 @end

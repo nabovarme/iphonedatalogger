@@ -11,7 +11,7 @@
 		8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F086693191106C60075391E /* SamplesModel.xcdatamodeld */; };
 		8F086699191117730075391E /* SamplesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F086698191117730075391E /* SamplesEntity.m */; };
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
-		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
+		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */; };
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6FA1909438800ADA8F4 /* Images.xcassets */; };

@@ -23,8 +23,8 @@
 
 @implementation NewSampleViewController
 
-@synthesize cancelSaveDelegate=_cancelSaveDelegate;
-@synthesize receivedCharDelegate=_receivedCharDelegate;
+@synthesize cancelSaveDelegate;//=_cancelSaveDelegate;
+@synthesize receivedCharDelegate;//=_receivedCharDelegate;
 @synthesize saveButton;
 @synthesize protocolHelper;
 @synthesize deviceName;
@@ -61,12 +61,12 @@
 {
     NSLog(@"new sample view loaded");
     // assign delegate
-    protocolHelper=[[ProtocolHelper alloc] init];
+    protocolHelper = [[ProtocolHelper alloc] init];
     [APP_DELEGATE.recognizer addReceiver:self];
     _operationQueue = [[NSOperationQueue alloc] init];
    
-    SensorSampleDataObject * dataObject = [[SensorSampleDataObject alloc]init];
-    dataObject.placeName=@"";
+    SensorSampleDataObject *dataObject = [[SensorSampleDataObject alloc]init];
+    dataObject.placeName = @"";
     dataObject.date=[[NSDate alloc]init];
     dataObject.deviceName = self.deviceName;
     dataObject.sampleDataDict=@{};
@@ -75,8 +75,8 @@
                                 @"dataObject":dataObject
                                 };
     
-    [self presentDetailController:(UIViewController*)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
-    
+    [self presentDetailController:(UIViewController *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
+
     [super viewDidLoad];
     
 }
@@ -173,7 +173,7 @@
                                          ];
 
     [self.operationQueue addOperation:operation];
-    [operation release];
+//    [operation release];
 }
 
 /****************************
@@ -249,7 +249,7 @@
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
 
-    [_cancelSaveDelegate NewSampleViewControllerDidCancel:self];
+    [self.cancelSaveDelegate NewSampleViewControllerDidCancel:self];
     [self terminate];
 
 }
@@ -283,27 +283,27 @@
 
 - (void)dealloc {
 
-    _cancelSaveDelegate=nil;
+    self.cancelSaveDelegate=nil;
 
     NSLog(@"dealloc");
     [_operationQueue cancelAllOperations];
     [_operationQueue waitUntilAllOperationsAreFinished];
-    [_operationQueue release ];
+//    [_operationQueue release ];
    // [APP_DELEGATE myStop];
     [APP_DELEGATE.recognizer removeAllReceivers];
 
     //[self.operationQueue autorelease];
     NSLog(@"all operations finnished");
 //    [activity release];
-    [saveButton release];
-    [protocolHelper release];
-    [_receivedCharDelegate release];
+//    [saveButton release];
+//    [protocolHelper release];
+//    [_receivedCharDelegate release];
     NSLog(@"objects released");
     //[self.operationQueue release];
    // [saveButton release];
     //[activity release];
     //[self.operationQueue cancelAllOperations];
-    [super dealloc];
+//    [super dealloc];
 
 }
 
