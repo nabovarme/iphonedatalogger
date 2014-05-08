@@ -12,7 +12,6 @@
 #import "FSKSerialGenerator.h"
 #import "FSKRecognizer.h"
 #include <ctype.h>
-#import "ProtocolHelper.h"
 
 
 @interface NewSampleViewController ()

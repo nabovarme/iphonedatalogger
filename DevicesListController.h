@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NLAppDelegate.h"
 #import "SamplesListController.h"
 
 @interface DevicesListController : UITableViewController 

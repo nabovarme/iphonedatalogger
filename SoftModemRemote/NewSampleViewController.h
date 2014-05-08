@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NLAppDelegate.h"
 
-#import "CharReceiverDelegate.h"
 #import "ProtocolHelper.h"
-#import "CharReceiver.h"
-#import "Protocols.h"
-#import "SensorSampleDataObject.h"
-#import "SamplesEntity.h"
 
 @class NewSampleViewController;
 

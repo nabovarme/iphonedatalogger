@@ -11,8 +11,14 @@
 #import "CharReceiver.h"
 
 //all devices here
+#import "Protocols.h"
+
 #import "Testo.h"
+
 #import "EchoTest.h"
+#import "SensorSampleDataObject.h"
+#import "SamplesEntity.h"
+
 //end
 
 #define APP_DELEGATE ((NLAppDelegate*)[[UIApplication sharedApplication] delegate])
