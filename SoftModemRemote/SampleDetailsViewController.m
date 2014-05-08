@@ -33,6 +33,14 @@
     [super viewDidLoad];
     NSLog(@"sample details view load");
   NSLog(@"%@",[myDataObject description]);
+    
+    NSDictionary *dictionary = @{
+                                 @"dataObject":myDataObject
+                                 };
+    
+    [self presentDetailController:(UIViewController*)[[ NSClassFromString(myDataObject.deviceName) alloc] initWithDictionary:dictionary]];
+    
+
 
     // Do any additional setup after loading the view.
 }
