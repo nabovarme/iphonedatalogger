@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SensorSampleDataObject.h"
+#import "NLAppDelegate.h"
+
 @interface SampleDetailsViewController : UIViewController
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (atomic,retain) SensorSampleDataObject* myDataObject;

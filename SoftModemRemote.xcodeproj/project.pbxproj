@@ -12,7 +12,6 @@
 		8F086699191117730075391E /* SamplesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F086698191117730075391E /* SamplesEntity.m */; };
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
-		8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */; };
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6FA1909438800ADA8F4 /* Images.xcassets */; };
 		8F9D6C2B1917AD3400235CDA /* SensorSampleDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C2A1917AD3400235CDA /* SensorSampleDataObject.m */; };
@@ -73,8 +72,6 @@
 		8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSampleViewController.h; sourceTree = "<group>"; };
 		8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSampleViewController.m; sourceTree = "<group>"; };
-		8F39B6F31909346000ADA8F4 /* CharReceiverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharReceiverDelegate.h; sourceTree = "<group>"; };
-		8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharReceiverDelegate.m; sourceTree = "<group>"; };
 		8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SamplesListController.h; path = ../SamplesListController.h; sourceTree = "<group>"; };
 		8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SamplesListController.m; path = ../SamplesListController.m; sourceTree = "<group>"; };
 		8F39B6FA1909438800ADA8F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -187,8 +184,6 @@
 				8F42458E1919229A0017379F /* Protocols.h */,
 				8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */,
 				8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */,
-				8F39B6F31909346000ADA8F4 /* CharReceiverDelegate.h */,
-				8F39B6F41909346000ADA8F4 /* CharReceiverDelegate.m */,
 				8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */,
 				8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */,
 				8FFD88A7191A4221004F7D5C /* SampleDetailsViewController.h */,
@@ -460,7 +455,6 @@
 				FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */,
 				8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */,
 				FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */,
-				8F39B6F51909346000ADA8F4 /* CharReceiverDelegate.m in Sources */,
 				FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */,
 				8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */,
 				8F9D6C2B1917AD3400235CDA /* SensorSampleDataObject.m in Sources */,

@@ -11,6 +11,7 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
+
 @class Testo;
 
 @interface Testo : UIViewController <NewSampleViewControllerReceivedChar>{

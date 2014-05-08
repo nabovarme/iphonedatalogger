@@ -36,7 +36,8 @@
     NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"SensorPropertyList" ofType:@"plist"];
     NSDictionary *creatureDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
     
-    self.sensorsArray = creatureDictionary[@"SensorClasses"];
+    NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:nil ascending:YES];
+    self.sensorsArray = [creatureDictionary[@"SensorClasses"] sortedArrayUsingDescriptors:@[sd]];
     NSLog(@"devices view loaded");
 }
 
