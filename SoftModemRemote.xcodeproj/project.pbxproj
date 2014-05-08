@@ -195,7 +195,7 @@
 			name = myInterface;
 			sourceTree = "<group>";
 		};
-		8F9D6C241917A9D500235CDA /* sensors */ = {
+		8F9D6C241917A9D500235CDA /* devices */ = {
 			isa = PBXGroup;
 			children = (
 				8F9D6C251917A9F000235CDA /* Testo */,
@@ -204,7 +204,7 @@
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
 			);
-			name = sensors;
+			name = devices;
 			sourceTree = "<group>";
 		};
 		8F9D6C251917A9F000235CDA /* Testo */ = {
@@ -230,7 +230,7 @@
 		FBBD3CC415BE57A90035F419 = {
 			isa = PBXGroup;
 			children = (
-				8F9D6C241917A9D500235CDA /* sensors */,
+				8F9D6C241917A9D500235CDA /* devices */,
 				8F086696191106CD0075391E /* core data */,
 				FBBD3CD915BE57A90035F419 /* SoftModemRemote */,
 				FBBD3CD215BE57A90035F419 /* Frameworks */,
