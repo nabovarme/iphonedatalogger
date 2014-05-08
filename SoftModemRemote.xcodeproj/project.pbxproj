@@ -18,8 +18,8 @@
 		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8F9D6C331917C4A100235CDA /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D6C311917C4A100235CDA /* Testo.xib */; };
 		8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FBB190E78B80052E48D /* ProtocolHelper.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
-		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
+		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8FFD88B1191A59F3004F7D5C /* SensorPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* SensorPropertyList.plist */; };
 		D6FC1C8419186B5100DB6DF9 /* EchoTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FC1C8219186B5100DB6DF9 /* EchoTest.xib */; };
 		D6FC1C8619186C4A00DB6DF9 /* EchoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC1C8519186C4A00DB6DF9 /* EchoTest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
