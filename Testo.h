@@ -10,6 +10,7 @@
 #import "SensorSampleDataObject.h"
 #import "NewSampleViewController.h"
 #import "Protocols.h"
+#import "SamplesEntity.h"
 @class Testo;
 
 @interface Testo : UIViewController <NewSampleViewControllerReceivedChar>{
@@ -19,6 +20,8 @@
 
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
+
+//for testing
 
 
 @end

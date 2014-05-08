@@ -9,11 +9,14 @@
 #import "Testo.h"
 
 @interface Testo ()
+@property (nonatomic,assign) SensorSampleDataObject *  myDataObject;
+
 
 @end
 
 @implementation Testo
 @synthesize sendRequestDelegate;
+@synthesize myDataObject;
 
 -(id)init
 {
@@ -26,10 +29,23 @@
     NSLog(@"sensor init with dictionary");
     [self setSendRequestDelegate:[dictionary valueForKey:@"delegate"]];
     
+    [self setMyDataObject:[dictionary valueForKey:@"dataObject"]];
+    [self.myDataObject setPlaceName:@"loppen haha"];
+    self.myTextView.text = [self.myDataObject.sampleDataDict valueForKey:@"data"];
+
     self = [super init];
     return self;
 }
 
+
+
+-(id)initWithString:(NSString *)string
+{
+    NSLog(@"sensor init with string");
+
+    self = [super init];
+    return self;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,6 +66,11 @@
     [self.sendRequestDelegate sendRequest:@"00"];
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
+    if(!self.myDataObject)
+    {
+        NSLog(@"mydataobject is empty");
+    }
+    
     [self.receiveDataProgress startAnimating];
     // Do any additional setup after loading the view from its nib.
 }
@@ -60,17 +81,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void) receivedChar:(char)input;
 {
     if ([self.receiveDataProgress isAnimating]) {
         [self.receiveDataProgress stopAnimating];
     }
-
-    self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
+    
+   // self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
     [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
     
     NSLog(@"testo received %c", input);
     
+}
+
+- (SensorSampleDataObject *)getDataObject
+{
+    return self.myDataObject;
 }
 
 

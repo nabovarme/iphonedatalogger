@@ -14,10 +14,6 @@
 #include <ctype.h>
 #import "ProtocolHelper.h"
 
-//add all sensors here
-#import "Testo.h"
-#import "EchoTest.h"
-//end
 
 @interface NewSampleViewController ()
 @property (nonatomic,retain) NSOperationQueue *operationQueue;
@@ -31,6 +27,7 @@
 @synthesize receivedCharDelegate=_receivedCharDelegate;
 @synthesize saveButton;
 @synthesize protocolHelper;
+@synthesize deviceName;
 
 -(id)init {
     NSLog(@"init");
@@ -68,12 +65,17 @@
     [APP_DELEGATE.recognizer addReceiver:self];
     _operationQueue = [[NSOperationQueue alloc] init];
    
-    NSString *sensorName=@"EchoTest";      // echo test
-//    NSString *sensorName=@"Testo";      // echo test
+    SensorSampleDataObject * dataObject = [[SensorSampleDataObject alloc]init];
+    dataObject.placeName=@"";
+    dataObject.date=[[NSDate alloc]init];
+    dataObject.deviceName = self.deviceName;
+    dataObject.sampleDataDict=@{};
     NSDictionary *dictionary = @{
-                                @"delegate" : self
+                                @"delegate" : self,
+                                @"dataObject":dataObject
                                 };
-    [self presentDetailController:(UIViewController*)[[ NSClassFromString(sensorName) alloc] initWithDictionary:dictionary]];
+    
+    [self presentDetailController:(UIViewController*)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
     
     [super viewDidLoad];
     
@@ -246,10 +248,10 @@
  ****************************/
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
-    [self terminate];
 
     [_cancelSaveDelegate NewSampleViewControllerDidCancel:self];
-    
+    [self terminate];
+
 }
 /****************************
  save:
@@ -257,10 +259,20 @@
  ****************************/
 - (IBAction)save:(UIBarButtonItem *)sender {
         NSLog(@"sending done");
+        [self.cancelSaveDelegate NewSampleViewControllerDidSave:self];
     [self terminate];
 
-        [_cancelSaveDelegate NewSampleViewControllerDidSave:self];
 }
+
+- (SensorSampleDataObject *)getDataObject
+{
+    id tmp=self.receivedCharDelegate;
+    
+    //[self.receivedCharDelegate lort];
+    SensorSampleDataObject * tmp2=[tmp getDataObject];//=[self.receivedCharDelegate getDataObject];
+   return tmp2;
+}
+
 
 -(void) terminate
 {

@@ -10,6 +10,7 @@
 #import "SensorSampleDataObject.h"
 #import "NewSampleViewController.h"
 #import "Protocols.h"
+#import "SamplesEntity.h"
 @class EchoTest;
 
 @interface EchoTest : UIViewController <NewSampleViewControllerReceivedChar>{
@@ -25,6 +26,10 @@
 @property NSTimer *receiveTimer;
 
 //- (NSString *) selectProtocolCommand;
+
+//for testing
+
+
 
 @end
 

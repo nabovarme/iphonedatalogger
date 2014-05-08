@@ -10,6 +10,11 @@
 #import <AVFoundation/AVAudioSession.h>
 #import "CharReceiver.h"
 
+//all devices here
+#import "Testo.h"
+#import "EchoTest.h"
+//end
+
 #define APP_DELEGATE ((NLAppDelegate*)[[UIApplication sharedApplication] delegate])
 
 @class FSKSerialGenerator;//,CharReceiverDelegate;

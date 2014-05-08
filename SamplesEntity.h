@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
+@class SamplesEntity;
 @interface SamplesEntity : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;

@@ -38,7 +38,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="2BH-XR-DLA" kind="push" id="tl8-e4-sbv"/>
+                                    <segue destination="2BH-XR-DLA" kind="push" identifier="SampleDetails" id="tl8-e4-sbv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -85,6 +85,9 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="10S-Iq-H48"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="tFO-Uu-B1M" id="vLM-7s-2Jx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azw-aB-dni" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,7 +114,7 @@
                                 <rect key="frame" x="0.0" y="24" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="Wrg-Nv-vcT">
+                                    <navigationItem title=" " id="Wrg-Nv-vcT">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="cVa-d6-gsD">
                                             <connections>
                                                 <action selector="cancel:" destination="UNH-T8-ylU" id="AYk-bw-Rr0"/>

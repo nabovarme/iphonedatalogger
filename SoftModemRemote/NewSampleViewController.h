@@ -13,6 +13,8 @@
 #import "ProtocolHelper.h"
 #import "CharReceiver.h"
 #import "Protocols.h"
+#import "SensorSampleDataObject.h"
+#import "SamplesEntity.h"
 
 @class NewSampleViewController;
 
@@ -23,11 +25,16 @@
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, assign) id cancelSaveDelegate;
 @property (nonatomic, assign) id receivedCharDelegate;
-//@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic, assign) ProtocolHelper* protocolHelper;
 
+@property (nonatomic, assign) NSString * deviceName;
+
+//for data storage
+@property (nonatomic,assign) SensorSampleDataObject *  myDataObject;
 - (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)save:(UIBarButtonItem *)sender;
+- (SensorSampleDataObject *)getDataObject;
+
 
 @end

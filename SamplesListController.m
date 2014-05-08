@@ -139,13 +139,41 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"NewSample"]) {
         NSLog(@"NewSample Segue");
-        //NewSampleViewController *newSampleViewController = segue.destinationViewController;
-        [(NewSampleViewController*)segue.destinationViewController setCancelSaveDelegate:self];
+        NewSampleViewController *newSampleViewController = segue.destinationViewController;
+        [newSampleViewController setCancelSaveDelegate:self];
+        [newSampleViewController setDeviceName:self.title];
+//        [(NewSampleViewController*)segue.destinationViewController setCancelSaveDelegate:self];
     }
         else if([segue.identifier isEqualToString:@"SampleDetails"]) {
             NSLog(@"sample details Segue");
+
             //NewSampleViewController *newSampleViewController = segue.destinationViewController;
-           // [(SampleDetailsViewController*)segue.destinationViewController setBackDelegate:self];
+            UITableViewCell *cell = (UITableViewCell*)sender;
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            SamplesEntity * sampleObject = [self.fetchedSamplesArray objectAtIndex:indexPath.row];
+          
+            SensorSampleDataObject * tmp=[[SensorSampleDataObject alloc]init];
+            
+            tmp.deviceName=sampleObject.deviceName;
+            tmp.placeName=sampleObject.placeName;
+            tmp.date=sampleObject.date;
+            tmp.sampleDataDict=sampleObject.sampleDataDict;
+            
+            SampleDetailsViewController *newSampleViewController = segue.destinationViewController;
+            [newSampleViewController setMyDataObject:tmp];
+            
+
+            NSLog(@"%@",[tmp description]);
+
+           /*
+            SampleDetailsViewController *newSampleDetailsViewController = segue.destinationViewController;
+            
+            NSDictionary *dictionary = @{
+                                         @"dataObject":tmp
+                                         };
+            
+            [newSampleDetailsViewController presentDetailController:(UIViewController*)[[ NSClassFromString(tmp.placeName) alloc] initWithDictionary:dictionary]];
+*/
         }
 }
 
@@ -162,26 +190,33 @@
 - (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
 {
     NSLog(@"received done");
-
-    [self addSampleEntry:controller];
+    [self addSampleEntry:controller.getDataObject];
     [self dismissViewControllerAnimated:YES completion:nil];
     controller.cancelSaveDelegate=nil;
     [self updateTableView];
 
 }
 
-- (IBAction)addSampleEntry:(NewSampleViewController *)controller
+- (IBAction)addSampleEntry:(SensorSampleDataObject *)myDataObject
 {
-    
+    NSLog(@"inside addsample");
     //  1
     SamplesEntity *newSample=[NSEntityDescription insertNewObjectForEntityForName:@"SamplesEntity"
                                                           inManagedObjectContext:APP_DELEGATE.managedObjectContext];
     //  2
-    newSample.date=[NSDate date];
-    newSample.deviceName=self.title;
-    newSample.placeName=@"loppen";
-    newSample.sampleDataDict=nil;
 
+
+    //newSample.date=[NSDate date];
+    //newSample.deviceName=self.title;
+    //newSample.placeName=@"loppen";
+    //newSample.sampleDataDict=controller;
+    
+    newSample.deviceName=myDataObject.deviceName;
+    newSample.placeName=myDataObject.placeName;
+    newSample.date=myDataObject.date;
+
+    newSample.sampleDataDict=myDataObject.sampleDataDict;
+   // NSLog(@"%@",myDataObject.deviceName);
     //  3
     NSError *error;
     if (![APP_DELEGATE.managedObjectContext save:&error]) {

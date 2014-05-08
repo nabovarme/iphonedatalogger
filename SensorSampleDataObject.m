@@ -9,9 +9,8 @@
 #import "SensorSampleDataObject.h"
 
 @implementation SensorSampleDataObject
-
--(void) print
-{
-    NSLog(@"not implemented");
-}
+@synthesize date;
+@synthesize sampleDataDict;
+@synthesize placeName;
+@synthesize deviceName;
 @end

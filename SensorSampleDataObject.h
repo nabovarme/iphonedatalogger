@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class SensorSampleDataObject;
 @interface SensorSampleDataObject : NSObject
 
-@property (nonatomic,assign)NSString *deviceName;
-@property (nonatomic,assign)NSDate *date;
-@property (nonatomic,assign)NSString *place;
-@property (nonatomic,assign)NSDictionary *dataDict;
-
--(void) print;
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * deviceName;
+@property (nonatomic, retain) NSString * placeName;
+@property (nonatomic, retain) NSDictionary *sampleDataDict;
 @end
