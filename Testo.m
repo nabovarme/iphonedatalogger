@@ -30,9 +30,7 @@
     [self setSendRequestDelegate:[dictionary valueForKey:@"delegate"]];
     
     [self setMyDataObject:[dictionary valueForKey:@"dataObject"]];
-    [self.myDataObject setPlaceName:@"loppen haha"];
-    self.myTextView.text = [self.myDataObject.sampleDataDict valueForKey:@"data"];
-
+    
     self = [super init];
     return self;
 }
@@ -63,15 +61,24 @@
 {
     [super viewDidLoad];
     
-    [self.sendRequestDelegate sendRequest:@"00"];
-    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-    
-    if(!self.myDataObject)
+    if([self.myDataObject.sampleDataDict valueForKey:@"data"])
     {
+        // details view
+        NSString * tmp=[self.myDataObject.sampleDataDict valueForKey:@"data"];
+        [self.myTextView setText:tmp];
+    }
+    else
+    {
+        // new sample view
         NSLog(@"mydataobject is empty");
+        [self.receiveDataProgress startAnimating];
+        [self.sendRequestDelegate sendRequest:@"00"];
+        [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+        
     }
     
-    [self.receiveDataProgress startAnimating];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -88,7 +95,7 @@
         [self.receiveDataProgress stopAnimating];
     }
     
-   // self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
+    self.myTextView.text = [self.myTextView.text stringByAppendingString:[NSString stringWithFormat:@"%c",input]];
     [self.myTextView scrollRangeToVisible:NSMakeRange([self.myTextView.text length], 0)];
     
     NSLog(@"testo received %c", input);
@@ -97,6 +104,11 @@
 
 - (SensorSampleDataObject *)getDataObject
 {
+    [self.myDataObject setPlaceName:@"loppen haha"];
+    NSDictionary *dictionary = @{
+                                 @"data" : self.myTextView.text
+                                 };
+    [self.myDataObject setSampleDataDict:dictionary];
     return self.myDataObject;
 }
 
