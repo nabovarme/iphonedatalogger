@@ -28,9 +28,9 @@
 -(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
 {
     NSLog(@"sensor init with dictionary");
-    [self setSendRequestDelegate:[dictionary valueForKey:@"delegate"]];
+    [self setSendRequestDelegate:dictionary[@"delegate"]];
     
-    [self setMyDataObject:[dictionary valueForKey:@"dataObject"]];
+    [self setMyDataObject:dictionary[@"dataObject"]];
     NSLog(@"%@",[myDataObject description]);
 
 
