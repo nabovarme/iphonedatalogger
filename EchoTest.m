@@ -24,6 +24,7 @@
     self = [super init];
     return self;
 }
+
 //inits with a dictionary holding a viewcontroller to be set as delegate for sendrequest stuff
 -(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
 {
@@ -54,7 +55,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  if([self.myDataObject.sampleDataDict valueForKey:@"data"])
+    
+    // Do any additional setup after loading the view from its nib.
+    if([self.myDataObject.sampleDataDict valueForKey:@"data"])
     {
         // details view
         NSString * tmp=[self.myDataObject.sampleDataDict valueForKey:@"data"];
@@ -73,20 +76,13 @@
         
 
     }
-
-    
-
-    // Do any additional setup after loading the view from its nib.
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void) receivedChar:(char)input;
 {
@@ -119,7 +115,7 @@
 
 - (DeviceSampleDataObject *)getDataObject
 {
-    [self.myDataObject setPlaceName:@"loppen hihi"];
+    [self.myDataObject setPlaceName:@"Nowhere"];
 
     NSDictionary *dictionary = @{
                                  @"data" : self.myTextView.text

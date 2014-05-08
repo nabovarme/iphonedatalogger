@@ -11,7 +11,6 @@
 @interface Testo ()
 @property DeviceSampleDataObject *myDataObject;
 
-
 @end
 
 @implementation Testo
@@ -23,6 +22,7 @@
     self = [super init];
     return self;
 }
+
 //inits with a dictionary holding a viewcontroller to be set as delegate for sendrequest stuff
 -(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
 {
@@ -52,6 +52,7 @@
 {
     [super viewDidLoad];
     
+    // Do any additional setup after loading the view from its nib.
     if([self.myDataObject.sampleDataDict valueForKey:@"data"])
     {
         // details view
@@ -67,10 +68,6 @@
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
     }
-    
-    
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,7 +75,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void) receivedChar:(char)input;
 {
@@ -95,7 +91,7 @@
 
 - (DeviceSampleDataObject *)getDataObject
 {
-    [self.myDataObject setPlaceName:@"loppen haha"];
+    [self.myDataObject setPlaceName:@"Nowhere"];
     NSDictionary *dictionary = @{
                                  @"data" : self.myTextView.text
                                  };
