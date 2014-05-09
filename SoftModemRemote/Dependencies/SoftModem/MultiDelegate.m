@@ -55,7 +55,7 @@
 	}
 	
 	// return void-void signature by default
-	return [self methodSignatureForSelector:@selector(dealloc)];
+//	return [self methodSignatureForSelector:@selector(dealloc)];
 }
 
 - (void) forwardInvocation:(NSInvocation*)invocation
@@ -66,10 +66,5 @@
 	}
 }
 
-- (void) dealloc
-{
-	[delegateSet release];
-	[super dealloc];
-}
 
 @end

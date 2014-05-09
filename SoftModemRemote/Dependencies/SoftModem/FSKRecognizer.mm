@@ -226,9 +226,9 @@
 	if(byteQueue)
 		delete byteQueue;
 	
-	[receivers release];
+//	[receivers release];
 	
-	[super dealloc];
+//	[super dealloc];
 }
 
 @end
