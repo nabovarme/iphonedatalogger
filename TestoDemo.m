@@ -47,7 +47,7 @@
     [self setMyDataObject:dictionary[@"dataObject"]];
     
     if([self.myDataObject.sampleDataDict[@"data"] length] == 0) {
-        // if there is no data saved...
+        // if there is no data saved init sampleDataDict empty
         self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
         //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
     }
@@ -79,7 +79,7 @@
     if([self.myDataObject.sampleDataDict[@"data"] length] != 0)
     {
         // details view
-        [self.testoO2Level setText:self.myDataObject.sampleDataDict[@"testoO2Level"]];
+        [self.testoCO2Level setText:self.myDataObject.sampleDataDict[@"testoCO2Level"]];
         [self.testoO2Level setText:self.myDataObject.sampleDataDict[@"testoO2Level"]];
         [self.testoFlueGasTempLevel setText:self.myDataObject.sampleDataDict[@"testoFlueGasTempLevel"]];
         [self.testoExcessAirLevel setText:self.myDataObject.sampleDataDict[@"testoExcessAirLevel"]];
