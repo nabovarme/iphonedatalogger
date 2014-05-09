@@ -72,11 +72,11 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    if([self.myDataObject.sampleDataDict[@"data"] length])
+    if([self.myDataObject.sampleDataDict[@"data"] length] != 0)
     {
         // details view
-//        NSString * tmp=[self.myDataObject.sampleDataDict valueForKey:@"data"];
-//        [self.myTextView setText:tmp];
+        NSString * tmp = [self.myDataObject.sampleDataDict valueForKey:@"testoO2Level"];
+        [self.testoO2Level setText:tmp];
     }
     else
     {
@@ -220,8 +220,17 @@
 {
     [self.myDataObject setPlaceName:@"Nowhere"];
 
-    NSMutableDictionary *dictionary = [@{@"testoOxygenLevel": @"oxygen",
-                                         @"testoCarbonDioxide": @2.2,
+    NSMutableDictionary *dictionary = [@{@"testoCO2Level": self.testoCOLevel.text,
+                                         @"testoO2Level": self.testoO2Level.text,
+                                         @"testoFlueGasTempLevel": self.testoFlueGasTempLevel.text,
+                                         @"testoExcessAirLevel": self.testoExcessAirLevel.text,
+                                         @"testoDraughtLevel": self.testoDraughtLevel.text,
+                                         @"testoEffNetLevel": self.testoEffNetLevel.text,
+                                         @"testoAmbientCOLevel": self.testoAmbientCOLevel.text,
+                                         @"testoEffGrossLevel": self.testoEffGrossLevel.text,
+                                         @"testoDiffPressLevel": self.testoDiffPressLevel.text,
+                                         @"testoAmbientTempLevel": self.testoAmbientTempLevel.text,
+                                         @"testoUndilutedCOLevel": self.testoUndilutedCOLevel.text,
                                  @"data": self.myDataObject.sampleDataDict[@"data"]
                                  } mutableCopy];
 //    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary: @{@"data": self.myDataObject.sampleDataDict[@"data"]}];
