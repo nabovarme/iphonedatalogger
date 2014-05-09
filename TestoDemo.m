@@ -78,6 +78,7 @@
         // details view
         [self.testoCO2Level setText:self.myDataObject.sampleDataDict[@"testoCO2Level"]];
         [self.testoO2Level setText:self.myDataObject.sampleDataDict[@"testoO2Level"]];
+        [self.testoCOLevel setText:self.myDataObject.sampleDataDict[@"testoCOLevel"]];
         [self.testoFlueGasTempLevel setText:self.myDataObject.sampleDataDict[@"testoFlueGasTempLevel"]];
         [self.testoExcessAirLevel setText:self.myDataObject.sampleDataDict[@"testoExcessAirLevel"]];
         [self.testoDraughtLevel setText:self.myDataObject.sampleDataDict[@"testoDraughtLevel"]];
@@ -142,7 +143,7 @@
     NSTextCheckingResult *match;
     
     // match CO2
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2" options:0 error:NULL];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2\\s" options:0 error:NULL];
     str = self.myDataObject.sampleDataDict[@"data"];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     self.testoCO2Level.text = [NSString stringWithFormat:@"Carbon dioxide %@", [str substringWithRange:[match rangeAtIndex:1]]];
@@ -230,8 +231,9 @@
 {
     [self.myDataObject setPlaceName:@"Nowhere"];
 
-    NSMutableDictionary *dictionary = [@{@"testoCO2Level": self.testoCOLevel.text,
+    NSMutableDictionary *dictionary = [@{@"testoCO2Level": self.testoCO2Level.text,
                                          @"testoO2Level": self.testoO2Level.text,
+                                         @"testoCOLevel": self.testoCOLevel.text,
                                          @"testoFlueGasTempLevel": self.testoFlueGasTempLevel.text,
                                          @"testoExcessAirLevel": self.testoExcessAirLevel.text,
                                          @"testoDraughtLevel": self.testoDraughtLevel.text,
