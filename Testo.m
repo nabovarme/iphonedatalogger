@@ -92,9 +92,9 @@
 - (DeviceSampleDataObject *)getDataObject
 {
     [self.myDataObject setPlaceName:@"Nowhere"];
-    NSDictionary *dictionary = @{
+    NSMutableDictionary *dictionary = [@{
                                  @"data" : self.myTextView.text
-                                 };
+                                 } mutableCopy];
     [self.myDataObject setSampleDataDict:dictionary];
     return self.myDataObject;
 }

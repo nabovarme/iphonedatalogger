@@ -14,5 +14,5 @@
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * deviceName;
 @property (nonatomic, retain) NSString * placeName;
-@property (nonatomic, retain) NSDictionary *sampleDataDict;
+@property (nonatomic, retain) NSMutableDictionary *sampleDataDict;
 @end
