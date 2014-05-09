@@ -20,6 +20,7 @@
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
+
 @property NSTimer *receiveTimer;
 
 @end

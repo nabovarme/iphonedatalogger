@@ -32,7 +32,6 @@
 
 -(id)init
 {
-    NSLog(@"lol");
     self = [super init];
     return self;
 }
@@ -51,8 +50,6 @@
         self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
         //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
     }
-    
-    NSLog(@"%@",[myDataObject description]);
 
     self = [super init];
     return self;

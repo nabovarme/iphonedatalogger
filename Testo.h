@@ -22,5 +22,7 @@
 @property (retain, nonatomic) IBOutlet UITextView *myTextView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *receiveDataProgress;
 
+@property NSTimer *receiveTimer;
+
 @end
 
