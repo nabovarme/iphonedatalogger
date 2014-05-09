@@ -93,13 +93,18 @@
     {
         // new sample view
         NSLog(@"mydataobject is empty");
-        [self.receiveDataProgress startAnimating];
+        [self.receiveDataProgressView setHidden:NO];
+        [self.receiveDataProgressView setProgress:0.0 animated:YES];
+        [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
+
         [self.sendRequestDelegate sendRequest:@"ff"];
         
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
+        // 285 characters
         [self.sendRequestDelegate sendRequest:@"302e30303334202020202020526174696f0d0a352e38322520202020202020434f320d0a31352e3125202020202020204f320d0a31393870706d202020202020434f0d0a36312e38b043202020202020466c75656761732074656d700d0a3235352e3925202020202020457863657373206169720d0a2d2d2e2d6d6d48324f202020447261756768740d0a39332e362520202020202020454646206e65740d0a2d2d2e2d70706d2020202020416d6269656e7420434f0d0a38362e3025202020202020204546462067726f73730d0a2d2d2e2d6d6d48324f202020446966662e2070726573732e0d0a31382e36b043202020202020416d6269656e742074656d700d0a37303670706d202020202020556e64696c7574656420434f0d0a"];
         
+        [self.receiveDataProgressView setProgress:0.5 animated:YES];
 
     }
 }
@@ -116,6 +121,7 @@
     [self.myDataObject.sampleDataDict[@"data"] appendFormat:@"%c", input];
     
     NSLog(@"TestoDemo received %c", input);
+    [self.receiveDataProgressView setProgress:(0.5 + [self.myDataObject.sampleDataDict[@"data"] length]/285.0/2) animated:YES];
 
     if (self.receiveTimer) {
         // stop it
@@ -134,9 +140,8 @@
     NSLog(@"Done receiving %@", self.myDataObject.sampleDataDict[@"data"]);
     NSLog(@"length: %lu", (unsigned long)[self.myDataObject.sampleDataDict[@"data"] length]);
     
-    if ([self.receiveDataProgress isAnimating]) {
-        [self.receiveDataProgress stopAnimating];
-    }
+    [self.receiveDataProgressView setHidden:YES];
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     
     NSRegularExpression *regex;
     NSString *str;
