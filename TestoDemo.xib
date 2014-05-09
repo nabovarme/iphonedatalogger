@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestoDemo">
             <connections>
-                <outlet property="receiveDataProgress" destination="wPM-Zq-3cL" id="Yx2-iw-Owm"/>
+                <outlet property="receiveDataProgressView" destination="eov-Il-Jia" id="AWD-Dy-hdW"/>
                 <outlet property="testoAmbientCOLevel" destination="rOv-E3-RAW" id="hNa-jV-PiA"/>
                 <outlet property="testoAmbientTempLevel" destination="x6R-32-4oF" id="TQP-Hh-4EI"/>
                 <outlet property="testoCO2Level" destination="qgt-xS-5Kr" id="ivg-Y6-red"/>
@@ -27,10 +27,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wPM-Zq-3cL">
-                    <rect key="frame" x="150" y="274" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </activityIndicatorView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Oxygen" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C1N-Pw-bft">
                     <rect key="frame" x="8" y="0.0" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,6 +99,10 @@
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eov-Il-Jia">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </progressView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
