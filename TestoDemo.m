@@ -141,12 +141,27 @@
     NSRegularExpression *regex;
     NSString *str;
     NSTextCheckingResult *match;
+    NSString *testoValue;
     
     // match CO2
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2\\s" options:0 error:NULL];
     str = self.myDataObject.sampleDataDict[@"data"];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    self.testoCO2Level.text = [NSString stringWithFormat:@"Carbon dioxide %@", [str substringWithRange:[match rangeAtIndex:1]]];
+//    self.testoCO2Level.text = [NSString stringWithFormat:@"Carbon dioxide %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
+    
+    UIFont *valueFont = [UIFont fontWithName:@"Helvetica-Bold" size:20.0f];
+    NSString *textFieldValue = [NSString stringWithFormat:@"Carbon dioxide %@", testoValue];
+    
+    NSMutableAttributedString *attributedTextFieldValue = [[NSMutableAttributedString alloc] initWithString:textFieldValue];
+    NSLog(@"attributedTextFieldValue: %lu", (unsigned long)attributedTextFieldValue.length);
+    NSLog(@"testoValue: %lu", (unsigned long)testoValue.length);
+    NSLog(@"range: %lu %lu", (unsigned long)(attributedTextFieldValue.length - testoValue.length), (unsigned long)(attributedTextFieldValue.length - 1));
+    
+    
+    [attributedTextFieldValue addAttribute:NSFontAttributeName value:valueFont range:NSMakeRange(attributedTextFieldValue.length - testoValue.length, attributedTextFieldValue.length - (attributedTextFieldValue.length - testoValue.length))];
+    [self.testoCO2Level setAttributedText:attributedTextFieldValue];
+
     NSLog(@"CO2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
 
     // match O2
