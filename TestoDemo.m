@@ -43,9 +43,14 @@
     NSLog(@"sensor init with dictionary");
     [self setSendRequestDelegate:dictionary[@"delegate"]];
     
+    // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
-    self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
-    //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
+    
+    if([self.myDataObject.sampleDataDict[@"data"] length] == 0) {
+        // if there is no data saved...
+        self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
+        //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
+    }
     
     NSLog(@"%@",[myDataObject description]);
 
@@ -66,17 +71,25 @@
     
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+ 
     // Do any additional setup after loading the view from its nib.
     if([self.myDataObject.sampleDataDict[@"data"] length] != 0)
     {
         // details view
-        NSString * tmp = [self.myDataObject.sampleDataDict valueForKey:@"testoO2Level"];
-        [self.testoO2Level setText:tmp];
+        [self.testoO2Level setText:self.myDataObject.sampleDataDict[@"testoO2Level"]];
+        [self.testoO2Level setText:self.myDataObject.sampleDataDict[@"testoO2Level"]];
+        [self.testoFlueGasTempLevel setText:self.myDataObject.sampleDataDict[@"testoFlueGasTempLevel"]];
+        [self.testoExcessAirLevel setText:self.myDataObject.sampleDataDict[@"testoExcessAirLevel"]];
+        [self.testoDraughtLevel setText:self.myDataObject.sampleDataDict[@"testoDraughtLevel"]];
+        [self.testoEffNetLevel setText:self.myDataObject.sampleDataDict[@"testoEffNetLevel"]];
+        [self.testoAmbientCOLevel setText:self.myDataObject.sampleDataDict[@"testoAmbientCOLevel"]];
+        [self.testoEffGrossLevel setText:self.myDataObject.sampleDataDict[@"testoEffGrossLevel"]];
+        [self.testoDiffPressLevel setText:self.myDataObject.sampleDataDict[@"testoDiffPressLevel"]];
+        [self.testoAmbientTempLevel setText:self.myDataObject.sampleDataDict[@"testoAmbientTempLevel"]];
+        [self.testoUndilutedCOLevel setText:self.myDataObject.sampleDataDict[@"testoUndilutedCOLevel"]];
     }
     else
     {
