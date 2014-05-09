@@ -10,8 +10,18 @@
 
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
-@property (retain, nonatomic) IBOutlet UITextField *testoOxygenLevel;
-@property (retain, nonatomic) IBOutlet UITextField *testoCarbonDioxideLevel;
+@property (retain, nonatomic) IBOutlet UITextField *testoO2Level;
+@property (retain, nonatomic) IBOutlet UITextField *testoCO2Level;
+@property (weak, nonatomic) IBOutlet UITextField *testoCOLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoFlueGasTempLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoExcessAirLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoDraughtLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoEffNetLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoAmbientCOLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoEffGrossLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoDiffPressLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoAmbientTempLevel;
+@property (weak, nonatomic) IBOutlet UITextField *testoUndilutedCOLevel;
 
 @end
 
@@ -117,20 +127,93 @@
     NSLog(@"Done receiving %@", self.myDataObject.sampleDataDict[@"data"]);
     NSLog(@"length: %lu", (unsigned long)[self.myDataObject.sampleDataDict[@"data"] length]);
     
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+O2" options:0 error:NULL];
-    NSString *str = self.myDataObject.sampleDataDict[@"data"];
-    NSTextCheckingResult *match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    //    NSLog(@"%@", [match rangeAtIndex:1]); // gives the range of the group in parentheses
-    self.testoOxygenLevel.text = [NSString stringWithFormat:@"Oxygen %@", [str substringWithRange:[match rangeAtIndex:1]]];
-    NSLog(@"O2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-
+    NSRegularExpression *regex;
+    NSString *str;
+    NSTextCheckingResult *match;
+    
+    // match CO2
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2" options:0 error:NULL];
     str = self.myDataObject.sampleDataDict[@"data"];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    //    NSLog(@"%@", [match rangeAtIndex:1]); // gives the range of the group in parentheses
-    self.testoCarbonDioxideLevel.text = [NSString stringWithFormat:@"Oxygen %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    self.testoCO2Level.text = [NSString stringWithFormat:@"Carbon dioxide %@", [str substringWithRange:[match rangeAtIndex:1]]];
     NSLog(@"CO2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
 
+    // match O2
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+O2" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoO2Level.text = [NSString stringWithFormat:@"Oxygen %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"O2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+
+    // match CO
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO\\s" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoCOLevel.text = [NSString stringWithFormat:@"Carbon monoxide %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"O2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match Fluegas temp
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Fluegas temp" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoFlueGasTempLevel.text = [NSString stringWithFormat:@"Fluegas temp %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Fluegas temp %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match Excess air
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Excess air" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoExcessAirLevel.text = [NSString stringWithFormat:@"Excess air %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Excess air %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match Draught
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Draught" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoDraughtLevel.text = [NSString stringWithFormat:@"Draught %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Draught %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match EFF net
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+EFF net" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoEffNetLevel.text = [NSString stringWithFormat:@"EFF net %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"EFF net %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match Ambient CO
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Ambient CO" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoAmbientCOLevel.text = [NSString stringWithFormat:@"Ambient CO %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Ambient CO %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match EFF gross
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+EFF gross" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoEffGrossLevel.text = [NSString stringWithFormat:@"EFF gross %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"EFF gross %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match Diff. press.
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Diff. press." options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoDiffPressLevel.text = [NSString stringWithFormat:@"Diff. press. %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Diff. press. %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    // match Ambient temp
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Ambient temp" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoAmbientTempLevel.text = [NSString stringWithFormat:@"Ambient temp %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Ambient temp %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+
+    // match Undiluted CO
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Undiluted CO" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    self.testoUndilutedCOLevel.text = [NSString stringWithFormat:@"Undiluted CO %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"Undiluted CO %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
 }
 
 - (DeviceSampleDataObject *)getDataObject
