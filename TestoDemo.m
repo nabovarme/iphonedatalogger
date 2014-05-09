@@ -112,10 +112,6 @@
 
 - (void) receivedChar:(char)input;
 {
-    if ([self.receiveDataProgress isAnimating]) {
-        [self.receiveDataProgress stopAnimating];
-    }
-
     // save incoming data do our sampleDataDict
     [self.myDataObject.sampleDataDict[@"data"] appendFormat:@"%c", input];
     
@@ -137,6 +133,10 @@
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.myDataObject.sampleDataDict[@"data"]);
     NSLog(@"length: %lu", (unsigned long)[self.myDataObject.sampleDataDict[@"data"] length]);
+    
+    if ([self.receiveDataProgress isAnimating]) {
+        [self.receiveDataProgress stopAnimating];
+    }
     
     NSRegularExpression *regex;
     NSString *str;
