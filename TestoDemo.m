@@ -10,6 +10,8 @@
 
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
+@property (retain, nonatomic) IBOutlet UITextField *testoOxygenLevel;
+@property (retain, nonatomic) IBOutlet UITextField *testoCarbonDioxideLevel;
 
 @end
 
@@ -33,6 +35,8 @@
     
     [self setMyDataObject:dictionary[@"dataObject"]];
     self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
+    //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
+    
     NSLog(@"%@",[myDataObject description]);
 
     self = [super init];
@@ -73,7 +77,7 @@
         
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
-        [self.sendRequestDelegate sendRequest:@"32302e37250a2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d0a2d2e2d2d2d2d202020202020526174696f0a2d2d2e2d2520202020202020434f320a2d2d2e2d25202020202020204f320a2d2d2e2d70706d2020202020434f0a2d2d2e2db043202020202020466c75656761732074656d700a2d2d2e2d2520202020202020457863657373206169720a2d2d2e2d6d6d48324f202020447261756768740a2d2d2e2d2520202020202020454646206e65740a2d2d2e2d70706d2020202020416d6269656e7420434f0a2d2d2e2d25202020202020204546462067726f73730a2d2d2e2d6d6d48324f202020446966662e2070726573732e0a31382e37b043202020202020416d6269656e742074656d700a2d2d2e2d70706d2020202020556e64696c7574656420434f0a2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d0a536d6f6b65206e6f2e202020202020202020205f205f205f0a0a536d6f6b65206e6f2e202020202020202020205f0a0a484354"];
+        [self.sendRequestDelegate sendRequest:@"302e30303334202020202020526174696f0d0a352e38322520202020202020434f320d0a31352e3125202020202020204f320d0a31393870706d202020202020434f0d0a36312e38b043202020202020466c75656761732074656d700d0a3235352e3925202020202020457863657373206169720d0a2d2d2e2d6d6d48324f202020447261756768740d0a39332e362520202020202020454646206e65740d0a2d2d2e2d70706d2020202020416d6269656e7420434f0d0a38362e3025202020202020204546462067726f73730d0a2d2d2e2d6d6d48324f202020446966662e2070726573732e0d0a31382e36b043202020202020416d6269656e742074656d700d0a37303670706d202020202020556e64696c7574656420434f0d0a"];
         
 
     }
@@ -92,10 +96,6 @@
     }
 
     // save incoming data do our sampleDataDict
-//    NSMutableString *aggregatedData = [self.myDataObject.sampleDataDict[@"data"] mutableCopy];
-//    [aggregatedData appendFormat:@"%c", input];
-//    self.myDataObject.sampleDataDict[@"data"] = aggregatedData;
-    
     [self.myDataObject.sampleDataDict[@"data"] appendFormat:@"%c", input];
     
     NSLog(@"TestoDemo received %c", input);
@@ -121,8 +121,16 @@
     NSString *str = self.myDataObject.sampleDataDict[@"data"];
     NSTextCheckingResult *match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     //    NSLog(@"%@", [match rangeAtIndex:1]); // gives the range of the group in parentheses
-    //self.oxygenLevel.text = [str substringWithRange:[match rangeAtIndex:1]];
-    NSLog(@"-%@-", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    self.testoOxygenLevel.text = [NSString stringWithFormat:@"Oxygen %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"O2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2" options:0 error:NULL];
+    str = self.myDataObject.sampleDataDict[@"data"];
+    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+    //    NSLog(@"%@", [match rangeAtIndex:1]); // gives the range of the group in parentheses
+    self.testoCarbonDioxideLevel.text = [NSString stringWithFormat:@"Oxygen %@", [str substringWithRange:[match rangeAtIndex:1]]];
+    NSLog(@"CO2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+
 }
 
 - (DeviceSampleDataObject *)getDataObject
@@ -130,8 +138,10 @@
     [self.myDataObject setPlaceName:@"Nowhere"];
 
     NSMutableDictionary *dictionary = [@{@"testoOxygenLevel": @"oxygen",
+                                         @"testoCarbonDioxide": @2.2,
                                  @"data": self.myDataObject.sampleDataDict[@"data"]
                                  } mutableCopy];
+//    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary: @{@"data": self.myDataObject.sampleDataDict[@"data"]}];
     [self.myDataObject setSampleDataDict:dictionary];
     return self.myDataObject;
 }
