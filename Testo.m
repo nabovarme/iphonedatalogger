@@ -93,7 +93,11 @@
     {
         // new sample view
         NSLog(@"mydataobject is empty");
-        [self.receiveDataProgress startAnimating];
+
+        [self.receiveDataProgressView setHidden:NO];
+        [self.receiveDataProgressView setProgress:0.5 animated:YES];
+        [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
+
         [self.sendRequestDelegate sendRequest:@"00"];
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
@@ -112,7 +116,8 @@
     [self.myDataObject.sampleDataDict[@"data"] appendFormat:@"%c", input];
     
     NSLog(@"Testo received %c", input);
-    
+    [self.receiveDataProgressView setProgress:(0.5 + [self.myDataObject.sampleDataDict[@"data"] length]/712.0/2) animated:YES];
+
     if (self.receiveTimer) {
         // stop it
         [self.receiveTimer invalidate];
@@ -130,9 +135,8 @@
     NSLog(@"Done receiving %@", self.myDataObject.sampleDataDict[@"data"]);
     NSLog(@"length: %lu", (unsigned long)[self.myDataObject.sampleDataDict[@"data"] length]);
     
-    if ([self.receiveDataProgress isAnimating]) {
-        [self.receiveDataProgress stopAnimating];
-    }
+    [self.receiveDataProgressView setHidden:YES];
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     
     NSRegularExpression *regex;
     NSString *str;

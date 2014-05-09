@@ -5,7 +5,6 @@
 	<key>DeviceClasses</key>
 	<array>
 		<string>TestoDemo</string>
-		<string>EchoTest</string>
 		<string>Testo</string>
 	</array>
 </dict>

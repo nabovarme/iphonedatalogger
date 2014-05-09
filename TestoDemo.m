@@ -115,7 +115,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) receivedChar:(char)input;
+- (void)receivedChar:(char)input;
 {
     // save incoming data do our sampleDataDict
     [self.myDataObject.sampleDataDict[@"data"] appendFormat:@"%c", input];
