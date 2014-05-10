@@ -20,7 +20,8 @@ static void playbackCallback (
 //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 	// This callback, being outside the implementation block, needs a reference to the AudioSignalGenerator object
-	AudioSignalGenerator *player = (__bridge AudioSignalGenerator *) inUserData;
+	AudioSignalGenerator *player = (AudioSignalGenerator *) inUserData;
+
 	if ([player stopped]) return;
 
 	[player fillBuffer:bufferReference->mAudioData];
@@ -73,7 +74,7 @@ static void playbackCallback (
 	AudioQueueNewOutput (
 						 &audioFormat,
 						 playbackCallback,
-						 (__bridge void *)(self), 
+						 self,
 						 nil,
 						 nil,
 						 0,								// run loop flags
@@ -103,7 +104,7 @@ static void playbackCallback (
 								  );
 		
 		playbackCallback ( 
-						  (__bridge void *)(self),
+						  self,
 						  [self queueObject],
 						  buffers[bufferIndex]
 						  );
@@ -157,7 +158,7 @@ static void playbackCallback (
 					   YES
 					   );
 	
-//	[super dealloc];
+	[super dealloc];
 }
 
 @end

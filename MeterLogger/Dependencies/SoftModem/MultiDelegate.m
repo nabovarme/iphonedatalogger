@@ -55,8 +55,9 @@
 	}
 	
 	// return void-void signature by default
-//	return [self methodSignatureForSelector:@selector(dealloc)];
-    return nil;
+	return [self methodSignatureForSelector:@selector(dealloc)];
+//    return nil;
+//	return signature;
 }
 
 - (void) forwardInvocation:(NSInvocation*)invocation

@@ -145,7 +145,7 @@ static void recordingCallback (
 //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
  	// This callback, being outside the implementation block, needs a reference to the AudioRecorder object
-	AudioSignalAnalyzer *analyzer = (__bridge AudioSignalAnalyzer *) inUserData;
+	AudioSignalAnalyzer *analyzer = (AudioSignalAnalyzer *) inUserData;
 	
 	// if there is audio data, analyze it
 	if (inNumPackets > 0) {
@@ -198,7 +198,7 @@ static void recordingCallback (
 		AudioQueueNewInput (
 							&audioFormat,
 							recordingCallback,
-							(__bridge void *)(self),									// userData
+							self,									// userData
 							NULL,									// run loop
 							NULL,									// run loop mode
 							0,										// flags
@@ -291,6 +291,7 @@ static void recordingCallback (
 	AudioQueueDispose (queueObject,
 					   TRUE);
 	
+	[super dealloc];
 }
 
 @end
