@@ -13,7 +13,6 @@
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; };
-		8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6FA1909438800ADA8F4 /* Images.xcassets */; };
 		8F9D6C2B1917AD3400235CDA /* DeviceSampleDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */; };
 		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; };
 		8F9D6C331917C4A100235CDA /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D6C311917C4A100235CDA /* Testo.xib */; };
@@ -21,6 +20,7 @@
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
+		D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66DD019191E8E93008ABF0F /* Images.xcassets */; };
 		D6821830191C413800DC093A /* TestoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D682182E191C413800DC093A /* TestoDemo.m */; };
 		D6821831191C413800DC093A /* TestoDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D682182F191C413800DC093A /* TestoDemo.xib */; };
 		FB9A8D6B15BEA52C005F3DF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8D6915BEA52C005F3DF2 /* Icon.png */; };
@@ -74,7 +74,6 @@
 		8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSampleViewController.m; sourceTree = "<group>"; };
 		8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SamplesListController.h; path = ../SamplesListController.h; sourceTree = "<group>"; };
 		8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SamplesListController.m; path = ../SamplesListController.m; sourceTree = "<group>"; };
-		8F39B6FA1909438800ADA8F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8F42458E1919229A0017379F /* Protocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Protocols.h; path = ../Protocols.h; sourceTree = "<group>"; };
 		8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSampleDataObject.h; sourceTree = "<group>"; };
 		8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSampleDataObject.m; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
+		D66DD019191E8E93008ABF0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
 		D682182E191C413800DC093A /* TestoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestoDemo.m; sourceTree = "<group>"; };
 		D682182F191C413800DC093A /* TestoDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestoDemo.xib; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 				FBBD3CE215BE57AA0035F419 /* NLAppDelegate.h */,
 				FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */,
 				FBBD3D0015BE58970035F419 /* Dependencies */,
-				8F39B6FA1909438800ADA8F4 /* Images.xcassets */,
+				D66DD019191E8E93008ABF0F /* Images.xcassets */,
 				FBBD3CDA15BE57A90035F419 /* Supporting Files */,
 			);
 			path = SoftModemRemote;
@@ -415,12 +415,12 @@
 				FBBD3D2B15BE5D4B0035F419 /* 9lab@2x.png in Resources */,
 				D6821831191C413800DC093A /* TestoDemo.xib in Resources */,
 				FBBD3D2C15BE5D4B0035F419 /* logo.png in Resources */,
+				D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */,
 				FBBD3D2D15BE5D4B0035F419 /* logo@2x.png in Resources */,
 				FBBD3D3915BE61820035F419 /* arrow_2.png in Resources */,
 				FBBD3D3A15BE61820035F419 /* arrow_2@2x.png in Resources */,
 				FBBD3D3B15BE61820035F419 /* arrow_1.png in Resources */,
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,
-				8F39B6FB1909438800ADA8F4 /* Images.xcassets in Resources */,
 				FBBD3D3C15BE61820035F419 /* arrow_1@2x.png in Resources */,
 				FBBD3D3D15BE61820035F419 /* panel.png in Resources */,
 				FBBD3D3E15BE61820035F419 /* panel@2x.png in Resources */,
@@ -549,6 +549,8 @@
 		FBBD3CEE15BE57AA0035F419 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoftModemRemote/SoftModemRemote-Prefix.pch";
@@ -563,6 +565,8 @@
 		FBBD3CEF15BE57AA0035F419 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoftModemRemote/SoftModemRemote-Prefix.pch";
