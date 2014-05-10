@@ -31,7 +31,7 @@
 {
 	if(self = [super init])
 	{
-		receivers = [[MultiDelegate alloc] init];
+		receivers = [[MultiDelegate<CharReceiver> alloc] init];
 		byteQueue = new FSKByteQueue();
 		[self reset];
 	}
@@ -85,7 +85,7 @@
 			break;
 		case FSKBits:
 			//NSLog(@"Bit: %c %d", high?'H':'L', length);
-			if((bitPosition >= 0) && (bitPosition <= 7)){ //Data Bits
+			if(bitPosition <= 7){ //Data Bits
 				newState = FSKBits;
 				[self dataBit:high];
 			}
@@ -99,6 +99,8 @@
 				bitPosition = 0;
 			}
 			break;
+        default:
+            break;
 	}
 	state = newState;
 }
