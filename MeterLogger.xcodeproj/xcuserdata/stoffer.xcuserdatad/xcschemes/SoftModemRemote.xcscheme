@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FBBD3CCE15BE57A90035F419"
-               BuildableName = "SoftModemRemote.app"
-               BlueprintName = "SoftModemRemote"
-               ReferencedContainer = "container:SoftModemRemote.xcodeproj">
+               BuildableName = "MeterLogger.app"
+               BlueprintName = "MeterLogger"
+               ReferencedContainer = "container:MeterLogger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FBBD3CCE15BE57A90035F419"
-            BuildableName = "SoftModemRemote.app"
-            BlueprintName = "SoftModemRemote"
-            ReferencedContainer = "container:SoftModemRemote.xcodeproj">
+            BuildableName = "MeterLogger.app"
+            BlueprintName = "MeterLogger"
+            ReferencedContainer = "container:MeterLogger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FBBD3CCE15BE57A90035F419"
-            BuildableName = "SoftModemRemote.app"
-            BlueprintName = "SoftModemRemote"
-            ReferencedContainer = "container:SoftModemRemote.xcodeproj">
+            BuildableName = "MeterLogger.app"
+            BlueprintName = "MeterLogger"
+            ReferencedContainer = "container:MeterLogger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FBBD3CCE15BE57A90035F419"
-            BuildableName = "SoftModemRemote.app"
-            BlueprintName = "SoftModemRemote"
-            ReferencedContainer = "container:SoftModemRemote.xcodeproj">
+            BuildableName = "MeterLogger.app"
+            BlueprintName = "MeterLogger"
+            ReferencedContainer = "container:MeterLogger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

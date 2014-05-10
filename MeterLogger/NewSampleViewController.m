@@ -68,7 +68,7 @@
     dataObject.placeName = @"";
     dataObject.date=[[NSDate alloc]init];
     dataObject.deviceName = self.deviceName;
-    dataObject.sampleDataDict=@{};
+    dataObject.sampleDataDict=[@{} mutableCopy];
     NSDictionary *dictionary = @{
                                 @"delegate" : self,
                                 @"dataObject":dataObject

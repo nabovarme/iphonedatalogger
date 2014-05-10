@@ -95,14 +95,14 @@
 		FB9A8D6A15BEA52C005F3DF2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		FB9A8D6D15BEA5AA005F3DF2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FB9A8D6E15BEA5AA005F3DF2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		FBBD3CCF15BE57A90035F419 /* SoftModemRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftModemRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBBD3CCF15BE57A90035F419 /* MeterLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeterLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBBD3CD315BE57A90035F419 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FBBD3CD515BE57A90035F419 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBBD3CD715BE57A90035F419 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FBBD3CDB15BE57A90035F419 /* SoftModemRemote-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SoftModemRemote-Info.plist"; sourceTree = "<group>"; };
+		FBBD3CDB15BE57A90035F419 /* MeterLogger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MeterLogger-Info.plist"; sourceTree = "<group>"; };
 		FBBD3CDD15BE57A90035F419 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FBBD3CDF15BE57A90035F419 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FBBD3CE115BE57AA0035F419 /* SoftModemRemote-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoftModemRemote-Prefix.pch"; sourceTree = "<group>"; };
+		FBBD3CE115BE57AA0035F419 /* MeterLogger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MeterLogger-Prefix.pch"; sourceTree = "<group>"; };
 		FBBD3CE215BE57AA0035F419 /* NLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLAppDelegate.h; sourceTree = "<group>"; };
 		FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLAppDelegate.m; sourceTree = "<group>"; };
 		FBBD3D0215BE58970035F419 /* AudioQueueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueObject.h; sourceTree = "<group>"; };
@@ -166,14 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8F086696191106CD0075391E /* core data */ = {
+		8F086696191106CD0075391E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				8F086693191106C60075391E /* SamplesModel.xcdatamodeld */,
 				8F086697191117730075391E /* SamplesEntity.h */,
 				8F086698191117730075391E /* SamplesEntity.m */,
 			);
-			name = "core data";
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		8F39B6F919093B3B00ADA8F4 /* myInterface */ = {
@@ -195,7 +195,7 @@
 			name = myInterface;
 			sourceTree = "<group>";
 		};
-		8F9D6C241917A9D500235CDA /* devices */ = {
+		8F9D6C241917A9D500235CDA /* Devices */ = {
 			isa = PBXGroup;
 			children = (
 				8F9D6C251917A9F000235CDA /* Testo */,
@@ -204,7 +204,7 @@
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
 			);
-			name = devices;
+			name = Devices;
 			sourceTree = "<group>";
 		};
 		8F9D6C251917A9F000235CDA /* Testo */ = {
@@ -230,9 +230,9 @@
 		FBBD3CC415BE57A90035F419 = {
 			isa = PBXGroup;
 			children = (
-				8F9D6C241917A9D500235CDA /* devices */,
-				8F086696191106CD0075391E /* core data */,
-				FBBD3CD915BE57A90035F419 /* SoftModemRemote */,
+				8F9D6C241917A9D500235CDA /* Devices */,
+				8F086696191106CD0075391E /* CoreData */,
+				FBBD3CD915BE57A90035F419 /* MeterLogger */,
 				FBBD3CD215BE57A90035F419 /* Frameworks */,
 				FBBD3CD015BE57A90035F419 /* Products */,
 			);
@@ -241,7 +241,7 @@
 		FBBD3CD015BE57A90035F419 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FBBD3CCF15BE57A90035F419 /* SoftModemRemote.app */,
+				FBBD3CCF15BE57A90035F419 /* MeterLogger.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FBBD3CD915BE57A90035F419 /* SoftModemRemote */ = {
+		FBBD3CD915BE57A90035F419 /* MeterLogger */ = {
 			isa = PBXGroup;
 			children = (
 				8F39B6F919093B3B00ADA8F4 /* myInterface */,
@@ -269,17 +269,17 @@
 				D66DD019191E8E93008ABF0F /* Images.xcassets */,
 				FBBD3CDA15BE57A90035F419 /* Supporting Files */,
 			);
-			path = SoftModemRemote;
+			path = MeterLogger;
 			sourceTree = "<group>";
 		};
 		FBBD3CDA15BE57A90035F419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				FBBD3D2515BE5D4B0035F419 /* Resources */,
-				FBBD3CDB15BE57A90035F419 /* SoftModemRemote-Info.plist */,
+				FBBD3CDB15BE57A90035F419 /* MeterLogger-Info.plist */,
 				FBBD3CDC15BE57A90035F419 /* InfoPlist.strings */,
 				FBBD3CDF15BE57A90035F419 /* main.m */,
-				FBBD3CE115BE57AA0035F419 /* SoftModemRemote-Prefix.pch */,
+				FBBD3CE115BE57AA0035F419 /* MeterLogger-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -361,9 +361,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FBBD3CCE15BE57A90035F419 /* SoftModemRemote */ = {
+		FBBD3CCE15BE57A90035F419 /* MeterLogger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBBD3CED15BE57AA0035F419 /* Build configuration list for PBXNativeTarget "SoftModemRemote" */;
+			buildConfigurationList = FBBD3CED15BE57AA0035F419 /* Build configuration list for PBXNativeTarget "MeterLogger" */;
 			buildPhases = (
 				FBBD3CCB15BE57A90035F419 /* Sources */,
 				FBBD3CCC15BE57A90035F419 /* Frameworks */,
@@ -373,9 +373,9 @@
 			);
 			dependencies = (
 			);
-			name = SoftModemRemote;
+			name = MeterLogger;
 			productName = IRRemote;
-			productReference = FBBD3CCF15BE57A90035F419 /* SoftModemRemote.app */;
+			productReference = FBBD3CCF15BE57A90035F419 /* MeterLogger.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -388,7 +388,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = 9Lab;
 			};
-			buildConfigurationList = FBBD3CC915BE57A90035F419 /* Build configuration list for PBXProject "SoftModemRemote" */;
+			buildConfigurationList = FBBD3CC915BE57A90035F419 /* Build configuration list for PBXProject "MeterLogger" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -400,7 +400,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FBBD3CCE15BE57A90035F419 /* SoftModemRemote */,
+				FBBD3CCE15BE57A90035F419 /* MeterLogger */,
 			);
 		};
 /* End PBXProject section */
@@ -553,10 +553,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SoftModemRemote/SoftModemRemote-Prefix.pch";
-				INFOPLIST_FILE = "SoftModemRemote/SoftModemRemote-Info.plist";
+				GCC_PREFIX_HEADER = "MeterLogger/MeterLogger-Prefix.pch";
+				INFOPLIST_FILE = "MeterLogger/MeterLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MeterLogger;
 				TEST_RIG = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -569,10 +569,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SoftModemRemote/SoftModemRemote-Prefix.pch";
-				INFOPLIST_FILE = "SoftModemRemote/SoftModemRemote-Info.plist";
+				GCC_PREFIX_HEADER = "MeterLogger/MeterLogger-Prefix.pch";
+				INFOPLIST_FILE = "MeterLogger/MeterLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MeterLogger;
 				TEST_RIG = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -581,7 +581,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FBBD3CC915BE57A90035F419 /* Build configuration list for PBXProject "SoftModemRemote" */ = {
+		FBBD3CC915BE57A90035F419 /* Build configuration list for PBXProject "MeterLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBBD3CEB15BE57AA0035F419 /* Debug */,
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBBD3CED15BE57AA0035F419 /* Build configuration list for PBXNativeTarget "SoftModemRemote" */ = {
+		FBBD3CED15BE57AA0035F419 /* Build configuration list for PBXNativeTarget "MeterLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBBD3CEE15BE57AA0035F419 /* Debug */,
