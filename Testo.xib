@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Testo">
             <connections>
                 <outlet property="receiveDataProgressView" destination="Qw6-E3-usa" id="pIU-FG-908"/>
+                <outlet property="tableView" destination="XLT-7I-tQ8" id="Wti-co-29B"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="AFX-GG-2Ye"/>
             </connections>
         </placeholder>
