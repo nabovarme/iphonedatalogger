@@ -11,12 +11,16 @@
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
 @property NSMutableString *data;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation TestoDemo
 @synthesize sendRequestDelegate;
 @synthesize receiveTimer;
 @synthesize myDataObject;
+@synthesize tableView;
 
 @synthesize data;
 
@@ -127,8 +131,7 @@
 }
 
 - (void)doneReceiving {
-    NSLog(@"Done receiving %@", self.myDataObject.sampleDataDict[@"data"]);
-    NSLog(@"length: %lu", (unsigned long)[self.myDataObject.sampleDataDict[@"data"] length]);
+    NSLog(@"Done receiving %@", self.data);
     
     [self.receiveDataProgressView setHidden:YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
@@ -246,6 +249,9 @@
 
  //   self.testoUndilutedCOLevel.text = [NSString stringWithFormat:@"Undiluted CO %@", testoValue];
     NSLog(@"Undiluted CO %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    
+    //update table view
+    [self.tableView reloadData];
 }
 
 - (DeviceSampleDataObject *)getDataObject
@@ -256,7 +262,7 @@
 //table view stuff
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.myDataObject.sampleDataDict count]-1;
+    return [self.myDataObject.sampleDataDict count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -273,8 +279,6 @@
 
     cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:[keys objectAtIndex:indexPath.row]];
 
-
-    //cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
     return cell;
 }
 @end

@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestoDemo">
             <connections>
                 <outlet property="receiveDataProgressView" destination="eov-Il-Jia" id="AWD-Dy-hdW"/>
+                <outlet property="tableView" destination="i6M-PB-jlK" id="IZ9-m0-bwm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="AFX-GG-2Ye"/>
             </connections>
         </placeholder>
@@ -25,7 +26,7 @@
                     </connections>
                 </tableView>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eov-Il-Jia">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
             </subviews>
@@ -39,9 +40,6 @@
                 <constraint firstItem="eov-Il-Jia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qbk-16-erR"/>
                 <constraint firstAttribute="trailing" secondItem="i6M-PB-jlK" secondAttribute="trailing" id="rue-7h-9A2"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
 </document>
