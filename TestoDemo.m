@@ -11,6 +11,7 @@
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
 @property NSMutableString *data;
+@property BOOL * state;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -21,6 +22,7 @@
 @synthesize receiveTimer;
 @synthesize myDataObject;
 @synthesize tableView;
+@synthesize state;
 
 @synthesize data;
 
@@ -38,7 +40,7 @@
     
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
-    
+    self.state=NO;
     
     self = [super init];
     return self;
@@ -71,8 +73,10 @@
         //if([self.myDataObject.sampleDataDict[@"data"] length] == 0) {
             //set momentary data object
             self.data =[@"" mutableCopy];
+        
             // if there is no data saved init sampleDataDict empty
             // load keys from property list
+   
             NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
             NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
             NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
@@ -251,6 +255,7 @@
     NSLog(@"Undiluted CO %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
     
     //update table view
+    self.state=YES;
     [self.tableView reloadData];
 }
 
@@ -260,25 +265,118 @@
     return self.myDataObject;
 }
 //table view stuff
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section==1)
+    {
+        return @" ";
+    }
+    return @"";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.myDataObject.sampleDataDict count];
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return 1;
+            break;
+        case 2:
+            return [self.myDataObject.sampleDataDict count];
+            break;
+        default:
+            break;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
+    
     NSArray* keys = [self.myDataObject.sampleDataDict allKeys];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
-    cell.textLabel.text = [keys objectAtIndex:indexPath.row];
-    cell.textLabel.textAlignment=UITextAlignmentLeft;
+    
 
-    cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:[keys objectAtIndex:indexPath.row]];
+    if (indexPath.section==0)//place
+    {
+        cell.textLabel.text = @"Place";//   objectAtIndex:indexPath.section];
+        if([self.myDataObject.sampleDataDict[@"Place"] isEqualToString:@"Place"]){
 
+        if(self.state)
+        {
+            [cell.textLabel setEnabled:YES];
+        UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
+            inputText.textAlignment = UITextAlignmentRight;
+            inputText.backgroundColor = [UIColor clearColor];
+            inputText.placeholder = @"place name";
+           // inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Place"];
+            
+            [inputText setDelegate:self];
+            [cell.contentView addSubview:inputText];
+        }else{
+            [cell.textLabel setEnabled:NO];
+        }
+}else
+{
+    cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Place"];
+}
+    }
+    else if (indexPath.section==1)//effect
+    {
+        
+        cell.textLabel.text = @"Effect";//   objectAtIndex:indexPath.section];
+        if([self.myDataObject.sampleDataDict[@"Effect"] isEqualToString:@"Effect"]){
+        if(self.state)
+        {
+            [cell.textLabel setEnabled:YES];
+
+        UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
+        inputText.textAlignment = UITextAlignmentRight;
+        inputText.backgroundColor = [UIColor clearColor];
+        inputText.placeholder = @"effect";
+  
+//            inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Effect"];
+
+
+        [inputText setDelegate:self];
+        [cell.contentView addSubview:inputText];
+        }else{
+            [cell.textLabel setEnabled:NO];
+        }
+        }else
+        {
+            cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Effect"];
+        }
+
+    }
+    else//the rest
+    {
+        cell.textLabel.text = [keys objectAtIndex:indexPath.row];//   objectAtIndex:indexPath.section];
+        cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:[keys objectAtIndex:indexPath.row]];
+    }
+
+
+    
     return cell;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if([textField.placeholder isEqualToString:@"effect"])
+    {
+        self.myDataObject.sampleDataDict[@"Effect"]=textField.text;
+    }
+    if([textField.placeholder isEqualToString:@"place name"])
+    {
+        self.myDataObject.sampleDataDict[@"Place"]=textField.text;
+    }
+    [textField resignFirstResponder];
+    return YES;
 }
 @end
