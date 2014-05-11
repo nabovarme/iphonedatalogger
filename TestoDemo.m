@@ -11,7 +11,7 @@
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
 @property NSMutableString *data;
-@property BOOL * state;
+@property BOOL *state;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -40,7 +40,7 @@
     
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
-    self.state=NO;
+    self.state = NO;
     
     self = [super init];
     return self;
@@ -62,33 +62,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+
     // Do any additional setup after loading the view from its nib.
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
-           }
+    }
     else
     {
-        //if([self.myDataObject.sampleDataDict[@"data"] length] == 0) {
-            //set momentary data object
-            self.data =[@"" mutableCopy];
-        
-            // if there is no data saved init sampleDataDict empty
-            // load keys from property list
-   
-            NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
-            NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
-            NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
-            
-            NSMutableDictionary *deviceDict = [[NSMutableDictionary alloc] initWithObjects:deviceKeys forKeys:deviceKeys];
-            //[[[NSMutableDictionary alloc] initWithContentsOfFile:devicePlist] mutableCopy];
-            self.myDataObject.sampleDataDict = deviceDict;
-            //self.myDataObject.sampleDataDict[@"data"]=[@" " mutableCopy];
-            // self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
-            
-            //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
-        
+        //set momentary data object
+        self.data =[@"" mutableCopy];
+
+        // if there is no data saved init sampleDataDict empty
+        // load keys from property list
+
+        NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
+        NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
+        NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
+
+        NSMutableDictionary *deviceDict = [[NSMutableDictionary alloc] initWithObjects:deviceKeys forKeys:deviceKeys];
+        //[[[NSMutableDictionary alloc] initWithContentsOfFile:devicePlist] mutableCopy];
+        self.myDataObject.sampleDataDict = deviceDict;
+        //self.myDataObject.sampleDataDict[@"data"]=[@" " mutableCopy];
+        // self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
+
+        //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
+
         // new sample view
         NSLog(@"mydataobject is empty");
         [self.receiveDataProgressView setHidden:NO];
@@ -152,110 +151,76 @@
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2\\s" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"CO2"]=testoValue;
-   // self.testoCO2Level.text = [NSString stringWithFormat:@"Carbon dioxide %@", testoValue];
-    NSLog(@"CO2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    self.myDataObject.sampleDataDict[@"CO2"] = testoValue;
 
     // match O2
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+O2" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"O2"]=testoValue;
-   // self.testoO2Level.text = [NSString stringWithFormat:@"Oxygen %@", testoValue];
-    NSLog(@"O2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    self.myDataObject.sampleDataDict[@"O2"] = testoValue;
 
     // match CO
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO\\s" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"CO"]=testoValue;
+    self.myDataObject.sampleDataDict[@"CO"] = testoValue;
 
-   // self.testoCOLevel.text = [NSString stringWithFormat:@"Carbon monoxide %@", testoValue];
-    NSLog(@"O2 %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match Fluegas temp
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Fluegas temp" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"FlueGasTemp"]=testoValue;
+    self.myDataObject.sampleDataDict[@"FlueGasTemp"] = testoValue;
 
-  //  self.testoFlueGasTempLevel.text = [NSString stringWithFormat:@"Fluegas temp %@", testoValue];
-    NSLog(@"Fluegas temp %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match Excess air
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Excess air" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"ExcessAir"]=testoValue;
+    self.myDataObject.sampleDataDict[@"ExcessAir"] = testoValue;
 
-  //  self.testoExcessAirLevel.text = [NSString stringWithFormat:@"Excess air %@", testoValue];
-    NSLog(@"Excess air %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match Draught
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Draught" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"Draught"]=testoValue;
+    self.myDataObject.sampleDataDict[@"Draught"] = testoValue;
 
-  //  self.testoDraughtLevel.text = [NSString stringWithFormat:@"Draught %@", testoValue];
-    NSLog(@"Draught %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match EFF net
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+EFF net" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"EffNet"]=testoValue;
+    self.myDataObject.sampleDataDict[@"EffNet"] = testoValue;
 
-  //  self.testoEffNetLevel.text = [NSString stringWithFormat:@"EFF net %@", testoValue];
-    NSLog(@"EFF net %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match Ambient CO
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Ambient CO" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"AmbientCO"]=testoValue;
+    self.myDataObject.sampleDataDict[@"AmbientCO"] = testoValue;
 
- //   self.testoAmbientCOLevel.text = [NSString stringWithFormat:@"Ambient CO %@", testoValue];
-    NSLog(@"Ambient CO %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match EFF gross
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+EFF gross" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-  //  self.testoEffGrossLevel.text = [NSString stringWithFormat:@"EFF gross %@", testoValue];
-    NSLog(@"EFF gross %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    self.myDataObject.sampleDataDict[@"EffGross"]=testoValue;
+    self.myDataObject.sampleDataDict[@"EffGross"] = testoValue;
 
-    
     // match Diff. press.
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Diff. press." options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"DiffPress"]=testoValue;
+    self.myDataObject.sampleDataDict[@"DiffPress"] = testoValue;
 
-   // self.testoDiffPressLevel.text = [NSString stringWithFormat:@"Diff. press. %@", testoValue];
-    NSLog(@"Diff. press. %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     // match Ambient temp
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Ambient temp" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"AmbientTemp"]=testoValue;
-
-  //  self.testoAmbientTempLevel.text = [NSString stringWithFormat:@"Ambient temp %@", testoValue];
-    NSLog(@"Ambient temp %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
+    self.myDataObject.sampleDataDict[@"AmbientTemp"] = testoValue;
 
     // match Undiluted CO
     regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Undiluted CO" options:0 error:NULL];
     match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
     testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"UndilutedCO"]=testoValue;
+    self.myDataObject.sampleDataDict[@"UndilutedCO"] = testoValue;
 
- //   self.testoUndilutedCOLevel.text = [NSString stringWithFormat:@"Undiluted CO %@", testoValue];
-    NSLog(@"Undiluted CO %@.", [str substringWithRange:[match rangeAtIndex:1]]);// gives the first captured group in this example
-    
     //update table view
-    self.state=YES;
+    self.state = YES;
     [self.tableView reloadData];
 }
 
@@ -264,10 +229,12 @@
     [self.myDataObject setPlaceName:@"Nowhere"];
     return self.myDataObject;
 }
+
 //table view stuff
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if (section==1)
     {
@@ -292,6 +259,7 @@
             break;
     }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
@@ -302,68 +270,62 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
-    
 
     if (indexPath.section==0)//place
     {
         cell.textLabel.text = @"Place";//   objectAtIndex:indexPath.section];
         if([self.myDataObject.sampleDataDict[@"Place"] isEqualToString:@"Place"]){
-
-        if(self.state)
-        {
-            [cell.textLabel setEnabled:YES];
-        UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
-            inputText.textAlignment = UITextAlignmentRight;
-            inputText.backgroundColor = [UIColor clearColor];
-            inputText.placeholder = @"place name";
-           // inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Place"];
             
-            [inputText setDelegate:self];
-            [cell.contentView addSubview:inputText];
-        }else{
-            [cell.textLabel setEnabled:NO];
+            if(self.state)
+            {
+                [cell.textLabel setEnabled:YES];
+                UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
+                inputText.textAlignment = UITextAlignmentRight;
+                inputText.backgroundColor = [UIColor clearColor];
+                inputText.placeholder = @"place name";
+                // inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Place"];
+                
+                [inputText setDelegate:self];
+                [cell.contentView addSubview:inputText];
+            } else {
+                [cell.textLabel setEnabled:NO];
+            }
+        } else
+        {
+            cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Place"];
         }
-}else
-{
-    cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Place"];
-}
     }
     else if (indexPath.section==1)//effect
     {
-        
         cell.textLabel.text = @"Effect";//   objectAtIndex:indexPath.section];
         if([self.myDataObject.sampleDataDict[@"Effect"] isEqualToString:@"Effect"]){
-        if(self.state)
-        {
-            [cell.textLabel setEnabled:YES];
+            if(self.state)
+            {
+                [cell.textLabel setEnabled:YES];
+                
+                UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
+                inputText.textAlignment = UITextAlignmentRight;
+                inputText.backgroundColor = [UIColor clearColor];
+                inputText.placeholder = @"effect";
+                
+                //            inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Effect"];
 
-        UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
-        inputText.textAlignment = UITextAlignmentRight;
-        inputText.backgroundColor = [UIColor clearColor];
-        inputText.placeholder = @"effect";
-  
-//            inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Effect"];
-
-
-        [inputText setDelegate:self];
-        [cell.contentView addSubview:inputText];
-        }else{
-            [cell.textLabel setEnabled:NO];
-        }
-        }else
+                [inputText setDelegate:self];
+                [cell.contentView addSubview:inputText];
+            } else {
+                [cell.textLabel setEnabled:NO];
+            }
+        } else
         {
             cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Effect"];
         }
-
+        
     }
     else//the rest
     {
         cell.textLabel.text = [keys objectAtIndex:indexPath.row];//   objectAtIndex:indexPath.section];
         cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:[keys objectAtIndex:indexPath.row]];
     }
-
-
-    
     return cell;
 }
 
@@ -379,4 +341,5 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 @end

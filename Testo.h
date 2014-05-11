@@ -14,9 +14,10 @@
 
 @class Testo;
 
-@interface Testo : UIViewController <NewSampleViewControllerReceivedChar>{
+@interface Testo : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
 
 }
+
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
