@@ -1,1 +1,5 @@
 progress bar should update with timer
+
+delete sample
+
+MEGA cleanup of table cell
