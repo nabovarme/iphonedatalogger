@@ -10,6 +10,7 @@
 		8F0866921911067E0075391E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0866911911067E0075391E /* CoreData.framework */; };
 		8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F086693191106C60075391E /* SamplesModel.xcdatamodeld */; };
 		8F086699191117730075391E /* SamplesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F086698191117730075391E /* SamplesEntity.m */; };
+		8F24A460191FABBE001A393A /* TestoDemoPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F24A45F191FABBE001A393A /* TestoDemoPropertyList.plist */; };
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; };
@@ -69,6 +70,7 @@
 		8F086694191106C60075391E /* SamplesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SamplesModel.xcdatamodel; sourceTree = "<group>"; };
 		8F086697191117730075391E /* SamplesEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplesEntity.h; sourceTree = "<group>"; };
 		8F086698191117730075391E /* SamplesEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplesEntity.m; sourceTree = "<group>"; };
+		8F24A45F191FABBE001A393A /* TestoDemoPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestoDemoPropertyList.plist; sourceTree = "<group>"; };
 		8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8F39B6F019092D1800ADA8F4 /* NewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSampleViewController.h; sourceTree = "<group>"; };
 		8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSampleViewController.m; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				D682182D191C413800DC093A /* TestoDemo.h */,
 				D682182E191C413800DC093A /* TestoDemo.m */,
 				D682182F191C413800DC093A /* TestoDemo.xib */,
+				8F24A45F191FABBE001A393A /* TestoDemoPropertyList.plist */,
 			);
 			name = TestoDemo;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,
 				FBBD3D3C15BE61820035F419 /* arrow_1@2x.png in Resources */,
 				FBBD3D3D15BE61820035F419 /* panel.png in Resources */,
+				8F24A460191FABBE001A393A /* TestoDemoPropertyList.plist in Resources */,
 				FBBD3D3E15BE61820035F419 /* panel@2x.png in Resources */,
 				FBBD3D4E15BE818B0035F419 /* bg.png in Resources */,
 				FBBD3D4F15BE818B0035F419 /* bg@2x.png in Resources */,

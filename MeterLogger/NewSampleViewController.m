@@ -63,12 +63,18 @@
     protocolHelper = [[ProtocolHelper alloc] init];
     [APP_DELEGATE.recognizer addReceiver:self];
     _operationQueue = [[NSOperationQueue alloc] init];
-   
+    
+    /*propertyList
+    NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",self.deviceName];
+    NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
+    NSMutableDictionary *deviceDict = [[[NSDictionary alloc] initWithContentsOfFile:devicePlist] mutableCopy];
+   */
     DeviceSampleDataObject *dataObject = [[DeviceSampleDataObject alloc]init];
     dataObject.placeName = @"";
     dataObject.date=[[NSDate alloc]init];
     dataObject.deviceName = self.deviceName;
     dataObject.sampleDataDict=[@{} mutableCopy];
+    //dataObject.sampleDataDict=deviceDict;
     NSDictionary *dictionary = @{
                                 @"delegate" : self,
                                 @"dataObject":dataObject

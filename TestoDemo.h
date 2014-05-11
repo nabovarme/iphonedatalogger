@@ -13,7 +13,7 @@
 #import "SamplesEntity.h"
 @class TestoDemo;
 
-@interface TestoDemo : UIViewController <NewSampleViewControllerReceivedChar>{
+@interface TestoDemo : UIViewController <NewSampleViewControllerReceivedChar,UITableViewDelegate, UITableViewDataSource>{
 
 }
 
