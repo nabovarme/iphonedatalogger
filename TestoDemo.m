@@ -226,7 +226,6 @@
 
 - (DeviceSampleDataObject *)getDataObject
 {
-    [self.myDataObject setPlaceName:@"Nowhere"];
     return self.myDataObject;
 }
 
@@ -253,7 +252,7 @@
             return 1;
             break;
         case 2:
-            return [self.myDataObject.sampleDataDict count];
+            return [self.myDataObject.sampleDataDict count]-2;
             break;
         default:
             break;
@@ -292,7 +291,7 @@
             }
         } else
         {
-            cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Place"];
+            cell.detailTextLabel.text = self.myDataObject.placeName;
         }
     }
     else if (indexPath.section==1)//effect
@@ -336,7 +335,7 @@
     }
     if([textField.placeholder isEqualToString:@"place name"])
     {
-        self.myDataObject.sampleDataDict[@"Place"]=textField.text;
+        [self.myDataObject setPlaceName:textField.text];
     }
     [textField resignFirstResponder];
     return YES;

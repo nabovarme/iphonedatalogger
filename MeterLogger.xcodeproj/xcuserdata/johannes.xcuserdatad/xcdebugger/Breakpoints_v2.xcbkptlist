@@ -600,13 +600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestoDemo.m"
-            timestampString = "421522527.27828"
+            timestampString = "421580121.380283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
-            landmarkName = "-textFieldShouldReturn:"
-            landmarkType = "5">
+            startingLineNumber = "378"
+            endingLineNumber = "378">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
