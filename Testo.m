@@ -7,9 +7,11 @@
 //
 
 #import "Testo.h"
+#import "KeyLabelValueTextfieldCell.h"
 
 @interface Testo ()
 @property DeviceSampleDataObject *myDataObject;
+@property NSArray *orderedNames;
 @property NSMutableString *data;
 @property BOOL *state;
 
@@ -23,6 +25,7 @@
 @synthesize myDataObject;
 @synthesize tableView;
 @synthesize state;
+@synthesize orderedNames;
 
 @synthesize data;
 
@@ -67,6 +70,10 @@
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
+        NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
+        NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
+        NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
+        self.orderedNames=[[NSArray alloc]initWithArray:deviceKeys];
     }
     else
     {
@@ -79,14 +86,22 @@
         NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
         NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
         NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
+        
+        NSMutableArray *deviceValues = [[NSMutableArray alloc] init];
+        
+        for(int i=0; i<[deviceKeys count]; i++){
+            
+            NSString *newString = @"";
+            
+            [deviceValues addObject: newString];
+        }
+        
+        self.orderedNames=[[NSArray alloc]initWithArray:deviceKeys];
 
-        NSMutableDictionary *deviceDict = [[NSMutableDictionary alloc] initWithObjects:deviceKeys forKeys:deviceKeys];
-        //[[[NSMutableDictionary alloc] initWithContentsOfFile:devicePlist] mutableCopy];
+        NSMutableDictionary *deviceDict = [[NSMutableDictionary alloc] initWithObjects:deviceValues forKeys:deviceKeys];
+        
+        
         self.myDataObject.sampleDataDict = deviceDict;
-        //self.myDataObject.sampleDataDict[@"data"]=[@" " mutableCopy];
-        // self.myDataObject.sampleDataDict = [@{@"data": [@"" mutableCopy]} mutableCopy];
-
-        //self.myDataObject.sampleDataDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"data": [[NSMutableString alloc] initWithString:@""]}];
 
         // new sample view
         NSLog(@"mydataobject is empty");
@@ -220,17 +235,28 @@
 
 - (DeviceSampleDataObject *)getDataObject
 {
-    [self.myDataObject setPlaceName:@"Nowhere"];
+    NSIndexPath *myIP = [NSIndexPath indexPathForRow:0 inSection:0];
+    id placeCell=[self.tableView cellForRowAtIndexPath:myIP];
+    UITextField *placeTextfield = (UITextField *)[placeCell viewWithTag:100];
+    
+    myIP = [NSIndexPath indexPathForRow:1 inSection:0];
+    id effectCell=[self.tableView cellForRowAtIndexPath:myIP];
+    UITextField *effectTextfield = (UITextField *)[effectCell viewWithTag:100];
+
+    self.myDataObject.placeName = placeTextfield.text;
+    self.myDataObject.sampleDataDict[@"Effect"] = effectTextfield.text;
+    
+
     return self.myDataObject;
 }
 
 //table view stuff
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section==1)
+    if (section==0)
     {
         return @" ";
     }
@@ -241,99 +267,64 @@
 {
     switch (section) {
         case 0:
-            return 1;
+            return 2;
             break;
         case 1:
-            return 1;
-            break;
-        case 2:
-            return [self.myDataObject.sampleDataDict count];
+            return [self.myDataObject.sampleDataDict count]-2;
             break;
         default:
             break;
     }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    NSArray* keys = [self.myDataObject.sampleDataDict allKeys];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
-    }
-
-    if (indexPath.section==0)//place
-    {
-        cell.textLabel.text = @"Place";//   objectAtIndex:indexPath.section];
-        if([self.myDataObject.sampleDataDict[@"Place"] isEqualToString:@"Place"]){
-            
-            if(self.state)
-            {
-                [cell.textLabel setEnabled:YES];
-                UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
-                inputText.textAlignment = UITextAlignmentRight;
-                inputText.backgroundColor = [UIColor clearColor];
-                inputText.placeholder = @"place name";
-                // inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Place"];
-                
-                [inputText setDelegate:self];
-                [cell.contentView addSubview:inputText];
-            } else {
-                [cell.textLabel setEnabled:NO];
-            }
-        } else
-        {
-            cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Place"];
-        }
-    }
-    else if (indexPath.section==1)//effect
-    {
-        cell.textLabel.text = @"Effect";//   objectAtIndex:indexPath.section];
-        if([self.myDataObject.sampleDataDict[@"Effect"] isEqualToString:@"Effect"]){
-            if(self.state)
-            {
-                [cell.textLabel setEnabled:YES];
-                
-                UITextField *inputText = [[UITextField alloc]initWithFrame:CGRectMake(22,0,280,22)];
-                inputText.textAlignment = UITextAlignmentRight;
-                inputText.backgroundColor = [UIColor clearColor];
-                inputText.placeholder = @"effect";
-                
-                //            inputText.text=[self.myDataObject.sampleDataDict objectForKey:@"Effect"];
-
-                [inputText setDelegate:self];
-                [cell.contentView addSubview:inputText];
-            } else {
-                [cell.textLabel setEnabled:NO];
-            }
-        } else
-        {
-            cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:@"Effect"];
-        }
+        static NSString *CellIdentifier = @"KeyLabelValueTextfieldCellIdentifier";
+        KeyLabelValueTextfieldCell *cell = (KeyLabelValueTextfieldCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-    }
-    else//the rest
+        if (cell == nil) {
+            NSArray* topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KeyLabelValueTextfieldCell" owner:self options:nil];
+            for (id currentObject in topLevelObjects) {
+                if ([currentObject isKindOfClass:[UITableViewCell class]]) {
+                    cell = (KeyLabelValueTextfieldCell *)currentObject;
+                    break;
+                }
+            }
+        }
+    // Configure the cell.
+//    NSArray* keys = [self.myDataObject.sampleDataDict allKeys];
+
+    NSLog(@"%d, %d",indexPath.row,indexPath.section);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+//    lol+=10;
+
+    //real keys is from sel.orderednames and value is from dict[self.orderednames[0]]
+    NSInteger row=indexPath.row;
+
+    if(indexPath.section==1)
     {
-        cell.textLabel.text = [keys objectAtIndex:indexPath.row];//   objectAtIndex:indexPath.section];
-        cell.detailTextLabel.text = [self.myDataObject.sampleDataDict objectForKey:[keys objectAtIndex:indexPath.row]];
+        row+=2;
+    }
+    NSString * key=self.orderedNames[row];
+    NSString * value=self.myDataObject.sampleDataDict[key];
+    
+    cell.keyLabel.text = key;//   objectAtIndex:indexPath.section];
+
+    if (indexPath.section==0 && [value length]==0 && [self.myDataObject.placeName length]==0)//place
+    {
+        cell.valueTextfield.userInteractionEnabled=YES;
+    }else{
+        if([key isEqualToString:@"Place"])
+        {
+            value=self.myDataObject.placeName;
+        }
+        cell.valueTextfield.text = value;
     }
     return cell;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if([textField.placeholder isEqualToString:@"effect"])
-    {
-        self.myDataObject.sampleDataDict[@"Effect"]=textField.text;
-    }
-    if([textField.placeholder isEqualToString:@"place name"])
-    {
-        self.myDataObject.sampleDataDict[@"Place"]=textField.text;
-    }
-    [textField resignFirstResponder];
-    return YES;
-}
+
 
 @end

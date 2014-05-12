@@ -156,20 +156,20 @@
 			name = myInterface;
 			sourceTree = "<group>";
 		};
-		8F7E5A6C1920FBD700E39131 /* custom cells */ = {
+		8F7E5A6C1920FBD700E39131 /* Custom UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				8F7E5A6D1920FC3C00E39131 /* KeyLabelValueTextfieldCell.h */,
 				8F7E5A6E1920FC3C00E39131 /* KeyLabelValueTextfieldCell.m */,
 				8F7E5A6F1920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib */,
 			);
-			name = "custom cells";
+			name = "Custom UITableViewCell";
 			sourceTree = "<group>";
 		};
 		8F9D6C241917A9D500235CDA /* Devices */ = {
 			isa = PBXGroup;
 			children = (
-				8F7E5A6C1920FBD700E39131 /* custom cells */,
+				8F7E5A6C1920FBD700E39131 /* Custom UITableViewCell */,
 				8F9D6C251917A9F000235CDA /* Testo */,
 				D6821832191C413E00DC093A /* TestoDemo */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,

@@ -7,7 +7,7 @@
 //
 
 #import "TestoDemo.h"
-#import "KeyLabelValueTextfieldCell.h";
+#import "KeyLabelValueTextfieldCell.h"
 
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
@@ -74,7 +74,6 @@
         NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
         NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
         self.orderedNames=[[NSArray alloc]initWithArray:deviceKeys];
-
     }
     else
     {
@@ -252,9 +251,7 @@
     myIP = [NSIndexPath indexPathForRow:1 inSection:0];
     id effectCell=[self.tableView cellForRowAtIndexPath:myIP];
     UITextField *effectTextfield = (UITextField *)[effectCell viewWithTag:100];
-    
-    
-    
+
     self.myDataObject.placeName = placeTextfield.text;
     self.myDataObject.sampleDataDict[@"Effect"] = effectTextfield.text;
     
