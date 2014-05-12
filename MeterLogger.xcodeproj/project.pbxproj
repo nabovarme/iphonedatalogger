@@ -14,6 +14,8 @@
 		8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */; };
 		8F39B6F219092D1800ADA8F4 /* NewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F119092D1800ADA8F4 /* NewSampleViewController.m */; };
 		8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */; };
+		8F7E5A701920FC3C00E39131 /* KeyLabelValueTextfieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E5A6E1920FC3C00E39131 /* KeyLabelValueTextfieldCell.m */; };
+		8F7E5A711920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E5A6F1920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib */; };
 		8F9D6C2B1917AD3400235CDA /* DeviceSampleDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */; };
 		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; };
 		8F9D6C331917C4A100235CDA /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D6C311917C4A100235CDA /* Testo.xib */; };
@@ -54,6 +56,9 @@
 		8F39B6F619093B2E00ADA8F4 /* SamplesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SamplesListController.h; path = ../SamplesListController.h; sourceTree = "<group>"; };
 		8F39B6F719093B2E00ADA8F4 /* SamplesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SamplesListController.m; path = ../SamplesListController.m; sourceTree = "<group>"; };
 		8F42458E1919229A0017379F /* Protocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Protocols.h; path = ../Protocols.h; sourceTree = "<group>"; };
+		8F7E5A6D1920FC3C00E39131 /* KeyLabelValueTextfieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyLabelValueTextfieldCell.h; sourceTree = "<group>"; };
+		8F7E5A6E1920FC3C00E39131 /* KeyLabelValueTextfieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyLabelValueTextfieldCell.m; sourceTree = "<group>"; };
+		8F7E5A6F1920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyLabelValueTextfieldCell.xib; sourceTree = "<group>"; };
 		8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSampleDataObject.h; sourceTree = "<group>"; };
 		8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSampleDataObject.m; sourceTree = "<group>"; };
 		8F9D6C2F1917C4A100235CDA /* Testo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testo.h; sourceTree = "<group>"; };
@@ -151,9 +156,20 @@
 			name = myInterface;
 			sourceTree = "<group>";
 		};
+		8F7E5A6C1920FBD700E39131 /* custom cells */ = {
+			isa = PBXGroup;
+			children = (
+				8F7E5A6D1920FC3C00E39131 /* KeyLabelValueTextfieldCell.h */,
+				8F7E5A6E1920FC3C00E39131 /* KeyLabelValueTextfieldCell.m */,
+				8F7E5A6F1920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib */,
+			);
+			name = "custom cells";
+			sourceTree = "<group>";
+		};
 		8F9D6C241917A9D500235CDA /* Devices */ = {
 			isa = PBXGroup;
 			children = (
+				8F7E5A6C1920FBD700E39131 /* custom cells */,
 				8F9D6C251917A9F000235CDA /* Testo */,
 				D6821832191C413E00DC093A /* TestoDemo */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,
@@ -343,6 +359,7 @@
 			files = (
 				FBBD3CDE15BE57A90035F419 /* InfoPlist.strings in Resources */,
 				D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */,
+				8F7E5A711920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib in Resources */,
 				D6821831191C413800DC093A /* TestoDemo.xib in Resources */,
 				D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */,
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,
@@ -365,6 +382,7 @@
 				8F39B6F819093B2E00ADA8F4 /* SamplesListController.m in Sources */,
 				FBBD3D1315BE58970035F419 /* AudioQueueObject.m in Sources */,
 				FBBD3D1415BE58970035F419 /* AudioSignalAnalyzer.m in Sources */,
+				8F7E5A701920FC3C00E39131 /* KeyLabelValueTextfieldCell.m in Sources */,
 				8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */,
 				8F9D6C2B1917AD3400235CDA /* DeviceSampleDataObject.m in Sources */,
 				FBBD3D1515BE58970035F419 /* AudioSignalGenerator.m in Sources */,
