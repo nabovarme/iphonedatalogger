@@ -1,6 +1,6 @@
 //
 //  NLAppDelegate.m
-//  IRRemote
+//  MeterLogger
 //
 //  Created by Bret Cheng on 24/7/12.
 //  Copyright (c) 2012 9Lab. All rights reserved.
