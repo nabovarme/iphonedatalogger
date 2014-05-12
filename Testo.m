@@ -112,7 +112,7 @@
     [self.data appendFormat:@"%c", input];
     
     NSLog(@"Testo received %c", input);
-    [self.receiveDataProgressView setProgress:(0.5 + [self.myDataObject.sampleDataDict[@"data"] length]/712.0/2) animated:YES];
+    [self.receiveDataProgressView setProgress:(0.5 + [self.data length]/712.0/2) animated:YES];
 
     if (self.receiveTimer) {
         // stop it
