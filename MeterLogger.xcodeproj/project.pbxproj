@@ -313,6 +313,11 @@
 				CLASSPREFIX = NL;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = 9Lab;
+				TargetAttributes = {
+					FBBD3CCE15BE57A90035F419 = {
+						DevelopmentTeam = R342Q2739Z;
+					};
+				};
 			};
 			buildConfigurationList = FBBD3CC915BE57A90035F419 /* Build configuration list for PBXProject "MeterLogger" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -456,11 +461,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MeterLogger/MeterLogger-Prefix.pch";
 				INFOPLIST_FILE = "MeterLogger/MeterLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = MeterLogger;
+				PROVISIONING_PROFILE = "";
 				TEST_RIG = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -472,11 +480,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MeterLogger/MeterLogger-Prefix.pch";
 				INFOPLIST_FILE = "MeterLogger/MeterLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = MeterLogger;
+				PROVISIONING_PROFILE = "";
 				TEST_RIG = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
