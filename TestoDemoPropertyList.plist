@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>Effect</string>
 	<string>Place</string>
+	<string>Effect</string>
 	<string>O2</string>
 	<string>CO2</string>
 	<string>CO</string>
