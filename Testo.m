@@ -12,7 +12,7 @@
 #define TESTO_DATA_LENGTH (712.0f)
 
 #define RECEIVE_DATA_TIME (40.0f)
-#define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (0.04f) // 25 fps
+#define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
 @interface Testo ()
 @property DeviceSampleDataObject *myDataObject;
