@@ -18,9 +18,9 @@
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
 @property NSMutableString *data;
-@property BOOL *state;
+@property BOOL state;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
 @end
 
@@ -28,7 +28,7 @@
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
-@synthesize tableView;
+@synthesize myTableView;
 @synthesize state;
 @synthesize orderedNames;
 
@@ -252,17 +252,17 @@
 
     //update table view
     self.state = YES;
-    [self.tableView reloadData];
+    [self.myTableView reloadData];
 }
 
 - (DeviceSampleDataObject *)getDataObject
 {
     NSIndexPath *myIP = [NSIndexPath indexPathForRow:0 inSection:0];
-    id placeCell=[self.tableView cellForRowAtIndexPath:myIP];
+    id placeCell=[self.myTableView cellForRowAtIndexPath:myIP];
     UITextField *placeTextfield = (UITextField *)[placeCell viewWithTag:100];
     
     myIP = [NSIndexPath indexPathForRow:1 inSection:0];
-    id effectCell=[self.tableView cellForRowAtIndexPath:myIP];
+    id effectCell=[self.myTableView cellForRowAtIndexPath:myIP];
     UITextField *effectTextfield = (UITextField *)[effectCell viewWithTag:100];
 
     self.myDataObject.placeName = placeTextfield.text;
