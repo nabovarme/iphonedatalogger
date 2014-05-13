@@ -6,9 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Testo">
             <connections>
-                <outlet property="myTableView" destination="i6M-PB-jlK" id="LpB-Kz-b4G"/>
+                <outlet property="detailsTableView" destination="i6M-PB-jlK" id="Svp-m9-EfH"/>
                 <outlet property="receiveDataProgressView" destination="eov-Il-Jia" id="AWD-Dy-hdW"/>
-                <outlet property="tableView" destination="i6M-PB-jlK" id="IZ9-m0-bwm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="AFX-GG-2Ye"/>
             </connections>
         </placeholder>

@@ -20,7 +20,7 @@
 @property NSMutableString *data;
 @property BOOL state;
 
-@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
 @end
 
@@ -28,7 +28,7 @@
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
-@synthesize myTableView;
+@synthesize detailsTableView;
 @synthesize state;
 @synthesize orderedNames;
 
@@ -252,17 +252,17 @@
 
     //update table view
     self.state = YES;
-    [self.myTableView reloadData];
+    [self.detailsTableView reloadData];
 }
 
 - (DeviceSampleDataObject *)getDataObject
 {
     NSIndexPath *myIP = [NSIndexPath indexPathForRow:0 inSection:0];
-    id placeCell=[self.myTableView cellForRowAtIndexPath:myIP];
+    id placeCell=[self.detailsTableView cellForRowAtIndexPath:myIP];
     UITextField *placeTextfield = (UITextField *)[placeCell viewWithTag:100];
     
     myIP = [NSIndexPath indexPathForRow:1 inSection:0];
-    id effectCell=[self.myTableView cellForRowAtIndexPath:myIP];
+    id effectCell=[self.detailsTableView cellForRowAtIndexPath:myIP];
     UITextField *effectTextfield = (UITextField *)[effectCell viewWithTag:100];
 
     self.myDataObject.placeName = placeTextfield.text;
@@ -303,7 +303,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         static NSString *CellIdentifier = @"KeyLabelValueTextfieldCellIdentifier";
-        KeyLabelValueTextfieldCell *cell = (KeyLabelValueTextfieldCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        KeyLabelValueTextfieldCell *cell = (KeyLabelValueTextfieldCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
             NSArray* topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KeyLabelValueTextfieldCell" owner:self options:nil];
