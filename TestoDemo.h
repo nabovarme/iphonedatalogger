@@ -22,7 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
 
-@property NSTimer *receiveTimer;
+@property NSTimer *receiveDataProgressTimer;
 
 @end
 

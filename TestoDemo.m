@@ -9,6 +9,11 @@
 #import "TestoDemo.h"
 #import "KeyLabelValueTextfieldCell.h"
 
+#define TESTO_DEMO_DATA_LENGTH (285.0f)
+
+#define RECEIVE_DATA_TIME (16.0f)
+#define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (0.04f) // 25 fps
+
 @interface TestoDemo ()
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
@@ -21,7 +26,7 @@
 
 @implementation TestoDemo
 @synthesize sendRequestDelegate;
-@synthesize receiveTimer;
+@synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
 @synthesize tableView;
 @synthesize state;
@@ -108,8 +113,16 @@
 
         // new sample view
         NSLog(@"mydataobject is empty");
+        // start progress bar
         [self.receiveDataProgressView setHidden:NO];
         [self.receiveDataProgressView setProgress:0.0 animated:YES];
+        // and start a timer to update it
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL
+                                                                         target:self
+                                                                       selector:@selector(updateProgressBar)
+                                                                       userInfo:nil
+                                                                        repeats:YES];
+        
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
         [self.sendRequestDelegate sendRequest:@"ff"];
@@ -119,7 +132,7 @@
         // 285 characters
         [self.sendRequestDelegate sendRequest:@"302e30303334202020202020526174696f0d0a352e38322520202020202020434f320d0a31352e3125202020202020204f320d0a31393870706d202020202020434f0d0a36312e38b043202020202020466c75656761732074656d700d0a3235352e3925202020202020457863657373206169720d0a2d2d2e2d6d6d48324f202020447261756768740d0a39332e362520202020202020454646206e65740d0a2d2d2e2d70706d2020202020416d6269656e7420434f0d0a38362e3025202020202020204546462067726f73730d0a2d2d2e2d6d6d48324f202020446966662e2070726573732e0d0a31382e36b043202020202020416d6269656e742074656d700d0a37303670706d202020202020556e64696c7574656420434f0d0a"];
         
-        [self.receiveDataProgressView setProgress:0.5 animated:YES];
+        [self.receiveDataProgressView setProgress:0.0 animated:YES];
 
     }
 }
@@ -136,18 +149,18 @@
     [self.data appendFormat:@"%c", input];
     
     NSLog(@"TestoDemo received %c", input);
-    [self.receiveDataProgressView setProgress:(0.5 + [self.data length]/285.0/2) animated:YES];
+    [self.receiveDataProgressView setProgress:(0.5 + [self.data length]/(float)TESTO_DEMO_DATA_LENGTH/2) animated:YES];
 
-    if (self.receiveTimer) {
+    if (self.receiveDataProgressTimer) {
         // stop it
-        [self.receiveTimer invalidate];
-        self.receiveTimer = nil;        // let it be deallocated
+        [self.receiveDataProgressTimer invalidate];
+        self.receiveDataProgressTimer = nil;        // let it be deallocated
         // and start a new timer
-        self.receiveTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
     }
     else {
         // if its not running start a new one
-        self.receiveTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
     }
 }
 
@@ -334,6 +347,17 @@
     return cell;
 }
 
+// progress bar stuff
+- (void)updateProgressBar {
+    NSLog(@"updateProgressBar %f", self.receiveDataProgressView.progress);
+    [self.receiveDataProgressView setProgress:
+        self.receiveDataProgressView.progress + 0.5 / RECEIVE_DATA_TIME * RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL animated:YES];
+    if (self.receiveDataProgressView.progress >= 0.5) {
+        // stop the timer - updating is done in receivedChar from there
+        [self.receiveDataProgressTimer invalidate];
+        self.receiveDataProgressTimer = nil;
+    }
+}
 
 
 @end
