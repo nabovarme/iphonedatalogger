@@ -89,8 +89,7 @@
 {
     NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [context deleteObject:[self.fetchedSamplesArray objectAtIndex:indexPath.row]];      // DEBUG should we call a methon in APP_DELEGATE to delete?
-        [APP_DELEGATE deleteSampleForRowAtIndex:indexPath.row];
+        [context deleteObject:[self.fetchedSamplesArray objectAtIndex:indexPath.row]];
         [self updateTableView];
     }
 }

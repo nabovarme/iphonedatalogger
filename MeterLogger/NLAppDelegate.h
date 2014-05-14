@@ -48,7 +48,6 @@
 //@property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
 //+ (NLAppDelegate*) getInstance;
 -(NSArray*)getAllSamplesFromDevice:(NSString*)deviceName;
--(void)deleteSampleForRowAtIndex:(NSUInteger)index;
 - (void) myStop;
 - (void) myPlay;
 @end
