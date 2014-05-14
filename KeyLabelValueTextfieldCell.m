@@ -24,11 +24,27 @@
 
     // Configure the view for the selected state
 }
+
 - (IBAction)textfieldEditingDidEnd:(UITextField *)sender {
     NSLog(@"lol%@",sender.text);
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSLog(@"textField.text %@", textField.text);
+    NSLog(@"string %@", string);
+/*
+    if ([textField.text isEqualToString:@"Lo"]) {
+        textField.text = @"Loppen";
+        
+    }
+*/
+    return YES;
+}
+
 @end
