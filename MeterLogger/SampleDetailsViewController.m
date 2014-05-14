@@ -121,6 +121,7 @@
     [itemsToShare addObject:self.myDataObject.sampleDataDict.debugDescription];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    [activityVC setValue:shareText forKeyPath:@"subject"];
     activityVC.excludedActivityTypes = @[];
     [self presentViewController:activityVC animated:YES completion:nil];
 }
