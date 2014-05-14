@@ -12,5 +12,6 @@
 @interface SampleDetailsViewController : UIViewController
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (atomic,retain) DeviceSampleDataObject* myDataObject;
+- (IBAction)showActivityView:(id)sender;
 -(DeviceSampleDataObject *)getObject;
 @end

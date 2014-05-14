@@ -15,6 +15,7 @@
 
 @implementation SampleDetailsViewController
 @synthesize myDataObject;
+
 - (id)initWithViewController:(UIViewController*)viewController{
     
     self = [super init];
@@ -32,7 +33,6 @@
 {
     [super viewDidLoad];
     NSLog(@"sample details view load");
-  NSLog(@"%@",[myDataObject description]);
     
     NSDictionary *dictionary = @{
                                  @"dataObject":myDataObject
@@ -113,5 +113,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+// sharing
+- (IBAction)showActivityView:(id)sender {
+    NSString *shareText = [NSString stringWithFormat:@"%@ @ %@", self.myDataObject.deviceName, self.myDataObject.placeName];
+    NSMutableArray *itemsToShare = [@[shareText] mutableCopy];
+    [itemsToShare addObject:self.myDataObject.sampleDataDict.debugDescription];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[];
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
 
 @end
