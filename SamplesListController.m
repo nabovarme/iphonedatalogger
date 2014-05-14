@@ -85,6 +85,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [context deleteObject:[self.fetchedSamplesArray objectAtIndex:indexPath.row]];      // DEBUG should we call a methon in APP_DELEGATE to delete?
+        [APP_DELEGATE deleteSampleForRowAtIndex:indexPath.row];
+        [self updateTableView];
+    }
+}
+
 
 /*
 // Override to support conditional editing of the table view.

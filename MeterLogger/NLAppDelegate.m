@@ -218,6 +218,11 @@
     // Returning Fetched Records
     return fetchedRecords;
 }
+
+-(void)deleteSampleForRowAtIndex:(NSUInteger)index {
+    //[self.managedObjectContext deleteObject:[self.fetchedSamplesArray index]];    [self.managedObjectContext save:nil];
+}
+
 - (void) myStop
 {
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
