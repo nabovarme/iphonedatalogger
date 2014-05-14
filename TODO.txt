@@ -1,4 +1,6 @@
-progress bar should update with timer
+Save button to close to Place input field
+
+deleteSampleForRowAtIndex should be implemented in NLAppDelegate.m not in SamplesListController.m
 
 delete sample
 
