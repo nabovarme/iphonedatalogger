@@ -73,8 +73,6 @@
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
 		D66DD019191E8E93008ABF0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestoPropertyList.plist; sourceTree = "<group>"; };
-		D66DD04E19224707008ABF0F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		D66DD05019224990008ABF0F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
 		D682182E191C413800DC093A /* TestoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestoDemo.m; sourceTree = "<group>"; };
 		D682182F191C413800DC093A /* TestoDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestoDemo.xib; sourceTree = "<group>"; };
@@ -225,8 +223,6 @@
 		FBBD3CD215BE57A90035F419 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D66DD05019224990008ABF0F /* Accounts.framework */,
-				D66DD04E19224707008ABF0F /* Social.framework */,
 				8F0866911911067E0075391E /* CoreData.framework */,
 				FBBD3D1915BE59150035F419 /* AudioToolbox.framework */,
 				FBBD3D1A15BE59150035F419 /* AVFoundation.framework */,
