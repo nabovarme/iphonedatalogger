@@ -3,3 +3,5 @@ Save button to close to Place input field
 Auto complete place name
 
 MEGA cleanup of table cell
+
+Bug: progress timer continues after cancel
