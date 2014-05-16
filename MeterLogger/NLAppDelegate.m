@@ -47,9 +47,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    
-     [AVAudioSession sharedInstance];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [AVAudioSession sharedInstance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
 
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -79,6 +78,7 @@
     
     return YES;
 }
+
 -(void)interruption:(AVAudioSessionInterruptionType *)notification
 {
     
