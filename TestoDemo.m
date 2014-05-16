@@ -255,6 +255,12 @@
     [self.detailsTableView reloadData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    [self.receiveDataProgressTimer invalidate];
+    self.receiveDataProgressTimer = nil;
+}
+
 - (DeviceSampleDataObject *)getDataObject
 {
     NSIndexPath *myIP = [NSIndexPath indexPathForRow:0 inSection:0];
