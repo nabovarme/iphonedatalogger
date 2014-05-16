@@ -176,7 +176,7 @@
 
 #pragma mark - NewSampleViewControllerDelegate
 
-- (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller
+- (void)newSampleViewControllerDidCancel:(NewSampleViewController *)controller
 {
     NSLog(@"received cancel");
 
@@ -184,7 +184,7 @@
 
 }
 
-- (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller
+- (void)newSampleViewControllerDidSave:(NewSampleViewController *)controller
 {
     NSLog(@"received done");
     [self addSampleEntry:controller.getDataObject];

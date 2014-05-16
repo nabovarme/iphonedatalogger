@@ -10,7 +10,7 @@
             <objects>
                 <tableViewController id="9Zq-ok-uLc" customClass="SamplesListController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Uky-Pa-Puf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -69,25 +69,47 @@
                         <viewControllerLayoutGuide type="bottom" id="sbS-Gh-qbK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qkT-cp-wH0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFO-Uu-B1M">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFO-Uu-B1M">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZ4-jc-arW">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XIv-H7-Fv7"/>
+                                    <barButtonItem systemItem="action" id="FoS-4K-zkU">
+                                        <connections>
+                                            <action selector="showActivityView:" destination="2BH-XR-DLA" id="zXp-KF-UnN"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="E5x-4M-IaW"/>
+                                    <barButtonItem systemItem="trash" id="9jt-Sj-vAX">
+                                        <connections>
+                                            <action selector="deleteSampleRowWithConfirm:" destination="2BH-XR-DLA" id="bky-US-c4T"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tFO-Uu-B1M" firstAttribute="leading" secondItem="qkT-cp-wH0" secondAttribute="leading" id="1va-UB-wjz"/>
+                            <constraint firstAttribute="trailing" secondItem="aZ4-jc-arW" secondAttribute="trailing" id="5Tn-XF-W9E"/>
+                            <constraint firstItem="aZ4-jc-arW" firstAttribute="leading" secondItem="qkT-cp-wH0" secondAttribute="leading" id="6MJ-Ta-Yij"/>
+                            <constraint firstAttribute="bottom" secondItem="aZ4-jc-arW" secondAttribute="bottom" id="OxK-7U-MNC"/>
+                            <constraint firstAttribute="trailing" secondItem="tFO-Uu-B1M" secondAttribute="trailing" id="iyJ-kT-D3J"/>
+                            <constraint firstItem="aZ4-jc-arW" firstAttribute="top" secondItem="tFO-Uu-B1M" secondAttribute="bottom" id="ueP-Ut-gKm"/>
+                            <constraint firstItem="tFO-Uu-B1M" firstAttribute="top" secondItem="qkT-cp-wH0" secondAttribute="top" id="zgl-PK-6yU"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Details" id="H78-TL-c9n">
                         <barButtonItem key="backBarButtonItem" title=" " id="10S-Iq-H48" userLabel="Bar Button Item -"/>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="9Ub-1N-LhP">
-                            <connections>
-                                <action selector="showActivityView:" destination="2BH-XR-DLA" id="vLh-O7-0oQ"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -107,11 +129,11 @@
                         <viewControllerLayoutGuide type="bottom" id="kTC-dH-pqH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3pF-ee-nh1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-Zr-aDE">
-                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="68" width="320" height="412"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -159,7 +181,7 @@
             <objects>
                 <tableViewController id="j0g-eP-EPP" customClass="DevicesListController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y1S-9Z-oS7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -219,6 +241,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

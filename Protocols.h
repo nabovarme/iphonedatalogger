@@ -19,8 +19,8 @@
 
 @protocol NewSampleViewControllerCancelSave <NSObject>
 @optional
-- (void)NewSampleViewControllerDidCancel:(NewSampleViewController *)controller;
-- (void)NewSampleViewControllerDidSave:(NewSampleViewController *)controller;
+- (void)newSampleViewControllerDidCancel:(NewSampleViewController *)controller;
+- (void)newSampleViewControllerDidSave:(NewSampleViewController *)controller;
 @end
 
 @protocol NewSampleViewControllerReceivedChar  <NSObject>

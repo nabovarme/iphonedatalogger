@@ -126,4 +126,13 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
+- (IBAction)deleteSampleRowWithConfirm:(id)sender {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:@"Delete"
+                                              otherButtonTitles:nil];
+    [sheet showFromToolbar:sender];
+}
+
 @end

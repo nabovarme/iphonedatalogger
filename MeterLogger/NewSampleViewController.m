@@ -254,7 +254,7 @@
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
 
-    [self.cancelSaveDelegate NewSampleViewControllerDidCancel:self];
+    [self.cancelSaveDelegate newSampleViewControllerDidCancel:self];
     [self terminate];
 
 }
@@ -264,7 +264,7 @@
  ****************************/
 - (IBAction)save:(UIBarButtonItem *)sender {
         NSLog(@"sending done");
-        [self.cancelSaveDelegate NewSampleViewControllerDidSave:self];
+        [self.cancelSaveDelegate newSampleViewControllerDidSave:self];
     [self terminate];
 
 }
