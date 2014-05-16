@@ -5,3 +5,5 @@ Auto complete place name
 MEGA cleanup of table cell
 
 Bug: progress timer continues after cancel
+
+enable lock when view is canceled: [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
