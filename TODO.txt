@@ -1,5 +1,1 @@
-Save button to close to Place input field
-
-Auto complete place name
-
-MEGA cleanup of table cell
+moved to https://github.com/sloev/iphonedatalogger/issues
