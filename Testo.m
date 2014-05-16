@@ -155,6 +155,12 @@
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    [self.receiveDataProgressTimer invalidate];
+    self.receiveDataProgressTimer = nil;
+}
+
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
     
