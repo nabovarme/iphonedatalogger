@@ -127,12 +127,18 @@
 }
 
 - (IBAction)deleteSampleRowWithConfirm:(id)sender {
+/*
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                          destructiveButtonTitle:@"Delete"
                                               otherButtonTitles:nil];
     [sheet showFromToolbar:sender];
+ */
+//    NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
+//    NSArray *fetchedSamplesArray = [APP_DELEGATE getAllSamplesFromDevice:self.title];
+//    [context deleteObject:[fetchedSamplesArray objectAtIndex:indexPath.row]];
+//    [self updateTableView];
 }
 
 @end

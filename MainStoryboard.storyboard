@@ -132,44 +132,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-Zr-aDE">
-                                <rect key="frame" x="0.0" y="68" width="320" height="412"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-Zr-aDE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nch-mH-C4S">
-                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rzg-Wh-Sy3">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="save" id="56J-cw-DWa">
+                                        <connections>
+                                            <action selector="save:" destination="UNH-T8-ylU" id="ZWY-po-XvQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vqt-FD-k2C"/>
+                                    <barButtonItem systemItem="trash" id="bJB-Ko-pQa">
+                                        <connections>
+                                            <action selector="cancel:" destination="UNH-T8-ylU" id="Lb1-A1-6YS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-gf-lkw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title=" " id="Wrg-Nv-vcT">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cVa-d6-gsD">
-                                            <connections>
-                                                <action selector="cancel:" destination="UNH-T8-ylU" id="AYk-bw-Rr0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="6Dm-nZ-zXF">
-                                            <connections>
-                                                <action selector="save:" destination="UNH-T8-ylU" id="s7u-L2-Ijx"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Title" id="Caa-lP-XcY"/>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Co0-Zr-aDE" secondAttribute="trailing" id="2N2-YS-54N"/>
-                            <constraint firstItem="nch-mH-C4S" firstAttribute="leading" secondItem="Co0-Zr-aDE" secondAttribute="leading" id="8qo-Kt-WUJ"/>
-                            <constraint firstItem="Co0-Zr-aDE" firstAttribute="top" secondItem="nch-mH-C4S" secondAttribute="bottom" id="cvC-yB-fzi"/>
-                            <constraint firstItem="nch-mH-C4S" firstAttribute="trailing" secondItem="Co0-Zr-aDE" secondAttribute="trailing" id="m9Y-KA-XrG"/>
-                            <constraint firstItem="Co0-Zr-aDE" firstAttribute="leading" secondItem="3pF-ee-nh1" secondAttribute="leading" id="tWe-vi-4F9"/>
-                            <constraint firstItem="nch-mH-C4S" firstAttribute="top" secondItem="Hxg-wt-0ZJ" secondAttribute="bottom" constant="4" id="vcr-7q-lFl"/>
-                            <constraint firstItem="kTC-dH-pqH" firstAttribute="top" secondItem="Co0-Zr-aDE" secondAttribute="bottom" id="xjk-eH-LAx"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="Co0-Zr-aDE" id="krn-P3-rNn"/>
-                        <outlet property="saveButton" destination="6Dm-nZ-zXF" id="zcK-iB-t6D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYf-zM-RZY" userLabel="First Responder" sceneMemberID="firstResponder"/>

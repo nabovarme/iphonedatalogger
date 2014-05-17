@@ -82,7 +82,8 @@
     }
     else
     {
-        //set momentary data object
+        // new sample view
+        // set momentary data object
         self.data =[@"" mutableCopy];
 
         // if there is no data saved init sampleDataDict empty
@@ -107,11 +108,8 @@
 
         NSMutableDictionary *deviceDict = [[NSMutableDictionary alloc] initWithObjects:deviceValues forKeys:deviceKeys];
 
-        
         self.myDataObject.sampleDataDict = deviceDict;
 
-
-        // new sample view
         NSLog(@"mydataobject is empty");
         // start progress bar
         [self.receiveDataProgressView setHidden:NO];
@@ -308,18 +306,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        static NSString *CellIdentifier = @"KeyLabelValueTextfieldCellIdentifier";
-        KeyLabelValueTextfieldCell *cell = (KeyLabelValueTextfieldCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"KeyLabelValueTextfieldCellIdentifier";
+    KeyLabelValueTextfieldCell *cell = (KeyLabelValueTextfieldCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        if (cell == nil) {
-            NSArray* topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KeyLabelValueTextfieldCell" owner:self options:nil];
-            for (id currentObject in topLevelObjects) {
-                if ([currentObject isKindOfClass:[UITableViewCell class]]) {
-                    cell = (KeyLabelValueTextfieldCell *)currentObject;
-                    break;
-                }
+    if (cell == nil) {
+        NSArray* topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KeyLabelValueTextfieldCell" owner:self options:nil];
+        for (id currentObject in topLevelObjects) {
+            if ([currentObject isKindOfClass:[UITableViewCell class]]) {
+                cell = (KeyLabelValueTextfieldCell *)currentObject;
+                break;
             }
         }
+    }
     // Configure the cell.
 //    NSArray* keys = [self.myDataObject.sampleDataDict allKeys];
 
@@ -331,12 +329,12 @@
     //real keys is from sel.orderednames and value is from dict[self.orderednames[0]]
     NSInteger row=indexPath.row;
 
-    if(indexPath.section==1)
+    if(indexPath.section == 1)
     {
         row+=2;
     }
-    NSString * key=self.orderedNames[row];
-    NSString * value=self.myDataObject.sampleDataDict[key];
+    NSString *key = self.orderedNames[row];
+    NSString *value = self.myDataObject.sampleDataDict[key];
     
     cell.keyLabel.text = key;//   objectAtIndex:indexPath.section];
 
