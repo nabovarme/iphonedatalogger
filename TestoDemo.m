@@ -151,6 +151,15 @@
         
             [self.receiveDataProgressView setProgress:0.0 animated:YES];
         }
+        else {
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Insert MeterLogger Device"
+                                                             message:@"Inser Device in headphone plug"
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles: nil];
+            [alert show];
+
+        }
     }
 }
 
