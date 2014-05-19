@@ -52,7 +52,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
 
     AVAudioSession *session = [AVAudioSession sharedInstance];
-	session.delegate= self;
+	session.delegate = self;
 	if(session.inputIsAvailable){
 		[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
 	}else{
