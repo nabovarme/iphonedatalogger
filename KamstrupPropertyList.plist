@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Place</string>
+	<string>Effect</string>
+	<string>O2</string>
+	<string>CO2</string>
+	<string>CO</string>
+	<string>FlueGasTemp</string>
+	<string>ExcessAir</string>
+	<string>Draught</string>
+	<string>EffNet</string>
+	<string>AmbientCO</string>
+	<string>EffGross</string>
+	<string>DiffPress</string>
+	<string>AmbientTemp</string>
+	<string>UndilutedCO</string>
+</array>
+</plist>

@@ -23,6 +23,8 @@
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
+		D625CA8219355170009056C6 /* Kamstrup.m in Sources */ = {isa = PBXBuildFile; fileRef = D625CA8019355170009056C6 /* Kamstrup.m */; };
+		D625CA8319355170009056C6 /* Kamstrup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D625CA8119355170009056C6 /* Kamstrup.xib */; };
 		D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66DD019191E8E93008ABF0F /* Images.xcassets */; };
 		D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */; };
 		D6821830191C413800DC093A /* TestoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D682182E191C413800DC093A /* TestoDemo.m */; };
@@ -71,6 +73,9 @@
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
+		D625CA7F19355170009056C6 /* Kamstrup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kamstrup.h; sourceTree = "<group>"; };
+		D625CA8019355170009056C6 /* Kamstrup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kamstrup.m; sourceTree = "<group>"; };
+		D625CA8119355170009056C6 /* Kamstrup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Kamstrup.xib; sourceTree = "<group>"; };
 		D66DD019191E8E93008ABF0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestoPropertyList.plist; sourceTree = "<group>"; };
 		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
@@ -172,6 +177,7 @@
 				8F7E5A6C1920FBD700E39131 /* Custom UITableViewCell */,
 				8F9D6C251917A9F000235CDA /* Testo */,
 				D6821832191C413E00DC093A /* TestoDemo */,
+				D625CA8419355179009056C6 /* Kamstrup */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
@@ -188,6 +194,16 @@
 				D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */,
 			);
 			name = Testo;
+			sourceTree = "<group>";
+		};
+		D625CA8419355179009056C6 /* Kamstrup */ = {
+			isa = PBXGroup;
+			children = (
+				D625CA7F19355170009056C6 /* Kamstrup.h */,
+				D625CA8019355170009056C6 /* Kamstrup.m */,
+				D625CA8119355170009056C6 /* Kamstrup.xib */,
+			);
+			name = Kamstrup;
 			sourceTree = "<group>";
 		};
 		D6821832191C413E00DC093A /* TestoDemo */ = {
@@ -361,6 +377,7 @@
 				D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */,
 				8F7E5A711920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib in Resources */,
 				D6821831191C413800DC093A /* TestoDemo.xib in Resources */,
+				D625CA8319355170009056C6 /* Kamstrup.xib in Resources */,
 				D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */,
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,
 				8F24A460191FABBE001A393A /* TestoDemoPropertyList.plist in Resources */,
@@ -390,6 +407,7 @@
 				FBBD3D1715BE58970035F419 /* FSKSerialGenerator.mm in Sources */,
 				8F9D6C321917C4A100235CDA /* Testo.m in Sources */,
 				8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */,
+				D625CA8219355170009056C6 /* Kamstrup.m in Sources */,
 				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,
