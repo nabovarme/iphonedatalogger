@@ -25,6 +25,7 @@
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
 		D625CA8219355170009056C6 /* Kamstrup.m in Sources */ = {isa = PBXBuildFile; fileRef = D625CA8019355170009056C6 /* Kamstrup.m */; };
 		D625CA8319355170009056C6 /* Kamstrup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D625CA8119355170009056C6 /* Kamstrup.xib */; };
+		D625CA871935538B009056C6 /* KMP.m in Sources */ = {isa = PBXBuildFile; fileRef = D625CA861935538B009056C6 /* KMP.m */; };
 		D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66DD019191E8E93008ABF0F /* Images.xcassets */; };
 		D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */; };
 		D6821830191C413800DC093A /* TestoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D682182E191C413800DC093A /* TestoDemo.m */; };
@@ -76,6 +77,8 @@
 		D625CA7F19355170009056C6 /* Kamstrup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kamstrup.h; sourceTree = "<group>"; };
 		D625CA8019355170009056C6 /* Kamstrup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kamstrup.m; sourceTree = "<group>"; };
 		D625CA8119355170009056C6 /* Kamstrup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Kamstrup.xib; sourceTree = "<group>"; };
+		D625CA851935538B009056C6 /* KMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMP.h; sourceTree = "<group>"; };
+		D625CA861935538B009056C6 /* KMP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMP.m; sourceTree = "<group>"; };
 		D66DD019191E8E93008ABF0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestoPropertyList.plist; sourceTree = "<group>"; };
 		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				D625CA7F19355170009056C6 /* Kamstrup.h */,
 				D625CA8019355170009056C6 /* Kamstrup.m */,
 				D625CA8119355170009056C6 /* Kamstrup.xib */,
+				D625CA851935538B009056C6 /* KMP.h */,
+				D625CA861935538B009056C6 /* KMP.m */,
 			);
 			name = Kamstrup;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 				8F9D6C321917C4A100235CDA /* Testo.m in Sources */,
 				8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */,
 				D625CA8219355170009056C6 /* Kamstrup.m in Sources */,
+				D625CA871935538B009056C6 /* KMP.m in Sources */,
 				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,

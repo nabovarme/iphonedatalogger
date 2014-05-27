@@ -7,6 +7,7 @@
 //
 
 #import "Kamstrup.h"
+#import "KMP.h"
 #import "KeyLabelValueTextfieldCell.h"
 
 #define TESTO_DEMO_DATA_LENGTH (285.0f)
@@ -72,6 +73,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
+    KMP *myData = [[KMP alloc] init];
+    [myData getType];
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
