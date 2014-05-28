@@ -32,6 +32,7 @@
     NSLog(@"init");
     self = [super init];
     
+    
     return self;
     
 }
@@ -41,6 +42,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
     }
+    
     return self;
 }
 
@@ -58,12 +60,14 @@
 
 - (void)viewDidLoad
 {
+    self.navigationItem.backBarButtonItem.title = @"but This Works";
     NSLog(@"new sample view loaded");
     // assign delegate
     protocolHelper = [[ProtocolHelper alloc] init];
     [APP_DELEGATE.recognizer addReceiver:self];
     _operationQueue = [[NSOperationQueue alloc] init];
-    
+
+
     /*propertyList
     NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",self.deviceName];
     NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
@@ -254,7 +258,9 @@
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     NSLog(@"sending cancel");
 
-    [self.cancelSaveDelegate NewSampleViewControllerDidCancel:self];
+    //[self.cancelSaveDelegate NewSampleViewControllerDidCancel:self];
+    [self.navigationController popViewControllerAnimated:YES];
+
     [self terminate];
 
 }

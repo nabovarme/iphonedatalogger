@@ -146,10 +146,12 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"samples list received segue perform");
     if ([segue.identifier isEqualToString:@"NewSample"]) {
         NSLog(@"NewSample Segue");
         [(NewSampleViewController*) segue.destinationViewController setCancelSaveDelegate:self];
         [(NewSampleViewController*) segue.destinationViewController setDeviceName:self.title];
+
     }
         else if([segue.identifier isEqualToString:@"SampleDetails"]) {
             NSLog(@"sample details Segue");
@@ -172,6 +174,11 @@
             NSLog(@"%@",[tmp description]);
 
         }
+}
+- (IBAction)done:(UIStoryboardSegue *)segue
+{
+    NSLog(@"someone unwinded to samples list!!");
+    // do any clean up you want
 }
 
 #pragma mark - NewSampleViewControllerDelegate
