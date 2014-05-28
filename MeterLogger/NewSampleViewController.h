@@ -27,8 +27,8 @@
 
 //for data storage
 @property DeviceSampleDataObject *  myDataObject;
-- (IBAction)cancel:(UIBarButtonItem *)sender;
-- (IBAction)save:(UIBarButtonItem *)sender;
+-(void) terminate;
+
 - (DeviceSampleDataObject *)getDataObject;
 
 

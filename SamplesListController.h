@@ -12,10 +12,11 @@
 #import "Protocols.h"
 
 
-//@interface SamplesListController : UITableViewController <NewSampleViewControllerDelegate>{
-    @interface SamplesListController : UITableViewController <NewSampleViewControllerCancelSave>{
+@interface SamplesListController : UITableViewController
+{
     
 }
+- (void)updateTableView;
 
 
 @end

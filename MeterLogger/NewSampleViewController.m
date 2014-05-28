@@ -11,6 +11,7 @@
 #import "NSString+HexColor.h"
 #import "FSKSerialGenerator.h"
 #import "FSKRecognizer.h"
+#import "SamplesListController.h"
 #include <ctype.h>
 
 
@@ -155,7 +156,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"going back to table view");
+    NSLog(@"going back to samples list view");
+    [(SamplesListController *) segue.destinationViewController updateTableView];
+  //  [self terminate];
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
@@ -247,27 +251,6 @@
     [saveButton setEnabled:true];
 }
 
-/****************************
- cancel:
- used to tell delegate that cancel button is pressed
- ****************************/
-- (IBAction)cancel:(UIBarButtonItem *)sender {
-    NSLog(@"sending cancel");
-
-    [self.cancelSaveDelegate newSampleViewControllerDidCancel:self];
-    [self terminate];
-
-}
-/****************************
- save:
- used to tell delegate that done button is pressed
- ****************************/
-- (IBAction)save:(UIBarButtonItem *)sender {
-        NSLog(@"sending done");
-        [self.cancelSaveDelegate newSampleViewControllerDidSave:self];
-    [self terminate];
-
-}
 
 - (DeviceSampleDataObject *)getDataObject
 {

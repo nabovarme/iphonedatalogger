@@ -143,12 +143,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)cancel:(UIStoryboardSegue *)segue
+{
+    NSLog(@"cancel: someone unwinded to samples list!!");
+    // do any clean up you want
+    NewSampleViewController * controller = (NewSampleViewController*)segue.sourceViewController ;
+
+    [controller terminate];
+
+}
+- (IBAction)save:(UIStoryboardSegue *)segue
+{
+    NSLog(@"save: someone unwinded to samples list!!");
+    // do any clean up you want
+    NewSampleViewController * controller = (NewSampleViewController*)segue.sourceViewController ;
+     [self addSampleEntry:controller.getDataObject];
+    [controller terminate];
+     [self updateTableView];
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"NewSample"]) {
         NSLog(@"NewSample Segue");
-        [(NewSampleViewController*) segue.destinationViewController setCancelSaveDelegate:self];
+        //[(NewSampleViewController*) segue.destinationViewController setCancelSaveDelegate:self];
         [(NewSampleViewController*) segue.destinationViewController setDeviceName:self.title];
     }
         else if([segue.identifier isEqualToString:@"SampleDetails"]) {
@@ -174,25 +192,6 @@
         }
 }
 
-#pragma mark - NewSampleViewControllerDelegate
-
-- (void)newSampleViewControllerDidCancel:(NewSampleViewController *)controller
-{
-    NSLog(@"received cancel");
-
-    [controller dismissViewControllerAnimated:YES completion:nil];
-
-}
-
-- (void)newSampleViewControllerDidSave:(NewSampleViewController *)controller
-{
-    NSLog(@"received done");
-    [self addSampleEntry:controller.getDataObject];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    controller.cancelSaveDelegate=nil;
-    [self updateTableView];
-
-}
 
 - (IBAction)addSampleEntry:(DeviceSampleDataObject *)myDataObject
 {

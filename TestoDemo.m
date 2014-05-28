@@ -123,6 +123,8 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
+        //todo: put denne funktionalitet ind i newsampleviewcontroller
+        
         AVAudioSession *session = [AVAudioSession sharedInstance];
         
         // check if headphone jack in plugged in
