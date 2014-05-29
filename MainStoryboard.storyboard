@@ -92,6 +92,7 @@
                                     <barButtonItem systemItem="trash" id="9jt-Sj-vAX">
                                         <connections>
                                             <action selector="deleteSampleRowWithConfirm:" destination="2BH-XR-DLA" id="bky-US-c4T"/>
+                                            <segue destination="WKk-5c-fV7" kind="unwind" unwindAction="delete:" id="3oC-3c-fY2"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

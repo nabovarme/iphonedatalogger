@@ -87,11 +87,10 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [context deleteObject:[self.fetchedSamplesArray objectAtIndex:indexPath.row]];
-        [self updateTableView];
-    }
+
+    SamplesEntity * entity = [self.fetchedSamplesArray objectAtIndex:indexPath.row];
+    [APP_DELEGATE deleteEntityWithDeviceName:entity.deviceName andDate:entity.date];
+    [self updateTableView];
 }
 
 
@@ -161,6 +160,17 @@
     [controller terminate];
      [self updateTableView];
 }
+- (IBAction)delete:(UIStoryboardSegue *)segue
+{
+    NSLog(@"save: someone unwinded to samples list!!");
+    // do any clean up you want
+    SampleDetailsViewController * controller = (SampleDetailsViewController*)segue.sourceViewController ;
+    DeviceSampleDataObject * object=[controller getObject];
+    [APP_DELEGATE deleteEntityWithDeviceName:object.deviceName andDate:object.date];
+    [self updateTableView];
+}
+
+
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

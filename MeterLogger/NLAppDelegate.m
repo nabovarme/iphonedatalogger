@@ -202,7 +202,7 @@
     //Setting Entity to be Queried
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SamplesEntity"
                                               inManagedObjectContext:self.managedObjectContext];
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"deviceName = %@", deviceName];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"deviceName == %@", deviceName];
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:predicate];
 
@@ -217,6 +217,29 @@
     
     // Returning Fetched Records
     return fetchedRecords;
+}
+-(void)deleteEntityWithDeviceName:(NSString*)deviceName andDate:(NSDate *)date
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SamplesEntity"
+                                              inManagedObjectContext:self.managedObjectContext];
+    NSArray * args = [NSArray arrayWithObjects:
+                      [NSPredicate predicateWithFormat:@"deviceName == %@", deviceName],
+                      [NSPredicate predicateWithFormat:@"date == %@", date],
+                      nil];
+    NSPredicate * predicates = [NSCompoundPredicate andPredicateWithSubpredicates:args];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicates];
+    NSError* error;
+    
+    // Query on managedObjectContext With Generated fetchRequest
+    NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *record in fetchedRecords) {
+        [self.managedObjectContext deleteObject:record];
+        
+        
+    }
+    [self.managedObjectContext save:&error];
 }
 
 - (void) myStop

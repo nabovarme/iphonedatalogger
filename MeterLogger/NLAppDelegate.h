@@ -48,6 +48,8 @@
 //@property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
 //+ (NLAppDelegate*) getInstance;
 -(NSArray*)getAllSamplesFromDevice:(NSString*)deviceName;
+-(void)deleteEntityWithDeviceName:(NSString*)deviceName andDate:(NSDate *)date;
+
 - (void) myStop;
 - (void) myPlay;
 @end
