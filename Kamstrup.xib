@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Kamstrup">
@@ -17,29 +16,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="22" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="i6M-PB-jlK">
-                    <rect key="frame" x="0.0" y="9" width="320" height="550"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="22" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="i6M-PB-jlK">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="zna-Hk-vqy"/>
                         <outlet property="delegate" destination="-1" id="dkG-7F-okS"/>
                     </connections>
                 </tableView>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eov-Il-Jia">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="i6M-PB-jlK" secondAttribute="bottom" id="4MZ-Yl-rrX"/>
-                <constraint firstItem="i6M-PB-jlK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9Ca-qk-Mfl"/>
-                <constraint firstAttribute="trailing" secondItem="eov-Il-Jia" secondAttribute="trailing" id="A83-pI-Rm2"/>
-                <constraint firstItem="i6M-PB-jlK" firstAttribute="top" secondItem="eov-Il-Jia" secondAttribute="bottom" multiplier="9" id="H2v-77-LGR"/>
-                <constraint firstItem="eov-Il-Jia" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HMI-I1-EnS"/>
-                <constraint firstItem="eov-Il-Jia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qbk-16-erR"/>
-                <constraint firstAttribute="trailing" secondItem="i6M-PB-jlK" secondAttribute="trailing" id="rue-7h-9A2"/>
+                <constraint firstAttribute="trailing" secondItem="i6M-PB-jlK" secondAttribute="trailing" id="ArG-Oy-uZp"/>
+                <constraint firstItem="eov-Il-Jia" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Cm4-O5-9vP"/>
+                <constraint firstItem="i6M-PB-jlK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LQE-Bx-vKT"/>
+                <constraint firstItem="eov-Il-Jia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ug2-EJ-z0c"/>
+                <constraint firstItem="i6M-PB-jlK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="e5A-ZH-72G"/>
+                <constraint firstAttribute="trailing" secondItem="eov-Il-Jia" secondAttribute="trailing" id="hhV-MU-30T"/>
+                <constraint firstAttribute="bottom" secondItem="i6M-PB-jlK" secondAttribute="bottom" id="kcg-vr-Yep"/>
             </constraints>
         </view>
     </objects>

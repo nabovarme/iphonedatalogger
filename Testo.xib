@@ -26,14 +26,14 @@
                     </connections>
                 </tableView>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eov-Il-Jia">
-                    <rect key="frame" x="0.0" y="65" width="320" height="2"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="i6M-PB-jlK" secondAttribute="trailing" id="ArG-Oy-uZp"/>
-                <constraint firstItem="eov-Il-Jia" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="Cm4-O5-9vP"/>
+                <constraint firstItem="eov-Il-Jia" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Cm4-O5-9vP"/>
                 <constraint firstItem="i6M-PB-jlK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LQE-Bx-vKT"/>
                 <constraint firstItem="eov-Il-Jia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ug2-EJ-z0c"/>
                 <constraint firstItem="i6M-PB-jlK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="e5A-ZH-72G"/>
