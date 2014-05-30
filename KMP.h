@@ -16,10 +16,12 @@
 
 -(void)getType;
 -(void)getSerialNo;
--(void)setClock;
+-(void)setClock:(NSDate *)theDate;
 -(void)getRegister;
 -(void)putRegister;
 
 -(NSData *)crc16ForData:(NSData *)data;
+-(NSData *)kmpDate:(NSDate *)theDate;
+-(NSData *)kmpTime:(NSDate *)theDate;
 
 @end

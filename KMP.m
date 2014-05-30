@@ -13,6 +13,9 @@
 @synthesize frame;
 @synthesize crc16Table;
 
+
+#pragma mark - Init
+
 -(id)init {
     self = [super init];
     
@@ -55,10 +58,20 @@
     return self;
 }
 
+
+#pragma mark - KMP CIDs
+
 -(void)getType {
+    // start byte
     self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
+    
+    // data
     NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x01} length:2];
+    
+    // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
+    
+    // create frame
     [self.frame appendData:data];
     [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
     NSLog(@"%@", self.frame);
@@ -103,16 +116,42 @@
 }
 
 -(void)getSerialNo {
+    // start byte
     self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
+
+    // data
     NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x02} length:2];
+
+    // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
+    
+    // create frame
     [self.frame appendData:data];
     [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
     NSLog(@"%@", self.frame);
 }
 
--(void)setClock {
-	
+-(void)setClock:(NSDate *)theDate {
+    // start byte
+    self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
+    
+    // data
+    NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x09} length:2];
+    
+    NSMutableData *kmpDateTime = [[NSMutableData alloc] init];
+    [kmpDateTime appendData:[self kmpDate:theDate]];
+    [kmpDateTime appendData:[self kmpTime:theDate]];
+    [data appendData:kmpDateTime];
+    NSLog(@"%@", data);
+    
+    // append crc 16 to data
+    [data appendData:[self crc16ForData:data]];
+    
+    // create frame
+    [self.frame appendData:data];
+    [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
+    NSLog(@"%@", self.frame);
+
 }
 
 -(void)getRegister {
@@ -122,6 +161,9 @@
 -(void)putRegister {
 	
 }
+
+
+#pragma mark - Helper methods
 
 -(NSData *)crc16ForData:(NSData *)theData {
     char *buf = (char *)theData.bytes;
@@ -136,6 +178,58 @@
     unsigned char crc_low = (unsigned char)(crc & 0xff);
 
     return [[NSData alloc] initWithBytes:(unsigned char[]){crc_high, crc_low} length:2];
+}
+
+-(NSData *)kmpDate:(NSDate *)theDate {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:theDate];
+    
+    unsigned int year = (int)(components.year - 2000);
+    unsigned int month = (int)(components.month);
+    unsigned int day = (int)(components.day);
+    
+    NSString *dateString = [NSString stringWithFormat:@"%02d%02d%02d", year, month, day];
+    NSString *hexDate = [NSString stringWithFormat:@"%08x", dateString.intValue];
+    NSLog(@"%@", hexDate);
+
+    NSMutableData *result = [[NSMutableData alloc] init];
+    unsigned int i;
+    for (i = 0; i < 4; i++) {
+        NSRange range = NSMakeRange(2 * i, 2);
+        NSString* hexValue = [hexDate substringWithRange:range];
+        NSScanner* scanner = [NSScanner scannerWithString:hexValue];
+        unsigned int intValue;
+        [scanner scanHexInt:&intValue];
+        unsigned char uc = (unsigned char) intValue;
+        [result appendBytes:&uc length:1];
+    }
+    return result;
+}
+
+-(NSData *)kmpTime:(NSDate *)theDate {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:theDate];
+    
+    unsigned int hour = (int)(components.hour);
+    unsigned int minute = (int)(components.minute);
+    unsigned int second = (int)(components.second);
+    
+    NSString *dateString = [NSString stringWithFormat:@"%02d%02d%02d", hour, minute, second];
+    NSString *hexDate = [NSString stringWithFormat:@"%08x", dateString.intValue];
+    NSLog(@"%@", hexDate);
+    
+    NSMutableData *result = [[NSMutableData alloc] init];
+    unsigned int i;
+    for (i = 0; i < 4; i++) {
+        NSRange range = NSMakeRange(2 * i, 2);
+        NSString* hexValue = [hexDate substringWithRange:range];
+        NSScanner* scanner = [NSScanner scannerWithString:hexValue];
+        unsigned int intValue;
+        [scanner scanHexInt:&intValue];
+        unsigned char uc = (unsigned char) intValue;
+        [result appendBytes:&uc length:1];
+    }
+    return result;
 }
 
 @end
