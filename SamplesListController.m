@@ -142,6 +142,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 - (IBAction)cancel:(UIStoryboardSegue *)segue
 {
     NSLog(@"cancel: someone unwinded to samples list!!");
@@ -151,6 +152,7 @@
     [controller terminate];
 
 }
+
 - (IBAction)save:(UIStoryboardSegue *)segue
 {
     NSLog(@"save: someone unwinded to samples list!!");
@@ -160,6 +162,7 @@
     [controller terminate];
      [self updateTableView];
 }
+
 - (IBAction)delete:(UIStoryboardSegue *)segue
 {
     NSLog(@"save: someone unwinded to samples list!!");

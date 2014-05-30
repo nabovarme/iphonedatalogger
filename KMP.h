@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KMP : NSObject
+@interface KMP : NSObject;
 
-@property NSData *data;
+@property NSMutableData *frame;
+@property NSArray *crc16Table;
+
 
 -(void)getType;
 -(void)getSerialNo;
 -(void)setClock;
 -(void)getRegister;
 -(void)putRegister;
+
+-(NSData *)crc16ForData:(NSData *)data;
 
 @end
