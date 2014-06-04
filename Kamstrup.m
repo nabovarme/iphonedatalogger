@@ -26,6 +26,7 @@
 @end
 
 @implementation Kamstrup
+@synthesize kmp;
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
@@ -50,6 +51,9 @@
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
     self.state = NO;
+    
+    // set up kmp protocol
+    self.kmp = [[KMP alloc] init];
     
     self = [super init];
     return self;
@@ -145,14 +149,18 @@
 #endif
 
         if (headPhonesConnected) {
-            [self.sendRequestDelegate sendRequest:@"ff"];
+            [self.sendRequestDelegate sendRequest:@"01"];
         
             [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
-            // 285 characters
-            [self.sendRequestDelegate sendRequest:@"302e30303334202020202020526174696f0d0a352e38322520202020202020434f320d0a31352e3125202020202020204f320d0a31393870706d202020202020434f0d0a36312e38b043202020202020466c75656761732074656d700d0a3235352e3925202020202020457863657373206169720d0a2d2d2e2d6d6d48324f202020447261756768740d0a39332e362520202020202020454646206e65740d0a2d2d2e2d70706d2020202020416d6269656e7420434f0d0a38362e3025202020202020204546462067726f73730d0a2d2d2e2d6d6d48324f202020446966662e2070726573732e0d0a31382e36b043202020202020416d6269656e742074656d700d0a37303670706d202020202020556e64696c7574656420434f0d0a"];
+            [self.kmp getRegister:@1001];                   // send command getRegister to get the meters serial number
+            [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
+            self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
+            
+            // get data here...
         
-            [self.receiveDataProgressView setProgress:0.0 animated:YES];
+            //[self.receiveDataProgressView setProgress:0.0 animated:YES];
+            
         }
         else {
             UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Insert MeterLogger Device"
@@ -392,6 +400,14 @@
         [self.receiveDataProgressTimer invalidate];
         self.receiveDataProgressTimer = nil;
     }
+}
+
+#pragma mark - Stupid redundant code
+
+-(NSString *) dataToHexString:(NSData *) theData {
+    NSString *result = [[theData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    result = [result substringWithRange:NSMakeRange(1, [result length] - 2)];
+    return result;
 }
 
 

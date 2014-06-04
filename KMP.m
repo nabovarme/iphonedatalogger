@@ -3,7 +3,7 @@
 //  MeterLogger
 //
 //  Created by stoffer on 28/05/14.
-//  Copyright (c) 2014 9Lab. All rights reserved.
+//  Copyright (c) 2014 stoffer@skulp.net. All rights reserved.
 //
 
 #import "KMP.h"
@@ -11,7 +11,11 @@
 @implementation KMP
 
 @synthesize frame;
+@synthesize frameReceived;
+
+@synthesize responseData;
 @synthesize crc16Table;
+@synthesize registerUnitsTable;
 
 
 #pragma mark - Init
@@ -20,6 +24,9 @@
     self = [super init];
     
     self.frame = [[NSMutableData alloc] init];
+    self.responseData = [[NSMutableDictionary alloc] init];
+    self.frameReceived = NO;
+    
     self.crc16Table = @[
                         @0x0000, @0x1021, @0x2042, @0x3063, @0x4084, @0x50a5, @0x60c6, @0x70e7,
                         @0x8108, @0x9129, @0xa14a, @0xb16b, @0xc18c, @0xd1ad, @0xe1ce, @0xf1ef,
@@ -54,7 +61,30 @@
                         @0xef1f, @0xff3e, @0xcf5d, @0xdf7c, @0xaf9b, @0xbfba, @0x8fd9, @0x9ff8, 
                         @0x6e17, @0x7e36, @0x4e55, @0x5e74, @0x2e93, @0x3eb2, @0x0ed1, @0x1ef0
     ];
-
+    
+    self.registerUnitsTable = @{@0x01: @"Wh",
+                                @0x02: @"kWh",
+                                @0x03: @"MWh",
+                                @0x08: @"Gj",
+                                @0x0c: @"Gcal",
+                                @0x16: @"kW",
+                                @0x17: @"MW",
+                                @0x25: @"C",
+                                @0x26: @"K",
+                                @0x27: @"l",
+                                @0x28: @"m3",
+                                @0x29: @"l/h",
+                                @0x2a: @"m3/h",
+                                @0x2b: @"m3xC",
+                                @0x2c: @"ton",
+                                @0x2d: @"ton/h",
+                                @0x2e: @"h",
+                                @0x2f: @"clock",
+                                @0x30: @"date1",
+                                @0x32: @"date3",
+                                @0x33: @"number",
+                                @0x34: @"bar"};
+    
     return self;
 }
 
@@ -71,48 +101,13 @@
     // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
     
+    // stuff data
+    data = [[self kmpByteStuff:data] mutableCopy];
+    
     // create frame
     [self.frame appendData:data];
     [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
     NSLog(@"%@", self.frame);
-
-    /*
-	my $ctx = Digest::CRC->new(width=>16, init=>0x0000, xorout=>0x0000,
-                               refout=>0, poly=>0x1021, refin=>0, cont=>0);
-	
-	my $start_byte = chr(0x80);
-	my $dst = chr(0x3f);
-	my $cid = chr(0x01);
-	my $stop_byte = chr(0x0d);
-	
-	# calculate crc
-	my $i;
-	my $data = $dst . $cid;
-	for ($i = 0; $i < length($data); $i++) {
-		$ctx->add(substr($data, $i, 1));
-	}
-	my $calculated_crc = $ctx->digest;
-	my $calculated_crc_low = chr($calculated_crc & 0xff);
-	my $calculated_crc_high = chr($calculated_crc >> 8);
-    
-	# send
-	warn hexdump(data => $start_byte . $dst . $cid . $calculated_crc_high . $calculated_crc_low . $stop_byte, suppress_warnings => 1);
-	$port_obj->write($start_byte . $dst . $cid . $calculated_crc_high . $calculated_crc_low . $stop_byte);
-    
-	# receive
-	my $res = '';
-	my ($c, $s);
-	do {
-		($c, $s) = $port_obj->read(255);
-		if ($c) {
-			$res .= $s;
-		}
-	} while (ord($s) != 0x0d);
-    
-	warn hexdump(data => kmpByteUnstuff($res), suppress_warnings => 1);
-	return kmpByteUnstuff($res);
-    */
- 
 }
 
 -(void)getSerialNo {
@@ -124,6 +119,9 @@
 
     // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
+    
+    // stuff data
+    data = [[self kmpByteStuff:data] mutableCopy];
     
     // create frame
     [self.frame appendData:data];
@@ -139,27 +137,190 @@
     NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x09} length:2];
     
     NSMutableData *kmpDateTime = [[NSMutableData alloc] init];
-    [kmpDateTime appendData:[self kmpDate:theDate]];
-    [kmpDateTime appendData:[self kmpTime:theDate]];
+    [kmpDateTime appendData:[self kmpDateWithDate:theDate]];
+    [kmpDateTime appendData:[self kmpTimeWithDate:theDate]];
     [data appendData:kmpDateTime];
     NSLog(@"%@", data);
     
     // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
     
+    // stuff data
+    data = [[self kmpByteStuff:data] mutableCopy];
+    
     // create frame
     [self.frame appendData:data];
     [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
     NSLog(@"%@", self.frame);
-
 }
 
--(void)getRegister {
+-(void)getRegister:(NSNumber *)theRegister {
+    // start byte
+    self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
+    
+    // data
+    NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x10} length:2];
+    [data appendBytes:(unsigned char[]){0x01} length:1];  // number of registers
+    
+    unsigned char registerHigh = (unsigned char)(theRegister.intValue >> 8);
+    unsigned char registerLow = (unsigned char)(theRegister.intValue & 0xff);
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){registerHigh, registerLow} length:2]];
+    NSLog(@"%@", data);
+    
+    // append crc 16 to data
+    [data appendData:[self crc16ForData:data]];
+    
+    // stuff data
+    data = [[self kmpByteStuff:data] mutableCopy];
+    
+    // create frame
+    [self.frame appendData:data];
+    [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
+    NSLog(@"%@", self.frame);
+}
+
+-(void)putRegister:(NSNumber *)theRegister withPassword:(NSNumber *)thePassword andValue:(NSNumber *)theValue {
+    // start byte
+    self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
+    
+    // data
+    NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x11} length:2];
+//    [data appendBytes:(unsigned char[]){0x01} length:1];  // number of registers
+    
+    unsigned char passwordHigh = (unsigned char)(thePassword.intValue >> 8);
+    unsigned char passwordLow = (unsigned char)(thePassword.intValue & 0xff);
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){passwordHigh, passwordLow} length:2]];
+
+    unsigned char registerHigh = (unsigned char)(theRegister.intValue >> 8);
+    unsigned char registerLow = (unsigned char)(theRegister.intValue & 0xff);
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){registerHigh, registerLow} length:2]];
+
+    // unit
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){0x2e} length:1]];
+
+    // number of bytes - allways 4
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){0x04} length:1]];
+    
+    // sign and exponent
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){0x00} length:1]];
+
+    // value
+    int32_t value = theValue.intValue;
+    [data appendData:[NSData dataWithBytes:(unsigned char[]){value >> 24, value >> 16, value >> 8, value} length:4]];
+
+    NSLog(@"%@", data);
+    
+    // append crc 16 to data
+    [data appendData:[self crc16ForData:data]];
+    
+    // stuff data
+    data = [[self kmpByteStuff:data] mutableCopy];
+    
+    // create frame
+    [self.frame appendData:data];
+    [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
+    NSLog(@"%@", self.frame);
+    
 	
 }
 
--(void)putRegister {
-	
+#pragma mark - KMP Decoder
+
+-(void)decodeFrame:(NSData *)theFrame {
+    self.frameReceived = NO;
+    [self.frame appendData:theFrame];
+    if ([theFrame isEqualToData:[[NSData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]]) {
+        // end of data - get params from frame
+        unsigned char *bytes = (unsigned char*)self.frame.bytes;
+        
+        [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"starByte"];
+        [self.responseData setObject:[NSData dataWithBytes:(bytes + self.frame.length - 1) length:1] forKey:@"stopByte"];
+
+        // unstuff data
+        NSRange range = NSMakeRange(1, self.frame.length - 2);
+        NSData *unstuffedFrame = [self kmpByteUnstuff:[self.frame subdataWithRange:range]];
+        bytes = (unsigned char*)unstuffedFrame.bytes;
+
+        [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"dst"];
+        [self.responseData setObject:[NSData dataWithBytes:(bytes + 1) length:1] forKey:@"cid"];
+        range = NSMakeRange(unstuffedFrame.length - 2, 2);
+        [self.responseData setObject:[unstuffedFrame subdataWithRange:range] forKey:@"crc"];
+
+        // calculate crc
+        range = NSMakeRange(0, unstuffedFrame.length - 2);
+        NSData *data = [unstuffedFrame subdataWithRange:range];
+
+        if ([[self crc16ForData:data] isEqualToData:responseData[@"crc"]]) {
+            NSLog(@"crc ok");
+        }
+
+        // decode application layer
+        unsigned char *cid_ptr = (unsigned char *)[self.responseData[@"cid"] bytes];
+        unsigned char cid = cid_ptr[0];
+        if (cid == 0x01) {         // GetType
+            NSLog(@"GetType");
+            
+            range = NSMakeRange(2, 2);
+            [self.responseData setObject:[data subdataWithRange:range] forKey:@"meterType"];
+            
+            range = NSMakeRange(4, 2);
+            [self.responseData setObject:[data subdataWithRange:range] forKey:@"swRevision"];
+        }
+        else if (cid == 0x02) {
+            NSLog(@"GetSerialNo"); // GetSerialNo
+            range = NSMakeRange(2, data.length - 2);
+            bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+            unsigned int serialNo = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
+            [self.responseData setObject:[NSNumber numberWithUnsignedInt:serialNo] forKey:@"serialNo"] ;
+            NSLog(@"%d", serialNo);
+        }
+        else if (cid == 0x10) {    // GetRegister
+            NSLog(@"GetRegister");
+            if (data.length > 2) {
+                range = NSMakeRange(2, 2);
+                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                int16_t rid = (bytes[0] << 8) + bytes[1];
+                [self.responseData setObject:[NSNumber numberWithUnsignedInt:rid] forKey:@"rid"];
+
+                range = NSMakeRange(4, 1);
+                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                unsigned int unit = bytes[0];
+                [self.responseData setObject:[NSNumber numberWithUnsignedInt:unit] forKey:@"unit"];
+
+                range = NSMakeRange(5, 1);
+                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                unsigned int length = bytes[0];
+                [self.responseData setObject:[NSNumber numberWithUnsignedInt:length] forKey:@"length"];
+            
+                range = NSMakeRange(6, 1);
+                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                unsigned int siEx = bytes[0];
+                [self.responseData setObject:[NSNumber numberWithUnsignedInt:siEx] forKey:@"siEx"];
+            
+                range = NSMakeRange(7, 4);
+                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                int32_t value = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
+                //[self.responseData setObject:[data subdataWithRange:range] forKey:@"value"];
+                [self.responseData setObject:[NSNumber numberWithInt:value] forKey:@"value"];
+            }
+            else {
+                NSLog(@"No registers in reply");
+            }
+        }
+        else if (cid == 0x11) {    // PutRegister
+            NSLog(@"PutRegister");
+            range = NSMakeRange(2, data.length - 2);
+            NSLog(@"%@", [data subdataWithRange:range]);
+        }
+        self.frameReceived = YES;
+        CFShow((__bridge CFTypeRef)(self.responseData));
+
+    }
+    else if ([theFrame isEqualToData:[[NSData alloc] initWithBytes:(unsigned char[]){0x06} length:1]]) {
+        NSLog(@"SetClock no CRC");      // SetClock
+        self.frameReceived = YES;
+        CFShow((__bridge CFTypeRef)(self.responseData));
+    }
 }
 
 
@@ -169,18 +330,32 @@
     char *buf = (char *)theData.bytes;
 
     int counter;
-    unsigned short crc = 0;
+    unsigned short crc16 = 0;
     for (counter = 0; counter < theData.length; counter++) {
-        crc = (crc << 8) ^ [crc16Table[((crc >> 8) ^ *(char *)buf++) & 0x00FF] intValue];
+        crc16 = (crc16 << 8) ^ [crc16Table[((crc16 >> 8) ^ *(char *)buf++) & 0x00FF] intValue];
     }
-    //return crc;
-    unsigned char crc_high = (unsigned char)(crc >> 8);
-    unsigned char crc_low = (unsigned char)(crc & 0xff);
+    unsigned char crcHigh = (unsigned char)(crc16 >> 8);
+    unsigned char crcLow = (unsigned char)(crc16 & 0xff);
 
-    return [[NSData alloc] initWithBytes:(unsigned char[]){crc_high, crc_low} length:2];
+    return [[NSData alloc] initWithBytes:(unsigned char[]){crcHigh, crcLow} length:2];
 }
 
--(NSData *)kmpDate:(NSDate *)theDate {
+-(NSNumber *)numberForKmpNumber:(NSNumber *)theNumber andSiEx:(NSNumber *)theSiEx {
+    int32_t number = theNumber.intValue;
+    int8_t siEx = theSiEx.intValue & 0xff;
+    int8_t signI = (siEx & 0x80) >> 7;
+    int8_t signE = (siEx & 0x40) >> 6;
+    int8_t exponent = (siEx & 0x3f);
+    float res = powf(-1, (float)signI) * number * powf(10, (powf(-1, (float)signE) * exponent));
+    if ((res - (int)res) == 0.0) {
+        return [NSNumber numberWithInt:(int32_t)res];
+    }
+    else {
+        return [NSNumber numberWithFloat:res];
+    }
+}
+
+-(NSData *)kmpDateWithDate:(NSDate *)theDate {
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:theDate];
     
@@ -206,7 +381,7 @@
     return result;
 }
 
--(NSData *)kmpTime:(NSDate *)theDate {
+-(NSData *)kmpTimeWithDate:(NSDate *)theDate {
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:theDate];
     
@@ -231,5 +406,60 @@
     }
     return result;
 }
+
+-(NSDate *)dateWithKmpDate:(NSData *)theData {
+    return [NSDate date];
+}
+
+-(NSDate *)dateWithKmpTime:(NSData *)theData {
+    return [NSDate date];
+}
+
+-(NSData *)kmpByteStuff:(NSData *)theData {
+    unsigned char *bytes = (unsigned char *)theData.bytes;
+    unsigned long len = theData.length;
+    
+    NSMutableData *stuffedData = [[NSMutableData alloc] init];
+    
+    unsigned long i;
+    for (i = 0; i < len; i++) {
+        if ((bytes[i] == 0x80) || (bytes[i] == 0x40) || (bytes[i] == 0x0d) || (bytes[i] == 0x06) || (bytes[i] == 0x1b)) {
+            [stuffedData appendBytes:(unsigned char[]){0x1b, bytes[i] ^ 0xff} length:2];
+            NSLog(@"0x80 stuffed");
+        }
+        else {
+            [stuffedData appendBytes:(bytes + i) length:1];
+        }
+    }
+    return stuffedData;
+}
+
+-(NSData *)kmpByteUnstuff:(NSData *)theData {
+    unsigned char *bytes = (unsigned char *)theData.bytes;
+    unsigned long len = theData.length;
+    
+    unsigned char unstuffedBytes[len];
+    unsigned long unstuffedLen = 0;
+    
+    unsigned long i;
+    unsigned j = 0;
+    for (i = 0; i < len; i++) {
+        if (bytes[i] == 0x1b) {          // byte stuffing special char
+            unstuffedBytes[j++] = bytes[i + 1] ^ 0xff;
+            unstuffedLen++;
+            i++;
+            NSLog(@"unstuffed %02x%02x to %02x", bytes[i - 1], bytes[i], unstuffedBytes[j - 1]);
+        }
+        else {
+            unstuffedBytes[j++] = bytes[i];
+            unstuffedLen++;
+        }
+    }
+    
+    NSData *unstuffedData = [NSData dataWithBytes:unstuffedBytes length:unstuffedLen];
+    return unstuffedData;
+}
+
+
 
 @end
