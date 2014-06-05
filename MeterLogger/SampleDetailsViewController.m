@@ -27,8 +27,29 @@
     return self;
 }
 
+- (IBAction)confirmDelete
+{
+    UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"Confirm delete"
+                                                     message:@""
+                                                    delegate:self
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:@"Cancel", nil];
+    [alert show];
+}
 
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 0)
+    {
+        NSLog(@"ok");
+        [self performSegueWithIdentifier:@"deleteDetailsSegue" sender:self];
 
+    }
+    else
+    {
+        NSLog(@"cancel");
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

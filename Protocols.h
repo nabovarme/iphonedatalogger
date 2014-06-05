@@ -32,6 +32,7 @@
 
 @protocol DeviceViewControllerSendRequest  <NSObject>
 @optional
+//updateProgressBar
 -(void) sendRequest:(NSString*) hexStrings;
 @end
 

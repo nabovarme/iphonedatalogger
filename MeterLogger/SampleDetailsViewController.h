@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NLAppDelegate.h"
 
-@interface SampleDetailsViewController : UIViewController
+@interface SampleDetailsViewController : UIViewController <UIAlertViewDelegate>
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (atomic,retain) DeviceSampleDataObject* myDataObject;
 - (IBAction)showActivityView:(id)sender;

@@ -167,7 +167,9 @@
 {
     NSLog(@"save: someone unwinded to samples list!!");
     // do any clean up you want
-    SampleDetailsViewController * controller = (SampleDetailsViewController*)segue.sourceViewController ;
+    SampleDetailsViewController *controller = (SampleDetailsViewController*)segue.sourceViewController ;
+    //(SampleDetailsViewController*)segue.sourceViewController
+    
     DeviceSampleDataObject * object=[controller getObject];
     [APP_DELEGATE deleteEntityWithDeviceName:object.deviceName andDate:object.date];
     [self updateTableView];

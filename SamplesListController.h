@@ -12,7 +12,7 @@
 #import "Protocols.h"
 
 
-@interface SamplesListController : UITableViewController
+@interface SamplesListController : UITableViewController 
 {
     
 }

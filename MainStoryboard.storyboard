@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pjY-4A-7mU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pjY-4A-7mU">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -91,8 +91,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="E5x-4M-IaW"/>
                                     <barButtonItem systemItem="trash" id="9jt-Sj-vAX">
                                         <connections>
-                                            <action selector="deleteSampleRowWithConfirm:" destination="2BH-XR-DLA" id="bky-US-c4T"/>
-                                            <segue destination="WKk-5c-fV7" kind="unwind" unwindAction="delete:" id="3oC-3c-fY2"/>
+                                            <action selector="confirmDelete" destination="2BH-XR-DLA" id="dfi-Sk-ia2"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -116,6 +115,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="tFO-Uu-B1M" id="vLM-7s-2Jx"/>
+                        <segue destination="WKk-5c-fV7" kind="unwind" identifier="deleteDetailsSegue" unwindAction="delete:" id="yBM-cd-XP8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azw-aB-dni" userLabel="First Responder" sceneMemberID="firstResponder"/>

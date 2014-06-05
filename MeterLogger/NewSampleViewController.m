@@ -157,6 +157,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSLog(@"going back to samples list view");
+    [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
     [(SamplesListController *) segue.destinationViewController updateTableView];
   //  [self terminate];
 

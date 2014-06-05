@@ -133,6 +133,7 @@
         AVAudioSession *session = [AVAudioSession sharedInstance];
         
         // check if headphone jack in plugged in
+        // should go to NewSampleViewController with popup
         BOOL headPhonesConnected = NO;
 #ifdef __i386__
         NSLog(@"Running in the simulator");
