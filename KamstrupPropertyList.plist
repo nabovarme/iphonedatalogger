@@ -4,17 +4,6 @@
 <array>
 	<string>Place</string>
 	<string>Effect</string>
-	<string>O2</string>
-	<string>CO2</string>
-	<string>CO</string>
-	<string>FlueGasTemp</string>
-	<string>ExcessAir</string>
-	<string>Draught</string>
-	<string>EffNet</string>
-	<string>AmbientCO</string>
-	<string>EffGross</string>
-	<string>DiffPress</string>
-	<string>AmbientTemp</string>
-	<string>UndilutedCO</string>
+	<string>Serial</string>
 </array>
 </plist>

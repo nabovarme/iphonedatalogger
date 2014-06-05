@@ -22,19 +22,32 @@
 @property BOOL state;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
+/*
+enum proto_state_t {
+    stateInitState,
+    stateProtoSelected,
+    
+    stateFrameSent,
+    stateFrameReceived
+};
+*/
+//@property enum proto_state_t protoState;
+
+@property KMP *kmp;
 
 @end
 
+
 @implementation Kamstrup
-@synthesize kmp;
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
-@synthesize detailsTableView;
-@synthesize state;
 @synthesize orderedNames;
-
 @synthesize data;
+@synthesize state;
+@synthesize detailsTableView;
+//@synthesize protoState;
+@synthesize kmp;
 
 -(id)init
 {
@@ -51,6 +64,8 @@
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
     self.state = NO;
+    
+    //self.protoState = stateInitState;
     
     // set up kmp protocol
     self.kmp = [[KMP alloc] init];
@@ -151,15 +166,15 @@
 
         if (headPhonesConnected) {
             [self.sendRequestDelegate sendRequest:@"01"];
+            //self.protoState = stateProtoSelected;
         
             [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
             [self.kmp getRegister:@1001];                   // send command getRegister to get the meters serial number
             [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
+            //self.protoState = stateFrameSent;
             self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
             
-            // get data here...
-        
             //[self.receiveDataProgressView setProgress:0.0 animated:YES];
             
         }
@@ -208,89 +223,15 @@
     [self.receiveDataProgressView setHidden:YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     
-    NSRegularExpression *regex;
-    NSString *str;
-    NSTextCheckingResult *match;
-    NSString *testoValue;
-    
-    //datastring is set
-    str = self.data;
+    // decode kmp frame
+    [self.kmp decodeFrame:data.mutableCopy];
+    if (self.kmp.frameReceived) {
+        self.myDataObject.sampleDataDict[@"Serial"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
 
-    // match CO2
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO2\\s" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"CO2"] = testoValue;
-
-    // match O2
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+O2" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"O2"] = testoValue;
-
-    // match CO
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+CO\\s" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"CO"] = testoValue;
-
-    // match Fluegas temp
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Fluegas temp" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"FlueGasTemp"] = testoValue;
-
-    // match Excess air
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Excess air" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"ExcessAir"] = testoValue;
-
-    // match Draught
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Draught" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"Draught"] = testoValue;
-
-    // match EFF net
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+EFF net" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"EffNet"] = testoValue;
-
-    // match Ambient CO
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Ambient CO" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"AmbientCO"] = testoValue;
-
-    // match EFF gross
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+EFF gross" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"EffGross"] = testoValue;
-
-    // match Diff. press.
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Diff. press." options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"DiffPress"] = testoValue;
-
-    // match Ambient temp
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Ambient temp" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"AmbientTemp"] = testoValue;
-
-    // match Undiluted CO
-    regex = [NSRegularExpression regularExpressionWithPattern:@"\\s+(.*?)\\s+Undiluted CO" options:0 error:NULL];
-    match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-    testoValue = [str substringWithRange:[match rangeAtIndex:1]];
-    self.myDataObject.sampleDataDict[@"UndilutedCO"] = testoValue;
-
-    //update table view
-    self.state = YES;
-    [self.detailsTableView reloadData];
+        //update table view
+        self.state = YES;
+        [self.detailsTableView reloadData];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

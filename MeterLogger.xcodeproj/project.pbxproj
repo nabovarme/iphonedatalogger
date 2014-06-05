@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BFE5B98194005D2008FEA1C /* KamstrupPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE5B97194005D2008FEA1C /* KamstrupPropertyList.plist */; };
 		8F0866921911067E0075391E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0866911911067E0075391E /* CoreData.framework */; };
 		8F086695191106C60075391E /* SamplesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F086693191106C60075391E /* SamplesModel.xcdatamodeld */; };
 		8F086699191117730075391E /* SamplesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F086698191117730075391E /* SamplesEntity.m */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BFE5B97194005D2008FEA1C /* KamstrupPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KamstrupPropertyList.plist; sourceTree = "<group>"; };
 		8F0866911911067E0075391E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8F086694191106C60075391E /* SamplesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SamplesModel.xcdatamodel; sourceTree = "<group>"; };
 		8F086697191117730075391E /* SamplesEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplesEntity.h; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				D625CA7F19355170009056C6 /* Kamstrup.h */,
 				D625CA8019355170009056C6 /* Kamstrup.m */,
 				D625CA8119355170009056C6 /* Kamstrup.xib */,
+				2BFE5B97194005D2008FEA1C /* KamstrupPropertyList.plist */,
 				D625CA851935538B009056C6 /* KMP.h */,
 				D625CA861935538B009056C6 /* KMP.m */,
 			);
@@ -387,6 +390,7 @@
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,
 				8F24A460191FABBE001A393A /* TestoDemoPropertyList.plist in Resources */,
 				8F9D6C331917C4A100235CDA /* Testo.xib in Resources */,
+				2BFE5B98194005D2008FEA1C /* KamstrupPropertyList.plist in Resources */,
 				8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
