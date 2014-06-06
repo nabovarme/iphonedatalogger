@@ -513,8 +513,10 @@
 				GCC_PREFIX_HEADER = "MeterLogger/MeterLogger-Prefix.pch";
 				INFOPLIST_FILE = "MeterLogger/MeterLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = MeterLogger;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_RIG = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -532,8 +534,10 @@
 				GCC_PREFIX_HEADER = "MeterLogger/MeterLogger-Prefix.pch";
 				INFOPLIST_FILE = "MeterLogger/MeterLogger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = MeterLogger;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_RIG = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

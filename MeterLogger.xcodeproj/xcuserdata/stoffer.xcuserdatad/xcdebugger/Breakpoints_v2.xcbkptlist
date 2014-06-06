@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MeterLogger/SampleDetailsViewController.m"
-            timestampString = "421867478.679371"
+            timestampString = "423757134.429206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-showActivityView:"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-removeCurrentDetailViewController"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MeterLogger/NewSampleViewController.m"
-            timestampString = "423012464.623837"
+            timestampString = "423759159.290837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "-presentDetailController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MeterLogger/SampleDetailsViewController.m"
-            timestampString = "421974727.56522"
+            timestampString = "423757134.429206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "-deleteSampleRowWithConfirm:"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-showActivityView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

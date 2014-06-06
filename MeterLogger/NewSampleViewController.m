@@ -80,11 +80,24 @@
                                 @"delegate" : self,
                                 @"dataObject":dataObject
                                 };
-    
-    [self presentDetailController:(UIViewController *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
 
+    [self presentDetailController:(UIViewController *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
+    
     [super viewDidLoad];
     
+}
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 0)
+    {
+        NSLog(@"ok");
+        [self performSegueWithIdentifier:@"noHeadphonesConnected" sender:self];
+        
+    }
+    else
+    {
+        NSLog(@"cancel");
+    }
 }
 - (void)presentDetailController:(UIViewController*)detailVC{
     

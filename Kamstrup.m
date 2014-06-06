@@ -145,26 +145,7 @@ enum proto_state_t {
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        
-        // check if headphone jack in plugged in
-        // should go to NewSampleViewController with popup
-        BOOL headPhonesConnected = NO;
-#ifdef __i386__
-        NSLog(@"Running in the simulator");
-        headPhonesConnected = YES;
-#else
-        NSLog(@"Running on a device");
-        NSArray *availableOutputs = [session currentRoute].outputs;
-        for (AVAudioSessionPortDescription *portDescription in availableOutputs) {
-            NSLog(@"%@", portDescription.portType);
-            if ([portDescription.portType isEqualToString:AVAudioSessionPortHeadphones]) {
-                headPhonesConnected = YES;
-            }
-        }
-#endif
-
-        if (headPhonesConnected) {
+      
             [self.sendRequestDelegate sendRequest:@"01"];
             //self.protoState = stateProtoSelected;
         
@@ -177,18 +158,11 @@ enum proto_state_t {
             
             //[self.receiveDataProgressView setProgress:0.0 animated:YES];
             
-        }
-        else {
-            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Insert MeterLogger Device"
-                                                             message:@"Inser Device in headphone plug"
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles: nil];
-            [alert show];
-
-        }
+        
+  
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {

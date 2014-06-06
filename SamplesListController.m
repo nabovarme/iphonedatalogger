@@ -15,6 +15,8 @@
 @interface SamplesListController ()
 @property (nonatomic,strong)NSArray* fetchedSamplesArray;
 @property (nonatomic,strong)NSDateFormatter* dateFormatter;
+
+
 @end
 
 
@@ -41,6 +43,7 @@
     [dateFormatter setLocale:[NSLocale currentLocale]];
     
     [self updateTableView];
+    
 
 }
 
@@ -142,6 +145,42 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)newSampleButtonPressed:(UIBarButtonItem *)sender {
+    NSLog(@"new sample button pressed");
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    
+    // check if headphone jack in plugged in
+    // should go to NewSampleViewController with popup
+    BOOL headPhonesConnected = NO;
+#ifdef __i386__
+    NSLog(@"Running in the simulator");
+    headPhonesConnected = YES;
+#else
+    NSLog(@"Running on a device");
+    NSArray *availableOutputs = [session currentRoute].outputs;
+    for (AVAudioSessionPortDescription *portDescription in availableOutputs) {
+        NSLog(@"%@", portDescription.portType);
+        if ([portDescription.portType isEqualToString:AVAudioSessionPortHeadphones]) {
+            headPhonesConnected = YES;
+        }
+    }
+#endif
+    
+    if (!headPhonesConnected)
+    {
+        NSLog(@"headphones not connected");
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Insert MeterLogger Device"
+                                                         message:@"Insert Device in headphone plug"
+                                                        delegate:self
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    else{
+        [self performSegueWithIdentifier:@"NewSample" sender:self];
+    }
+}
 
 - (IBAction)cancel:(UIStoryboardSegue *)segue
 {
@@ -162,6 +201,7 @@
     [controller terminate];
      [self updateTableView];
 }
+
 
 - (IBAction)delete:(UIStoryboardSegue *)segue
 {

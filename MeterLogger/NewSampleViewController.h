@@ -13,7 +13,7 @@
 
 @class NewSampleViewController;
 
-@interface NewSampleViewController : UIViewController <CharReceiver,DeviceViewControllerSendRequest>{
+@interface NewSampleViewController : UIViewController <CharReceiver,DeviceViewControllerSendRequest,UIAlertViewDelegate>{
 //    id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
 //    id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
 }
