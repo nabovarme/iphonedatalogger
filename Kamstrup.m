@@ -301,11 +301,11 @@
     UITextField *placeTextfield = (UITextField *)[placeCell viewWithTag:100];
     
     myIP = [NSIndexPath indexPathForRow:1 inSection:0];
-    id effectCell=[self.detailsTableView cellForRowAtIndexPath:myIP];
-    UITextField *effectTextfield = (UITextField *)[effectCell viewWithTag:100];
+    id commentCell=[self.detailsTableView cellForRowAtIndexPath:myIP];
+    UITextField *commentTextfield = (UITextField *)[commentCell viewWithTag:100];
 
     self.myDataObject.placeName = placeTextfield.text;
-    self.myDataObject.sampleDataDict[@"Effect"] = effectTextfield.text;
+    self.myDataObject.sampleDataDict[@"Comment"] = commentTextfield.text;
     
 
     return self.myDataObject;
