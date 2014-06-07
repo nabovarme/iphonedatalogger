@@ -155,7 +155,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
     
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get hour counter
     [self.sendRequestDelegate sendRequest:@"01"];
@@ -166,7 +166,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
 
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get flow temperature
     [self.sendRequestDelegate sendRequest:@"01"];
@@ -177,7 +177,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
 
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get return flow temperature
     [self.sendRequestDelegate sendRequest:@"01"];
@@ -188,7 +188,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get temperature difference
     [self.sendRequestDelegate sendRequest:@"01"];
@@ -199,7 +199,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get flow in flow
     [self.sendRequestDelegate sendRequest:@"01"];
@@ -210,7 +210,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get flow in return flow
     [self.sendRequestDelegate sendRequest:@"01"];
@@ -221,7 +221,7 @@
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
-    [NSThread sleepForTimeInterval:3.5];
+    [NSThread sleepForTimeInterval:2.2];
     
     // get power
     [self.sendRequestDelegate sendRequest:@"01"];
