@@ -229,7 +229,8 @@
 -(void)decodeFrame:(NSData *)theFrame {
     self.frameReceived = NO;
     [self.frame appendData:theFrame];
-    if ([theFrame isEqualToData:[[NSData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]]) {
+    unsigned char *bytes = theFrame.bytes;
+    if (bytes[theFrame.length - 1] == 0x0d) {
         // end of data - get params from frame
         unsigned char *bytes = (unsigned char*)self.frame.bytes;
         
@@ -316,7 +317,7 @@
         CFShow((__bridge CFTypeRef)(self.responseData));
 
     }
-    else if ([theFrame isEqualToData:[[NSData alloc] initWithBytes:(unsigned char[]){0x06} length:1]]) {
+    else if (bytes[theFrame.length - 1] == 0x06) {
         NSLog(@"SetClock no CRC");      // SetClock
         self.frameReceived = YES;
         CFShow((__bridge CFTypeRef)(self.responseData));

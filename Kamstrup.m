@@ -18,7 +18,8 @@
 @interface Kamstrup ()
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
-@property NSMutableString *data;
+@property NSMutableData *data;
+@property NSMutableString *dataString;
 @property BOOL state;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
@@ -44,6 +45,7 @@ enum proto_state_t {
 @synthesize myDataObject;
 @synthesize orderedNames;
 @synthesize data;
+@synthesize dataString;
 @synthesize state;
 @synthesize detailsTableView;
 //@synthesize protoState;
@@ -106,7 +108,7 @@ enum proto_state_t {
     {
         // new sample view
         // set momentary data object
-        self.data =[@"" mutableCopy];
+        self.dataString =[@"" mutableCopy];
 
         // if there is no data saved init sampleDataDict empty
         // load keys from property list
@@ -170,13 +172,17 @@ enum proto_state_t {
     // Dispose of any resources that can be recreated.
 }
 
-- (void)receivedChar:(char)input;
+- (void)receivedChar:(unsigned char)input;
 {
     // save incoming data do our sampleDataDict
-    [self.data appendFormat:@"%c", input];
     
-    NSLog(@"Kamstrup received %c", input);
-    [self.receiveDataProgressView setProgress:(0.5 + [self.data length]/(float)TESTO_DEMO_DATA_LENGTH/2) animated:YES];
+    [self.dataString appendFormat:@"%c", input];
+
+    NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
+    [self.data appendData:inputData];
+    
+    NSLog(@"Kamstrup received %02x", input);
+    [self.receiveDataProgressView setProgress:(0.5 + [self.dataString length]/(float)TESTO_DEMO_DATA_LENGTH/2) animated:YES];
 
     if (self.receiveDataProgressTimer) {
         // stop it
@@ -192,13 +198,14 @@ enum proto_state_t {
 }
 
 - (void)doneReceiving {
-    NSLog(@"Done receiving %@", self.data);
+    NSLog(@"Done receiving %@", self.dataString);
+//    NSData *data = [NSData dataWithBytes:self.dataString.UTF8String length:self.dataString.length];
     
     [self.receiveDataProgressView setHidden:YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     
     // decode kmp frame
-    [self.kmp decodeFrame:data.mutableCopy];
+    [self.kmp decodeFrame:[NSData dataWithBytes:self.dataString.UTF8String length:self.dataString.length]];
     if (self.kmp.frameReceived) {
         self.myDataObject.sampleDataDict[@"Serial"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
 
