@@ -22,16 +22,6 @@
 @property BOOL state;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
-/*
-enum proto_state_t {
-    stateInitState,
-    stateProtoSelected,
-    
-    stateFrameSent,
-    stateFrameReceived
-};
-*/
-//@property enum proto_state_t protoState;
 
 @property KMP *kmp;
 
@@ -46,7 +36,6 @@ enum proto_state_t {
 @synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
-//@synthesize protoState;
 @synthesize kmp;
 
 -(id)init
@@ -64,9 +53,7 @@ enum proto_state_t {
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
     self.state = NO;
-    
-    //self.protoState = stateInitState;
-    
+
     // set up kmp protocol
     self.kmp = [[KMP alloc] init];
     
@@ -145,21 +132,9 @@ enum proto_state_t {
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
-      
-            [self.sendRequestDelegate sendRequest:@"01"];
-            //self.protoState = stateProtoSelected;
-        
-            [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-        
-            [self.kmp getRegister:@1001];                   // send command getRegister to get the meters serial number
-            [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
-            //self.protoState = stateFrameSent;
-            self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
-            
-            //[self.receiveDataProgressView setProgress:0.0 animated:YES];
-            
-        
-  
+        [NSThread detachNewThreadSelector:@selector(sendKMPRequest) toTarget:self withObject:nil];
+
+        //[self.receiveDataProgressView setProgress:0.0 animated:YES];
     }
 }
 
@@ -168,6 +143,94 @@ enum proto_state_t {
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)sendKMPRequest {
+    // get serial number
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@1001];                   // send command getRegister to get the meters serial number
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
+    
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get hour counter
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@1004];                   // send command getRegister to get the meters hour counter
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
+
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get flow temperature
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@86];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
+
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get return flow temperature
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@87];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
+    
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get temperature difference
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@89];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
+    
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get flow in flow
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@74];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
+    
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get flow in return flow
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@75];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
+    
+    [NSThread sleepForTimeInterval:3.5];
+    
+    // get power
+    [self.sendRequestDelegate sendRequest:@"01"];
+    
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    
+    [self.kmp getRegister:@80];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
 }
 
 - (void)receivedChar:(unsigned char)input;
@@ -193,7 +256,31 @@ enum proto_state_t {
     // decode kmp frame
     [self.kmp decodeFrame:self.data];
     if (self.kmp.frameReceived) {
-        self.myDataObject.sampleDataDict[@"Serial"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        if ([self.kmp.responseData[@"rid"] isEqual:@1001]) {
+            self.myDataObject.sampleDataDict[@"Serial"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@1004]) {
+            self.myDataObject.sampleDataDict[@"Hours"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@86]) {
+            self.myDataObject.sampleDataDict[@"Flow temp."] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@87]) {
+            self.myDataObject.sampleDataDict[@"Return flow temp."] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@89]) {
+            self.myDataObject.sampleDataDict[@"Temp. diff."] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@74]) {
+            self.myDataObject.sampleDataDict[@"Flow in flow"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@75]) {
+            self.myDataObject.sampleDataDict[@"Flow in return flow"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        else if ([self.kmp.responseData[@"rid"] isEqual:@80]) {
+            self.myDataObject.sampleDataDict[@"Power"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
+        }
+        self.data = [[NSMutableData alloc] init];       // clear data after use
 
         //update table view
         self.state = YES;

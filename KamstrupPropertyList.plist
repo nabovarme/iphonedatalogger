@@ -3,7 +3,14 @@
 <plist version="1.0">
 <array>
 	<string>Place</string>
-	<string>Effect</string>
+	<string>Comment</string>
 	<string>Serial</string>
+	<string>Hours</string>
+	<string>Flow temp.</string>
+	<string>Return flow temp.</string>
+	<string>Temp. diff.</string>
+	<string>Flow in flow</string>
+	<string>Flow in return flow</string>
+	<string>Power</string>
 </array>
 </plist>
