@@ -4,13 +4,14 @@
 <array>
 	<string>Place</string>
 	<string>Comment</string>
-	<string>Serial</string>
-	<string>Hours</string>
-	<string>Flow temp.</string>
-	<string>Return flow temp.</string>
-	<string>Temp. diff.</string>
-	<string>Flow in flow</string>
-	<string>Flow in return flow</string>
-	<string>Power</string>
+	<string>Serial no. (unique number for each meter)</string>
+	<string>Program no. ABCCCCCC</string>
+	<string>Operational hour counter</string>
+	<string>Current flow temperature</string>
+	<string>Current return flow temperature</string>
+	<string>Current temperature difference</string>
+	<string>Current flow in flow</string>
+	<string>Current flow in return flow</string>
+	<string>Current flow in return flow</string>
 </array>
 </plist>

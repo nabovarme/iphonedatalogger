@@ -15,6 +15,7 @@
 
 @property NSMutableDictionary *responseData;
 @property NSArray *crc16Table;
+@property NSDictionary *registerIDTable;
 @property NSDictionary *registerUnitsTable;
 
 
