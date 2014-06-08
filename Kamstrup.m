@@ -181,7 +181,7 @@
         [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
         self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
         
-        [NSThread sleepForTimeInterval:9.5];
+        [NSThread sleepForTimeInterval:10.0];
     }
 }
 
