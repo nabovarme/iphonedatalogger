@@ -146,6 +146,45 @@
 }
 
 - (void)sendKMPRequest {
+    // read KamstrupPropertyList.plist to get rid's to send
+    NSString *kamstrupPlist = [[NSBundle mainBundle] pathForResource:@"KamstrupPropertyList" ofType:@"plist"];
+    NSArray *registerNameArray = [NSArray arrayWithContentsOfFile:kamstrupPlist];
+    
+    // get rid's
+    NSMutableArray *ridArray = [NSMutableArray array];
+    for (NSString *registerName in registerNameArray) {
+        NSNumber *rid = [[self.kmp.registerIDTable allKeysForObject:registerName] lastObject];
+        if (rid) {
+            NSLog(@"rid %@ value \"%@\"", rid, registerName);
+            if (![ridArray containsObject:rid]) {
+                // add unique rid's to rids
+                [ridArray addObject:rid];
+            }
+        }
+    }
+    for (unsigned int i = 0; i < (unsigned int)ceil(ridArray.count / 8.0); i++) {
+        unsigned int remainingRidCount = ridArray.count - i * 8;
+        
+        NSArray *registerOctet;
+        if (remainingRidCount >= 8) {
+            NSRange range = NSMakeRange(8 * i, 8);
+            registerOctet = [ridArray subarrayWithRange:range];
+        }
+        else {
+            NSRange range = NSMakeRange(8 * i, remainingRidCount);
+            registerOctet = [ridArray subarrayWithRange:range];
+        }
+        
+        [self.sendRequestDelegate sendRequest:@"01"];
+        [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+        [self.kmp prepareFrameWithRegistersFromArray:registerOctet];
+        [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+        self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
+        
+        [NSThread sleepForTimeInterval:14.0];
+    }
+    
+    /*
     [self.sendRequestDelegate sendRequest:@"01"];
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     [self.kmp prepareFrameWithRegisters:@1001, @1004, @86, @87, @89, @74, @75, @80, nil];
@@ -159,7 +198,7 @@
     [self.kmp prepareFrameWithRegisters:@152, nil];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
-    
+    */
 }
 
 - (void)receivedChar:(unsigned char)input;

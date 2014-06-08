@@ -22,7 +22,7 @@
 -(void)getType;
 -(void)getSerialNo;
 -(void)setClock:(NSDate *)theDate;
--(void)prepareFrameWithRegisters:(NSNumber *)theRegister, ...;
+-(void)prepareFrameWithRegistersFromArray:(NSArray *)theRegisterArray;
 -(void)putRegister:(NSNumber *)theRegister withPassword:(NSNumber *)thePassword andValue:(NSNumber *)theValue;
 
 
