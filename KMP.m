@@ -296,6 +296,8 @@
         }
         else {
             NSLog(@"crc error");
+            self.frameReceived = NO;
+            return;
         }
 
         // decode application layer
