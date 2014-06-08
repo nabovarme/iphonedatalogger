@@ -47,6 +47,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO"
+                                                            forKey:@"debugUI"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [AVAudioSession sharedInstance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];

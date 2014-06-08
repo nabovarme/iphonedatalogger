@@ -29,6 +29,7 @@
 		D625CA871935538B009056C6 /* KMP.m in Sources */ = {isa = PBXBuildFile; fileRef = D625CA861935538B009056C6 /* KMP.m */; };
 		D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66DD019191E8E93008ABF0F /* Images.xcassets */; };
 		D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */; };
+		D679E5111943EDE1006BF517 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D679E5101943EDE1006BF517 /* Settings.bundle */; };
 		D6821830191C413800DC093A /* TestoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D682182E191C413800DC093A /* TestoDemo.m */; };
 		D6821831191C413800DC093A /* TestoDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D682182F191C413800DC093A /* TestoDemo.xib */; };
 		FBBD3CD415BE57A90035F419 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBD3CD315BE57A90035F419 /* UIKit.framework */; };
@@ -83,6 +84,7 @@
 		D625CA861935538B009056C6 /* KMP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMP.m; sourceTree = "<group>"; };
 		D66DD019191E8E93008ABF0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestoPropertyList.plist; sourceTree = "<group>"; };
+		D679E5101943EDE1006BF517 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
 		D682182E191C413800DC093A /* TestoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestoDemo.m; sourceTree = "<group>"; };
 		D682182F191C413800DC093A /* TestoDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestoDemo.xib; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		FBBD3CDA15BE57A90035F419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D679E5101943EDE1006BF517 /* Settings.bundle */,
 				FBBD3CDB15BE57A90035F419 /* MeterLogger-Info.plist */,
 				FBBD3CDC15BE57A90035F419 /* InfoPlist.strings */,
 				FBBD3CDF15BE57A90035F419 /* main.m */,
@@ -385,6 +388,7 @@
 				D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */,
 				8F7E5A711920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib in Resources */,
 				D6821831191C413800DC093A /* TestoDemo.xib in Resources */,
+				D679E5111943EDE1006BF517 /* Settings.bundle in Resources */,
 				D625CA8319355170009056C6 /* Kamstrup.xib in Resources */,
 				D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */,
 				8F39B6EF19092BB700ADA8F4 /* MainStoryboard.storyboard in Resources */,

@@ -166,7 +166,12 @@
     }
 #endif
     
-    if (!headPhonesConnected)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL debugUI = [defaults boolForKey:@"debugUI"];
+    
+    NSLog(@"headPhonesConnected: %@", headPhonesConnected ? @"YES" : @"NO");
+    NSLog(@"debugUI: %@", debugUI ? @"YES" : @"NO");
+    if (!(headPhonesConnected || debugUI))
     {
         NSLog(@"headphones not connected");
         UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Insert MeterLogger Device"
