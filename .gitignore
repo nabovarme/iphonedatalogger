@@ -14,3 +14,7 @@ MeterLogger.xcodeproj/project.xcworkspace/xcuserdata/johannes.xcuserdatad/UserIn
 *.xcuserstate
 
 MeterLogger.xcodeproj/project.xcworkspace/xcuserdata/stoffer.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcbkptlist
+
+MeterLogger.xcodeproj/xcuserdata/stoffer.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
