@@ -154,7 +154,7 @@
     NSLog(@"%@", self.frame);
 }
 
--(void)getRegister:(NSNumber *)theRegister {
+-(void)prepareFrameWithRegister:(NSNumber *)theRegister {
     // start byte
     self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
     
@@ -165,7 +165,6 @@
     unsigned char registerHigh = (unsigned char)(theRegister.intValue >> 8);
     unsigned char registerLow = (unsigned char)(theRegister.intValue & 0xff);
     [data appendData:[NSData dataWithBytes:(unsigned char[]){registerHigh, registerLow} length:2]];
-    NSLog(@"%@", data);
     
     // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
@@ -176,40 +175,44 @@
     // create frame
     [self.frame appendData:data];
     [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
-    NSLog(@"%@", self.frame);
+    NSLog(@"frame: %@", self.frame);
 }
 
--(void)putRegister:(NSNumber *)theRegister withPassword:(NSNumber *)thePassword andValue:(NSNumber *)theValue {
+-(void)prepareFrameWithRegisters:(NSNumber *)theRegister, ... {
+    // process varargs to array
+    NSMutableArray *arguments=[[NSMutableArray alloc] init];
+    id eachObject;
+    va_list argumentList;
+    if (theRegister) {
+        [arguments addObject: theRegister];
+        va_start(argumentList, theRegister);
+        while ((eachObject = va_arg(argumentList, id))) {
+            [arguments addObject: eachObject];
+        }
+        va_end(argumentList);
+    }
+    NSLog(@"%@", arguments);
+    if (arguments.count > 8) {
+        // maximal number of 8 registers can be read with one request
+        NSRange range = NSMakeRange(0, 7);
+        arguments = [[arguments subarrayWithRange:range] mutableCopy];
+        NSLog(@"prepareFrameWithRegisters: number of registers was > 8, last ones ommitted");
+    }
+
     // start byte
     self.frame = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x80} length:1];
     
     // data
-    NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x11} length:2];
-//    [data appendBytes:(unsigned char[]){0x01} length:1];  // number of registers
-    
-    unsigned char passwordHigh = (unsigned char)(thePassword.intValue >> 8);
-    unsigned char passwordLow = (unsigned char)(thePassword.intValue & 0xff);
-    [data appendData:[NSData dataWithBytes:(unsigned char[]){passwordHigh, passwordLow} length:2]];
+    NSMutableData *data = [[NSMutableData alloc] initWithBytes:(unsigned char[]){0x3f, 0x10} length:2];
+    [data appendBytes:(unsigned char[]){arguments.count} length:1];  // number of registers
 
-    unsigned char registerHigh = (unsigned char)(theRegister.intValue >> 8);
-    unsigned char registerLow = (unsigned char)(theRegister.intValue & 0xff);
-    [data appendData:[NSData dataWithBytes:(unsigned char[]){registerHigh, registerLow} length:2]];
-
-    // unit
-    [data appendData:[NSData dataWithBytes:(unsigned char[]){0x2e} length:1]];
-
-    // number of bytes - allways 4
-    [data appendData:[NSData dataWithBytes:(unsigned char[]){0x04} length:1]];
-    
-    // sign and exponent
-    [data appendData:[NSData dataWithBytes:(unsigned char[]){0x00} length:1]];
-
-    // value
-    int32_t value = theValue.intValue;
-    [data appendData:[NSData dataWithBytes:(unsigned char[]){value >> 24, value >> 16, value >> 8, value} length:4]];
-
-    NSLog(@"%@", data);
-    
+    unsigned char registerHigh;
+    unsigned char registerLow;
+    for (NSNumber *reg in arguments) {
+        registerHigh = (unsigned char)(reg.intValue >> 8);
+        registerLow = (unsigned char)(reg.intValue & 0xff);
+        [data appendData:[NSData dataWithBytes:(unsigned char[]){registerHigh, registerLow} length:2]];
+    }
     // append crc 16 to data
     [data appendData:[self crc16ForData:data]];
     
@@ -219,10 +222,9 @@
     // create frame
     [self.frame appendData:data];
     [self.frame appendData:[[NSMutableData alloc] initWithBytes:(unsigned char[]){0x0d} length:1]];
-    NSLog(@"%@", self.frame);
-    
-	
+    NSLog(@"frame: %@", self.frame);
 }
+
 
 #pragma mark - KMP Decoder
 
@@ -278,31 +280,41 @@
         else if (cid == 0x10) {    // GetRegister
             NSLog(@"GetRegister");
             if (data.length > 2) {
-                range = NSMakeRange(2, 2);
-                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                int16_t rid = (bytes[0] << 8) + bytes[1];
-                [self.responseData setObject:[NSNumber numberWithUnsignedInt:rid] forKey:@"rid"];
+                for (uint8_t i = 0; i < ((data.length - 2) / 9); i++) {     // 9 bytes per register
+                    
+                    range = NSMakeRange(9 * i + 2, 2);
+                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                    int16_t rid = (bytes[0] << 8) + bytes[1];
+                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:rid] forKey:@"rid"];
 
-                range = NSMakeRange(4, 1);
-                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                unsigned int unit = bytes[0];
-                [self.responseData setObject:[NSNumber numberWithUnsignedInt:unit] forKey:@"unit"];
+                    [self.responseData setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithUnsignedInt:rid]];
 
-                range = NSMakeRange(5, 1);
-                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                unsigned int length = bytes[0];
-                [self.responseData setObject:[NSNumber numberWithUnsignedInt:length] forKey:@"length"];
+                    
+                    range = NSMakeRange(9 * i + 4, 1);
+                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                    unsigned int unit = bytes[0];
+                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:unit] forKey:@"unit"];
+                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:unit] forKey:@"unit"];
+
+                    range = NSMakeRange(9 * i + 5, 1);
+                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                    unsigned int length = bytes[0];
+                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:length] forKey:@"length"];
+                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:length] forKey:@"length"];
             
-                range = NSMakeRange(6, 1);
-                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                unsigned int siEx = bytes[0];
-                [self.responseData setObject:[NSNumber numberWithUnsignedInt:siEx] forKey:@"siEx"];
+                    range = NSMakeRange(9 * i + 6, 1);
+                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                    unsigned int siEx = bytes[0];
+                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:siEx] forKey:@"siEx"];
+                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:siEx] forKey:@"siEx"];
             
-                range = NSMakeRange(7, 4);
-                bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                int32_t value = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
-                //[self.responseData setObject:[data subdataWithRange:range] forKey:@"value"];
-                [self.responseData setObject:[NSNumber numberWithInt:value] forKey:@"value"];
+                    range = NSMakeRange(9 * i + 7, 4);
+                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
+                    int32_t value = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
+                    //[self.responseData setObject:[NSNumber numberWithInt:value] forKey:@"value"];
+                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:value] forKey:@"value"];
+                }
+
             }
             else {
                 NSLog(@"No registers in reply");

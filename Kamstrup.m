@@ -146,12 +146,19 @@
 }
 
 - (void)sendKMPRequest {
+    [self.sendRequestDelegate sendRequest:@"01"];
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    [self.kmp prepareFrameWithRegisters:@1001, @1004, @86, @87, @89, @74, @75, @80, nil];
+    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
+    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
+
+    /*
     // get serial number
     [self.sendRequestDelegate sendRequest:@"01"];
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@1001];                   // send command getRegister to get the meters serial number
+    [self.kmp prepareFrameWithRegister:@1001];                   // send command getRegister to get the meters serial number
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
     
@@ -162,7 +169,7 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@1004];                   // send command getRegister to get the meters hour counter
+    [self.kmp prepareFrameWithRegister:@1004];                   // send command getRegister to get the meters hour counter
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];   // DEBUG stupid redundant code
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
 
@@ -173,7 +180,7 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@86];
+    [self.kmp prepareFrameWithRegister:@86];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
 
@@ -184,7 +191,7 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@87];
+    [self.kmp prepareFrameWithRegister:@87];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
@@ -195,7 +202,7 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@89];
+    [self.kmp prepareFrameWithRegister:@89];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
@@ -206,7 +213,7 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@74];
+    [self.kmp prepareFrameWithRegister:@74];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
@@ -217,7 +224,7 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@75];
+    [self.kmp prepareFrameWithRegister:@75];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
     
@@ -228,9 +235,10 @@
     
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     
-    [self.kmp getRegister:@80];
+    [self.kmp prepareFrameWithRegister:@80];
     [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
     self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];
+    */
 }
 
 - (void)receivedChar:(unsigned char)input;
@@ -256,6 +264,22 @@
     // decode kmp frame
     [self.kmp decodeFrame:self.data];
     if (self.kmp.frameReceived) {
+        self.myDataObject.sampleDataDict[@"Serial"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@1001][@"value"] andSiEx:self.kmp.responseData[@1001][@"siEx"]] stringValue];
+
+        self.myDataObject.sampleDataDict[@"Hours"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@1004][@"value"] andSiEx:self.kmp.responseData[@1004][@"siEx"]] stringValue];
+        
+        self.myDataObject.sampleDataDict[@"Flow temp."] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@86][@"value"] andSiEx:self.kmp.responseData[@86][@"siEx"]] stringValue];
+        
+        self.myDataObject.sampleDataDict[@"Return flow temp."] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@87][@"value"] andSiEx:self.kmp.responseData[@87][@"siEx"]] stringValue];
+        
+        self.myDataObject.sampleDataDict[@"Temp. diff."] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@89][@"value"] andSiEx:self.kmp.responseData[@89][@"siEx"]] stringValue];
+        
+        self.myDataObject.sampleDataDict[@"Flow in flow"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@74][@"value"] andSiEx:self.kmp.responseData[@74][@"siEx"]] stringValue];
+        
+        self.myDataObject.sampleDataDict[@"Flow in return flow"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@75][@"value"] andSiEx:self.kmp.responseData[@75][@"siEx"]] stringValue];
+        
+        self.myDataObject.sampleDataDict[@"Power"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@80][@"value"] andSiEx:self.kmp.responseData[@80][@"siEx"]] stringValue];
+        /*
         if ([self.kmp.responseData[@"rid"] isEqual:@1001]) {
             self.myDataObject.sampleDataDict[@"Serial"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
         }
@@ -280,6 +304,7 @@
         else if ([self.kmp.responseData[@"rid"] isEqual:@80]) {
             self.myDataObject.sampleDataDict[@"Power"] = [[self.kmp numberForKmpNumber:self.kmp.responseData[@"value"] andSiEx:self.kmp.responseData[@"siEx"]] stringValue];
         }
+        */
         self.data = [[NSMutableData alloc] init];       // clear data after use
 
         //update table view
