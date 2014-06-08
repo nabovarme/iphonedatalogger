@@ -250,7 +250,7 @@
     
     [self.receiveDataProgressView setProgress:(0.5 + self.data.length/(float)TESTO_DEMO_DATA_LENGTH/2) animated:YES];
 
-    if ((input == 0x0d) || (input == 0x0d)) {   // last character from kamstrup
+    if ((input == 0x0d) || (input == 0x06)) {   // last character from kamstrup
         [self doneReceiving];
     }
 }
