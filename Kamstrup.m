@@ -181,24 +181,8 @@
         [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
         self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
         
-        [NSThread sleepForTimeInterval:14.0];
+        [NSThread sleepForTimeInterval:9.5];
     }
-    
-    /*
-    [self.sendRequestDelegate sendRequest:@"01"];
-    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-    [self.kmp prepareFrameWithRegisters:@1001, @1004, @86, @87, @89, @74, @75, @80, nil];
-    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
-    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
-
-    [NSThread sleepForTimeInterval:10.0];
-
-    [self.sendRequestDelegate sendRequest:@"01"];
-    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-    [self.kmp prepareFrameWithRegisters:@152, nil];
-    [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
-    self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
-    */
 }
 
 - (void)receivedChar:(unsigned char)input;

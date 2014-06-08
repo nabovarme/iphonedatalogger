@@ -5,9 +5,6 @@
 	<string>Place</string>
 	<string>Comment</string>
 	<string>Serial no. (unique number for each meter)</string>
-	<string>Program no. ABCCCCCC</string>
-	<string>Config no. DDDEE</string>
-	<string>Config no. FFGGMN</string>
 	<string>Operational hour counter</string>
 	<string>Current flow temperature</string>
 	<string>Current return flow temperature</string>
@@ -15,5 +12,10 @@
 	<string>Current flow in flow</string>
 	<string>Current flow in return flow</string>
 	<string>Current power calculated on the basis of V1-T1-T2</string>
+	<string>Program no. ABCCCCCC</string>
+	<string>Config no. DDDEE</string>
+	<string>Config no. FFGGMN</string>
+	<string>Software edition</string>
+	<string>Software check sum</string>
 </array>
 </plist>
