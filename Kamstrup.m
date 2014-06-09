@@ -16,6 +16,7 @@
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
 @interface Kamstrup ()
+@property NSOperationQueue *sendKMPRequestOperationQueue;
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
 @property NSMutableData *data;
@@ -31,6 +32,7 @@
 @implementation Kamstrup
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
+@synthesize sendKMPRequestOperationQueue;
 @synthesize myDataObject;
 @synthesize orderedNames;
 @synthesize data;
@@ -132,7 +134,17 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
-        [NSThread detachNewThreadSelector:@selector(sendKMPRequest) toTarget:self withObject:nil];
+        self.sendKMPRequestOperationQueue = [[NSOperationQueue alloc] init];
+
+        NSInvocationOperation *operation = [NSInvocationOperation alloc];
+        operation = [operation initWithTarget:self
+                                     selector:@selector(sendKMPRequest:)
+                                       object:operation];
+        
+        [self.sendKMPRequestOperationQueue addOperation:operation];
+
+        //sendKMPRequestThread = [[NSThread alloc] initWithTarget:self selector:@selector(sendKMPRequest) object:nil];
+        //[sendKMPRequestThread start];
 
         //[self.receiveDataProgressView setProgress:0.0 animated:YES];
     }
@@ -145,7 +157,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendKMPRequest {
+- (void)sendKMPRequest:(NSOperation *)theOperation {
     // read KamstrupPropertyList.plist to get rid's to send
     NSString *kamstrupPlist = [[NSBundle mainBundle] pathForResource:@"KamstrupPropertyList" ofType:@"plist"];
     NSArray *registerNameArray = [NSArray arrayWithContentsOfFile:kamstrupPlist];
@@ -163,6 +175,10 @@
         }
     }
     for (unsigned int i = 0; i < (unsigned int)ceil(ridArray.count / 8.0); i++) {
+        if ([theOperation isCancelled]) {
+            return;
+        }
+        
         unsigned int remainingRidCount = ridArray.count - i * 8;
         
         NSArray *registerOctet;
@@ -227,6 +243,9 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     [self.receiveDataProgressTimer invalidate];
     self.receiveDataProgressTimer = nil;
+    [self.sendKMPRequestOperationQueue cancelAllOperations];
+    self.sendKMPRequestOperationQueue = nil;
+    NSLog(@"viewDidDisappear");
 }
 
 - (DeviceSampleDataObject *)getDataObject
