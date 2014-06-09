@@ -7,14 +7,17 @@
 //
 
 #import "SampleDetailsViewController.h"
+#import "MeterShareActivity.h"
 
 @interface SampleDetailsViewController ()
 @property UIViewController  *currentDetailViewController;
+@property UIPopoverController *popoverController;
 
 @end
 
 @implementation SampleDetailsViewController
 @synthesize myDataObject;
+@synthesize popoverController;
 
 - (id)initWithViewController:(UIViewController*)viewController{
     
@@ -142,10 +145,41 @@
     NSMutableArray *itemsToShare = [@[shareText] mutableCopy];
     [itemsToShare addObject:self.myDataObject.sampleDataDict.debugDescription];
     
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    MeterShareActivity *ca = [[MeterShareActivity alloc]init];
+    UIActivityViewController *activityVC =
+    [[UIActivityViewController alloc] initWithActivityItems:itemsToShare
+                                      applicationActivities:[NSArray arrayWithObject:ca]];
+
     [activityVC setValue:shareText forKeyPath:@"subject"];
     activityVC.excludedActivityTypes = @[];
-    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    activityVC.completionHandler = ^(NSString *activityType, BOOL completed)
+    {
+        NSLog(@" activityType: %@", activityType);
+        NSLog(@" completed: %i", completed);
+    };
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+        
+        CGRect rect = [[UIScreen mainScreen] bounds];
+        
+        [self.popoverController
+         presentPopoverFromRect:rect inView:self.view
+         permittedArrowDirections:0
+         animated:YES];
+    }
+    else
+    {
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+    
+
+    //UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    //[activityVC setValue:shareText forKeyPath:@"subject"];
+    //activityVC.excludedActivityTypes = @[];
+    //[self presentViewController:activityVC animated:YES completion:nil];
 }
 
 - (IBAction)deleteSampleRowWithConfirm:(id)sender {

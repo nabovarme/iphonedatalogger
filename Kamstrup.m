@@ -291,7 +291,7 @@
     // Configure the cell.
 //    NSArray* keys = [self.myDataObject.sampleDataDict allKeys];
 
-    NSLog(@"%d, %d",indexPath.row,indexPath.section);
+    //NSLog(@"%d, %d",indexPath.row,indexPath.section);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 //    lol+=10;

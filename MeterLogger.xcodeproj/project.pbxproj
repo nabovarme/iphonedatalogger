@@ -30,6 +30,7 @@
 		D66DD01A191E8E93008ABF0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66DD019191E8E93008ABF0F /* Images.xcassets */; };
 		D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */; };
 		D679E5111943EDE1006BF517 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D679E5101943EDE1006BF517 /* Settings.bundle */; };
+		D679E5141945FD08006BF517 /* MeterShareActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D679E5131945FD08006BF517 /* MeterShareActivity.m */; };
 		D6821830191C413800DC093A /* TestoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D682182E191C413800DC093A /* TestoDemo.m */; };
 		D6821831191C413800DC093A /* TestoDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D682182F191C413800DC093A /* TestoDemo.xib */; };
 		FBBD3CD415BE57A90035F419 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBD3CD315BE57A90035F419 /* UIKit.framework */; };
@@ -85,6 +86,8 @@
 		D66DD019191E8E93008ABF0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestoPropertyList.plist; sourceTree = "<group>"; };
 		D679E5101943EDE1006BF517 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
+		D679E5121945FD08006BF517 /* MeterShareActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeterShareActivity.h; path = ../MeterShareActivity.h; sourceTree = "<group>"; };
+		D679E5131945FD08006BF517 /* MeterShareActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeterShareActivity.m; path = ../MeterShareActivity.m; sourceTree = "<group>"; };
 		D682182D191C413800DC093A /* TestoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestoDemo.h; sourceTree = "<group>"; };
 		D682182E191C413800DC093A /* TestoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestoDemo.m; sourceTree = "<group>"; };
 		D682182F191C413800DC093A /* TestoDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestoDemo.xib; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				8F39B6EE19092BB700ADA8F4 /* MainStoryboard.storyboard */,
 				8FC90FBA190E78B80052E48D /* ProtocolHelper.h */,
 				8FC90FBB190E78B80052E48D /* ProtocolHelper.m */,
+				D679E5121945FD08006BF517 /* MeterShareActivity.h */,
+				D679E5131945FD08006BF517 /* MeterShareActivity.m */,
 			);
 			name = myInterface;
 			sourceTree = "<group>";
@@ -266,7 +271,6 @@
 				FBBD3CE215BE57AA0035F419 /* NLAppDelegate.h */,
 				FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */,
 				FBBD3D0015BE58970035F419 /* Dependencies */,
-				D66DD019191E8E93008ABF0F /* Images.xcassets */,
 				FBBD3CDA15BE57A90035F419 /* Supporting Files */,
 			);
 			path = MeterLogger;
@@ -275,6 +279,7 @@
 		FBBD3CDA15BE57A90035F419 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D66DD019191E8E93008ABF0F /* Images.xcassets */,
 				D679E5101943EDE1006BF517 /* Settings.bundle */,
 				FBBD3CDB15BE57A90035F419 /* MeterLogger-Info.plist */,
 				FBBD3CDC15BE57A90035F419 /* InfoPlist.strings */,
@@ -422,6 +427,7 @@
 				8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */,
 				D625CA8219355170009056C6 /* Kamstrup.m in Sources */,
 				D625CA871935538B009056C6 /* KMP.m in Sources */,
+				D679E5141945FD08006BF517 /* MeterShareActivity.m in Sources */,
 				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,
