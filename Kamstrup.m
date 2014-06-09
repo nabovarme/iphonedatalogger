@@ -17,6 +17,7 @@
 
 @interface Kamstrup ()
 @property NSOperationQueue *sendKMPRequestOperationQueue;
+@property BOOL readyToSend;
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
 @property NSMutableData *data;
@@ -33,6 +34,7 @@
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
+@synthesize readyToSend;
 @synthesize myDataObject;
 @synthesize orderedNames;
 @synthesize data;
@@ -58,6 +60,8 @@
 
     // set up kmp protocol
     self.kmp = [[KMP alloc] init];
+    
+    self.readyToSend = YES;
     
     self = [super init];
     return self;
@@ -175,10 +179,6 @@
         }
     }
     for (unsigned int i = 0; i < (unsigned int)ceil(ridArray.count / 8.0); i++) {
-        if ([theOperation isCancelled]) {
-            return;
-        }
-        
         unsigned int remainingRidCount = ridArray.count - i * 8;
         
         NSArray *registerOctet;
@@ -191,13 +191,20 @@
             registerOctet = [ridArray subarrayWithRange:range];
         }
         
+        self.readyToSend = NO;
         [self.sendRequestDelegate sendRequest:@"01"];
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         [self.kmp prepareFrameWithRegistersFromArray:registerOctet];
         [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
         self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
         
-        [NSThread sleepForTimeInterval:10.0];
+        // wait for end of data
+        while(!self.readyToSend ){
+            if ([theOperation isCancelled]) {
+                return;
+            }
+            [NSThread sleepForTimeInterval:0.01];
+        }
     }
 }
 
@@ -236,6 +243,8 @@
         //update table view
         self.state = YES;
         [self.detailsTableView reloadData];
+        
+        self.readyToSend = YES;
     }
 }
 
