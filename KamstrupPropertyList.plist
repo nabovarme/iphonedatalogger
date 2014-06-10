@@ -6,6 +6,7 @@
 	<string>Comment</string>
 	<string>Serial no. (unique number for each meter)</string>
 	<string>Energy register 1: Heat energy</string>
+	<string>Mass register V1</string>
 	<string>Operational hour counter</string>
 	<string>Current flow temperature</string>
 	<string>Current return flow temperature</string>
