@@ -222,8 +222,6 @@
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
     
-    //self.framesReceived
-//    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + self.data.length/(float)KAMSTRUP_DATA_LENGTH/2) animated:YES];
     [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.0075) animated:YES];
 
     if ((input == 0x0d) || (input == 0x06)) {   // last character from kamstrup
@@ -233,38 +231,40 @@
 
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
+    self.framesReceived++;
     if (self.data.length == 1) {
         // no data returned from Kamstrup meter
         NSLog(@"Kamstrup: device said: no reply from kamstrup meter");
-        self.data = [[NSMutableData alloc] init];
+        self.data = [[NSMutableData alloc] init];       // clear data after use
+        
         self.readyToSend = YES;
-        return;
     }
-    
-    self.framesReceived++;
+    else {
+        // decode kmp frame
+        [self.kmp decodeFrame:self.data];
+        
+        if (self.kmp.frameReceived) {
+            for (NSNumber *rid in self.kmp.registerIDTable) {
+                if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
+                    NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
+                    self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
+                }
+            }
+            self.data = [[NSMutableData alloc] init];       // clear data after use
+            self.kmp.responseData = [[NSMutableDictionary alloc] init];
+            
+            //update table view
+            self.state = YES;
+            [self.detailsTableView reloadData];
+            
+            self.readyToSend = YES;
+        }
+    }
+
     if (self.framesReceived == self.framesToSend) {
         // last frame received
         [self.receiveDataProgressView setHidden:YES];
         [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
-    }
-    
-    // decode kmp frame
-    [self.kmp decodeFrame:self.data];
-    if (self.kmp.frameReceived) {
-        for (NSNumber *rid in self.kmp.registerIDTable) {
-            if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
-                NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
-                self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
-            }
-        }
-        self.data = [[NSMutableData alloc] init];       // clear data after use
-        self.kmp.responseData = [[NSMutableDictionary alloc] init];
-
-        //update table view
-        self.state = YES;
-        [self.detailsTableView reloadData];
-        
-        self.readyToSend = YES;
     }
 }
 
