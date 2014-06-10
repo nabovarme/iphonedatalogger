@@ -10,7 +10,7 @@
 #import "KMP.h"
 #import "KeyLabelValueTextfieldCell.h"
 
-#define TESTO_DEMO_DATA_LENGTH (285.0f)
+//#define KAMSTRUP_DATA_LENGTH (285.0f)
 
 #define RECEIVE_DATA_TIME (16.0f)
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
@@ -136,11 +136,13 @@
         [self.receiveDataProgressView setHidden:NO];
         [self.receiveDataProgressView setProgress:0.0 animated:YES];
         // and start a timer to update it
+        /*
         self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL
                                                                          target:self
                                                                        selector:@selector(updateProgressBar)
                                                                        userInfo:nil
                                                                         repeats:YES];
+         */
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
@@ -221,7 +223,8 @@
     [self.data appendData:inputData];
     
     //self.framesReceived
-    [self.receiveDataProgressView setProgress:(0.5 + self.data.length/(float)TESTO_DEMO_DATA_LENGTH/2) animated:YES];
+//    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + self.data.length/(float)KAMSTRUP_DATA_LENGTH/2) animated:YES];
+    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.0075) animated:YES];
 
     if ((input == 0x0d) || (input == 0x06)) {   // last character from kamstrup
         [self doneReceiving];
