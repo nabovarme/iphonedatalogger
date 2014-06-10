@@ -18,6 +18,8 @@
 @interface Kamstrup ()
 @property NSOperationQueue *sendKMPRequestOperationQueue;
 @property BOOL readyToSend;
+@property unsigned char framesToSend;
+@property unsigned char framesReceived;
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
 @property NSMutableData *data;
@@ -35,6 +37,8 @@
 @synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
 @synthesize readyToSend;
+@synthesize framesToSend;
+@synthesize framesReceived;
 @synthesize myDataObject;
 @synthesize orderedNames;
 @synthesize data;
@@ -61,6 +65,8 @@
     // set up kmp protocol
     self.kmp = [[KMP alloc] init];
     
+    self.framesReceived = 0;
+    self.framesToSend = 0;
     self.readyToSend = YES;
     
     self = [super init];
@@ -178,7 +184,10 @@
             }
         }
     }
-    for (unsigned int i = 0; i < (unsigned int)ceil(ridArray.count / 8.0); i++) {
+    self.framesToSend = (unsigned int)ceil(ridArray.count / 8.0);
+    
+    // request 8 registers at a time
+    for (unsigned int i = 0; i < self.framesToSend; i++) {
         unsigned int remainingRidCount = ridArray.count - i * 8;
         
         NSArray *registerOctet;
@@ -215,6 +224,7 @@
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
     
+    //self.framesReceived
     [self.receiveDataProgressView setProgress:(0.5 + self.data.length/(float)TESTO_DEMO_DATA_LENGTH/2) animated:YES];
 
     if ((input == 0x0d) || (input == 0x06)) {   // last character from kamstrup
@@ -225,8 +235,12 @@
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
     
-    [self.receiveDataProgressView setHidden:YES];
-    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    self.framesReceived++;
+    if (self.framesReceived == self.framesToSend) {
+        // last frame received
+        [self.receiveDataProgressView setHidden:YES];
+        [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    }
     
     // decode kmp frame
     [self.kmp decodeFrame:self.data];

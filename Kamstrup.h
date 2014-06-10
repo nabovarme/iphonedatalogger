@@ -18,7 +18,7 @@
 @interface Kamstrup : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
 
 }
-- (void)sendKMPRequest;
+- (void)sendKMPRequest:(NSOperation *)theOperation;
 
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
