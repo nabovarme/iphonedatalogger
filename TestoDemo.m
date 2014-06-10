@@ -127,7 +127,7 @@
         
         AVAudioSession *session = [AVAudioSession sharedInstance];
         
-        [self.sendRequestDelegate sendRequest:@"ff"];
+        [self.sendRequestDelegate sendRequest:PROTO_TESTO_DEMO];
         
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         

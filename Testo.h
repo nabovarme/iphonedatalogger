@@ -12,6 +12,8 @@
 #import "Protocols.h"
 #import "SamplesEntity.h"
 
+#define PROTO_TESTO			(@"fe")
+
 @class Testo;
 
 @interface Testo : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{

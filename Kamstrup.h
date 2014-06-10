@@ -13,6 +13,8 @@
 #import "SamplesEntity.h"
 #import "KMP.h"
 
+#define PROTO_KAMSTRUP		(@"fd")
+
 @class Kamstrup;
 
 @interface Kamstrup : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{

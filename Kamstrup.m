@@ -144,6 +144,7 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
+        // start sendKMPRequest in a operation queue, so it can be canceled
         self.sendKMPRequestOperationQueue = [[NSOperationQueue alloc] init];
 
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
@@ -152,11 +153,6 @@
                                        object:operation];
         
         [self.sendKMPRequestOperationQueue addOperation:operation];
-
-        //sendKMPRequestThread = [[NSThread alloc] initWithTarget:self selector:@selector(sendKMPRequest) object:nil];
-        //[sendKMPRequestThread start];
-
-        //[self.receiveDataProgressView setProgress:0.0 animated:YES];
     }
 }
 
@@ -201,7 +197,7 @@
         }
         
         self.readyToSend = NO;
-        [self.sendRequestDelegate sendRequest:@"01"];
+        [self.sendRequestDelegate sendRequest:PROTO_KAMSTRUP];
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         [self.kmp prepareFrameWithRegistersFromArray:registerOctet];
         [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];

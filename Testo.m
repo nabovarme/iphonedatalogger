@@ -122,7 +122,7 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
         
-        [self.sendRequestDelegate sendRequest:@"00"];
+        [self.sendRequestDelegate sendRequest:PROTO_TESTO];
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
     }
