@@ -233,6 +233,13 @@
 
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
+    if (self.data.length == 1) {
+        // no data returned from Kamstrup meter
+        NSLog(@"Kamstrup: device said: no reply from kamstrup meter");
+        self.data = [[NSMutableData alloc] init];
+        self.readyToSend = YES;
+        return;
+    }
     
     self.framesReceived++;
     if (self.framesReceived == self.framesToSend) {
