@@ -217,7 +217,7 @@
 
 - (void)receivedChar:(unsigned char)input;
 {
-    NSLog(@"Kamstrup received %02x", input);
+    //NSLog(@"Kamstrup received %02x", input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
@@ -246,7 +246,7 @@
         if (self.kmp.frameReceived) {
             for (NSNumber *rid in self.kmp.registerIDTable) {
                 if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
-                    NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
+                    //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
                     self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
                 }
             }

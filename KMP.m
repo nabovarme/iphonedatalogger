@@ -369,13 +369,13 @@
             NSLog(@"%@", [data subdataWithRange:range]);
         }
         self.frameReceived = YES;
-        CFShow((__bridge CFTypeRef)(self.responseData));
+        //CFShow((__bridge CFTypeRef)(self.responseData));
 
     }
     else if (bytes[theFrame.length - 1] == 0x06) {
         NSLog(@"SetClock no CRC");      // SetClock
         self.frameReceived = YES;
-        CFShow((__bridge CFTypeRef)(self.responseData));
+        //CFShow((__bridge CFTypeRef)(self.responseData));
     }
 }
 
