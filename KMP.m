@@ -272,14 +272,21 @@
     self.frameReceived = NO;
     self.errorReceiving = NO;
     [self.frame appendData:theFrame];
-    if (theFrame.length == 1) {
+    unsigned char *bytes = theFrame.bytes;
+
+    if (1 == theFrame.length) {
         // no data returned from Kamstrup meter
-        NSLog(@"Kamstrup: device said: no reply from kamstrup meter");
-        self.errorReceiving = YES;
+        if  (bytes[theFrame.length - 1] == 0x06) {
+            self.frameReceived = YES;
+            NSLog(@"hjfgj");
+        }
+        else {
+            NSLog(@"Kamstrup: device said: no valid reply from kamstrup meter");
+            self.errorReceiving = YES;
+        }
         return;
     }
 
-    unsigned char *bytes = theFrame.bytes;
     if (bytes[theFrame.length - 1] == 0x0d) {
         // end of data - get params from frame
         unsigned char *bytes = (unsigned char*)self.frame.bytes;
