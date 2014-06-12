@@ -257,7 +257,10 @@
         self.framesReceived = 0;
         self.data = [[NSMutableData alloc] init];       // clear data after use
         self.kmp.responseData = [[NSMutableDictionary alloc] init];
+        // stop all already running sendKMPRequests
+        [self.sendKMPRequestOperationQueue cancelAllOperations];
         
+        // and start a new one
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
                                      selector:@selector(sendKMPRequest:)
