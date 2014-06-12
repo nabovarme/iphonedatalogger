@@ -12,6 +12,7 @@
 
 @synthesize frame;
 @synthesize frameReceived;
+@synthesize errorReceiving;
 
 @synthesize responseData;
 @synthesize crc16Table;
@@ -27,6 +28,7 @@
     self.frame = [[NSMutableData alloc] init];
     self.responseData = [[NSMutableDictionary alloc] init];
     self.frameReceived = NO;
+    self.errorReceiving = NO;
     
     self.crc16Table = @[
                         @0x0000, @0x1021, @0x2042, @0x3063, @0x4084, @0x50a5, @0x60c6, @0x70e7,
@@ -268,10 +270,12 @@
 
 -(void)decodeFrame:(NSData *)theFrame {
     self.frameReceived = NO;
+    self.errorReceiving = NO;
     [self.frame appendData:theFrame];
     if (theFrame.length == 1) {
         // no data returned from Kamstrup meter
         NSLog(@"Kamstrup: device said: no reply from kamstrup meter");
+        self.errorReceiving = YES;
         return;
     }
 
@@ -304,7 +308,7 @@
         }
         else {
             NSLog(@"crc error");
-            self.frameReceived = NO;
+            self.errorReceiving = YES;
             return;
         }
 

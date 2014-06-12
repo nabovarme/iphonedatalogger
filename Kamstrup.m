@@ -242,15 +242,31 @@
                 self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
             }
         }
+        self.data = [[NSMutableData alloc] init];       // clear data after use
+        self.kmp.responseData = [[NSMutableDictionary alloc] init];
         
         //update table view
         self.state = YES;
         [self.detailsTableView reloadData];
-    }
-    self.data = [[NSMutableData alloc] init];       // clear data after use
-    self.kmp.responseData = [[NSMutableDictionary alloc] init];
-    self.readyToSend = YES;
 
+        self.readyToSend = YES;
+    }
+    
+    if (self.kmp.errorReceiving) {
+        NSLog(@"Retransmit");
+        self.framesReceived = 0;
+        self.data = [[NSMutableData alloc] init];       // clear data after use
+        self.kmp.responseData = [[NSMutableDictionary alloc] init];
+        
+        NSInvocationOperation *operation = [NSInvocationOperation alloc];
+        operation = [operation initWithTarget:self
+                                     selector:@selector(sendKMPRequest:)
+                                       object:operation];
+        
+        [self.sendKMPRequestOperationQueue addOperation:operation];
+        
+    }
+    
     if (self.framesReceived == self.framesToSend) {
         // last frame received
         [self.receiveDataProgressView setHidden:YES];

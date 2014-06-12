@@ -12,6 +12,7 @@
 
 @property NSMutableData *frame;
 @property BOOL frameReceived;
+@property BOOL errorReceiving;
 
 @property NSMutableDictionary *responseData;
 @property NSArray *crc16Table;
