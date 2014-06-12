@@ -232,34 +232,24 @@
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
     self.framesReceived++;
-    if (self.data.length == 1) {
-        // no data returned from Kamstrup meter
-        NSLog(@"Kamstrup: device said: no reply from kamstrup meter");
-        self.data = [[NSMutableData alloc] init];       // clear data after use
-        
-        self.readyToSend = YES;
-    }
-    else {
-        // decode kmp frame
-        [self.kmp decodeFrame:self.data];
-        
-        if (self.kmp.frameReceived) {
-            for (NSNumber *rid in self.kmp.registerIDTable) {
-                if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
-                    //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
-                    self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
-                }
+    // decode kmp frame
+    [self.kmp decodeFrame:self.data];
+    
+    if (self.kmp.frameReceived) {
+        for (NSNumber *rid in self.kmp.registerIDTable) {
+            if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
+                //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
+                self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
             }
-            self.data = [[NSMutableData alloc] init];       // clear data after use
-            self.kmp.responseData = [[NSMutableDictionary alloc] init];
-            
-            //update table view
-            self.state = YES;
-            [self.detailsTableView reloadData];
-            
-            self.readyToSend = YES;
         }
+        
+        //update table view
+        self.state = YES;
+        [self.detailsTableView reloadData];
     }
+    self.data = [[NSMutableData alloc] init];       // clear data after use
+    self.kmp.responseData = [[NSMutableDictionary alloc] init];
+    self.readyToSend = YES;
 
     if (self.framesReceived == self.framesToSend) {
         // last frame received

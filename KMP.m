@@ -269,6 +269,12 @@
 -(void)decodeFrame:(NSData *)theFrame {
     self.frameReceived = NO;
     [self.frame appendData:theFrame];
+    if (theFrame.length == 1) {
+        // no data returned from Kamstrup meter
+        NSLog(@"Kamstrup: device said: no reply from kamstrup meter");
+        return;
+    }
+
     unsigned char *bytes = theFrame.bytes;
     if (bytes[theFrame.length - 1] == 0x0d) {
         // end of data - get params from frame
@@ -282,10 +288,12 @@
         NSData *unstuffedFrame = [self kmpByteUnstuff:[self.frame subdataWithRange:range]];
         bytes = (unsigned char*)unstuffedFrame.bytes;
 
-        [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"dst"];
-        [self.responseData setObject:[NSData dataWithBytes:(bytes + 1) length:1] forKey:@"cid"];
-        range = NSMakeRange(unstuffedFrame.length - 2, 2);
-        [self.responseData setObject:[unstuffedFrame subdataWithRange:range] forKey:@"crc"];
+        if (unstuffedFrame.length >= 4) {
+            [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"dst"];
+            [self.responseData setObject:[NSData dataWithBytes:(bytes + 1) length:1] forKey:@"cid"];
+            range = NSMakeRange(unstuffedFrame.length - 2, 2);
+            [self.responseData setObject:[unstuffedFrame subdataWithRange:range] forKey:@"crc"];
+        }
 
         // calculate crc
         range = NSMakeRange(0, unstuffedFrame.length - 2);
