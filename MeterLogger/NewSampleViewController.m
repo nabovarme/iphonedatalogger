@@ -115,7 +115,7 @@
     //3. Add the Detail controller's view to the Container's detail view and save a reference to the detail View Controller
     [self.contentView addSubview:detailVC.view];
     self.currentDetailViewController = detailVC;
-    [self setReceivedCharDelegate : self.currentDetailViewController];
+    [self setReceivedCharDelegate: self.currentDetailViewController];
     //[self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
 
     //4. Complete the add flow calling the function didMoveToParentViewController

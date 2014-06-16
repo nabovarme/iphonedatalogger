@@ -60,9 +60,10 @@
 
     AVAudioSession *session = [AVAudioSession sharedInstance];
 	//session.delegate = self;
-	if(session.inputIsAvailable){
+    
+	if (session.inputAvailable) {
 		[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-	}else{
+	} else {
 		[session setCategory:AVAudioSessionCategoryPlayback error:nil];
 	}
 	[session setActive:YES error:nil];

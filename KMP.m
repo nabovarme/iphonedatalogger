@@ -272,7 +272,7 @@
     self.frameReceived = NO;
     self.errorReceiving = NO;
     [self.frame appendData:theFrame];
-    unsigned char *bytes = theFrame.bytes;
+    const unsigned char *bytes = theFrame.bytes;
 
     if (1 == theFrame.length) {
         // no data returned from Kamstrup meter
@@ -289,7 +289,7 @@
 
     if (bytes[theFrame.length - 1] == 0x0d) {
         // end of data - get params from frame
-        unsigned char *bytes = (unsigned char*)self.frame.bytes;
+        bytes = self.frame.bytes;
         
         [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"starByte"];
         [self.responseData setObject:[NSData dataWithBytes:(bytes + self.frame.length - 1) length:1] forKey:@"stopByte"];
@@ -297,7 +297,7 @@
         // unstuff data
         NSRange range = NSMakeRange(1, self.frame.length - 2);
         NSData *unstuffedFrame = [self kmpByteUnstuff:[self.frame subdataWithRange:range]];
-        bytes = (unsigned char*)unstuffedFrame.bytes;
+        bytes = unstuffedFrame.bytes;
 
         if (unstuffedFrame.length >= 4) {
             [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"dst"];
