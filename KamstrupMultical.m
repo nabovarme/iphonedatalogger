@@ -7,7 +7,7 @@
 //
 
 #import "KamstrupMultical.h"
-#import "KMP.h"
+//#import "KMP.h"
 #import "KeyLabelValueTextfieldCell.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
@@ -27,7 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
-@property KMP *kmp;
+//@property KMP *kmp;
 
 @end
 
@@ -44,7 +44,7 @@
 @synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
-@synthesize kmp;
+//@synthesize kmp;
 
 -(id)init
 {
@@ -63,7 +63,7 @@
     self.state = NO;
 
     // set up kmp protocol
-    self.kmp = [[KMP alloc] init];
+    //self.kmp = [[KMP alloc] init];
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -91,8 +91,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
-    KMP *myData = [[KMP alloc] init];
-    [myData getType];
+    //KMP *myData = [[KMP alloc] init];
+    //[myData getType];
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
@@ -151,7 +151,7 @@
 
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
-                                     selector:@selector(sendKMPRequest:)
+                                     selector:@selector(sendMulticalRequest:)
                                        object:operation];
         
         [self.sendKMPRequestOperationQueue addOperation:operation];
@@ -165,54 +165,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendKMPRequest:(NSOperation *)theOperation {
-    // read KamstrupMulticalPropertyList.plist to get rid's to send
-    NSString *kamstrupMulticalPlist = [[NSBundle mainBundle] pathForResource:@"KamstrupMulticalPropertyList" ofType:@"plist"];
-    NSArray *registerNameArray = [NSArray arrayWithContentsOfFile:kamstrupMulticalPlist];
+- (void)sendMulticalRequest:(NSOperation *)theOperation {
     
-    // get rid's
-    NSMutableArray *ridArray = [NSMutableArray array];
-    for (NSString *registerName in registerNameArray) {
-        NSNumber *rid = [[self.kmp.registerIDTable allKeysForObject:registerName] lastObject];
-        if (rid) {
-            NSLog(@"rid %@ value \"%@\"", rid, registerName);
-            if (![ridArray containsObject:rid]) {
-                // add unique rid's to rids
-                [ridArray addObject:rid];
-            }
-        }
-    }
-    self.framesToSend = (unsigned int)ceil(ridArray.count / 8.0);
-    
-    // request 8 registers at a time
-    for (unsigned int i = 0; i < self.framesToSend; i++) {
-        unsigned int remainingRidCount = ridArray.count - i * 8;
-        
-        NSArray *registerOctet;
-        if (remainingRidCount >= 8) {
-            NSRange range = NSMakeRange(8 * i, 8);
-            registerOctet = [ridArray subarrayWithRange:range];
-        }
-        else {
-            NSRange range = NSMakeRange(8 * i, remainingRidCount);
-            registerOctet = [ridArray subarrayWithRange:range];
-        }
-        
-        self.readyToSend = NO;
-        [self.sendRequestDelegate sendRequest:PROTO_KAMSTRUP_MULTICAL];
-        [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-        [self.kmp prepareFrameWithRegistersFromArray:registerOctet];
-        [self.sendRequestDelegate sendRequest:[self dataToHexString:self.kmp.frame]];
-        self.kmp.frame = [[NSMutableData alloc] initWithBytes:NULL length:0];    // free the frame
-        
-        // wait for end of data
-        while(!self.readyToSend ){
-            if ([theOperation isCancelled]) {
-                return;
-            }
-            [NSThread sleepForTimeInterval:0.01];
-        }
-    }
+    [self.sendRequestDelegate sendRequest:PROTO_KAMSTRUP_MULTICAL];
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    [self.sendRequestDelegate sendRequest:@"5aa5"];
+    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+
 }
 
 - (void)receivedChar:(unsigned char)input;
@@ -231,50 +190,6 @@
 
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
-    self.framesReceived++;
-    // decode kmp frame
-    [self.kmp decodeFrame:self.data];
-    
-    if (self.kmp.frameReceived) {
-        for (NSNumber *rid in self.kmp.registerIDTable) {
-            if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
-                //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
-                self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
-            }
-        }
-        self.data = [[NSMutableData alloc] init];       // clear data after use
-        self.kmp.responseData = [[NSMutableDictionary alloc] init];
-        
-        //update table view
-        self.state = YES;
-        [self.detailsTableView reloadData];
-
-        self.readyToSend = YES;
-    }
-    
-    if (self.kmp.errorReceiving) {
-        NSLog(@"Retransmit");
-        self.framesReceived = 0;
-        self.data = [[NSMutableData alloc] init];       // clear data after use
-        self.kmp.responseData = [[NSMutableDictionary alloc] init];
-        // stop all already running sendKMPRequests
-        [self.sendKMPRequestOperationQueue cancelAllOperations];
-        
-        // and start a new one
-        NSInvocationOperation *operation = [NSInvocationOperation alloc];
-        operation = [operation initWithTarget:self
-                                     selector:@selector(sendKMPRequest:)
-                                       object:operation];
-        
-        [self.sendKMPRequestOperationQueue addOperation:operation];
-        
-    }
-    
-    if (self.framesReceived == self.framesToSend) {
-        // last frame received
-        [self.receiveDataProgressView setHidden:YES];
-        [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

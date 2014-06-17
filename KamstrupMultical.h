@@ -11,7 +11,7 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
-#import "KMP.h"
+//#import "KMP.h"
 
 #define PROTO_KAMSTRUP_MULTICAL		(@"fc")
 
@@ -20,7 +20,7 @@
 @interface KamstrupMultical : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
 
 }
-- (void)sendKMPRequest:(NSOperation *)theOperation;
+- (void)sendMulticalRequest:(NSOperation *)theOperation;
 
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
