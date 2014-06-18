@@ -24,9 +24,10 @@
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
-		D61A90E7194FB2F900B8B119 /* IEC61107.m in Sources */ = {isa = PBXBuildFile; fileRef = D61A90E4194FB2F900B8B119 /* IEC61107.m */; };
-		D61A90E8194FB2F900B8B119 /* IEC61107.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61A90E5194FB2F900B8B119 /* IEC61107.xib */; };
-		D61A90E9194FB2F900B8B119 /* IEC61107PropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D61A90E6194FB2F900B8B119 /* IEC61107PropertyList.plist */; };
+		D61A90E7194FB2F900B8B119 /* Multical.m in Sources */ = {isa = PBXBuildFile; fileRef = D61A90E4194FB2F900B8B119 /* Multical.m */; };
+		D61A90E8194FB2F900B8B119 /* Multical.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61A90E5194FB2F900B8B119 /* Multical.xib */; };
+		D61A90E9194FB2F900B8B119 /* MulticalPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D61A90E6194FB2F900B8B119 /* MulticalPropertyList.plist */; };
+		D6200F731952531B007CE10C /* IEC62056-21.m in Sources */ = {isa = PBXBuildFile; fileRef = D6200F721952531B007CE10C /* IEC62056-21.m */; };
 		D625CA8219355170009056C6 /* Kamstrup.m in Sources */ = {isa = PBXBuildFile; fileRef = D625CA8019355170009056C6 /* Kamstrup.m */; };
 		D625CA8319355170009056C6 /* Kamstrup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D625CA8119355170009056C6 /* Kamstrup.xib */; };
 		D625CA871935538B009056C6 /* KMP.m in Sources */ = {isa = PBXBuildFile; fileRef = D625CA861935538B009056C6 /* KMP.m */; };
@@ -81,10 +82,12 @@
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
-		D61A90E3194FB2F900B8B119 /* IEC61107.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEC61107.h; sourceTree = "<group>"; };
-		D61A90E4194FB2F900B8B119 /* IEC61107.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IEC61107.m; sourceTree = "<group>"; };
-		D61A90E5194FB2F900B8B119 /* IEC61107.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IEC61107.xib; sourceTree = "<group>"; };
-		D61A90E6194FB2F900B8B119 /* IEC61107PropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IEC61107PropertyList.plist; sourceTree = "<group>"; };
+		D61A90E3194FB2F900B8B119 /* Multical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multical.h; sourceTree = "<group>"; };
+		D61A90E4194FB2F900B8B119 /* Multical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multical.m; sourceTree = "<group>"; };
+		D61A90E5194FB2F900B8B119 /* Multical.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Multical.xib; sourceTree = "<group>"; };
+		D61A90E6194FB2F900B8B119 /* MulticalPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MulticalPropertyList.plist; sourceTree = "<group>"; };
+		D6200F711952531B007CE10C /* IEC62056-21.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IEC62056-21.h"; sourceTree = "<group>"; };
+		D6200F721952531B007CE10C /* IEC62056-21.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IEC62056-21.m"; sourceTree = "<group>"; };
 		D625CA7F19355170009056C6 /* Kamstrup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kamstrup.h; sourceTree = "<group>"; };
 		D625CA8019355170009056C6 /* Kamstrup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kamstrup.m; sourceTree = "<group>"; };
 		D625CA8119355170009056C6 /* Kamstrup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Kamstrup.xib; sourceTree = "<group>"; };
@@ -197,7 +200,7 @@
 				8F9D6C251917A9F000235CDA /* Testo */,
 				D6821832191C413E00DC093A /* TestoDemo */,
 				D625CA8419355179009056C6 /* Kamstrup */,
-				D61A90E2194FB2E500B8B119 /* IEC61107 */,
+				D61A90E2194FB2E500B8B119 /* Multical */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
@@ -216,15 +219,17 @@
 			name = Testo;
 			sourceTree = "<group>";
 		};
-		D61A90E2194FB2E500B8B119 /* IEC61107 */ = {
+		D61A90E2194FB2E500B8B119 /* Multical */ = {
 			isa = PBXGroup;
 			children = (
-				D61A90E3194FB2F900B8B119 /* IEC61107.h */,
-				D61A90E4194FB2F900B8B119 /* IEC61107.m */,
-				D61A90E5194FB2F900B8B119 /* IEC61107.xib */,
-				D61A90E6194FB2F900B8B119 /* IEC61107PropertyList.plist */,
+				D61A90E3194FB2F900B8B119 /* Multical.h */,
+				D61A90E4194FB2F900B8B119 /* Multical.m */,
+				D61A90E5194FB2F900B8B119 /* Multical.xib */,
+				D61A90E6194FB2F900B8B119 /* MulticalPropertyList.plist */,
+				D6200F711952531B007CE10C /* IEC62056-21.h */,
+				D6200F721952531B007CE10C /* IEC62056-21.m */,
 			);
-			name = IEC61107;
+			name = Multical;
 			sourceTree = "<group>";
 		};
 		D625CA8419355179009056C6 /* Kamstrup */ = {
@@ -408,8 +413,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D61A90E8194FB2F900B8B119 /* IEC61107.xib in Resources */,
-				D61A90E9194FB2F900B8B119 /* IEC61107PropertyList.plist in Resources */,
+				D61A90E8194FB2F900B8B119 /* Multical.xib in Resources */,
+				D61A90E9194FB2F900B8B119 /* MulticalPropertyList.plist in Resources */,
 				FBBD3CDE15BE57A90035F419 /* InfoPlist.strings in Resources */,
 				D66DD04D19202DC6008ABF0F /* TestoPropertyList.plist in Resources */,
 				8F7E5A711920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib in Resources */,
@@ -432,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6200F731952531B007CE10C /* IEC62056-21.m in Sources */,
 				8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */,
 				FBBD3CE015BE57A90035F419 /* main.m in Sources */,
 				FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */,
@@ -447,7 +453,7 @@
 				8F9D6C321917C4A100235CDA /* Testo.m in Sources */,
 				8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */,
 				D625CA8219355170009056C6 /* Kamstrup.m in Sources */,
-				D61A90E7194FB2F900B8B119 /* IEC61107.m in Sources */,
+				D61A90E7194FB2F900B8B119 /* Multical.m in Sources */,
 				D625CA871935538B009056C6 /* KMP.m in Sources */,
 				D679E5141945FD08006BF517 /* MeterShareActivity.m in Sources */,
 				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,

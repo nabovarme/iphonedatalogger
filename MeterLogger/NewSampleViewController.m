@@ -6,6 +6,25 @@
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
+
+/*TODO!!!!!!!!!!!!!!!
+ lav en funktion 
+ updateProgressBarWithPercentage:int
+{
+ if percentage == 100%
+ disable sleep lock
+ disable progressbar
+ }
+ updateProgressbar
+}
+ sæt updateProgressbar... etc som en del af sendrequestprotocollen altså den hvor et device kan kalde sendrequest på NSVController sådan at device kan update progressbar
+ 
+ i init i NSVC this class:
+ start med at enable sleep lock
+ if ovenstående update progress så disables sleep lock men OGSÅ hvis cancel trykkes!
+ */
+
+
 #import "NewSampleViewController.h"
 
 #import "NSString+HexColor.h"
@@ -116,6 +135,7 @@
     [self.contentView addSubview:detailVC.view];
     self.currentDetailViewController = detailVC;
     [self setReceivedCharDelegate: self.currentDetailViewController];
+    //[self setreceivedchardelegate: [self.currentDetailViewController getDelegate]]
     //[self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
 
     //4. Complete the add flow calling the function didMoveToParentViewController

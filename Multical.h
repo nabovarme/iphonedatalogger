@@ -1,5 +1,5 @@
 //
-//  IEC61107.h
+//  Multical.h
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
@@ -13,14 +13,14 @@
 #import "SamplesEntity.h"
 //#import "KMP.h"
 
-#define PROTO_IEC61107		(@"fc")
+#define PROTO_MULTICAL		(@"fc")
 
-@class IEC61107;
+@class Multical;
 
-@interface IEC61107 : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
+@interface Multical : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
 
 }
-- (void)sendIEC61107Request:(NSOperation *)theOperation;
+- (void)sendMulticalRequest:(NSOperation *)theOperation;
 
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 

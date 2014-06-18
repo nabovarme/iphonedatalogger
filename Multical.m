@@ -1,12 +1,12 @@
 //
-//  IEC61107.m
+//  Multical.m
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
-#import "IEC61107.h"
+#import "Multical.h"
 #import "KeyLabelValueTextfieldCell.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
@@ -14,7 +14,7 @@
 #define RECEIVE_DATA_TIME (16.0f)
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
-@interface IEC61107 ()
+@interface Multical ()
 @property NSOperationQueue *sendKMPRequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
@@ -31,7 +31,7 @@
 @end
 
 
-@implementation IEC61107
+@implementation Multical
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
@@ -55,6 +55,9 @@
 -(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
 {
     NSLog(@"sensor init with dictionary");
+    //make kmp transport init alloc
+    //    [kmpTransportInstance setSendRequestDelegate:dictionary[@"delegate"]];
+
     [self setSendRequestDelegate:dictionary[@"delegate"]];
     
     // set myDataObject to the one passed in dictionary key dataObject
@@ -71,6 +74,13 @@
     self = [super init];
     return self;
 }
+
+/*
+(id) getDelegate
+{
+ return kmpTransportInstance.receivedCharDelegate
+}
+ */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -150,7 +160,7 @@
 
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
-                                     selector:@selector(sendIEC61107Request:)
+                                     selector:@selector(sendMulticalRequest:)
                                        object:operation];
         
         [self.sendKMPRequestOperationQueue addOperation:operation];
@@ -164,14 +174,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendIEC61107Request:(NSOperation *)theOperation {
+- (void)sendMulticalRequest:(NSOperation *)theOperation {
     
-    [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
+    [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
     [NSThread sleepForTimeInterval:0.04];
     [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
     [NSThread sleepForTimeInterval:3.0];
 
-    [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
+    [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
     [NSThread sleepForTimeInterval:0.04];
     [self.sendRequestDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
     [NSThread sleepForTimeInterval:10.0];
@@ -180,7 +190,7 @@
 
 - (void)receivedChar:(unsigned char)input;
 {
-    NSLog(@"IEC61107 received %02x", input);
+    NSLog(@"Multical received %c (%d)", input, input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
