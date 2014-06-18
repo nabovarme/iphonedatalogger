@@ -169,7 +169,8 @@
     
     [self.sendRequestDelegate sendRequest:PROTO_KAMSTRUP_MULTICAL];
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-    [self.sendRequestDelegate sendRequest:@"5aa5"];
+    [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];   // /?!\n\r EN61107
+//    [self.sendRequestDelegate sendRequest:@"2f2331"];   // /#1
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
 
 }
