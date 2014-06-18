@@ -1,13 +1,12 @@
 //
-//  KamstrupMultical.m
+//  IEC61107.m
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
-#import "KamstrupMultical.h"
-//#import "KMP.h"
+#import "IEC61107.h"
 #import "KeyLabelValueTextfieldCell.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
@@ -15,7 +14,7 @@
 #define RECEIVE_DATA_TIME (16.0f)
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
-@interface KamstrupMultical ()
+@interface IEC61107 ()
 @property NSOperationQueue *sendKMPRequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
@@ -32,7 +31,7 @@
 @end
 
 
-@implementation KamstrupMultical
+@implementation IEC61107
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
@@ -151,7 +150,7 @@
 
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
-                                     selector:@selector(sendMulticalRequest:)
+                                     selector:@selector(sendIEC61107Request:)
                                        object:operation];
         
         [self.sendKMPRequestOperationQueue addOperation:operation];
@@ -165,9 +164,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendMulticalRequest:(NSOperation *)theOperation {
+- (void)sendIEC61107Request:(NSOperation *)theOperation {
     
-    [self.sendRequestDelegate sendRequest:PROTO_KAMSTRUP_MULTICAL];
+    [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
     [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
     [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];   // /?!\n\r EN61107
 //    [self.sendRequestDelegate sendRequest:@"2f2331"];   // /#1

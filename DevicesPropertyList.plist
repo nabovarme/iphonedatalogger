@@ -5,7 +5,7 @@
 	<key>DeviceClasses</key>
 	<array>
 		<string>Kamstrup</string>
-		<string>KamstrupMultical</string>
+		<string>IEC61107</string>
 		<string>TestoDemo</string>
 		<string>Testo</string>
 	</array>
