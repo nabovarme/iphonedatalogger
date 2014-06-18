@@ -147,7 +147,9 @@
 */
 - (IBAction)newSampleButtonPressed:(UIBarButtonItem *)sender {
     NSLog(@"new sample button pressed");
+#ifndef __i386__
     AVAudioSession *session = [AVAudioSession sharedInstance];
+#endif
     
     // check if headphone jack in plugged in
     // should go to NewSampleViewController with popup
