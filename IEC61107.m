@@ -167,10 +167,10 @@
 - (void)sendIEC61107Request:(NSOperation *)theOperation {
     
     [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
-    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
-    [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];   // /?!\n\r EN61107
-//    [self.sendRequestDelegate sendRequest:@"2f2331"];   // /#1
-    [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
+    [NSThread sleepForTimeInterval:0.04];
+    [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
+    //[self.sendRequestDelegate sendRequest:@"023030300d0a"];   // [ACK]000\n\r
+    [NSThread sleepForTimeInterval:0.6];
 
 }
 
