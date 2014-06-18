@@ -169,14 +169,18 @@
     [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
     [NSThread sleepForTimeInterval:0.04];
     [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
-    //[self.sendRequestDelegate sendRequest:@"023030300d0a"];   // [ACK]000\n\r
-    [NSThread sleepForTimeInterval:0.6];
+    [NSThread sleepForTimeInterval:3.0];
+
+    [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
+    [NSThread sleepForTimeInterval:0.04];
+    [self.sendRequestDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
+    [NSThread sleepForTimeInterval:10.0];
 
 }
 
 - (void)receivedChar:(unsigned char)input;
 {
-    //NSLog(@"Kamstrup received %02x", input);
+    NSLog(@"IEC61107 received %02x", input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
