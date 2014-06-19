@@ -229,6 +229,12 @@
     self.framesReceived++;
     // decode
     [self.iec62056_21 decodeFrame:self.data];
+    
+    
+    self.data = [[NSMutableData alloc] init];       // clear data after use
+    self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
+    
+    self.readyToSend = YES;
         
     if (self.framesReceived == self.framesToSend) {
         // last frame received

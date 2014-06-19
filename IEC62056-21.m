@@ -274,7 +274,7 @@
     [self.frame appendData:theFrame];
     const unsigned char *bytes = theFrame.bytes;
 
-    if (1 == theFrame.length) {
+    if (theFrame.length == 1) {
         // no data returned from Kamstrup meter
         if  (bytes[theFrame.length - 1] == 0x06) {
             self.frameReceived = YES;
@@ -287,6 +287,39 @@
         return;
     }
 
+    if (bytes[0] == '/') {
+        // ACK
+        bytes = self.frame.bytes;
+        //[self.responseData setObject:[NSData dataWithBytes:bytes length:theFrame.length] forKey:@"ack"];
+        [self.responseData setObject:self.frame forKey:@"ack"];
+    }
+    else if (bytes[0] == 0x02) {
+        // Data block
+        NSRange range = NSMakeRange(1, [self.frame length] - 2);
+        [self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"dataBlock"];
+        
+        // BCC
+        range = NSMakeRange([self.frame length] - 2, 1);
+        [self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"bcc"];
+
+        NSRegularExpression *regex;
+        NSString *str;
+        NSTextCheckingResult *match;
+        NSString *testoValue;
+        
+        //datastring is set
+        str = self.responseData[@"dataBlock"];
+        
+        regex = [NSRegularExpression regularExpressionWithPattern:@"(.*)\((.*)\)" options:0 error:NULL];
+        match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
+        NSLog(@"%@, %@", [str substringWithRange:[match rangeAtIndex:1]], [str substringWithRange:[match rangeAtIndex:2]]);
+        //self.myDataObject.sampleDataDict[@"CO2"] = testoValue;
+
+        //[self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:value] forKey:@"id"];
+        //[self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:value] forKey:@"value"];
+    }
+    
+    /*
     if (bytes[theFrame.length - 1] == 0x0a) {
         // end of data - get params from frame
         bytes = self.frame.bytes;
@@ -318,6 +351,7 @@
             self.errorReceiving = YES;
             return;
         }
+        
 
         // decode application layer
         unsigned char *cid_ptr = (unsigned char *)[self.responseData[@"cid"] bytes];
@@ -389,13 +423,13 @@
         }
         self.frameReceived = YES;
         //CFShow((__bridge CFTypeRef)(self.responseData));
-
     }
     else if (bytes[theFrame.length - 1] == 0x06) {
         NSLog(@"SetClock no CRC");      // SetClock
         self.frameReceived = YES;
         //CFShow((__bridge CFTypeRef)(self.responseData));
     }
+    */
 }
 
 
