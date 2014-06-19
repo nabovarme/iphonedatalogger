@@ -11,7 +11,7 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
-//#import "KMP.h"
+#import "Multical.h"
 
 #define PROTO_MULTICAL		(@"fc")
 

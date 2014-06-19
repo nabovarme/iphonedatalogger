@@ -175,35 +175,70 @@
 }
 
 - (void)sendMulticalRequest:(NSOperation *)theOperation {
+    self.readyToSend = NO;
     
     [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
     [NSThread sleepForTimeInterval:0.04];
     [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
-    [NSThread sleepForTimeInterval:3.0];
+    self.framesToSend++;
+    while(!self.readyToSend ){
+        if ([theOperation isCancelled]) {
+            return;
+        }
+        [NSThread sleepForTimeInterval:0.01];
+    }
+    [NSThread sleepForTimeInterval:0.1];
 
     [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
     [NSThread sleepForTimeInterval:0.04];
     [self.sendRequestDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
-    [NSThread sleepForTimeInterval:10.0];
-
+    self.framesToSend++;
+    while(!self.readyToSend ){
+        if ([theOperation isCancelled]) {
+            return;
+        }
+        [NSThread sleepForTimeInterval:0.01];
+    }    
 }
 
 - (void)receivedChar:(unsigned char)input;
 {
-    NSLog(@"Multical received %c (%d)", input, input);
+    //NSLog(@"Multical received %c (%d)", input, input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
     
     [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.0075) animated:YES];
 
-    if ((input == 0x0d) || (input == 0x06)) {   // last character from kamstrup
-        [self doneReceiving];
+    if (self.receiveDataProgressTimer) {
+        // stop it
+        [self.receiveDataProgressTimer invalidate];
+        self.receiveDataProgressTimer = nil;        // let it be deallocated
+        // and start a new timer
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+    }
+    else {
+        // if its not running start a new one
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
     }
 }
 
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
+    self.framesReceived++;
+    // decode
+    NSRange range = NSMakeRange(1, self.data.length - 4);
+    char *bytes = (char *)[[data subdataWithRange:range] bytes];
+    NSLog(@"%s", bytes);
+    
+    self.data = [[NSMutableData alloc] init];       // clear data after use
+    self.readyToSend = YES;
+    
+    if (self.framesReceived == self.framesToSend) {
+        // last frame received
+        [self.receiveDataProgressView setHidden:YES];
+        [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
