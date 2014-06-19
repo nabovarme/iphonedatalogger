@@ -65,77 +65,10 @@
                         @0x6e17, @0x7e36, @0x4e55, @0x5e74, @0x2e93, @0x3eb2, @0x0ed1, @0x1ef0
     ];
     
-    self.registerIDTable = @{@1003: @"Current date (YYMMDD)",
-                             @60:   @"Energy register 1: Heat energy",
-                             @94:   @"Energy register 2: Control energy",
-                             @63:   @"Energy register 3: Cooling energy",
-                             @61:   @"Energy register 4: Flow energy",
-                             @62:   @"Energy register 5: Return flow energy",
-                             @95:   @"Energy register 6: Tap water energy",
-                             @96:   @"Energy register 7: Heat energy Y",
-                             @97:   @"Energy register 8: [m3 • T1]",
-                             @110:  @"Energy register 9: [m3 • T2]",
-                             @64:   @"Tariff register 2",
-                             @65:   @"Tariff register 3",
-                             @68:   @"Volume register V1",
-                             @69:	@"Volume register V2",
-                             @84:	@"Input register VA",
-                             @85:	@"Input register VB",
-                             @72:	@"Mass register V1",
-                             @73:	@"Mass register V2",
-                             @1004:	@"Operational hour counter",
-                             @113:	@"Info-event counter",
-                             @1002:	@"Current time (hhmmss)",
-                             @99:	@"Infocode register, current",
-                             @86:	@"Current flow temperature",
-                             @87:	@"Current return flow temperature",
-                             @88:	@"Current temperature T3",
-                             @122:	@"Current temperature T4",
-                             @89:	@"Current temperature difference",
-                             @91:	@"Pressure in flow",
-                             @92:	@"Pressure in return flow",
-                             @74:	@"Current flow in flow",
-                             @75:	@"Current flow in return flow",
-                             @80:	@"Current power calculated on the basis of V1-T1-T2",
-                             @123:	@"Date for max. this year",
-                             @124:	@"Max. value this year",
-                             @125:	@"Date for min. this year",
-                             @126:	@"Min. value this year",
-                             @127:	@"Date for max. this year",
-                             @128:	@"Max. value this year",
-                             @129:	@"Date for min. this year",
-                             @130:	@"Min. value this year",
-                             @138:	@"Date for max. this year",
-                             @139:	@"Max. value this year",
-                             @140:	@"Date for min. this month",
-                             @141:	@"Min. value this month",
-                             @142:	@"Date for max. this month",
-                             @143:	@"Max. value this month",
-                             @144:	@"Date for min. this month",
-                             @145:	@"Min. value this month",
-                             @146:	@"Year-to-date average for T1",
-                             @147:	@"Year-to-date average for T2",
-                             @149:	@"Month-to-date average for T1",
-                             @150:	@"Month-to-date average for T2",
-                             @66:	@"Tariff limit 2",
-                             @67:	@"Tariff limit 3",
-                             @98:	@"Target date (reading date)",
-                             @152:	@"Program no. ABCCCCCC",
-                             @153:	@"Config no. DDDEE",
-                             @168:	@"Config no. FFGGMN",
-                             @1001:	@"Serial no. (unique number for each meter)",
-                             @112:	@"Customer number (8 most important digits)",
-                             @1010:	@"Customer number (8 less important digits)",
-                             @114:	@"Meter no. for VA",
-                             @104:	@"Meter no. for VB",
-                             @1005:	@"Software edition",
-                             @154:	@"Software check sum",
-                             @155:	@"High-resolution energy register for testing purposes",
-                             @157:	@"ID number for top module ( only mc 601 )",
-                             @158:	@"ID number for base module",
-                             @175:	@"Error hour counter",
-                             @234:  @"Liter/imp value for input A",
-                             @235:	@"Liter/imp value for input B"};
+    self.registerIDTable = @{@"0.0":	@"Serial no.",
+                             @"6.8":   @"Heat energy",
+                             @"6.26":	@"Mass register",
+                             @"6.31":	@"Operational hour counter"};
     
     self.registerUnitsTable = @{@0x01: @"Wh",
                                 @0x02: @"kWh",
@@ -271,8 +204,9 @@
 -(void)decodeFrame:(NSData *)theFrame {
     self.frameReceived = NO;
     self.errorReceiving = NO;
-    [self.frame appendData:theFrame];
-    const unsigned char *bytes = theFrame.bytes;
+    //[self.frame appendData:theFrame];
+    
+    const char *bytes = theFrame.bytes;
 
     if (theFrame.length == 1) {
         // no data returned from Kamstrup meter
@@ -289,147 +223,46 @@
 
     if (bytes[0] == '/') {
         // ACK
-        bytes = self.frame.bytes;
+        bytes = theFrame.bytes;
         //[self.responseData setObject:[NSData dataWithBytes:bytes length:theFrame.length] forKey:@"ack"];
-        [self.responseData setObject:self.frame forKey:@"ack"];
+        [self.responseData setObject:theFrame forKey:@"ack"];
     }
     else if (bytes[0] == 0x02) {
-        // Data block
-        NSRange range = NSMakeRange(1, [self.frame length] - 2);
-        [self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"dataBlock"];
-        
         // BCC
-        range = NSMakeRange([self.frame length] - 2, 1);
-        [self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"bcc"];
+        NSRange range = NSMakeRange(theFrame.length - 2, 1);
+        unsigned char bcc = bytes[theFrame.length - 1];
+        //[self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"bcc"];
 
-        NSRegularExpression *regex;
-        NSString *str;
-        NSTextCheckingResult *match;
-        NSString *testoValue;
+        // Data block
+       range = NSMakeRange(1, [theFrame length] - 2);
+        NSData *dataBlock = [theFrame subdataWithRange:range];
+        bytes = dataBlock.bytes;
+        //[self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"dataBlock"];
         
-        //datastring is set
-        str = self.responseData[@"dataBlock"];
-        
-        regex = [NSRegularExpression regularExpressionWithPattern:@"(.*)\((.*)\)" options:0 error:NULL];
-        match = [regex firstMatchInString:str options:0 range:NSMakeRange(0, [str length])];
-        NSLog(@"%@, %@", [str substringWithRange:[match rangeAtIndex:1]], [str substringWithRange:[match rangeAtIndex:2]]);
-        //self.myDataObject.sampleDataDict[@"CO2"] = testoValue;
+        // check bcc
 
-        //[self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:value] forKey:@"id"];
-        //[self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:value] forKey:@"value"];
-    }
-    
-    /*
-    if (bytes[theFrame.length - 1] == 0x0a) {
-        // end of data - get params from frame
-        bytes = self.frame.bytes;
-        
-        [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"starByte"];
-        [self.responseData setObject:[NSData dataWithBytes:(bytes + self.frame.length - 1) length:1] forKey:@"stopByte"];
-
-        // unstuff data
-        NSRange range = NSMakeRange(1, self.frame.length - 2);
-        NSData *unstuffedFrame = [self iec62056_21ByteUnstuff:[self.frame subdataWithRange:range]];
-        bytes = unstuffedFrame.bytes;
-
-        if (unstuffedFrame.length >= 4) {
-            [self.responseData setObject:[NSData dataWithBytes:bytes length:1] forKey:@"dst"];
-            [self.responseData setObject:[NSData dataWithBytes:(bytes + 1) length:1] forKey:@"cid"];
-            range = NSMakeRange(unstuffedFrame.length - 2, 2);
-            [self.responseData setObject:[unstuffedFrame subdataWithRange:range] forKey:@"crc"];
-        }
-
-        // calculate crc
-        range = NSMakeRange(0, unstuffedFrame.length - 2);
-        NSData *data = [unstuffedFrame subdataWithRange:range];
-
-        if ([[self crc16ForData:data] isEqualToData:responseData[@"crc"]]) {
-            NSLog(@"crc ok");
-        }
-        else {
-            NSLog(@"crc error");
-            self.errorReceiving = YES;
-            return;
-        }
-        
-
-        // decode application layer
-        unsigned char *cid_ptr = (unsigned char *)[self.responseData[@"cid"] bytes];
-        unsigned char cid = cid_ptr[0];
-        if (cid == 0x01) {         // GetType
-            NSLog(@"GetType");
+        // parse data
+        NSString *str = [[NSString alloc] initWithUTF8String:bytes];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(.*?)[(](.*?)(?:[*](.*?))?[)]" options:0 error:NULL];
+        NSArray* matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange ridGroup = [match rangeAtIndex:1];
+            NSRange valueGroup = [match rangeAtIndex:2];
+            NSRange unitGroup = [match rangeAtIndex:3];
             
-            range = NSMakeRange(2, 2);
-            [self.responseData setObject:[data subdataWithRange:range] forKey:@"meterType"];
-            
-            range = NSMakeRange(4, 2);
-            [self.responseData setObject:[data subdataWithRange:range] forKey:@"swRevision"];
-        }
-        else if (cid == 0x02) {
-            NSLog(@"GetSerialNo"); // GetSerialNo
-            range = NSMakeRange(2, data.length - 2);
-            bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-            unsigned int serialNo = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
-            [self.responseData setObject:[NSNumber numberWithUnsignedInt:serialNo] forKey:@"serialNo"] ;
-            NSLog(@"%d", serialNo);
-        }
-        else if (cid == 0x10) {    // GetRegister
-            NSLog(@"GetRegister");
-            if (data.length > 2) {
-                for (uint8_t i = 0; i < ((data.length - 2) / 9); i++) {     // 9 bytes per register
-                    
-                    range = NSMakeRange(9 * i + 2, 2);
-                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                    int16_t rid = (bytes[0] << 8) + bytes[1];
-                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:rid] forKey:@"rid"];
-
-                    [self.responseData setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithUnsignedInt:rid]];
-
-                    
-                    range = NSMakeRange(9 * i + 4, 1);
-                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                    unsigned int unit = bytes[0];
-                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:unit] forKey:@"unit"];
-                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:unit] forKey:@"unit"];
-
-                    range = NSMakeRange(9 * i + 5, 1);
-                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                    unsigned int length = bytes[0];
-                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:length] forKey:@"length"];
-                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:length] forKey:@"length"];
-            
-                    range = NSMakeRange(9 * i + 6, 1);
-                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                    unsigned int siEx = bytes[0];
-                    //[self.responseData setObject:[NSNumber numberWithUnsignedInt:siEx] forKey:@"siEx"];
-                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:siEx] forKey:@"siEx"];
-            
-                    range = NSMakeRange(9 * i + 7, 4);
-                    bytes = (unsigned char *)[[data subdataWithRange:range] bytes];
-                    int32_t value = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3];
-                    //[self.responseData setObject:[NSNumber numberWithInt:value] forKey:@"value"];
-                    [self.responseData[([NSNumber numberWithUnsignedInt:rid])] setObject:[NSNumber numberWithUnsignedInt:value] forKey:@"value"];
+            if (ridGroup.length && valueGroup.length) {
+                NSString *rid = [str substringWithRange:ridGroup];
+                NSString *valueString = [str substringWithRange:valueGroup];
+                [self.responseData setObject:[[NSMutableDictionary alloc] init] forKey:rid];
+                [self.responseData[rid] setObject:valueString forKey:@"value"];
+                
+                if (unitGroup.length) {
+                    NSString *unitString = [str substringWithRange:unitGroup];
+                    [self.responseData[rid] setObject:unitString forKey:@"unit"];
                 }
-
-            }
-            else {
-                NSLog(@"No registers in reply");
             }
         }
-        else if (cid == 0x11) {    // PutRegister
-            NSLog(@"PutRegister");
-            range = NSMakeRange(2, data.length - 2);
-            NSLog(@"%@", [data subdataWithRange:range]);
-        }
-        self.frameReceived = YES;
-        //CFShow((__bridge CFTypeRef)(self.responseData));
     }
-    else if (bytes[theFrame.length - 1] == 0x06) {
-        NSLog(@"SetClock no CRC");      // SetClock
-        self.frameReceived = YES;
-        //CFShow((__bridge CFTypeRef)(self.responseData));
-    }
-    */
 }
 
 

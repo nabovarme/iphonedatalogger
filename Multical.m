@@ -229,11 +229,19 @@
     self.framesReceived++;
     // decode
     [self.iec62056_21 decodeFrame:self.data];
-    
-    
+    for (NSNumber *rid in self.iec62056_21.registerIDTable) {
+        if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
+            //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
+            self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]] = self.iec62056_21.responseData[rid][@"value"];
+        }
+    }
     self.data = [[NSMutableData alloc] init];       // clear data after use
     self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
     
+    //update table view
+    self.state = YES;
+    [self.detailsTableView reloadData];
+
     self.readyToSend = YES;
         
     if (self.framesReceived == self.framesToSend) {
