@@ -252,13 +252,26 @@
             
             if (ridGroup.length && valueGroup.length) {
                 NSString *rid = [str substringWithRange:ridGroup];
-                NSString *valueString = [str substringWithRange:valueGroup];
+                NSMutableString *valueString = [str substringWithRange:valueGroup];
                 [self.responseData setObject:[[NSMutableDictionary alloc] init] forKey:rid];
-                [self.responseData[rid] setObject:valueString forKey:@"value"];
                 
                 if (unitGroup.length) {
                     NSString *unitString = [str substringWithRange:unitGroup];
                     [self.responseData[rid] setObject:unitString forKey:@"unit"];
+                    
+                    // format as number
+                    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                    valueString = [[[formatter numberFromString:valueString] stringValue] mutableCopy];
+                    
+                    // and append unit
+                    [valueString appendString:@" "];
+                    [valueString appendString:unitString];
+                    
+                    [self.responseData[rid] setObject:valueString forKey:@"value"];
+                }
+                else {
+                    [self.responseData[rid] setObject:valueString forKey:@"value"];
                 }
             }
         }

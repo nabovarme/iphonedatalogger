@@ -244,7 +244,7 @@
 
     self.readyToSend = YES;
         
-    if (self.framesReceived == self.framesToSend) {
+    if ((self.framesReceived == 2) && (self.framesToSend == 2)) {
         // last frame received
         [self.receiveDataProgressView setHidden:YES];
         [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
