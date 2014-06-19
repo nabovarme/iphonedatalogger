@@ -8,6 +8,7 @@
 
 #import "Multical.h"
 #import "KeyLabelValueTextfieldCell.h"
+#import "IEC62056-21.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
@@ -15,7 +16,7 @@
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
 @interface Multical ()
-@property NSOperationQueue *sendKMPRequestOperationQueue;
+@property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
 @property unsigned char framesReceived;
@@ -26,7 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
-//@property KMP *kmp;
+@property IEC62056_21 *iec62056_21;
 
 @end
 
@@ -34,7 +35,7 @@
 @implementation Multical
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
-@synthesize sendKMPRequestOperationQueue;
+@synthesize sendIEC62056_21RequestOperationQueue;
 @synthesize readyToSend;
 @synthesize framesToSend;
 @synthesize framesReceived;
@@ -43,7 +44,7 @@
 @synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
-//@synthesize kmp;
+@synthesize iec62056_21;
 
 -(id)init
 {
@@ -64,8 +65,8 @@
     [self setMyDataObject:dictionary[@"dataObject"]];
     self.state = NO;
 
-    // set up kmp protocol
-    //self.kmp = [[KMP alloc] init];
+    // set up iec62056_21 protocol
+    self.iec62056_21 = [[IEC62056_21 alloc] init];
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -100,8 +101,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
-    //KMP *myData = [[KMP alloc] init];
-    //[myData getType];
+    IEC62056_21 *myData = [[IEC62056_21 alloc] init];
+    [myData getType];
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
@@ -155,15 +156,15 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
-        // start sendKMPRequest in a operation queue, so it can be canceled
-        self.sendKMPRequestOperationQueue = [[NSOperationQueue alloc] init];
+        // start sendMulticalRequest in a operation queue, so it can be canceled
+        self.sendIEC62056_21RequestOperationQueue = [[NSOperationQueue alloc] init];
 
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
                                      selector:@selector(sendMulticalRequest:)
                                        object:operation];
         
-        [self.sendKMPRequestOperationQueue addOperation:operation];
+        [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
     }
 }
 
@@ -227,13 +228,8 @@
     NSLog(@"Done receiving %@", self.data);
     self.framesReceived++;
     // decode
-    NSRange range = NSMakeRange(1, self.data.length - 4);
-    char *bytes = (char *)[[data subdataWithRange:range] bytes];
-    NSLog(@"%s", bytes);
-    
-    self.data = [[NSMutableData alloc] init];       // clear data after use
-    self.readyToSend = YES;
-    
+    [self.iec62056_21 decodeFrame:self.data];
+        
     if (self.framesReceived == self.framesToSend) {
         // last frame received
         [self.receiveDataProgressView setHidden:YES];
@@ -245,8 +241,8 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     [self.receiveDataProgressTimer invalidate];
     self.receiveDataProgressTimer = nil;
-    [self.sendKMPRequestOperationQueue cancelAllOperations];
-    self.sendKMPRequestOperationQueue = nil;
+    [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
+    self.sendIEC62056_21RequestOperationQueue = nil;
     NSLog(@"viewDidDisappear");
 }
 

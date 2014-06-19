@@ -287,7 +287,7 @@
         return;
     }
 
-    if (bytes[theFrame.length - 1] == 0x0d) {
+    if (bytes[theFrame.length - 1] == 0x0a) {
         // end of data - get params from frame
         bytes = self.frame.bytes;
         
