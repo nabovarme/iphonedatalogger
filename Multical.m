@@ -259,6 +259,7 @@
         // stop all already running sendIEC62056_21Requests
         [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
         
+        // restart progress bar
         [self.receiveDataProgressView setProgress:0.0];
         
         // and start a new one

@@ -260,6 +260,9 @@
         // stop all already running sendKMPRequests
         [self.sendKMPRequestOperationQueue cancelAllOperations];
         
+        // restart progress bar
+        [self.receiveDataProgressView setProgress:0.0];
+        
         // and start a new one
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
