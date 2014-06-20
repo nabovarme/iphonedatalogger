@@ -101,8 +101,6 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
-    IEC62056_21 *myData = [[IEC62056_21 alloc] init];
-    [myData getType];
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
@@ -230,26 +228,48 @@
     self.framesReceived++;
     // decode
     [self.iec62056_21 decodeFrame:self.data];
-    for (NSNumber *rid in self.iec62056_21.registerIDTable) {
-        if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
-            //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
-            self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]] = self.iec62056_21.responseData[rid][@"value"];
+    if (self.iec62056_21.frameReceived) {
+        for (NSNumber *rid in self.iec62056_21.registerIDTable) {
+            if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
+                //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
+                self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]] = self.iec62056_21.responseData[rid][@"value"];
+            }
+        }
+        
+        self.data = [[NSMutableData alloc] init];       // clear data after use
+        self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
+        
+        self.readyToSend = YES;
+        
+        if ((self.framesReceived == 2) && (self.framesToSend == 2)) {
+            // last frame received
+            [self.receiveDataProgressView setHidden:YES];
+            [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+            
+            //update table view
+            self.state = YES;
+            [self.detailsTableView reloadData];
         }
     }
-    self.data = [[NSMutableData alloc] init];       // clear data after use
-    self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
     
-    //update table view
-    self.state = YES;
-    [self.detailsTableView reloadData];
-
-    self.readyToSend = YES;
+    if (self.iec62056_21.errorReceiving) {
+        NSLog(@"Retransmit");
+        self.framesReceived = 0;
+        self.data = [[NSMutableData alloc] init];       // clear data after use
+        self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
+        // stop all already running sendKMPRequests
+        [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
         
-    if ((self.framesReceived == 2) && (self.framesToSend == 2)) {
-        // last frame received
-        [self.receiveDataProgressView setHidden:YES];
-        [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+        // and start a new one
+        NSInvocationOperation *operation = [NSInvocationOperation alloc];
+        operation = [operation initWithTarget:self
+                                     selector:@selector(sendMulticalRequest:)
+                                       object:operation];
+        
+        [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
     }
+        
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
