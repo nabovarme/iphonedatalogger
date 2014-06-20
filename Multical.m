@@ -144,13 +144,11 @@
         [self.receiveDataProgressView setHidden:NO];
         [self.receiveDataProgressView setProgress:0.0 animated:YES];
         // and start a timer to update it
-        /*
         self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL
                                                                          target:self
                                                                        selector:@selector(updateProgressBar)
                                                                        userInfo:nil
                                                                         repeats:YES];
-         */
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
