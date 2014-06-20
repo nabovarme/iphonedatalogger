@@ -204,7 +204,6 @@
 -(void)decodeFrame:(NSData *)theFrame {
     self.frameReceived = NO;
     self.errorReceiving = NO;
-    //[self.frame appendData:theFrame];
     
     const char *bytes = theFrame.bytes;
 
@@ -236,13 +235,11 @@
         // Data block
        range = NSMakeRange(1, [theFrame length] - 2);
         NSData *dataBlock = [theFrame subdataWithRange:range];
-        bytes = dataBlock.bytes;
-        //[self.responseData setObject:[self.frame subdataWithRange:range] forKey:@"dataBlock"];
         
         // check bcc
 
         // parse data
-        NSString *str = [[NSString alloc] initWithUTF8String:bytes];
+        NSString *str = [[NSString alloc] initWithData:dataBlock encoding:NSUTF8StringEncoding];
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(.*?)[(](.*?)(?:[*](.*?))?[)]" options:0 error:NULL];
         NSArray* matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
         for (NSTextCheckingResult *match in matches) {
@@ -252,17 +249,17 @@
             
             if (ridGroup.length && valueGroup.length) {
                 NSString *rid = [str substringWithRange:ridGroup];
-                NSMutableString *valueString = [str substringWithRange:valueGroup];
+                NSMutableString *valueString = [[str substringWithRange:valueGroup] mutableCopy];
                 [self.responseData setObject:[[NSMutableDictionary alloc] init] forKey:rid];
                 
                 if (unitGroup.length) {
                     NSString *unitString = [str substringWithRange:unitGroup];
                     [self.responseData[rid] setObject:unitString forKey:@"unit"];
-                    
+                    NSLog(@"valueString %@", valueString);
                     // format as number
-                    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-                    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-                    valueString = [[[formatter numberFromString:valueString] stringValue] mutableCopy];
+                    float valueFloat = atof([valueString UTF8String]);
+                    valueString = [[[NSNumber numberWithFloat:valueFloat] stringValue] mutableCopy];
+                    NSLog(@"valueString %@", valueString);
                     
                     // and append unit
                     [valueString appendString:@" "];

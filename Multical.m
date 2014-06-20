@@ -226,6 +226,7 @@
 
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
+    NSLog(@"Done receiving ascii \"%@\"", [[NSString alloc] initWithData:self.data encoding:NSASCIIStringEncoding]);
     self.framesReceived++;
     // decode
     [self.iec62056_21 decodeFrame:self.data];
