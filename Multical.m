@@ -12,7 +12,7 @@
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
-#define RECEIVE_DATA_TIME (16.0f)
+#define RECEIVE_DATA_TIME (3.0f)
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
 @interface Multical ()
@@ -256,8 +256,10 @@
         self.framesReceived = 0;
         self.data = [[NSMutableData alloc] init];       // clear data after use
         self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
-        // stop all already running sendKMPRequests
+        // stop all already running sendIEC62056_21Requests
         [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
+        
+        [self.receiveDataProgressView setProgress:0.0];
         
         // and start a new one
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
