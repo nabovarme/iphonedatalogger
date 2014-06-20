@@ -254,6 +254,7 @@
     
     if (self.iec62056_21.errorReceiving) {
         NSLog(@"Retransmit");
+        self.framesToSend = 0;
         self.framesReceived = 0;
         self.data = [[NSMutableData alloc] init];       // clear data after use
         self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
