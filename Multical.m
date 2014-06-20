@@ -234,11 +234,18 @@
             }
         }
         
-        self.data = [[NSMutableData alloc] init];       // clear data after use
-        self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
-        
-        self.readyToSend = YES;
-        
+        if ((self.framesReceived == 1) && (self.framesToSend == 1)) {
+            if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM MC"]) {  // Kamstrup Multical, 2001
+                // sends data after ack in same frame, so cancel second frame
+                [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
+                [self.receiveDataProgressView setHidden:YES];
+                [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+                
+                //update table view
+                self.state = YES;
+                [self.detailsTableView reloadData];
+            }
+        }
         if ((self.framesReceived == 2) && (self.framesToSend == 2)) {
             // last frame received
             [self.receiveDataProgressView setHidden:YES];
@@ -248,6 +255,11 @@
             self.state = YES;
             [self.detailsTableView reloadData];
         }
+        
+        self.data = [[NSMutableData alloc] init];       // clear data after use
+        self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
+        
+        self.readyToSend = YES;
     }
     
     if (self.iec62056_21.errorReceiving) {

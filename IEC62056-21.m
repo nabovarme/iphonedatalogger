@@ -58,8 +58,6 @@
     }
 
     if ((bytes[0] == 0x02) | (bytes[0] == '/')) {
-        bytes = theFrame.bytes;
-
         // Ident
         NSString *str = [[NSString alloc] initWithData:theFrame encoding:NSUTF8StringEncoding];
         NSError *regexError;
@@ -105,7 +103,7 @@
                     // parse data
                     NSString *str = [[NSString alloc] initWithData:dataBlock encoding:NSUTF8StringEncoding];
                     NSError *regexError;
-                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(.*?)[(](.*?)(?:[*](.*?))?[)]" options:0 error:&regexError];
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(.*?)[(](.*?)(?:[*](.*?))?[)]" options:kNilOptions error:&regexError];
                     if (regexError) {
                         NSLog(@"%@",regexError.localizedDescription);
                     }
