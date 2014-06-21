@@ -125,7 +125,8 @@
                                 NSLog(@"valueString %@", valueString);
                                 // format as number
                                 float valueFloat = atof([valueString UTF8String]);
-                                valueString = [[[NSNumber numberWithFloat:valueFloat] stringValue] mutableCopy];
+                                // localized number format
+                                valueString = [[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithFloat:valueFloat] numberStyle:NSNumberFormatterDecimalStyle] mutableCopy];
                                 NSLog(@"valueString %@", valueString);
                                 
                                 // and append unit

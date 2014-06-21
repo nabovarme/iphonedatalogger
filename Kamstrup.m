@@ -239,7 +239,15 @@
         for (NSNumber *rid in self.kmp.registerIDTable) {
             if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
                 //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
-                self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
+                
+                // format as number
+                NSString *valueString = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
+                NSLog(@"valueString %@", valueString);
+                float valueFloat = atof([valueString UTF8String]);
+                // localized number format
+                valueString = [[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithFloat:valueFloat] numberStyle:NSNumberFormatterDecimalStyle] mutableCopy];
+                NSLog(@"valueString %@", valueString);
+                self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = valueString;
             }
         }
         self.data = [[NSMutableData alloc] init];       // clear data after use
