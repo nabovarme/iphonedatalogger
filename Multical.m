@@ -12,8 +12,8 @@
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
-#define RECEIVE_DATA_TIME (3.0f)
-#define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
+#define RECEIVE_DATA_TIME (4.0f)
+#define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (0.2f)
 
 @interface Multical ()
 @property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
@@ -207,7 +207,7 @@
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
     
-    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.0075) animated:YES];
+    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.003) animated:YES];
 
     if (self.receiveDataProgressTimer) {
         // stop it
@@ -391,8 +391,8 @@
 - (void)updateProgressBar {
     NSLog(@"updateProgressBar %f", self.receiveDataProgressView.progress);
     [self.receiveDataProgressView setProgress:
-        self.receiveDataProgressView.progress + 0.5 / RECEIVE_DATA_TIME * RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL animated:YES];
-    if (self.receiveDataProgressView.progress >= 0.5) {
+        self.receiveDataProgressView.progress + 0.7 / RECEIVE_DATA_TIME * RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL animated:YES];
+    if (self.receiveDataProgressView.progress >= 0.7) {
         // stop the timer - updating is done in receivedChar from there
         [self.receiveDataProgressTimer invalidate];
         self.receiveDataProgressTimer = nil;
