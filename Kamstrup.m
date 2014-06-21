@@ -241,11 +241,17 @@
                 //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
                 
                 // format as number
-                NSString *valueString = [[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue];
-                NSLog(@"valueString %@", valueString);
+                NSMutableString *valueString = [[[self.kmp numberForKmpNumber:self.kmp.responseData[rid][@"value"] andSiEx:self.kmp.responseData[rid][@"siEx"]] stringValue] mutableCopy];
+
                 float valueFloat = atof([valueString UTF8String]);
                 // localized number format
+                
                 valueString = [[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithFloat:valueFloat] numberStyle:NSNumberFormatterDecimalStyle] mutableCopy];
+                NSString *unit = kmp.registerUnitsTable[kmp.responseData[rid][@"unit"]];
+                if (unit && (![unit isEqualToString:@"number"])) {
+                    [valueString appendString:@" "];
+                    [valueString appendString:unit];
+                }
                 NSLog(@"valueString %@", valueString);
                 self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]] = valueString;
             }

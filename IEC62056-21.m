@@ -119,25 +119,23 @@
                             NSMutableString *valueString = [[str substringWithRange:valueGroup] mutableCopy];
                             [self.responseData setObject:[[NSMutableDictionary alloc] init] forKey:rid];
                             
+                            // format as number
+                            float valueFloat = atof([valueString UTF8String]);
+                            // localized number format
+                            valueString = [[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithFloat:valueFloat] numberStyle:NSNumberFormatterDecimalStyle] mutableCopy];
+                            NSLog(@"valueString %@", valueString);
+                            
                             if (unitGroup.length) {
                                 NSString *unitString = [str substringWithRange:unitGroup];
                                 [self.responseData[rid] setObject:unitString forKey:@"unit"];
-                                NSLog(@"valueString %@", valueString);
-                                // format as number
-                                float valueFloat = atof([valueString UTF8String]);
-                                // localized number format
-                                valueString = [[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithFloat:valueFloat] numberStyle:NSNumberFormatterDecimalStyle] mutableCopy];
-                                NSLog(@"valueString %@", valueString);
                                 
-                                // and append unit
+                                // append unit
                                 [valueString appendString:@" "];
                                 [valueString appendString:unitString];
                                 
                                 [self.responseData[rid] setObject:valueString forKey:@"value"];
                             }
-                            else {
-                                [self.responseData[rid] setObject:valueString forKey:@"value"];
-                            }
+                            [self.responseData[rid] setObject:valueString forKey:@"value"];
                         }
                     }
                     errorReceiving = NO;

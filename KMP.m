@@ -66,7 +66,7 @@
     ];
     
     self.registerIDTable = @{@1003: @"Current date (YYMMDD)",
-                             @60:   @"Energy register 1: Heat energy",
+                             @60:   @"Heat energy",     // @"Energy register 1: Heat energy"
                              @94:   @"Energy register 2: Control energy",
                              @63:   @"Energy register 3: Cooling energy",
                              @61:   @"Energy register 4: Flow energy",
@@ -81,7 +81,7 @@
                              @69:	@"Volume register V2",
                              @84:	@"Input register VA",
                              @85:	@"Input register VB",
-                             @72:	@"Mass register V1",
+                             @72:	@"Mass register",   // @"Mass register V1"
                              @73:	@"Mass register V2",
                              @1004:	@"Operational hour counter",
                              @113:	@"Info-event counter",
@@ -123,7 +123,7 @@
                              @152:	@"Program no. ABCCCCCC",
                              @153:	@"Config no. DDDEE",
                              @168:	@"Config no. FFGGMN",
-                             @1001:	@"Serial no. (unique number for each meter)",
+                             @1001:	@"Serial no.",          // @"Serial no. (unique number for each meter)"
                              @112:	@"Customer number (8 most important digits)",
                              @1010:	@"Customer number (8 less important digits)",
                              @114:	@"Meter no. for VA",
