@@ -185,17 +185,19 @@
         [NSThread sleepForTimeInterval:0.01];
     }
     [NSThread sleepForTimeInterval:0.1];
-
-    [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
-    [NSThread sleepForTimeInterval:0.04];
-    [self.sendRequestDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
-    self.framesToSend++;
-    while(!self.readyToSend ){
-        if ([theOperation isCancelled]) {
-            return;
+    
+    if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM0MC"]) {
+        [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
+        [NSThread sleepForTimeInterval:0.04];
+        [self.sendRequestDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
+        self.framesToSend++;
+        while(!self.readyToSend ){
+            if ([theOperation isCancelled]) {
+                return;
+            }
+            [NSThread sleepForTimeInterval:0.01];
         }
-        [NSThread sleepForTimeInterval:0.01];
-    }    
+    }
 }
 
 - (void)receivedChar:(unsigned char)input;
@@ -229,15 +231,14 @@
     if (self.iec62056_21.frameReceived) {
         for (NSNumber *rid in self.iec62056_21.registerIDTable) {
             if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
-                //NSLog(@"doneReceiving: updating %@", self.kmp.registerIDTable[rid]);
+                //NSLog(@"doneReceiving: updating %@", self.iec62056_21.responseData[rid][@"value"]);
                 self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]] = self.iec62056_21.responseData[rid][@"value"];
             }
         }
         
         if ((self.framesReceived == 1) && (self.framesToSend == 1)) {
             if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM MC"]) {  // Kamstrup Multical, 2001
-                // sends data after ack in same frame, so cancel second frame
-                [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
+                // sends data after ack in same frame
                 [self.receiveDataProgressView setHidden:YES];
                 [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
                 
@@ -257,7 +258,6 @@
         }
         
         self.data = [[NSMutableData alloc] init];       // clear data after use
-        self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
         
         self.readyToSend = YES;
     }

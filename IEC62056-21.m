@@ -61,7 +61,7 @@
         // Ident
         NSString *str = [[NSString alloc] initWithData:theFrame encoding:NSUTF8StringEncoding];
         NSError *regexError;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[/](.*?)\r\n(\x02)?" options:NSRegularExpressionDotMatchesLineSeparators error:&regexError];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[/](.*?)\r\n[\x02]?" options:NSRegularExpressionDotMatchesLineSeparators error:&regexError];
         if (regexError) {
             NSLog(@"%@",regexError.localizedDescription);
         }
