@@ -3,8 +3,8 @@
 //  MeterLogger
 //
 //  Created by Bret Cheng on 24/7/12.
-//  Copyright (c) 2012 9Lab. All rights reserved.
-//
+//  Copyright (c) 2014 Johannes Gaardsted Jørgensen <johannesgj@gmail.com> + Kristoffer Ek <stoffer@skulp.net>. All rights reserved.
+//  This program is distributed under the terms of the GNU General Public License
 
 #import "NLAppDelegate.h"
 #import "FSKSerialGenerator.h"

@@ -3,8 +3,8 @@
 //  SoftModemRemote
 //
 //  Created by johannes on 4/28/14.
-//  Copyright (c) 2014 9Lab. All rights reserved.
-// inspired by http://stackoverflow.com/questions/6969389/hex-nsstring-to-char
+//  Copyright (c) 2014 Johannes Gaardsted Jørgensen <johannesgj@gmail.com> + Kristoffer Ek <stoffer@skulp.net>. All rights reserved.
+//  This program is distributed under the terms of the GNU General Public License
 
 #import "ProtocolHelper.h"
 
