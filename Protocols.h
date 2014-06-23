@@ -6,9 +6,7 @@
 //  Copyright (c) 2014 Johannes Gaardsted Jørgensen <johannesgj@gmail.com> + Kristoffer Ek <stoffer@skulp.net>. All rights reserved.
 //  This program is distributed under the terms of the GNU General Public License
 
-#import <Foundation/Foundation.h>
-#import "NLAppDelegate.h"
-#import <UIKit/UIKit.h>
+
 
 //#import "SampleDetailsViewController.h"
 //#import "NewSampleViewController.h"
@@ -35,4 +33,8 @@
 //updateProgressBar
 -(void) sendRequest:(NSString*) hexStrings;
 @end
+
+#import <Foundation/Foundation.h>
+//#import "NLAppDelegate.h"
+#import <UIKit/UIKit.h>
 
