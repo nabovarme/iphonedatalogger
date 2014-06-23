@@ -21,11 +21,11 @@
 
 //- (void)sendMulticalRequest:(NSOperation *)theOperation;
 
-@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
 
 @property NSTimer *receiveDataProgressTimer;
+//-(id) respondWithReceiveCharDelegate;
 
 @end
 

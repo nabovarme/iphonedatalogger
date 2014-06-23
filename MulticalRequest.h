@@ -14,8 +14,10 @@
 
 @property IEC62056_21 *iec62056_21;
 
-- (void)sendRequest:(id<DeviceViewControllerSendRequest>)theSendRequestDelegate;
+- (void)sendRequest;
 
 - (void)sendMulticalRequest:(NSOperation *)theOperation;
+@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
+
 
 @end

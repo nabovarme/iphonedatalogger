@@ -12,7 +12,7 @@
 @interface MulticalRequest()
 
 // private
-@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
+//@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 @property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
@@ -37,9 +37,12 @@
     
     return self;
 }
-
-- (void)sendRequest:(id<DeviceViewControllerSendRequest>)theSendRequestDelegate {
-    self.sendRequestDelegate = theSendRequestDelegate;
+- (void)receivedChar:(unsigned char)input;
+{
+    NSLog(@"lol multical received a char lol");
+}
+- (void)sendRequest {
+//    self.sendRequestDelegate = theSendRequestDelegate;
     
     // start sendMulticalRequest in a operation queue, so it can be canceled
     self.sendIEC62056_21RequestOperationQueue = [[NSOperationQueue alloc] init];

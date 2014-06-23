@@ -24,7 +24,7 @@
 @protocol NewSampleViewControllerReceivedChar  <NSObject>
 @optional
 - (void) receivedChar:(unsigned char)input;
-- (void)lort;
+-(id) respondWithReceiveCharDelegate;
 - (DeviceSampleDataObject*)getDataObject;
 @end
 

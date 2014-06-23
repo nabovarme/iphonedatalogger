@@ -35,7 +35,6 @@
 
 
 @implementation Multical
-@synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 //@synthesize sendIEC62056_21RequestOperationQueue;
 @synthesize readyToSend;
@@ -62,7 +61,7 @@
     //make kmp transport init alloc
     //    [kmpTransportInstance setSendRequestDelegate:dictionary[@"delegate"]];
 
-    [self setSendRequestDelegate:dictionary[@"delegate"]];
+    //[self setSendRequestDelegate:dictionary[@"delegate"]];
     
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
@@ -71,6 +70,8 @@
     //self.iec62056_21 = [[IEC62056_21 alloc] init];
     // set up multicalRequest
     self.multicalRequest = [[MulticalRequest alloc] init];
+    [self.multicalRequest setSendRequestDelegate:dictionary[@"delegate"]];
+
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -168,8 +169,15 @@
         
         [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
         */
-        [self.multicalRequest sendRequest:sendRequestDelegate];
+      //  [self.multicalRequest initCommunications];
+        [self.multicalRequest sendRequest];
     }
+}
+
+//new stuff
+-(id)respondWithReceiveCharDelegate
+{
+    return self.multicalRequest;
 }
 
 

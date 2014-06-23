@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
 
 @property NSTimer *receiveDataProgressTimer;
-
+//new stuff
+//-(id)respondWithReceiveCharDelegate;
 @end
 

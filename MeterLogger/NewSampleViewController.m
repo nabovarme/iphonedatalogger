@@ -36,7 +36,7 @@
 
 @interface NewSampleViewController ()
 @property (nonatomic,retain) NSOperationQueue *operationQueue;
-@property UIViewController  *currentDetailViewController;
+@property UIViewController  <NewSampleViewControllerReceivedChar> *currentDetailViewController;
 
 @end
 
@@ -100,7 +100,7 @@
                                 @"dataObject":dataObject
                                 };
 
-    [self presentDetailController:(UIViewController *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
+    [self presentDetailController:(UIViewController <NewSampleViewControllerReceivedChar> *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
     
     [super viewDidLoad];
     
@@ -118,7 +118,7 @@
         NSLog(@"cancel");
     }
 }
-- (void)presentDetailController:(UIViewController*)detailVC{
+- (void)presentDetailController:(UIViewController <NewSampleViewControllerReceivedChar> *)detailVC{
     
     //0. Remove the current Detail View Controller showed
     if(self.currentDetailViewController){
@@ -134,8 +134,9 @@
     //3. Add the Detail controller's view to the Container's detail view and save a reference to the detail View Controller
     [self.contentView addSubview:detailVC.view];
     self.currentDetailViewController = detailVC;
-    [self setReceivedCharDelegate: self.currentDetailViewController];
-    //[self setreceivedchardelegate: [self.currentDetailViewController getDelegate]]
+   // [self setReceivedCharDelegate: self.currentDetailViewController];
+    
+    [self setReceivedCharDelegate: [ self.currentDetailViewController  respondWithReceiveCharDelegate] ];
     //[self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
 
     //4. Complete the add flow calling the function didMoveToParentViewController
