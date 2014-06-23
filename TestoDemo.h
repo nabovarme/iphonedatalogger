@@ -11,7 +11,7 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
-
+//#import "MeterLoggerProtocol.h"
 #define PROTO_TESTO_DEMO	(@"ff")
 
 @class TestoDemo;

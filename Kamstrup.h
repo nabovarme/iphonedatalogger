@@ -12,7 +12,7 @@
 #import "Protocols.h"
 #import "SamplesEntity.h"
 #import "KMP.h"
-
+//#import "MeterLoggerProtocol.h"
 #define PROTO_KAMSTRUP		(@"fd")
 
 @class Kamstrup;

@@ -12,15 +12,14 @@
 #import "Protocols.h"
 #import "SamplesEntity.h"
 #import "Multical.h"
-
-#define PROTO_MULTICAL		(@"fc")
+//#import "MeterLoggerProtocol.h"
+//#define PROTO_IEC61107		(@"fc")
 
 @class Multical;
 
-@interface Multical : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
+@interface Multical : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
 
-}
-- (void)sendMulticalRequest:(NSOperation *)theOperation;
+//- (void)sendMulticalRequest:(NSOperation *)theOperation;
 
 @property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 

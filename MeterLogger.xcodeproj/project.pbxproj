@@ -24,6 +24,7 @@
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
+		D60EA66019586B9E00717CB6 /* MulticalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D60EA65F19586B9E00717CB6 /* MulticalRequest.m */; };
 		D61A90E7194FB2F900B8B119 /* Multical.m in Sources */ = {isa = PBXBuildFile; fileRef = D61A90E4194FB2F900B8B119 /* Multical.m */; };
 		D61A90E8194FB2F900B8B119 /* Multical.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61A90E5194FB2F900B8B119 /* Multical.xib */; };
 		D61A90E9194FB2F900B8B119 /* MulticalPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D61A90E6194FB2F900B8B119 /* MulticalPropertyList.plist */; };
@@ -82,6 +83,9 @@
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
+		D60EA65E19586B9E00717CB6 /* MulticalRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MulticalRequest.h; sourceTree = "<group>"; };
+		D60EA65F19586B9E00717CB6 /* MulticalRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MulticalRequest.m; sourceTree = "<group>"; };
+		D60EA66219587A5700717CB6 /* MeterLoggerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeterLoggerProtocol.h; sourceTree = SOURCE_ROOT; };
 		D61A90E3194FB2F900B8B119 /* Multical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multical.h; sourceTree = "<group>"; };
 		D61A90E4194FB2F900B8B119 /* Multical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Multical.m; sourceTree = "<group>"; };
 		D61A90E5194FB2F900B8B119 /* Multical.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Multical.xib; sourceTree = "<group>"; };
@@ -211,9 +215,9 @@
 		8F9D6C251917A9F000235CDA /* Testo */ = {
 			isa = PBXGroup;
 			children = (
+				8F9D6C311917C4A100235CDA /* Testo.xib */,
 				8F9D6C2F1917C4A100235CDA /* Testo.h */,
 				8F9D6C301917C4A100235CDA /* Testo.m */,
-				8F9D6C311917C4A100235CDA /* Testo.xib */,
 				D66DD04C19202DC6008ABF0F /* TestoPropertyList.plist */,
 			);
 			name = Testo;
@@ -222,12 +226,14 @@
 		D61A90E2194FB2E500B8B119 /* Multical */ = {
 			isa = PBXGroup;
 			children = (
+				D61A90E5194FB2F900B8B119 /* Multical.xib */,
 				D61A90E3194FB2F900B8B119 /* Multical.h */,
 				D61A90E4194FB2F900B8B119 /* Multical.m */,
-				D61A90E5194FB2F900B8B119 /* Multical.xib */,
-				D61A90E6194FB2F900B8B119 /* MulticalPropertyList.plist */,
+				D60EA65E19586B9E00717CB6 /* MulticalRequest.h */,
+				D60EA65F19586B9E00717CB6 /* MulticalRequest.m */,
 				D6200F711952531B007CE10C /* IEC62056-21.h */,
 				D6200F721952531B007CE10C /* IEC62056-21.m */,
+				D61A90E6194FB2F900B8B119 /* MulticalPropertyList.plist */,
 			);
 			name = Multical;
 			sourceTree = "<group>";
@@ -235,12 +241,12 @@
 		D625CA8419355179009056C6 /* Kamstrup */ = {
 			isa = PBXGroup;
 			children = (
+				D625CA8119355170009056C6 /* Kamstrup.xib */,
 				D625CA7F19355170009056C6 /* Kamstrup.h */,
 				D625CA8019355170009056C6 /* Kamstrup.m */,
-				D625CA8119355170009056C6 /* Kamstrup.xib */,
-				2BFE5B97194005D2008FEA1C /* KamstrupPropertyList.plist */,
 				D625CA851935538B009056C6 /* KMP.h */,
 				D625CA861935538B009056C6 /* KMP.m */,
+				2BFE5B97194005D2008FEA1C /* KamstrupPropertyList.plist */,
 			);
 			name = Kamstrup;
 			sourceTree = "<group>";
@@ -248,9 +254,9 @@
 		D6821832191C413E00DC093A /* TestoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D682182F191C413800DC093A /* TestoDemo.xib */,
 				D682182D191C413800DC093A /* TestoDemo.h */,
 				D682182E191C413800DC093A /* TestoDemo.m */,
-				D682182F191C413800DC093A /* TestoDemo.xib */,
 				8F24A45F191FABBE001A393A /* TestoDemoPropertyList.plist */,
 			);
 			name = TestoDemo;
@@ -296,6 +302,7 @@
 				FBBD3CE315BE57AA0035F419 /* NLAppDelegate.m */,
 				FBBD3D0015BE58970035F419 /* Dependencies */,
 				FBBD3CDA15BE57A90035F419 /* Supporting Files */,
+				D60EA66219587A5700717CB6 /* MeterLoggerProtocol.h */,
 			);
 			path = MeterLogger;
 			sourceTree = "<group>";
@@ -451,6 +458,7 @@
 				FBBD3D1615BE58970035F419 /* FSKRecognizer.mm in Sources */,
 				FBBD3D1715BE58970035F419 /* FSKSerialGenerator.mm in Sources */,
 				8F9D6C321917C4A100235CDA /* Testo.m in Sources */,
+				D60EA66019586B9E00717CB6 /* MulticalRequest.m in Sources */,
 				8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */,
 				D625CA8219355170009056C6 /* Kamstrup.m in Sources */,
 				D61A90E7194FB2F900B8B119 /* Multical.m in Sources */,
@@ -506,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -532,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -8,7 +8,8 @@
 
 #import "Multical.h"
 #import "KeyLabelValueTextfieldCell.h"
-#import "IEC62056-21.h"
+//#import "IEC62056-21.h"
+#import "MulticalRequest.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
@@ -16,7 +17,7 @@
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (0.2f)
 
 @interface Multical ()
-@property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
+//@property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
 @property unsigned char framesReceived;
@@ -27,7 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
-@property IEC62056_21 *iec62056_21;
+//@property IEC62056_21 *iec62056_21;
+@property MulticalRequest *multicalRequest;
 
 @end
 
@@ -35,7 +37,7 @@
 @implementation Multical
 @synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
-@synthesize sendIEC62056_21RequestOperationQueue;
+//@synthesize sendIEC62056_21RequestOperationQueue;
 @synthesize readyToSend;
 @synthesize framesToSend;
 @synthesize framesReceived;
@@ -44,7 +46,8 @@
 @synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
-@synthesize iec62056_21;
+//@synthesize iec62056_21;
+@synthesize multicalRequest;
 
 -(id)init
 {
@@ -65,8 +68,9 @@
     [self setMyDataObject:dictionary[@"dataObject"]];
     self.state = NO;
 
-    // set up iec62056_21 protocol
-    self.iec62056_21 = [[IEC62056_21 alloc] init];
+    //self.iec62056_21 = [[IEC62056_21 alloc] init];
+    // set up multicalRequest
+    self.multicalRequest = [[MulticalRequest alloc] init];
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -143,6 +147,7 @@
         // start progress bar
         [self.receiveDataProgressView setHidden:NO];
         [self.receiveDataProgressView setProgress:0.0 animated:YES];
+        
         // and start a timer to update it
         self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL
                                                                          target:self
@@ -152,6 +157,7 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
+        /*
         // start sendMulticalRequest in a operation queue, so it can be canceled
         self.sendIEC62056_21RequestOperationQueue = [[NSOperationQueue alloc] init];
 
@@ -161,6 +167,8 @@
                                        object:operation];
         
         [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
+        */
+        [self.multicalRequest sendRequest:sendRequestDelegate];
     }
 }
 
@@ -171,10 +179,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 - (void)sendMulticalRequest:(NSOperation *)theOperation {
     self.readyToSend = NO;
     
-    [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
+    [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
     [NSThread sleepForTimeInterval:0.04];
     [self.sendRequestDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
     self.framesToSend++;
@@ -187,7 +196,7 @@
     [NSThread sleepForTimeInterval:0.1];
     
     if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM0MC"]) {
-        [self.sendRequestDelegate sendRequest:PROTO_MULTICAL];
+        [self.sendRequestDelegate sendRequest:PROTO_IEC61107];
         [NSThread sleepForTimeInterval:0.04];
         [self.sendRequestDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
         self.framesToSend++;
@@ -199,9 +208,9 @@
         }
     }
 }
+*/
 
-- (void)receivedChar:(unsigned char)input;
-{
+- (void)receivedChar:(unsigned char)input {
     //NSLog(@"Multical received %c (%d)", input, input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
@@ -224,6 +233,7 @@
 
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
+    /*
     NSLog(@"Done receiving ascii \"%@\"", [[NSString alloc] initWithData:self.data encoding:NSASCIIStringEncoding]);
     self.framesReceived++;
     // decode
@@ -282,16 +292,16 @@
         
         [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
     }
-        
     
+    */
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     [self.receiveDataProgressTimer invalidate];
     self.receiveDataProgressTimer = nil;
-    [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
-    self.sendIEC62056_21RequestOperationQueue = nil;
+//***    [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
+//***    self.sendIEC62056_21RequestOperationQueue = nil;
     NSLog(@"viewDidDisappear");
 }
 
