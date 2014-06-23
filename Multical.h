@@ -17,7 +17,7 @@
 
 @class Multical;
 
-@interface Multical : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface Multical : UIViewController <UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
 
 //- (void)sendMulticalRequest:(NSOperation *)theOperation;
 

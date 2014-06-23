@@ -41,6 +41,28 @@
 {
     NSLog(@"lol multical received a char lol");
 }
+/*
+- (void)receivedChar:(unsigned char)input {
+    //NSLog(@"Multical received %c (%d)", input, input);
+    // save incoming data do our sampleDataDict
+    NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
+    [self.data appendData:inputData];
+    
+    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.003) animated:YES];
+    
+    if (self.receiveDataProgressTimer) {
+        // stop it
+        [self.receiveDataProgressTimer invalidate];
+        self.receiveDataProgressTimer = nil;        // let it be deallocated
+        // and start a new timer
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+    }
+    else {
+        // if its not running start a new one
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+    }
+}
+ */
 - (void)sendRequest {
 //    self.sendRequestDelegate = theSendRequestDelegate;
     
