@@ -23,7 +23,6 @@
 @property unsigned char framesReceived;
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
-@property NSMutableData *data;
 @property BOOL state;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
@@ -42,7 +41,6 @@
 @synthesize framesReceived;
 @synthesize myDataObject;
 @synthesize orderedNames;
-@synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
 @synthesize iec62056_21;
@@ -130,7 +128,6 @@
     {
         // new sample view
         // set momentary data object
-        self.data = [[NSMutableData alloc] init];
 
         // if there is no data saved init sampleDataDict empty
         // load keys from property list
@@ -224,33 +221,35 @@
     }
 }
 */
-
-- (void)receivedChar:(unsigned char)input {
-    //NSLog(@"Multical received %c (%d)", input, input);
-    // save incoming data do our sampleDataDict
-    NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
-    [self.data appendData:inputData];
+-(void)doneReceiving:(NSDictionary * )responseDataDict
+{
+    /*
+     donereceive modtage en dict LORTE_DICT, hvor keys er registerIDTable[rid] og values er responseData[rid] values
+     done receive har et for loop
+     for all name in ordered names
+     self.mydataobject[name]=LORTE_DICT[name]
+     */
+    for (NSString *name in self.orderedNames)
+    {
+            id obj = [self.myDataObject.sampleDataDict objectForKey:name];
+            if ([obj isKindOfClass:[NSNull class]])
+            {
+                NSLog(@"key problem");
+                break;
+            }
+        self.myDataObject.sampleDataDict[name]=responseDataDict[name];
+    }
     
-    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.003) animated:YES];
-
-    if (self.receiveDataProgressTimer) {
-        // stop it
-        [self.receiveDataProgressTimer invalidate];
-        self.receiveDataProgressTimer = nil;        // let it be deallocated
-        // and start a new timer
-        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
-    }
-    else {
-        // if its not running start a new one
-        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
-    }
+    [self.detailsTableView reloadData];
+    
 }
+/*
 
 - (void)doneReceiving:(NSTimer* )sender {
     NSData * data=sender.userInfo;
     NSLog(@"Done receiving %@", data);
     
-    NSLog(@"Done receiving ascii \"%@\"", [[NSString alloc] initWithData:self.data encoding:NSASCIIStringEncoding]);
+    //NSLog(@"Done receiving ascii \"%@\"", [[NSString alloc] initWithData: encoding:NSASCIIStringEncoding]);
     self.framesReceived++;
     // decode
     [self.iec62056_21 decodeFrame:data];
@@ -259,14 +258,15 @@
             if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
                 //NSLog(@"doneReceiving: updating %@", self.iec62056_21.responseData[rid][@"value"]);
                 self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]] = self.iec62056_21.responseData[rid][@"value"];
+ 
             }
         }
         
         if ((self.framesReceived == 1) && (self.framesToSend == 1)) {
             if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM MC"]) {  // Kamstrup Multical, 2001
                 // sends data after ack in same frame
-                [self.receiveDataProgressView setHidden:YES];
-                [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+               // [self.receiveDataProgressView setHidden:YES];
+               // [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
                 
                 //update table view
                 self.state = YES;
@@ -275,15 +275,15 @@
         }
         if ((self.framesReceived == 2) && (self.framesToSend == 2)) {
             // last frame received
-            [self.receiveDataProgressView setHidden:YES];
-            [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+            //[self.receiveDataProgressView setHidden:YES];
+            //[[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
             
             //update table view
             self.state = YES;
             [self.detailsTableView reloadData];
         }
         
-        self.data = [[NSMutableData alloc] init];       // clear data after use
+      //  data = [[NSMutableData alloc] init];       // clear data after use
         
         self.readyToSend = YES;
     }
@@ -292,7 +292,7 @@
         NSLog(@"Retransmit");
         self.framesToSend = 0;
         self.framesReceived = 0;
-        self.data = [[NSMutableData alloc] init];       // clear data after use
+        data = [[NSMutableData alloc] init];       // clear data after use
         self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
         // stop all already running sendIEC62056_21Requests
         [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
@@ -310,6 +310,7 @@
     }
     
 }
+*/
 
 - (void)viewDidDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again

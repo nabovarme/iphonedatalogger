@@ -37,7 +37,7 @@
 
 @protocol deviceModelUpdated <NSObject>
 @optional
-- (void)doneReceiving:(NSTimer*)data;
+- (void)doneReceiving:(NSDictionary * )responseDataDict;
 @end
 
 #import <Foundation/Foundation.h>
