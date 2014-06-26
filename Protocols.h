@@ -22,24 +22,28 @@
 - (void)newSampleViewControllerDidSave:(NewSampleViewController *)controller;
 @end
 
-@protocol NewSampleViewControllerReceivedChar  <NSObject>
+@protocol NewSampleViewControllerSendToDeviceViewController  <NSObject>
 @optional
-- (void) receivedChar:(unsigned char)input;
 -(id) respondWithReceiveCharDelegate;
 - (DeviceSampleDataObject*)getDataObject;
 @end
 
-@protocol DeviceViewControllerSendToNewSampleViewController  <NSObject>
+@protocol NewSampleViewControllerSendToDeviceRequest <NSObject>
 @optional
--(void) updateProgressBar:(NSNumber *) procentage;
+- (void) receivedChar:(unsigned char)input;
+@end
+
+@protocol DeviceRequestSendToNewSampleViewController  <NSObject>
+@optional
+-(void) updateProgressBarWithFloat:(NSNumber *) floatValue andTime:(NSNumber*)time;
 -(void) sendRequest:(NSString*) hexStrings;
 @end
 
-@protocol deviceModelUpdated <NSObject>
+@protocol DeviceRequestSendToDeviceViewController <NSObject>
 @optional
 - (void)doneReceiving:(NSDictionary * )responseDataDict;
 @end
 
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
 
 
