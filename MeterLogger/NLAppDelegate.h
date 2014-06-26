@@ -13,7 +13,7 @@
 //all devices here
 #import "Protocols.h"
 
-#import "Testo.h"
+//#import "Testo.h"
 
 #import "DeviceSampleDataObject.h"
 #import "SamplesEntity.h"

@@ -27,7 +27,6 @@
 @implementation KamstrupRequest
 
 //@synthesize sendRequestDelegate;
-@synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
 @synthesize readyToSend;
 @synthesize framesToSend;
@@ -109,6 +108,7 @@
             [NSThread sleepForTimeInterval:0.01];
         }
     }
+}
 
 
 @end
