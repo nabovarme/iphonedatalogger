@@ -11,19 +11,12 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
-//#import "Multical.h"
-//#import "MeterLoggerProtocol.h"
-//#define PROTO_IEC61107		(@"fc")
 
 @class Multical;
 
 @interface Multical : UIViewController <DeviceRequestSendToDeviceViewController, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
 
-//- (void)sendMulticalRequest:(NSOperation *)theOperation;
-
-
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
-
 @property NSTimer *receiveDataProgressTimer;
 //-(id) respondWithReceiveCharDelegate;
 

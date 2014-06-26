@@ -17,6 +17,7 @@
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (0.2f)
 
 @interface Multical ()
+
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
 @property BOOL state;
@@ -49,8 +50,8 @@
 }
 
 //inits with a dictionary holding a viewcontroller to be set as delegate for sendrequest stuff
--(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
-{
+-(id)initWithDictionary:(NSDictionary *)dictionary {
+    //= /* parse the JSON response to a dictionary */;
     NSLog(@"sensor init with dictionary");
 
     // set myDataObject to the one passed in dictionary key dataObject
@@ -292,6 +293,5 @@
     result = [result substringWithRange:NSMakeRange(1, [result length] - 2)];
     return result;
 }
-
 
 @end
