@@ -11,7 +11,7 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
-#import "Multical.h"
+//#import "Multical.h"
 //#import "MeterLoggerProtocol.h"
 //#define PROTO_IEC61107		(@"fc")
 

@@ -10,18 +10,15 @@
 #import "DeviceSampleDataObject.h"
 #import "NewSampleViewController.h"
 #import "Protocols.h"
+
 #import "SamplesEntity.h"
 //#import "MeterLoggerProtocol.h"
 #define PROTO_TESTO_DEMO	(@"ff")
 
 @class TestoDemo;
+@interface TestoDemo : UIViewController <NewSampleViewControllerSendToDeviceRequest,NewSampleViewControllerSendToDeviceViewController, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
 
-@interface TestoDemo : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
-
-}
-
-@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
-
+@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
 
 @property NSTimer *receiveDataProgressTimer;

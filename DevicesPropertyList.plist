@@ -4,6 +4,7 @@
 <dict>
 	<key>DeviceClasses</key>
 	<array>
+		<string>TestoDemo</string>
 		<string>Multical</string>
 	</array>
 </dict>

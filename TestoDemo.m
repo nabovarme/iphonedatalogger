@@ -25,7 +25,7 @@
 @end
 
 @implementation TestoDemo
-@synthesize sendRequestDelegate;
+@synthesize DeviceRequestSendToNewSampleViewControllerDelegate;;
 @synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
 @synthesize detailsTableView;
@@ -44,7 +44,7 @@
 -(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
 {
     NSLog(@"sensor init with dictionary");
-    [self setSendRequestDelegate:dictionary[@"delegate"]];
+    [self setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];
     
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
@@ -130,12 +130,12 @@
 
         //todo: put denne funktionalitet ind i newsampleviewcontroller
                 
-        [self.sendRequestDelegate sendRequest:PROTO_TESTO_DEMO];
+        [self.DeviceRequestSendToNewSampleViewControllerDelegate sendRequest:PROTO_TESTO_DEMO];
         
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
         // 285 characters
-        [self.sendRequestDelegate sendRequest:@"302e30303334202020202020526174696f0d0a352e38322520202020202020434f320d0a31352e3125202020202020204f320d0a31393870706d202020202020434f0d0a36312e38b043202020202020466c75656761732074656d700d0a3235352e3925202020202020457863657373206169720d0a2d2d2e2d6d6d48324f202020447261756768740d0a39332e362520202020202020454646206e65740d0a2d2d2e2d70706d2020202020416d6269656e7420434f0d0a38362e3025202020202020204546462067726f73730d0a2d2d2e2d6d6d48324f202020446966662e2070726573732e0d0a31382e36b043202020202020416d6269656e742074656d700d0a37303670706d202020202020556e64696c7574656420434f0d0a"];
+        [self.DeviceRequestSendToNewSampleViewControllerDelegate sendRequest:@"302e30303334202020202020526174696f0d0a352e38322520202020202020434f320d0a31352e3125202020202020204f320d0a31393870706d202020202020434f0d0a36312e38b043202020202020466c75656761732074656d700d0a3235352e3925202020202020457863657373206169720d0a2d2d2e2d6d6d48324f202020447261756768740d0a39332e362520202020202020454646206e65740d0a2d2d2e2d70706d2020202020416d6269656e7420434f0d0a38362e3025202020202020204546462067726f73730d0a2d2d2e2d6d6d48324f202020446966662e2070726573732e0d0a31382e36b043202020202020416d6269656e742074656d700d0a37303670706d202020202020556e64696c7574656420434f0d0a"];
         
         [self.receiveDataProgressView setProgress:0.0 animated:YES];
     }
