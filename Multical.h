@@ -17,7 +17,7 @@
 
 @class Multical;
 
-@interface Multical : UIViewController <deviceModelUpdated, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface Multical : UIViewController <DeviceRequestSendToDeviceViewController, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
 
 //- (void)sendMulticalRequest:(NSOperation *)theOperation;
 

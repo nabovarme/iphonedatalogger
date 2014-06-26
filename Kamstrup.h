@@ -17,7 +17,7 @@
 
 @class Kamstrup;
 
-@interface Kamstrup : UIViewController <NewSampleViewControllerReceivedChar,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
+@interface Kamstrup : UIViewController <DeviceRequestSendToDeviceViewController,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
 
 }
 - (void)sendKMPRequest:(NSOperation *)theOperation;

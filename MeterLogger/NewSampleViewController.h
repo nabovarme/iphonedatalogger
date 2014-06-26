@@ -13,13 +13,15 @@
 
 @class NewSampleViewController;
 
-@interface NewSampleViewController : UIViewController <CharReceiver, DeviceViewControllerSendRequest, UIAlertViewDelegate>{
+@interface NewSampleViewController : UIViewController <CharReceiver, DeviceRequestSendToNewSampleViewController, UIAlertViewDelegate>{
 //    id<NewSampleViewControllerCancelSave> _cancelSaveDelegate;
 //    id<NewSampleViewControllerReceivedChar> _receivedCharDelegate;
 }
 @property (assign, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, assign) id<NewSampleViewControllerCancelSave> cancelSaveDelegate;
-@property (nonatomic, assign) id<NewSampleViewControllerReceivedChar> receivedCharDelegate;
+@property (nonatomic, assign) id<NewSampleViewControllerSendToDeviceRequest> NewSampleViewControllerSendToDeviceRequestDelegate;
+@property (nonatomic, assign) id<NewSampleViewControllerSendToDeviceViewController> NewSampleViewControllerSendToDeviceViewControllerDelegate;
+
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property ProtocolHelper* protocolHelper;
 

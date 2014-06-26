@@ -72,8 +72,8 @@
     //self.iec62056_21 = [[IEC62056_21 alloc] init];
     // set up multicalRequest
     self.multicalRequest = [[MulticalRequest alloc] init];
-    [self.multicalRequest setDeviceViewControllerSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];
-    [self.multicalRequest setDeviceModelUpdatedDelegate:self];
+    [self.multicalRequest setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];
+    [self.multicalRequest setDeviceRequestSendToDeviceViewControllerDelegate:self];
     
 
     

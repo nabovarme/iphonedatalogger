@@ -10,7 +10,7 @@
 #import "Protocols.h"
 #import "IEC62056-21.h"
 
-@interface MulticalRequest : NSObject
+@interface MulticalRequest : NSObject <NewSampleViewControllerSendToDeviceRequest>
 
 @property IEC62056_21 *iec62056_21;
 

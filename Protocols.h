@@ -22,7 +22,7 @@
 - (void)newSampleViewControllerDidSave:(NewSampleViewController *)controller;
 @end
 
-@protocol NewSampleViewControllerSendToDeviceViewController  <NSObject>
+@protocol NewSampleViewControllerSendToDeviceViewController  <NSObject> //kan måske slettes
 @optional
 -(id) respondWithReceiveCharDelegate;
 - (DeviceSampleDataObject*)getDataObject;

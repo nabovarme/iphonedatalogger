@@ -69,7 +69,7 @@
     self.kmp = [[KMP alloc] init];
     
     self.kamstrupRequest = [[KamstrupRequest alloc] init];
-    [self.kamstrupRequest setSendRequestDelegate:dictionary[@"delegate"]];//new
+    [self.kamstrupRequest setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];//new
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -177,7 +177,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (void)sendKMPRequest:(NSOperation *)theOperation {
     // read KamstrupPropertyList.plist to get rid's to send
     NSString *kamstrupPlist = [[NSBundle mainBundle] pathForResource:@"KamstrupPropertyList" ofType:@"plist"];
@@ -227,7 +227,8 @@
         }
     }
 }
-
+ */
+/*
 - (void)receivedChar:(unsigned char)input;
 {
     //NSLog(@"Kamstrup received %02x", input);
@@ -241,7 +242,7 @@
         [self doneReceiving];
     }
 }
-
+*/
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
     self.framesReceived++;

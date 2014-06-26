@@ -36,14 +36,15 @@
 
 @interface NewSampleViewController ()
 @property (nonatomic,retain) NSOperationQueue *operationQueue;
-@property UIViewController  <NewSampleViewControllerReceivedChar> *currentDetailViewController;
+@property UIViewController  <NewSampleViewControllerSendToDeviceViewController> *currentDetailViewController;
 
 @end
 
 @implementation NewSampleViewController
 
 @synthesize cancelSaveDelegate;//=_cancelSaveDelegate;
-@synthesize receivedCharDelegate;//=_receivedCharDelegate;
+@synthesize NewSampleViewControllerSendToDeviceRequestDelegate;//=_receivedCharDelegate;
+@synthesize NewSampleViewControllerSendToDeviceViewControllerDelegate;//=_receivedCharDelegate;
 @synthesize saveButton;
 @synthesize protocolHelper;
 @synthesize deviceName;
@@ -100,7 +101,7 @@
                                 @"dataObject":dataObject
                                 };
 
-    [self presentDetailController:(UIViewController <NewSampleViewControllerReceivedChar> *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
+    [self presentDetailController:(UIViewController <NewSampleViewControllerSendToDeviceViewController> *)[[ NSClassFromString(self.deviceName) alloc] initWithDictionary:dictionary]];
     
     [super viewDidLoad];
     
@@ -118,7 +119,7 @@
         NSLog(@"cancel");
     }
 }
-- (void)presentDetailController:(UIViewController <NewSampleViewControllerReceivedChar> *)detailVC{
+- (void)presentDetailController:(UIViewController <NewSampleViewControllerSendToDeviceViewController> *)detailVC{
     
     //0. Remove the current Detail View Controller showed
     if(self.currentDetailViewController){
@@ -136,7 +137,7 @@
     self.currentDetailViewController = detailVC;
    // [self setReceivedCharDelegate: self.currentDetailViewController];
     
-    [self setReceivedCharDelegate: [ self.currentDetailViewController  respondWithReceiveCharDelegate] ];
+    [self setNewSampleViewControllerSendToDeviceRequestDelegate: [ self.currentDetailViewController  respondWithReceiveCharDelegate] ];
     //[self.receivedCharDelegate setSelfAsSendRequestDelegate:self];
 
     //4. Complete the add flow calling the function didMoveToParentViewController
@@ -203,7 +204,7 @@
 {
     //NSLog(@"input");
   //  NSLog(@"input from delegate%c", input);
-    [self.receivedCharDelegate receivedChar:input];
+    [self.NewSampleViewControllerSendToDeviceRequestDelegate receivedChar:input];
 }
 
 
@@ -289,10 +290,9 @@
 
 - (DeviceSampleDataObject *)getDataObject
 {
-    id tmp=self.receivedCharDelegate;
     
     //[self.receivedCharDelegate lort];
-    DeviceSampleDataObject *tmp2 = [tmp getDataObject];//=[self.receivedCharDelegate getDataObject];
+    DeviceSampleDataObject *tmp2 = [self.currentDetailViewController getDataObject];//=[self.receivedCharDelegate getDataObject];
    return tmp2;
 }
 
@@ -301,7 +301,8 @@
 {
     [_operationQueue cancelAllOperations];
     [_operationQueue waitUntilAllOperationsAreFinished];
-    [self setReceivedCharDelegate:nil];
+    [self setNewSampleViewControllerSendToDeviceRequestDelegate:nil];
+    [self setNewSampleViewControllerSendToDeviceViewControllerDelegate:nil];
 }
 
 - (void)dealloc {

@@ -10,11 +10,12 @@
 #import "Protocols.h"
 #import "KMP.h"
 
-@interface KamstrupRequest : NSObject
+@interface KamstrupRequest : NSObject <NewSampleViewControllerSendToDeviceRequest>
 
 - (void)sendRequest;
 
 - (void)sendKamstrupRequest:(NSOperation *)theOperation;
-@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
+@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
+@property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> DeviceRequestSendToDeviceViewControllerDelegate;
 
 @end
