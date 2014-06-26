@@ -67,6 +67,12 @@
     
 }
 
+//new stuff
+-(id)respondWithReceiveCharDelegate
+{
+    return self;//fordi vi selv vil lytte :-)
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

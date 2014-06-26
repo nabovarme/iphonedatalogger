@@ -9,6 +9,7 @@
 #import "Kamstrup.h"
 #import "KMP.h"
 #import "KeyLabelValueTextfieldCell.h"
+#import "KamstrupRequest.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
@@ -16,6 +17,7 @@
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
 @interface Kamstrup ()
+@property KamstrupRequest * kamstrupRequest;
 @property NSOperationQueue *sendKMPRequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
@@ -33,7 +35,7 @@
 
 
 @implementation Kamstrup
-@synthesize sendRequestDelegate;
+//@synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
 @synthesize readyToSend;
@@ -57,7 +59,7 @@
 {
     NSLog(@"sensor init with dictionary");
 
-    [self setSendRequestDelegate:dictionary[@"delegate"]];
+   // [self setSendRequestDelegate:dictionary[@"delegate"]];
     
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
@@ -65,6 +67,9 @@
 
     // set up kmp protocol
     self.kmp = [[KMP alloc] init];
+    
+    self.kamstrupRequest = [[KamstrupRequest alloc] init];
+    [self.kamstrupRequest setSendRequestDelegate:dictionary[@"delegate"]];//new
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -84,6 +89,12 @@
     }
     NSLog(@"content loaded");
     return self;
+    
+}
+//new stuff
+-(id)respondWithReceiveCharDelegate
+{
+  //  return self;//fordi vi selv vil lytte :-)
     
 }
 

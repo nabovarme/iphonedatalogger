@@ -66,6 +66,11 @@
     return self;
     
 }
+//new stuff
+-(id)respondWithReceiveCharDelegate
+{
+    return self;//fordi vi selv vil lytte :-)
+}
 
 - (void)viewDidLoad
 {
@@ -135,11 +140,7 @@
         [self.receiveDataProgressView setProgress:0.0 animated:YES];
     }
 }
-//new stuff
--(id)respondWithReceiveCharDelegate
-{
-    return self;//fordi vi selv vil lytte :-)
-}
+
 
 - (void)didReceiveMemoryWarning
 {

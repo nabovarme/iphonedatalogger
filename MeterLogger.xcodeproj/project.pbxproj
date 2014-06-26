@@ -21,6 +21,7 @@
 		8F9D6C321917C4A100235CDA /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D6C301917C4A100235CDA /* Testo.m */; };
 		8F9D6C331917C4A100235CDA /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D6C311917C4A100235CDA /* Testo.xib */; };
 		8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC90FBB190E78B80052E48D /* ProtocolHelper.m */; };
+		8FF6DBDB195C1FB900069848 /* KamstrupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6DBDA195C1FB900069848 /* KamstrupRequest.m */; };
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
@@ -78,6 +79,8 @@
 		8F9D6C311917C4A100235CDA /* Testo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Testo.xib; sourceTree = "<group>"; };
 		8FC90FBA190E78B80052E48D /* ProtocolHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolHelper.h; sourceTree = "<group>"; };
 		8FC90FBB190E78B80052E48D /* ProtocolHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolHelper.m; sourceTree = "<group>"; };
+		8FF6DBD9195C1FB900069848 /* KamstrupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KamstrupRequest.h; sourceTree = "<group>"; };
+		8FF6DBDA195C1FB900069848 /* KamstrupRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KamstrupRequest.m; sourceTree = "<group>"; };
 		8FFD88A7191A4221004F7D5C /* SampleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleDetailsViewController.h; sourceTree = "<group>"; };
 		8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleDetailsViewController.m; sourceTree = "<group>"; };
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				D625CA851935538B009056C6 /* KMP.h */,
 				D625CA861935538B009056C6 /* KMP.m */,
 				2BFE5B97194005D2008FEA1C /* KamstrupPropertyList.plist */,
+				8FF6DBD9195C1FB900069848 /* KamstrupRequest.h */,
+				8FF6DBDA195C1FB900069848 /* KamstrupRequest.m */,
 			);
 			name = Kamstrup;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6200F731952531B007CE10C /* IEC62056-21.m in Sources */,
+				8FF6DBDB195C1FB900069848 /* KamstrupRequest.m in Sources */,
 				8FC90FBC190E78B80052E48D /* ProtocolHelper.m in Sources */,
 				FBBD3CE015BE57A90035F419 /* main.m in Sources */,
 				FBBD3CE415BE57AA0035F419 /* NLAppDelegate.m in Sources */,

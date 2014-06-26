@@ -22,7 +22,7 @@
 }
 - (void)sendKMPRequest:(NSOperation *)theOperation;
 
-@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
+//@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
 

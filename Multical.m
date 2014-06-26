@@ -100,6 +100,12 @@
     return self;
     
 }
+//new stuff
+-(id)respondWithReceiveCharDelegate
+{
+    return self.multicalRequest;
+}
+
 
 - (void)viewDidLoad
 {
@@ -174,11 +180,6 @@
     }
 }
 
-//new stuff
--(id)respondWithReceiveCharDelegate
-{
-    return self.multicalRequest;
-}
 
 
 - (void)didReceiveMemoryWarning
