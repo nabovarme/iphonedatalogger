@@ -94,6 +94,7 @@
 //new stuff
 -(id)respondWithReceiveCharDelegate
 {
+    return self.kamstrupRequest;
   //  return self;//fordi vi selv vil lytte :-)
     
 }

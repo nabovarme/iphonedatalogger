@@ -8,7 +8,7 @@
 
 #import "Multical.h"
 #import "KeyLabelValueTextfieldCell.h"
-//#import "IEC62056-21.h"
+#import "IEC62056-21.h"
 #import "MulticalRequest.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
@@ -28,7 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
-//@property IEC62056_21 *iec62056_21;
+@property IEC62056_21 *iec62056_21;
 @property MulticalRequest *multicalRequest;
 
 @end
@@ -45,13 +45,17 @@
 @synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
-//@synthesize iec62056_21;
+@synthesize iec62056_21;
 @synthesize multicalRequest;
 
 -(id)init
 {
     self = [super init];
     return self;
+}
+-(void)updateView
+{
+    NSLog(@"device model wants to update device view");
 }
 
 //inits with a dictionary holding a viewcontroller to be set as delegate for sendrequest stuff
@@ -70,7 +74,9 @@
     //self.iec62056_21 = [[IEC62056_21 alloc] init];
     // set up multicalRequest
     self.multicalRequest = [[MulticalRequest alloc] init];
-    [self.multicalRequest setSendRequestDelegate:dictionary[@"delegate"]];
+    [self.multicalRequest setDeviceViewControllerSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];
+    [self.multicalRequest setDeviceModelUpdatedDelegate:self];
+    
 
     
     self.framesReceived = 0;
@@ -240,13 +246,14 @@
     }
 }
 
-- (void)doneReceiving {
-    NSLog(@"Done receiving %@", self.data);
-    /*
+- (void)doneReceiving:(NSTimer* )sender {
+    NSData * data=sender.userInfo;
+    NSLog(@"Done receiving %@", data);
+    
     NSLog(@"Done receiving ascii \"%@\"", [[NSString alloc] initWithData:self.data encoding:NSASCIIStringEncoding]);
     self.framesReceived++;
     // decode
-    [self.iec62056_21 decodeFrame:self.data];
+    [self.iec62056_21 decodeFrame:data];
     if (self.iec62056_21.frameReceived) {
         for (NSNumber *rid in self.iec62056_21.registerIDTable) {
             if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
@@ -299,10 +306,9 @@
                                      selector:@selector(sendMulticalRequest:)
                                        object:operation];
         
-        [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
+        //[self.sendIEC62056_21RequestOperationQueue addOperation:operation];
     }
     
-    */
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

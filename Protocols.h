@@ -13,6 +13,7 @@
 
 
 
+
 @class NewSampleViewController, DeviceSampleDataObject;
 
 @protocol NewSampleViewControllerCancelSave <NSObject>
@@ -28,13 +29,17 @@
 - (DeviceSampleDataObject*)getDataObject;
 @end
 
-@protocol DeviceViewControllerSendRequest  <NSObject>
+@protocol DeviceViewControllerSendToNewSampleViewController  <NSObject>
 @optional
-//updateProgressBar
+-(void) updateProgressBar:(NSNumber *) procentage;
 -(void) sendRequest:(NSString*) hexStrings;
 @end
 
+@protocol deviceModelUpdated <NSObject>
+@optional
+- (void)doneReceiving:(NSTimer*)data;
+@end
+
 #import <Foundation/Foundation.h>
-//#import "NLAppDelegate.h"
-#import <UIKit/UIKit.h>
+
 

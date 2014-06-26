@@ -9,6 +9,9 @@
 #import "MulticalRequest.h"
 #import "MeterLoggerProtocol.h"
 
+#define RECEIVE_DATA_TIME (4.0f)
+#define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (0.2f)
+
 @interface MulticalRequest()
 
 // private
@@ -18,16 +21,28 @@
 @property unsigned char framesToSend;
 @property unsigned char framesReceived;
 
+@property NSMutableData *data;
+@property NSTimer *receiveDataProgressTimer;
+
+
+
+
 @end
 
 @implementation MulticalRequest
 
-@synthesize sendRequestDelegate;
+@synthesize deviceViewControllerSendToNewSampleViewControllerDelegate;
+@synthesize deviceModelUpdatedDelegate;
 @synthesize iec62056_21;
 @synthesize sendIEC62056_21RequestOperationQueue;
 @synthesize readyToSend;
 @synthesize framesToSend;
 @synthesize framesReceived;
+
+@synthesize receiveDataProgressTimer;
+@synthesize data;
+
+
 
 - (id)init
 {
@@ -37,32 +52,35 @@
     
     return self;
 }
+/*
 - (void)receivedChar:(unsigned char)input;
 {
     NSLog(@"lol multical received a char lol");
 }
-/*
+  */
+
 - (void)receivedChar:(unsigned char)input {
     //NSLog(@"Multical received %c (%d)", input, input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];
     
-    [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.003) animated:YES];
+   // [self.receiveDataProgressView setProgress:(self.receiveDataProgressView.progress + 0.003) animated:YES];
     
     if (self.receiveDataProgressTimer) {
         // stop it
         [self.receiveDataProgressTimer invalidate];
         self.receiveDataProgressTimer = nil;        // let it be deallocated
         // and start a new timer
-        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self.deviceModelUpdatedDelegate selector:@selector( doneReceiving: ) userInfo:self.data repeats:NO];
+        
     }
     else {
         // if its not running start a new one
         self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(doneReceiving) userInfo:nil repeats:NO];
     }
 }
- */
+
 - (void)sendRequest {
 //    self.sendRequestDelegate = theSendRequestDelegate;
     
@@ -106,6 +124,7 @@
         }
     }
 }
+
 
 
 @end
