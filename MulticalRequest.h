@@ -20,5 +20,6 @@
 @property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
 @property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> DeviceRequestSendToDeviceViewControllerDelegate;
 
+@property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
 
 @end

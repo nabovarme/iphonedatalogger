@@ -15,8 +15,6 @@
 @interface MulticalRequest()
 
 // private
-//@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
-@property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
 @property unsigned char framesReceived;
@@ -25,10 +23,8 @@
 @property NSMutableData *data;
 @property NSTimer *receiveDataProgressTimer;
 
-
-
-
 @end
+
 
 @implementation MulticalRequest
 
@@ -40,10 +36,8 @@
 @synthesize framesToSend;
 @synthesize framesReceived;
 
-//@synthesize responseDataDict;
 @synthesize receiveDataProgressTimer;
 @synthesize data;
-
 
 
 - (id)init
@@ -55,12 +49,6 @@
 
     return self;
 }
-/*
-- (void)receivedChar:(unsigned char)input;
-{
-    NSLog(@"lol multical received a char lol");
-}
-  */
 
 - (void)receivedChar:(unsigned char)input {
     //NSLog(@"Multical received %c (%d)", input, input);
@@ -117,7 +105,7 @@
             ||
             ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM MC"]))
         {
-            NSDictionary * responseDataDict = [[NSDictionary alloc] init];
+            NSMutableDictionary * responseDataDict = [[NSMutableDictionary alloc] init];
             for (NSNumber *rid in self.iec62056_21.registerIDTable) {
                     //NSLog(@"doneReceiving: updating %@", self.iec62056_21.responseData[rid][@"value"]);
                 [responseDataDict setValue:self.iec62056_21.responseData[rid][@"value"] forKey:self.iec62056_21.registerIDTable[rid]];
@@ -129,78 +117,7 @@
 }
 
 
-/*
-- (void)doneReceiving:(NSTimer* )sender {
-    NSData * data=sender.userInfo;
-    NSLog(@"Done receiving %@", data);
-    
-    //NSLog(@"Done receiving ascii \"%@\"", [[NSString alloc] initWithData: encoding:NSASCIIStringEncoding]);
-    self.framesReceived++;
-    // decode
-    [self.iec62056_21 decodeFrame:data];
-    if (self.iec62056_21.frameReceived) {
-        for (NSNumber *rid in self.iec62056_21.registerIDTable) {
-            if (self.iec62056_21.responseData[rid] && self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]]) {
-                //NSLog(@"doneReceiving: updating %@", self.iec62056_21.responseData[rid][@"value"]);
-                //self.myDataObject.sampleDataDict[self.iec62056_21.registerIDTable[rid]] = self.iec62056_21.responseData[rid][@"value"];
-                
-            }
-        }
-        
-        if ((self.framesReceived == 1) && (self.framesToSend == 1)) {
-            if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM MC"]) {  // Kamstrup Multical, 2001
-                // sends data after ack in same frame
-                // [self.receiveDataProgressView setHidden:YES];
-                // [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
-                
-                //update table view
-                self.state = YES;
-                [self.detailsTableView reloadData];
-            }
-        }
-        if ((self.framesReceived == 2) && (self.framesToSend == 2)) {
-            // last frame received
-            //[self.receiveDataProgressView setHidden:YES];
-            //[[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
-            
-            //update table view
-            self.state = YES;
-            [self.detailsTableView reloadData];
-        }
-        
-        //  data = [[NSMutableData alloc] init];       // clear data after use
-        
-        self.readyToSend = YES;
-    }
-    
-    if (self.iec62056_21.errorReceiving) {
-        NSLog(@"Retransmit");
-        self.framesToSend = 0;
-        self.framesReceived = 0;
-        data = [[NSMutableData alloc] init];       // clear data after use
-        self.iec62056_21.responseData = [[NSMutableDictionary alloc] init];
-        // stop all already running sendIEC62056_21Requests
-        [self.sendIEC62056_21RequestOperationQueue cancelAllOperations];
-        
-        // restart progress bar
-        [self.receiveDataProgressView setProgress:0.0];
-        
-        // and start a new one
-        NSInvocationOperation *operation = [NSInvocationOperation alloc];
-        operation = [operation initWithTarget:self
-                                     selector:@selector(sendMulticalRequest:)
-                                       object:operation];
-        
-        //[self.sendIEC62056_21RequestOperationQueue addOperation:operation];
-    }
-    
-}
-*/
-
-
 - (void)sendRequest {
-//    self.sendRequestDelegate = theSendRequestDelegate;
-    
     // start sendMulticalRequest in a operation queue, so it can be canceled
     self.sendIEC62056_21RequestOperationQueue = [[NSOperationQueue alloc] init];
     
