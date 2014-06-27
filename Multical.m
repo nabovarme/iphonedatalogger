@@ -168,6 +168,9 @@
             }
         self.myDataObject.sampleDataDict[key]=responseDataDict[key];
     }
+    [self.receiveDataProgressView setProgress:1.0 animated:YES];
+    self.receiveDataProgressView.hidden = YES;
+    self.receiveDataProgressView = nil;
     
     [self.detailsTableView reloadData];
     
@@ -276,7 +279,7 @@
 
 // progress bar stuff
 - (void)updateProgressBar {
-    NSLog(@"updateProgressBar %f", self.receiveDataProgressView.progress);
+    //NSLog(@"updateProgressBar %f", self.receiveDataProgressView.progress);
     [self.receiveDataProgressView setProgress:
         self.receiveDataProgressView.progress + 0.7 / RECEIVE_DATA_TIME * RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL animated:YES];
     if (self.receiveDataProgressView.progress >= 0.7) {
