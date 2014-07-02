@@ -80,7 +80,6 @@
     
 }
 
-//new stuff
 -(id)respondWithReceiveCharDelegate
 {
     return self.multicalRequest;
@@ -155,7 +154,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)doneReceiving:(NSDictionary * )responseDataDict
+-(void)doneReceiving:(NSDictionary *)responseDataDict
 {
     for (id key in responseDataDict)
     {

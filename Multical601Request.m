@@ -10,24 +10,21 @@
 
 @interface Multical601Request()
 
-@property NSOperationQueue *sendMultical601RequestOperationQueue;
+// private
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
 @property unsigned char framesReceived;
-@property DeviceSampleDataObject *myDataObject;
-@property NSArray *orderedNames;
+//@property DeviceSampleDataObject *myDataObject;
+//@property NSArray *orderedNames;
 @property NSMutableData *data;
-@property BOOL state;
-
-
-@property KMP *kmp;
+//@property BOOL state;
 
 @end
 
 @implementation Multical601Request
 
 //@synthesize sendRequestDelegate;
-@synthesize sendMultical601RequestOperationQueue;
+@synthesize sendKMPRequestOperationQueue;
 @synthesize readyToSend;
 @synthesize framesToSend;
 @synthesize framesReceived;

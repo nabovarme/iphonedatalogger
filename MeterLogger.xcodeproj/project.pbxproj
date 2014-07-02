@@ -205,6 +205,7 @@
 				D6172CE219646C9200CD73E4 /* Testo */,
 				D6821832191C413E00DC093A /* TestoDemo */,
 				D61A90E2194FB2E500B8B119 /* Multical */,
+				D6172CEF1964823B00CD73E4 /* Multical601 */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
@@ -228,11 +229,11 @@
 				D6172CE71964822F00CD73E4 /* Multical601.xib */,
 				D6172CE51964822F00CD73E4 /* Multical601.h */,
 				D6172CE61964822F00CD73E4 /* Multical601.m */,
-				D6172CE81964822F00CD73E4 /* Multical601PropertyList.plist */,
 				D6172CE91964822F00CD73E4 /* Multical601Request.h */,
 				D6172CEA1964822F00CD73E4 /* Multical601Request.m */,
 				D6172CF0196482EC00CD73E4 /* KMP.h */,
 				D6172CF1196482EC00CD73E4 /* KMP.m */,
+				D6172CE81964822F00CD73E4 /* Multical601PropertyList.plist */,
 			);
 			name = Multical601;
 			sourceTree = "<group>";
@@ -267,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				8F9D6C241917A9D500235CDA /* Devices */,
-				D6172CEF1964823B00CD73E4 /* Multical601 */,
 				8F086696191106CD0075391E /* CoreData */,
 				FBBD3CD915BE57A90035F419 /* MeterLogger */,
 				FBBD3CD215BE57A90035F419 /* Frameworks */,

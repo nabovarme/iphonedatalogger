@@ -91,7 +91,7 @@
         // and start a new one
         NSInvocationOperation *operation = [NSInvocationOperation alloc];
         operation = [operation initWithTarget:self
-                                     selector:@selector(sendMulticalRequest:)
+                                     selector:@selector(sendIEC62Request:)
                                        object:operation];
         
         [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
@@ -118,19 +118,19 @@
 
 
 - (void)sendRequest {
-    // start sendMulticalRequest in a operation queue, so it can be canceled
+    // start sendIEC62056_21Request in a operation queue, so it can be canceled
     self.sendIEC62056_21RequestOperationQueue = [[NSOperationQueue alloc] init];
     
     NSInvocationOperation *operation = [NSInvocationOperation alloc];
     operation = [operation initWithTarget:self
-                                 selector:@selector(sendMulticalRequest:)
+                                 selector:@selector(sendIEC62056_21Request:)
                                    object:operation];
     
     [self.sendIEC62056_21RequestOperationQueue addOperation:operation];
 
 }
 
-- (void)sendMulticalRequest:(NSOperation *)theOperation {
+- (void)sendIEC62056_21Request:(NSOperation *)theOperation {
     self.readyToSend = NO;
     
     [self.deviceRequestSendToNewSampleViewControllerDelegate sendRequest:[NSString stringWithFormat:@"%02x", PROTO_IEC61107]];

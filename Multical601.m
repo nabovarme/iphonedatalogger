@@ -17,11 +17,11 @@
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
 @interface Multical601 ()
-@property Multical601Request * kmpRequest;
-@property NSOperationQueue *sendKMPRequestOperationQueue;
-@property BOOL readyToSend;
-@property unsigned char framesToSend;
-@property unsigned char framesReceived;
+
+//@property NSOperationQueue *sendKMPRequestOperationQueue;
+//@property BOOL readyToSend;
+//@property unsigned char framesToSend;
+//@property unsigned char framesReceived;
 @property DeviceSampleDataObject *myDataObject;
 @property NSArray *orderedNames;
 @property NSMutableData *data;
@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
 @property KMP *kmp;
+@property Multical601Request *multical601Request;
 
 @end
 
@@ -37,16 +38,17 @@
 @implementation Multical601
 //@synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
-@synthesize sendKMPRequestOperationQueue;
-@synthesize readyToSend;
-@synthesize framesToSend;
-@synthesize framesReceived;
+//@synthesize sendKMPRequestOperationQueue;
+//@synthesize readyToSend;
+//@synthesize framesToSend;
+//@synthesize framesReceived;
 @synthesize myDataObject;
 @synthesize orderedNames;
-@synthesize data;
+//@synthesize data;
 @synthesize state;
 @synthesize detailsTableView;
 @synthesize kmp;
+@synthesize multical601Request;
 
 -(id)init
 {
@@ -66,14 +68,13 @@
     self.state = NO;
 
     // set up kmp protocol
-    self.multical601 = [[KMP alloc] init];
+    self.multical601Request = [[Multical601Request alloc] init];
+    [self.multical601Request setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];
+    [self.multical601Request setDeviceRequestSendToDeviceViewControllerDelegate:self];
     
-    self.kmpRequest = [[Multical601Request alloc] init];
-    [self.kmpRequest setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];//new
-    
-    self.framesReceived = 0;
-    self.framesToSend = 0;
-    self.readyToSend = YES;
+    //self.framesReceived = 0;
+    //self.framesToSend = 0;
+    //self.readyToSend = YES;
     
     self = [super init];
     return self;
@@ -91,12 +92,10 @@
     return self;
     
 }
-//new stuff
+
 -(id)respondWithReceiveCharDelegate
 {
-    return self.kmpRequest;
-  //  return self;//fordi vi selv vil lytte :-)
-    
+    return self.multical601Request;
 }
 
 - (void)viewDidLoad
@@ -159,6 +158,7 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
 
+        /*
         // start sendKMPRequest in a operation queue, so it can be canceled
         self.sendKMPRequestOperationQueue = [[NSOperationQueue alloc] init];
 
@@ -168,6 +168,9 @@
                                        object:operation];
         
         [self.sendKMPRequestOperationQueue addOperation:operation];
+        */
+        
+        [self.multical601Request sendRequest];
     }
 }
 
@@ -243,6 +246,38 @@
     }
 }
 */
+
+-(void)doneReceiving:(NSDictionary *)responseDataDict
+{
+    for (id key in responseDataDict)
+    {
+        id obj1 = [self.myDataObject.sampleDataDict objectForKey:key];
+        id obj2 = [responseDataDict objectForKey:key];
+        if ([obj1 isKindOfClass:[NSNull class]] && [obj2 isKindOfClass:[NSNull class]])
+        {
+            NSLog(@"key problem");
+            break;
+        }
+        self.myDataObject.sampleDataDict[key]=responseDataDict[key];
+    }
+    [self.receiveDataProgressView setProgress:1.0 animated:YES];
+    self.receiveDataProgressView.hidden = YES;
+    self.receiveDataProgressView = nil;
+    
+    [self.detailsTableView reloadData];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    [self.receiveDataProgressTimer invalidate];
+    self.receiveDataProgressTimer = nil;
+    [self.multical601Request.sendIEC62056_21RequestOperationQueue cancelAllOperations];
+    self.multical601Request.sendIEC62056_21RequestOperationQueue = nil;
+    NSLog(@"viewDidDisappear");
+}
+
+/*
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
     self.framesReceived++;
@@ -307,13 +342,14 @@
         [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     }
 }
+*/
 
 - (void)viewDidDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     [self.receiveDataProgressTimer invalidate];
     self.receiveDataProgressTimer = nil;
-    [self.sendKMPRequestOperationQueue cancelAllOperations];
-    self.sendKMPRequestOperationQueue = nil;
+    [self.multical601Request.sendKMPRequestOperationQueue cancelAllOperations];
+    self.multical601Request.sendKMPRequestOperationQueue = nil;
     NSLog(@"viewDidDisappear");
 }
 
