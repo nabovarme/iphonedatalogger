@@ -28,8 +28,8 @@
 
 @implementation MulticalRequest
 
-@synthesize DeviceRequestSendToNewSampleViewControllerDelegate;
-@synthesize DeviceRequestSendToDeviceViewControllerDelegate;
+@synthesize deviceRequestSendToNewSampleViewControllerDelegate;
+@synthesize deviceRequestSendToDeviceViewControllerDelegate;
 @synthesize iec62056_21;
 @synthesize sendIEC62056_21RequestOperationQueue;
 @synthesize readyToSend;
@@ -110,7 +110,7 @@
                     //NSLog(@"doneReceiving: updating %@", self.iec62056_21.responseData[rid][@"value"]);
                 [responseDataDict setValue:self.iec62056_21.responseData[rid][@"value"] forKey:self.iec62056_21.registerIDTable[rid]];
             }
-            [self.DeviceRequestSendToDeviceViewControllerDelegate doneReceiving:responseDataDict];
+            [self.deviceRequestSendToDeviceViewControllerDelegate doneReceiving:responseDataDict];
         }
         self.readyToSend = YES;
     }
@@ -133,9 +133,9 @@
 - (void)sendMulticalRequest:(NSOperation *)theOperation {
     self.readyToSend = NO;
     
-    [self.DeviceRequestSendToNewSampleViewControllerDelegate sendRequest:[NSString stringWithFormat:@"%02x", PROTO_IEC61107]];
+    [self.deviceRequestSendToNewSampleViewControllerDelegate sendRequest:[NSString stringWithFormat:@"%02x", PROTO_IEC61107]];
     [NSThread sleepForTimeInterval:0.04];
-    [self.DeviceRequestSendToNewSampleViewControllerDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
+    [self.deviceRequestSendToNewSampleViewControllerDelegate sendRequest:@"2f3f210d0a"];     // /?!\n\r          EN61107
     self.framesToSend++;
     while(!self.readyToSend ){
         if ([theOperation isCancelled]) {
@@ -146,9 +146,9 @@
     [NSThread sleepForTimeInterval:0.1];
     
     if ([iec62056_21.responseData[@"ident"] isEqualToString:@"KAM0MC"]) {
-        [self.DeviceRequestSendToNewSampleViewControllerDelegate sendRequest:[NSString stringWithFormat:@"%02x", PROTO_IEC61107]];
+        [self.deviceRequestSendToNewSampleViewControllerDelegate sendRequest:[NSString stringWithFormat:@"%02x", PROTO_IEC61107]];
         [NSThread sleepForTimeInterval:0.04];
-        [self.DeviceRequestSendToNewSampleViewControllerDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
+        [self.deviceRequestSendToNewSampleViewControllerDelegate sendRequest:@"063030300d0a"];   // [ACK]000\n\r
         self.framesToSend++;
         while(!self.readyToSend ){
             if ([theOperation isCancelled]) {

@@ -16,9 +16,9 @@
 #define PROTO_TESTO_DEMO	(@"ff")
 
 @class TestoDemo;
-@interface TestoDemo : UIViewController <NewSampleViewControllerSendToDeviceRequest,NewSampleViewControllerSendToDeviceViewController, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface TestoDemo : UIViewController <NewSampleViewControllerSendToDeviceRequest, NewSampleViewControllerSendToDeviceViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
+@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> deviceRequestSendToNewSampleViewControllerDelegate;
 @property (weak, nonatomic) IBOutlet UIProgressView *receiveDataProgressView;
 
 @property NSTimer *receiveDataProgressTimer;

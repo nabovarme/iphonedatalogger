@@ -17,8 +17,8 @@
 - (void)sendRequest;
 
 - (void)sendMulticalRequest:(NSOperation *)theOperation;
-@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
-@property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> DeviceRequestSendToDeviceViewControllerDelegate;
+@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> deviceRequestSendToNewSampleViewControllerDelegate;
+@property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> deviceRequestSendToDeviceViewControllerDelegate;
 
 @property NSOperationQueue *sendIEC62056_21RequestOperationQueue;
 

@@ -1,23 +1,23 @@
 //
-//  Kamstrup.m
+//  Multical601.m
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
 //  Copyright (c) 2014 Johannes Gaardsted Jørgensen <johannesgj@gmail.com> + Kristoffer Ek <stoffer@skulp.net>. All rights reserved.
 //  This program is distributed under the terms of the GNU General Public License
 
-#import "Kamstrup.h"
-#import "KMP.h"
+#import "Multical601.h"
 #import "KeyLabelValueTextfieldCell.h"
-#import "KamstrupRequest.h"
+#import "KMP.h"
+#import "Multical601Request.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
 #define RECEIVE_DATA_TIME (16.0f)
 #define RECEIVE_DATA_PROGRESS_TIMER_UPDATE_INTERVAL (1.0f) // every second
 
-@interface Kamstrup ()
-@property KamstrupRequest * kamstrupRequest;
+@interface Multical601 ()
+@property Multical601Request * kmpRequest;
 @property NSOperationQueue *sendKMPRequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
@@ -34,7 +34,7 @@
 @end
 
 
-@implementation Kamstrup
+@implementation Multical601
 //@synthesize sendRequestDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize sendKMPRequestOperationQueue;
@@ -66,10 +66,10 @@
     self.state = NO;
 
     // set up kmp protocol
-    self.kmp = [[KMP alloc] init];
+    self.multical601 = [[KMP alloc] init];
     
-    self.kamstrupRequest = [[KamstrupRequest alloc] init];
-    [self.kamstrupRequest setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];//new
+    self.kmpRequest = [[Multical601Request alloc] init];
+    [self.kmpRequest setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];//new
     
     self.framesReceived = 0;
     self.framesToSend = 0;
@@ -94,7 +94,7 @@
 //new stuff
 -(id)respondWithReceiveCharDelegate
 {
-    return self.kamstrupRequest;
+    return self.kmpRequest;
   //  return self;//fordi vi selv vil lytte :-)
     
 }
@@ -231,7 +231,7 @@
 /*
 - (void)receivedChar:(unsigned char)input;
 {
-    //NSLog(@"Kamstrup received %02x", input);
+    //NSLog(@"Multical601 received %02x", input);
     // save incoming data do our sampleDataDict
     NSData *inputData = [NSData dataWithBytes:(unsigned char[]){input} length:1];
     [self.data appendData:inputData];

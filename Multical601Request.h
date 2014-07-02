@@ -1,5 +1,5 @@
 //
-//  KamstrupRequest.h
+//  Multical601Request.h
 //  MeterLogger
 //
 //  Created by johannes on 6/26/14.
@@ -10,11 +10,11 @@
 #import "Protocols.h"
 #import "KMP.h"
 
-@interface KamstrupRequest : NSObject <NewSampleViewControllerSendToDeviceRequest>
+@interface Multical601Request : NSObject <NewSampleViewControllerSendToDeviceRequest>
 
 - (void)sendRequest;
 
-- (void)sendKamstrupRequest:(NSOperation *)theOperation;
+- (void)sendMultical601Request:(NSOperation *)theOperation;
 @property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
 @property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> DeviceRequestSendToDeviceViewControllerDelegate;
 

@@ -1,16 +1,16 @@
 //
-//  KamstrupRequest.m
+//  Multical601Request.m
 //  MeterLogger
 //
 //  Created by johannes on 6/26/14.
 //  Copyright (c) 2014 9Lab. All rights reserved.
 //
 
-#import "KamstrupRequest.h"
+#import "Multical601Request.h"
 
-@interface KamstrupRequest()
+@interface Multical601Request()
 
-@property NSOperationQueue *sendKMPRequestOperationQueue;
+@property NSOperationQueue *sendMultical601RequestOperationQueue;
 @property BOOL readyToSend;
 @property unsigned char framesToSend;
 @property unsigned char framesReceived;
@@ -24,10 +24,10 @@
 
 @end
 
-@implementation KamstrupRequest
+@implementation Multical601Request
 
 //@synthesize sendRequestDelegate;
-@synthesize sendKMPRequestOperationQueue;
+@synthesize sendMultical601RequestOperationQueue;
 @synthesize readyToSend;
 @synthesize framesToSend;
 @synthesize framesReceived;
@@ -60,10 +60,10 @@
 }
 
 
-- (void)sendKMPRequest:(NSOperation *)theOperation {
-    // read KamstrupPropertyList.plist to get rid's to send
-    NSString *kamstrupPlist = [[NSBundle mainBundle] pathForResource:@"KamstrupPropertyList" ofType:@"plist"];
-    NSArray *registerNameArray = [NSArray arrayWithContentsOfFile:kamstrupPlist];
+- (void)sendMultical601Request:(NSOperation *)theOperation {
+    // read Kamstrup601PropertyList.plist to get rid's to send
+    NSString *kamstrup601Plist = [[NSBundle mainBundle] pathForResource:@"Kamstrup601PropertyList" ofType:@"plist"];
+    NSArray *registerNameArray = [NSArray arrayWithContentsOfFile:kamstrup601Plist];
     
     // get rid's
     NSMutableArray *ridArray = [NSMutableArray array];

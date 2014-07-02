@@ -4,8 +4,10 @@
 <dict>
 	<key>DeviceClasses</key>
 	<array>
+		<string>Testo</string>
 		<string>TestoDemo</string>
 		<string>Multical</string>
+		<string>Multical601</string>
 	</array>
 </dict>
 </plist>

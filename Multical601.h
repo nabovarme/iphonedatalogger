@@ -1,5 +1,5 @@
 //
-//  Kamstrup.h
+//  Multical601.h
 //  SoftModemRemote
 //
 //  Created by johannes on 5/5/14.
@@ -11,16 +11,17 @@
 #import "NewSampleViewController.h"
 #import "Protocols.h"
 #import "SamplesEntity.h"
-#import "KMP.h"
+
 //#import "MeterLoggerProtocol.h"
-#define PROTO_KAMSTRUP		(@"fd")
+#define PROTO_MULTICAL601		(@"fd")
 
-@class Kamstrup;
+@class Multical601;
 
-@interface Kamstrup : UIViewController <DeviceRequestSendToDeviceViewController,UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
+@interface Multical601 : UIViewController <DeviceRequestSendToDeviceViewController, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource>{
 
 }
-- (void)sendKMPRequest:(NSOperation *)theOperation;
+
+//- (void)sendKMPRequest:(NSOperation *)theOperation;
 
 //@property (nonatomic, assign) id<DeviceViewControllerSendRequest> sendRequestDelegate;
 

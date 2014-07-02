@@ -25,7 +25,7 @@
 @end
 
 @implementation Testo
-@synthesize sendRequestDelegate;
+@synthesize deviceRequestSendToNewSampleViewControllerDelegate;
 @synthesize receiveDataProgressTimer;
 @synthesize myDataObject;
 @synthesize detailsTableView;
@@ -44,7 +44,7 @@
 -(id)initWithDictionary:(NSDictionary *)dictionary ;//= /* parse the JSON response to a dictionary */;
 {
     NSLog(@"sensor init with dictionary");
-    [self setSendRequestDelegate:dictionary[@"delegate"]];
+    [self setDeviceRequestSendToNewSampleViewControllerDelegate:dictionary[@"delegate"]];
     
     // set myDataObject to the one passed in dictionary key dataObject
     [self setMyDataObject:dictionary[@"dataObject"]];
@@ -128,7 +128,7 @@
         
         [[UIApplication sharedApplication] setIdleTimerDisabled: YES];  // dont lock
         
-        [self.sendRequestDelegate sendRequest:PROTO_TESTO];
+        [self.deviceRequestSendToNewSampleViewControllerDelegate sendRequest:PROTO_TESTO];
         [NSThread sleepForTimeInterval:0.04];           // This will sleep for 40 millis
         
     }
