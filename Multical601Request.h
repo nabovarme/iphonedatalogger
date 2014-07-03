@@ -12,13 +12,12 @@
 
 @interface Multical601Request : NSObject <NewSampleViewControllerSendToDeviceRequest>
 
-@property KMP *kmp;
-
 - (void)sendRequest;
-
 - (void)sendKMPRequest:(NSOperation *)theOperation;
-@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> DeviceRequestSendToNewSampleViewControllerDelegate;
-@property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> DeviceRequestSendToDeviceViewControllerDelegate;
+
+@property KMP *kmp;
+@property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> deviceRequestSendToNewSampleViewControllerDelegate;
+@property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> deviceRequestSendToDeviceViewControllerDelegate;
 
 @property NSOperationQueue *sendKMPRequestOperationQueue;
 

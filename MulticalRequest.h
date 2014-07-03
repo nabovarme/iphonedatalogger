@@ -12,11 +12,10 @@
 
 @interface MulticalRequest : NSObject <NewSampleViewControllerSendToDeviceRequest>
 
-@property IEC62056_21 *iec62056_21;
-
 - (void)sendRequest;
-
 - (void)sendIEC62056_21Request:(NSOperation *)theOperation;
+
+@property IEC62056_21 *iec62056_21;
 @property (nonatomic, assign) id<DeviceRequestSendToNewSampleViewController> deviceRequestSendToNewSampleViewControllerDelegate;
 @property (nonatomic, assign) id<DeviceRequestSendToDeviceViewController> deviceRequestSendToDeviceViewControllerDelegate;
 
