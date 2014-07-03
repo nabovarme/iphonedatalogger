@@ -84,7 +84,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"content loaded with %@",nibNameOrNil);
+        NSLog(@"content loaded with %@", nibNameOrNil);
         // Custom initialization
 
     }
@@ -103,15 +103,15 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
-    KMP *myData = [[KMP alloc] init];
-    [myData getType];
+    //KMP *myData = [[KMP alloc] init];
+    //[myData getType];
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
         NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
         NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
         NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
-        self.orderedNames=[[NSArray alloc]initWithArray:deviceKeys];
+        self.orderedNames = [[NSArray alloc]initWithArray:deviceKeys];
     }
     else
     {
@@ -122,7 +122,7 @@
         // if there is no data saved init sampleDataDict empty
         // load keys from property list
 
-        NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
+        NSString *devicePlistString = [NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
 
 
         NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];

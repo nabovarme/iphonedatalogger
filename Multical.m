@@ -71,7 +71,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"content loaded with %@",nibNameOrNil);
+        NSLog(@"content loaded with %@", nibNameOrNil);
         // Custom initialization
 
     }
@@ -94,10 +94,10 @@
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
-        NSString *devicePlistString=[NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
+        NSString *devicePlistString = [NSString stringWithFormat:@"%@PropertyList",myDataObject.deviceName];
         NSString *devicePlist = [[NSBundle mainBundle] pathForResource:devicePlistString ofType:@"plist"];
         NSArray *deviceKeys = [NSArray arrayWithContentsOfFile:devicePlist];
-        self.orderedNames=[[NSArray alloc]initWithArray:deviceKeys];
+        self.orderedNames = [[NSArray alloc]initWithArray:deviceKeys];
     }
     else
     {
@@ -286,14 +286,6 @@
         [self.receiveDataProgressTimer invalidate];
         self.receiveDataProgressTimer = nil;
     }
-}
-
-#pragma mark - Stupid redundant code
-
--(NSString *) dataToHexString:(NSData *) theData {
-    NSString *result = [[theData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    result = [result substringWithRange:NSMakeRange(1, [result length] - 2)];
-    return result;
 }
 
 @end

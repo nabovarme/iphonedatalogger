@@ -197,5 +197,13 @@
     }
 }
 
+#pragma mark - Stupid redundant code
+
+-(NSString *) dataToHexString:(NSData *) theData {
+    NSString *result = [[theData description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    result = [result substringWithRange:NSMakeRange(1, [result length] - 2)];
+    return result;
+}
+
 
 @end
