@@ -13,7 +13,7 @@
 #define SAMPLE_RATE  44100
 #define SAMPLE       SInt16
 #define SAMPLE_MAX   32767
-#define NUM_CHANNELS 1
+#define NUM_CHANNELS 2
 
 #define BITS_PER_CHANNEL (sizeof(SAMPLE) * 8)
 #define BYTES_PER_FRAME  (NUM_CHANNELS * sizeof(SAMPLE))
@@ -74,7 +74,7 @@ SAMPLE sineTable[SINE_TABLE_LENGTH];
 	audioFormat.mFormatFlags		= kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
 	audioFormat.mFramesPerPacket	= 1;
 	audioFormat.mChannelsPerFrame	= NUM_CHANNELS;
-	audioFormat.mBitsPerChannel		= BITS_PER_CHANNEL;
+	audioFormat.mBitsPerChannel		= NUM_CHANNELS * BITS_PER_CHANNEL;
 	audioFormat.mBytesPerPacket		= BYTES_PER_FRAME;
 	audioFormat.mBytesPerFrame		= BYTES_PER_FRAME;
 	
@@ -147,7 +147,8 @@ SAMPLE sineTable[SINE_TABLE_LENGTH];
 			sineTableIndex += (bits & 1)?TABLE_JUMP_HIGH:TABLE_JUMP_LOW;
 			if(sineTableIndex >= SINE_TABLE_LENGTH)
 				sineTableIndex -= SINE_TABLE_LENGTH;
-			*sample = sineTable[sineTableIndex];
+			//*sample = sineTable[sineTableIndex];
+            sample[0] = sineTable[sineTableIndex];
 		}
 
 		if(bitCount)
