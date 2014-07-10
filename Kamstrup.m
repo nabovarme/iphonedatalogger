@@ -9,6 +9,7 @@
 #import "Kamstrup.h"
 #import "KMP.h"
 #import "KeyLabelValueTextfieldCell.h"
+#import "MeterLoggerDevice.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
@@ -24,6 +25,7 @@
 @property NSArray *orderedNames;
 @property NSMutableData *data;
 @property BOOL state;
+@property MeterLoggerDevice *meterLoggerDevice;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
@@ -45,6 +47,7 @@
 @synthesize state;
 @synthesize detailsTableView;
 @synthesize kmp;
+@synthesize meterLoggerDevice;
 
 -(id)init
 {
@@ -91,6 +94,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
+    meterLoggerDevice = [[MeterLoggerDevice alloc] init];
+    
     KMP *myData = [[KMP alloc] init];
     [myData getType];
     if([self.myDataObject.sampleDataDict count] != 0)
@@ -291,6 +296,8 @@
         // last frame received
         [self.receiveDataProgressView setHidden:YES];
         [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+        
+        [self.meterLoggerDevice powerOff];
     }
 }
 
@@ -301,6 +308,8 @@
     [self.sendKMPRequestOperationQueue cancelAllOperations];
     self.sendKMPRequestOperationQueue = nil;
     NSLog(@"viewDidDisappear");
+    
+    [self.meterLoggerDevice powerOff];
 }
 
 - (DeviceSampleDataObject *)getDataObject

@@ -9,6 +9,7 @@
 #import "Multical.h"
 #import "KeyLabelValueTextfieldCell.h"
 #import "IEC62056-21.h"
+#import "MeterLoggerDevice.h"
 
 //#define KAMSTRUP_DATA_LENGTH (285.0f)
 
@@ -24,6 +25,7 @@
 @property NSArray *orderedNames;
 @property NSMutableData *data;
 @property BOOL state;
+@property MeterLoggerDevice *meterLoggerDevice;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
@@ -45,6 +47,7 @@
 @synthesize state;
 @synthesize detailsTableView;
 @synthesize iec62056_21;
+@synthesize meterLoggerDevice;
 
 -(id)init
 {
@@ -101,6 +104,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
+    meterLoggerDevice = [[MeterLoggerDevice alloc] init];
+
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
@@ -242,6 +247,8 @@
                 [self.receiveDataProgressView setHidden:YES];
                 [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
                 
+                [self.meterLoggerDevice powerOff];
+                
                 //update table view
                 self.state = YES;
                 [self.detailsTableView reloadData];
@@ -251,6 +258,8 @@
             // last frame received
             [self.receiveDataProgressView setHidden:YES];
             [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+            
+            [self.meterLoggerDevice powerOff];
             
             //update table view
             self.state = YES;

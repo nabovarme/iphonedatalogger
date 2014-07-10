@@ -8,6 +8,7 @@
 
 #import "Testo.h"
 #import "KeyLabelValueTextfieldCell.h"
+#import "MeterLoggerDevice.h"
 
 #define TESTO_DATA_LENGTH (712.0f)
 
@@ -22,6 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *detailsTableView;
 
+@property MeterLoggerDevice *meterLoggerDevice;
+
 @end
 
 @implementation Testo
@@ -33,6 +36,8 @@
 @synthesize orderedNames;
 
 @synthesize data;
+
+@synthesize meterLoggerDevice;
 
 -(id)init
 {
@@ -72,6 +77,8 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
+    meterLoggerDevice = [[MeterLoggerDevice alloc] init];
+
     if([self.myDataObject.sampleDataDict count] != 0)
     {
         // details view
@@ -159,6 +166,8 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     [self.receiveDataProgressTimer invalidate];
     self.receiveDataProgressTimer = nil;
+    
+    [self.meterLoggerDevice powerOff];
 }
 
 - (void)doneReceiving {
@@ -166,6 +175,8 @@
     
     [self.receiveDataProgressView setHidden:YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
+    
+    [self.meterLoggerDevice powerOff];
     
     NSRegularExpression *regex;
     NSString *str;
