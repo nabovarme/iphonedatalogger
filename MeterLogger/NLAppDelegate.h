@@ -17,6 +17,7 @@
 
 #import "DeviceSampleDataObject.h"
 #import "SamplesEntity.h"
+#import "MeterLoggerDevice.h"
 
 //end
 
@@ -46,6 +47,9 @@
 
 //@property (strong, nonatomic) NLMainViewController *viewController;
 //@property (strong, nonatomic) CharReceiverDelegate * receiveDelegate;
+
+@property MeterLoggerDevice *meterLoggerDevice;
+
 //+ (NLAppDelegate*) getInstance;
 -(NSArray*)getAllSamplesFromDevice:(NSString*)deviceName;
 -(void)deleteEntityWithDeviceName:(NSString*)deviceName andDate:(NSDate *)date;

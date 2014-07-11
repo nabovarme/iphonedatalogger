@@ -21,6 +21,8 @@
 		8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88A8191A4221004F7D5C /* SampleDetailsViewController.m */; };
 		8FFD88AF191A448B004F7D5C /* DevicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD88AE191A448B004F7D5C /* DevicesListController.m */; };
 		8FFD88B1191A59F3004F7D5C /* DevicesPropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */; };
+		D605CE81196F6CAD005B0070 /* MeterLoggerDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = D605CE7F196F6CAD005B0070 /* MeterLoggerDevice.m */; };
+		D605CE82196F6CAD005B0070 /* power_on.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D605CE80196F6CAD005B0070 /* power_on.aiff */; };
 		D60EA66019586B9E00717CB6 /* MulticalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D60EA65F19586B9E00717CB6 /* MulticalRequest.m */; };
 		D6172CE119646C8300CD73E4 /* Testo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6172CE019646C8300CD73E4 /* Testo.m */; };
 		D6172CE419646E6300CD73E4 /* Testo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6172CE319646E6300CD73E4 /* Testo.xib */; };
@@ -79,6 +81,9 @@
 		8FFD88AD191A448B004F7D5C /* DevicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesListController.h; path = ../DevicesListController.h; sourceTree = "<group>"; };
 		8FFD88AE191A448B004F7D5C /* DevicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesListController.m; path = ../DevicesListController.m; sourceTree = "<group>"; };
 		8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevicesPropertyList.plist; sourceTree = "<group>"; };
+		D605CE7E196F6CAD005B0070 /* MeterLoggerDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterLoggerDevice.h; sourceTree = "<group>"; };
+		D605CE7F196F6CAD005B0070 /* MeterLoggerDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterLoggerDevice.m; sourceTree = "<group>"; };
+		D605CE80196F6CAD005B0070 /* power_on.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = power_on.aiff; path = ../power_on.aiff; sourceTree = "<group>"; };
 		D60EA65E19586B9E00717CB6 /* MulticalRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MulticalRequest.h; sourceTree = "<group>"; };
 		D60EA65F19586B9E00717CB6 /* MulticalRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MulticalRequest.m; sourceTree = "<group>"; };
 		D60EA66219587A5700717CB6 /* MeterLoggerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeterLoggerProtocol.h; sourceTree = SOURCE_ROOT; };
@@ -208,6 +213,8 @@
 				D6172CEF1964823B00CD73E4 /* Multical601 */,
 				8F9D6C291917AD3400235CDA /* DeviceSampleDataObject.h */,
 				8F9D6C2A1917AD3400235CDA /* DeviceSampleDataObject.m */,
+				D605CE7E196F6CAD005B0070 /* MeterLoggerDevice.h */,
+				D605CE7F196F6CAD005B0070 /* MeterLoggerDevice.m */,
 				8FFD88B0191A59F3004F7D5C /* DevicesPropertyList.plist */,
 			);
 			name = Devices;
@@ -313,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				D66DD019191E8E93008ABF0F /* Images.xcassets */,
+				D605CE80196F6CAD005B0070 /* power_on.aiff */,
 				D679E5101943EDE1006BF517 /* Settings.bundle */,
 				FBBD3CDB15BE57A90035F419 /* MeterLogger-Info.plist */,
 				FBBD3CDC15BE57A90035F419 /* InfoPlist.strings */,
@@ -426,6 +434,7 @@
 				D6172CEC1964822F00CD73E4 /* Multical601.xib in Resources */,
 				D61A90E8194FB2F900B8B119 /* Multical.xib in Resources */,
 				D61A90E9194FB2F900B8B119 /* MulticalPropertyList.plist in Resources */,
+				D605CE82196F6CAD005B0070 /* power_on.aiff in Resources */,
 				FBBD3CDE15BE57A90035F419 /* InfoPlist.strings in Resources */,
 				8F7E5A711920FC3C00E39131 /* KeyLabelValueTextfieldCell.xib in Resources */,
 				D6821831191C413800DC093A /* TestoDemo.xib in Resources */,
@@ -468,6 +477,7 @@
 				D679E5141945FD08006BF517 /* MeterShareActivity.m in Sources */,
 				8FFD88A9191A4221004F7D5C /* SampleDetailsViewController.m in Sources */,
 				FBBD3D1815BE58970035F419 /* MultiDelegate.m in Sources */,
+				D605CE81196F6CAD005B0070 /* MeterLoggerDevice.m in Sources */,
 				8F086699191117730075391E /* SamplesEntity.m in Sources */,
 				D6821830191C413800DC093A /* TestoDemo.m in Sources */,
 				FBBD3D3215BE5ECB0035F419 /* NSString+HexColor.m in Sources */,

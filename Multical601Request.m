@@ -65,13 +65,13 @@
     }
 }
 
-
 - (void)doneReceiving {
     NSLog(@"Done receiving %@", self.data);
     self.framesReceived++;
     // decode kmp frame
     [self.kmp decodeFrame:self.data];
     
+    /*
     if (self.kmp.frameReceived) {
         for (NSNumber *rid in self.kmp.registerIDTable) {
             if (self.kmp.responseData[rid] && self.myDataObject.sampleDataDict[self.kmp.registerIDTable[rid]]) {
@@ -129,10 +129,9 @@
         //[self.receiveDataProgressView setHidden:YES];
         [[UIApplication sharedApplication] setIdleTimerDisabled: NO];  // allow lock again
     }
-    [self.deviceRequestSendToDeviceViewControllerDelegate doneReceiving:(NSDictionary *)];
-
+    [self.deviceRequestSendToDeviceViewControllerDelegate doneReceiving:nil];
+    */
 }
-
 
 - (void)sendRequest {
     // start sendKMPRequest in a operation queue, so it can be canceled

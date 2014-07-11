@@ -63,12 +63,12 @@
         [self.receiveDataProgressTimer invalidate];
         self.receiveDataProgressTimer = nil;        // let it be deallocated
         // and start a new timer
-        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector( timerTimeout ) userInfo:nil repeats:NO];
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerTimeout) userInfo:nil repeats:NO];
         
     }
     else {
         // if its not running start a new one
-        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector( timerTimeout ) userInfo:nil repeats:NO];
+        self.receiveDataProgressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerTimeout) userInfo:nil repeats:NO];
         
     }
 }

@@ -15,6 +15,7 @@
 #import "AudioSignalAnalyzer.h"
 #import "FSKSerialGenerator.h"
 #import "FSKRecognizer.h"
+#import "MeterLoggerDevice.h"
 
 @implementation NLAppDelegate
 
@@ -35,6 +36,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 //
 
+@synthesize meterLoggerDevice;
 
 - (void)dealloc
 {
@@ -58,6 +60,10 @@
     [AVAudioSession sharedInstance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
 
+    // power on
+    meterLoggerDevice = [[MeterLoggerDevice alloc] init];
+    [meterLoggerDevice powerOn];
+    
     AVAudioSession *session = [AVAudioSession sharedInstance];
 	//session.delegate = self;
     
@@ -102,11 +108,13 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.meterLoggerDevice powerOff];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self.meterLoggerDevice powerOn];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -13,7 +13,7 @@
 #define SAMPLE_RATE  44100
 #define SAMPLE       SInt16
 #define SAMPLE_MAX   32767
-#define NUM_CHANNELS 2
+#define NUM_CHANNELS 1
 
 #define BITS_PER_CHANNEL (sizeof(SAMPLE) * 8)
 #define BYTES_PER_FRAME  (NUM_CHANNELS * sizeof(SAMPLE))
