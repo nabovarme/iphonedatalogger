@@ -10,29 +10,29 @@
 	<string>MeterLogger</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E8A37387-056A-4076-B50C-D7D30BA7C5F0</key>
+		<key>AAF385CFF86E1A62952B91DBF29CB8B1CD058AA9</key>
 		<string>https://github.com/nabovarme/iphonedatalogger.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MeterLogger.xcodeproj/project.xcworkspace</string>
+	<string>MeterLogger.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E8A37387-056A-4076-B50C-D7D30BA7C5F0</key>
+		<key>AAF385CFF86E1A62952B91DBF29CB8B1CD058AA9</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/nabovarme/iphonedatalogger.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E8A37387-056A-4076-B50C-D7D30BA7C5F0</string>
+	<string>AAF385CFF86E1A62952B91DBF29CB8B1CD058AA9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E8A37387-056A-4076-B50C-D7D30BA7C5F0</string>
+			<string>AAF385CFF86E1A62952B91DBF29CB8B1CD058AA9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MeterLogger</string>
 		</dict>

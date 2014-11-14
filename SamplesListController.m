@@ -148,14 +148,14 @@
 */
 - (IBAction)newSampleButtonPressed:(UIBarButtonItem *)sender {
     NSLog(@"new sample button pressed");
-#ifndef __i386__
+#ifndef TARGET_IPHONE_SIMULATOR
     AVAudioSession *session = [AVAudioSession sharedInstance];
 #endif
     
     // check if headphone jack in plugged in
     // should go to NewSampleViewController with popup
     BOOL headPhonesConnected = NO;
-#ifdef __i386__
+#ifdef TARGET_IPHONE_SIMULATOR
     NSLog(@"Running in the simulator");
     headPhonesConnected = YES;
 #else
